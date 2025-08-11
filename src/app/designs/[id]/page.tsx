@@ -15,11 +15,11 @@ export default async function DesignPage({ params }: DesignPageProps) {
       <ResizablePanel minSize={12} maxSize={20} defaultSize={15}>
         <BlocksSidebar />
       </ResizablePanel>
-      <ResizableHandle className="mr-2 bg-transparent" />
+      <ResizableHandle className="mx-[3px] my-2 w-0.5 rounded-full bg-transparent transition-colors duration-300 hover:bg-zinc-800 active:bg-zinc-800" />
       <ResizablePanel>
         <EmailSection />
       </ResizablePanel>
-      <ResizableHandle className="ml-2 bg-transparent" />
+      <ResizableHandle className="mx-[3px] my-2 w-0.5 rounded-full bg-transparent transition-colors duration-300 hover:bg-zinc-800 active:bg-zinc-800" />
       <ResizablePanel minSize={12} maxSize={20} defaultSize={15}>
         <InspectorSidebar />
       </ResizablePanel>

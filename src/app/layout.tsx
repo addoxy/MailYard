@@ -20,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.variable, 'debug-screens min-h-screen w-full antialiased')}>
+      <body
+        className={cn(
+          inter.variable,
+          'debug-screens dark min-h-screen w-full bg-[#121212] antialiased'
+        )}
+      >
         {children}
       </body>
     </html>
