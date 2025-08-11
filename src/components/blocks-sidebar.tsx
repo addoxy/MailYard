@@ -6,9 +6,21 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Ellipsis, Home, LogOut } from 'lucide-react';
+import {
+  ALargeSmall,
+  Box,
+  Ellipsis,
+  Heading,
+  Home,
+  LogOut,
+  MousePointerClick,
+  Table,
+} from 'lucide-react';
 import { AtomicTooltip } from './atomic-tooltip';
+import { Block } from './block';
+import { SearchBar } from './search-bar';
 import { Button } from './ui/button';
+import { Separator } from './ui/separator';
 
 export const BlocksSidebar = () => {
   return (
@@ -41,6 +53,33 @@ export const BlocksSidebar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+        </div>
+        <div className="mt-6 flex flex-col px-4">
+          <span className="text-muted-foreground mb-4 font-mono text-xs tracking-wider">
+            BLOCKS
+          </span>
+          <SearchBar placeholder="Search for blocks..." />
+          <div className="mt-3 flex flex-col gap-1.5">
+            <Block icon={Heading} content="Heading" />
+            <Block icon={ALargeSmall} content="Text" />
+            <Block icon={MousePointerClick} content="Button" />
+            <Block icon={Box} content="Container" />
+            <Block icon={Table} content="Table" />
+          </div>
+        </div>
+        <Separator orientation="horizontal" className="bg-border/40 mt-10" />
+        <div className="mt-6 flex flex-col px-4">
+          <span className="text-muted-foreground mb-4 font-mono text-xs tracking-wider">
+            ASSETS
+          </span>
+          <SearchBar placeholder="Search for assets..." />
+          <div className="mt-3 flex flex-col gap-1.5">
+            <Block icon={Heading} content="Heading" />
+            <Block icon={ALargeSmall} content="Text" />
+            <Block icon={MousePointerClick} content="Button" />
+            <Block icon={Box} content="Container" />
+            <Block icon={Table} content="Table" />
+          </div>
         </div>
       </div>
     </aside>
