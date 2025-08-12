@@ -2,6 +2,7 @@
 
 import { Code, Eye, Monitor, Redo, Smartphone, Undo } from 'lucide-react';
 import { useState } from 'react';
+import { ThemeToggle } from './theme-toggle';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 
@@ -12,7 +13,7 @@ export const EmailSection = () => {
 
   return (
     <div className="flex h-screen py-2">
-      <div className="bg-accent/20 border-border/40 h-full w-full rounded-lg border">
+      <div className="bg-sidebar border-border/40 h-full w-full rounded-lg border">
         <div className="border-border/40 flex h-16 items-center border-b px-4">
           <Button variant="ghost" size="icon">
             <Undo />
@@ -21,7 +22,7 @@ export const EmailSection = () => {
             <Redo />
           </Button>
           <Separator orientation="vertical" className="mr-6 ml-4 !h-6" />
-          <div className="flex items-center gap-1 rounded-lg p-1.5">
+          <div className="flex items-center gap-1.5 rounded-lg">
             <Button
               onClick={() => setActiveView('desktop')}
               variant={activeView === 'desktop' ? 'default' : 'ghost'}
@@ -36,6 +37,8 @@ export const EmailSection = () => {
             </Button>
           </div>
           <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle />
+            <Separator orientation="vertical" className="mr-6 ml-4 !h-6" />
             <Button variant="secondary">
               <Eye />
               Preview

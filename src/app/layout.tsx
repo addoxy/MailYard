@@ -1,3 +1,4 @@
+import { Providers } from '@/lib/providers';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
@@ -19,14 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          inter.variable,
-          'debug-screens dark min-h-screen w-full bg-[#121212] antialiased'
-        )}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn(inter.variable, 'debug-screens min-h-screen w-full antialiased')}>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

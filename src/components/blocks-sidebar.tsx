@@ -25,7 +25,7 @@ import { Separator } from './ui/separator';
 export const BlocksSidebar = () => {
   return (
     <aside className="h-screen py-2 pl-2">
-      <div className="bg-accent/20 border-border/40 flex h-full flex-col rounded-lg border">
+      <div className="bg-sidebar border-border/40 flex h-full flex-col rounded-lg border">
         <div className="border-border/40 flex h-16 items-center border-b px-4">
           <div className="flex items-center gap-2">
             <img
