@@ -1,11 +1,15 @@
 'use client';
 
+import { AtomicTooltip } from '@/components/atomic-tooltip';
+import { SearchBar } from '@/components/search-bar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Separator } from '@/components/ui/separator';
 import {
   ALargeSmall,
   Box,
@@ -16,11 +20,7 @@ import {
   MousePointerClick,
   Table,
 } from 'lucide-react';
-import { AtomicTooltip } from './atomic-tooltip';
 import { Block } from './block';
-import { SearchBar } from './search-bar';
-import { Button } from './ui/button';
-import { Separator } from './ui/separator';
 
 export const BlocksSidebar = () => {
   return (

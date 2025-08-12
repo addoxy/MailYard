@@ -1,13 +1,12 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { useAtom } from 'jotai';
 import { Paintbrush, Sparkles } from 'lucide-react';
-import { useState } from 'react';
-import { Button } from './ui/button';
-
-type View = 'style' | 'ai';
+import { inspectorViewAtom } from '../atoms';
 
 export const InspectorSidebar = () => {
-  const [activeView, setActiveView] = useState<View>('style');
+  const [activeView, setActiveView] = useAtom(inspectorViewAtom);
 
   return (
     <aside className="h-screen py-2 pr-2">
