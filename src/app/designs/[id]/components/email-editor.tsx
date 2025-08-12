@@ -11,11 +11,16 @@ export const EmailEditor = () => {
     <div className="flex h-full w-full items-center justify-center pb-16">
       <div
         className={cn(
-          'bg-accent h-full w-full rounded-xl border p-2 shadow-md transition-all duration-500',
-          deviceView === 'desktop' ? 'h-5/6 w-5/6' : 'h-4/6 w-88'
+          'shadow-md transition-all duration-500',
+          deviceView === 'desktop' ? 'h-full w-full' : 'bg-accent h-4/6 w-88 rounded-xl border p-2'
         )}
       >
-        <div className="h-full w-full rounded-lg border bg-white"></div>
+        <div
+          className={cn(
+            'h-full w-full overflow-auto bg-white',
+            deviceView === 'mobile' ? 'rounded-lg border' : ''
+          )}
+        ></div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
-import { BlocksSidebar } from './components/blocks-sidebar';
 import { EmailSection } from './components/email-section';
 import { InspectorSidebar } from './components/inspector-sidebar';
+import { ResourceSidebar } from './components/resource-sidebar';
 
 interface DesignPageProps {
   params: Promise<{ id: string }>;
@@ -13,7 +13,7 @@ export default async function DesignPage({ params }: DesignPageProps) {
   return (
     <ResizablePanelGroup direction="horizontal" className="w-full">
       <ResizablePanel minSize={12} maxSize={20} defaultSize={15}>
-        <BlocksSidebar />
+        <ResourceSidebar />
       </ResizablePanel>
       <ResizableHandle className="hover:bg-border active:bg-border mx-[3px] my-2 w-0.5 rounded-full bg-transparent transition-colors duration-300" />
       <ResizablePanel>
