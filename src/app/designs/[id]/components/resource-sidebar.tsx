@@ -123,7 +123,7 @@ const AssetsSection = () => {
     <div className="flex h-[calc(100vh-100px)] flex-col overflow-auto px-4">
       <div className="mt-6 mb-4 flex items-center justify-between gap-2">
         <span className="text-muted-foreground font-mono text-xs tracking-wider">ASSETS</span>
-        <AtomicTooltip content="Add an asset">
+        <AtomicTooltip content="Add an asset" asChild>
           <Button size="icon" className="size-5 rounded-sm" variant="secondary">
             <Plus />
           </Button>

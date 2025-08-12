@@ -7,12 +7,12 @@ import { Redo, Undo } from 'lucide-react';
 export const Actions = () => {
   return (
     <>
-      <AtomicTooltip content="Undo">
+      <AtomicTooltip content="Undo" asChild>
         <Button variant="ghost" size="icon">
           <Undo />
         </Button>
       </AtomicTooltip>
-      <AtomicTooltip content="Redo">
+      <AtomicTooltip content="Redo" asChild>
         <Button variant="ghost" size="icon">
           <Redo />
         </Button>
