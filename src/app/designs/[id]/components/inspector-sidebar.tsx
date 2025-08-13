@@ -22,6 +22,10 @@ const StyleView = () => {
   );
 };
 
+const AIAssistView = () => {
+  return <div className="text-muted-foreground mt-10 p-4 text-center">Coming soon</div>;
+};
+
 export const InspectorSidebar = () => {
   const [activeView, setActiveView] = useAtom(inspectorViewAtom);
 
@@ -44,7 +48,8 @@ export const InspectorSidebar = () => {
             </Button>
           </div>
         </div>
-        <StyleView />
+        {activeView === 'style' && <StyleView />}
+        {activeView === 'ai' && <AIAssistView />}
       </div>
     </aside>
   );

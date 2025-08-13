@@ -72,6 +72,14 @@ const BLOCKS = [
     content: 'Button',
   },
   {
+    icon: Link,
+    content: 'Link',
+  },
+  {
+    icon: Minus,
+    content: 'Divider',
+  },
+  {
     icon: Box,
     content: 'Container',
   },
@@ -86,14 +94,6 @@ const BLOCKS = [
   {
     icon: ChevronsLeftRightEllipsis,
     content: 'Inline Code',
-  },
-  {
-    icon: Minus,
-    content: 'Divider',
-  },
-  {
-    icon: Link,
-    content: 'Link',
   },
 ];
 
