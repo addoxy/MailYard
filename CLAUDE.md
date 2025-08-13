@@ -167,6 +167,14 @@ const html = await pretty(await render(<MyTemplate />));
 - Asset-to-block drops for direct configuration
 - Visual drop indicators with subtle animations
 
+## Task Management
+
+When you're asked to work on a specific task (e.g., "do task 1"), refer to the **TASKS.md** file for detailed task breakdowns and requirements. Tasks are organized by development phases:
+- **Phase 1**: Core Functionality (Tasks 1-5)
+- **Phase 2**: Advanced Features (Tasks 6-10)
+- **Phase 3**: Polish & Advanced Features (Tasks 11-15)
+- **Phase 4**: Mobile & Final Polish (Tasks 16-20)
+
 ## Development Context
 
 - **Scope**: Frontend only (no backend integration needed)
