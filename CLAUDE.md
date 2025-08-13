@@ -8,9 +8,10 @@ A no-code solution for creating beautiful and accessible emails using React and 
 
 ## Development Commands
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
+- `pnpn dev` - Start development server with Turbopack
+- `pnpm build` - Build for production
+- `pnpm lint` - Run ESLint
+- `pnpm add [package-name]` for installing packages
 
 ## Tech Stack
 
@@ -57,29 +58,35 @@ src/
 ## Key Architecture Decisions
 
 ### Responsive Design Strategy
+
 - **Desktop**: Full email builder functionality with 3-column layout
 - **Mobile**: Home page only - email builder is desktop-exclusive
 - **Mobile Design Preview**: Clicking designs on mobile opens read-only preview modal
 - **Responsive Breakpoint**: Hide email builder below 1024px width
 
 ### Email Block System
+
 - **CRITICAL**: All email blocks MUST use inline styles only (no Tailwind classes or CSS classes)
 - This ensures compatibility with email providers when exporting
 - Use @react-email/components as the foundation for all blocks
 - Supported block types: heading, text, container, divider, button, link, grid, image, video
 
 ### State Management Pattern
+
 - **Global State**: Use Jotai atoms for cross-component state (selected blocks, email data, undo/redo history)
 - **Local State**: Use useState for component-specific state (form inputs, UI toggles, search queries)
 - Store atoms in `atoms.ts` files within each route directory
 
 ### Hook Organization
+
 - **Global hooks**: `src/hooks/` - Shared across multiple features
 - **Feature-specific hooks**: `[feature]/hooks/` - Specific to one feature area
 - **Example**: `useEmailCanvas` belongs in `designs/[id]/hooks/`
 
 ### Layout Pattern
+
 The main design interface uses a three-panel resizable layout:
+
 1. **ResourceSidebar** - Left panel for blocks/assets with drag-and-drop
 2. **EmailSection** - Center panel with header actions and interactive email canvas
 3. **InspectorSidebar** - Right panel for styling controls and multi-select editing
@@ -87,6 +94,7 @@ The main design interface uses a three-panel resizable layout:
 ## Styling Guidelines
 
 ### UI Components
+
 - Use shadcn/ui components as the base for all UI elements
 - Extend shadcn components when needed rather than creating from scratch
 - Follow existing UI patterns for consistency
@@ -94,6 +102,7 @@ The main design interface uses a three-panel resizable layout:
 - **UI components**: Tailwind classes are acceptable
 
 ### Animation Guidelines
+
 - **Framer Motion Usage**: Add subtle animations that enhance user experience
 - **Focus Areas**:
   - Gentle hover effects on interactive elements
@@ -103,6 +112,7 @@ The main design interface uses a three-panel resizable layout:
   - Loading states and micro-interactions
 
 ### Component Standards
+
 - **Icons**: Use Lucide React exclusively for all icons
 - **Tooltips**: Use AtomicTooltip component from `atomic-tooltip.tsx`
 - **Accessibility**: Ensure WCAG compliance and keyboard navigation support
@@ -110,12 +120,14 @@ The main design interface uses a three-panel resizable layout:
 ## Code Quality Standards
 
 ### Senior Developer Approach
+
 - **Clean Architecture**: Write maintainable, well-documented code
 - **Component Splitting**: Break large components into smaller, focused files when they exceed ~200 lines
 - **File Organization**: Create dedicated files for hooks, utils, types, and constants
 - **Naming Conventions**: Use descriptive names, follow React/TypeScript best practices
 
 ### Component Splitting Strategy
+
 ```
 designs/[id]/
 ├── components/
@@ -132,11 +144,13 @@ designs/[id]/
 ## Export Requirements
 
 ### React Export
+
 - Generate clean @react-email/components code
 - Maintain component structure and inline styling
 - Include necessary imports
 
 ### HTML Export
+
 ```typescript
 import { MyTemplate } from './email';
 import { render, pretty } from '@react-email/render';
@@ -147,6 +161,7 @@ const html = await pretty(await render(<MyTemplate />));
 ## Key Features
 
 ### Keyboard Shortcuts
+
 - **Delete**: Delete selected block(s)
 - **Cmd/Ctrl + Z**: Undo last action
 - **Cmd/Ctrl + Shift + Z**: Redo last action
@@ -157,11 +172,13 @@ const html = await pretty(await render(<MyTemplate />));
 - **Cmd/Ctrl + C/V**: Copy/paste selected block(s)
 
 ### Multi-Select Support
+
 - Bulk editing for common properties only
 - Show "Mixed" for properties with different values across selected blocks
 - Disable incompatible properties when selection includes different block types
 
 ### Drag & Drop Implementation
+
 - Use dnd-kit for all drag-and-drop functionality
 - Block reordering within email canvas
 - Asset-to-block drops for direct configuration
@@ -170,6 +187,7 @@ const html = await pretty(await render(<MyTemplate />));
 ## Task Management
 
 When you're asked to work on a specific task (e.g., "do task 1"), refer to the **TASKS.md** file for detailed task breakdowns and requirements. Tasks are organized by development phases:
+
 - **Phase 1**: Core Functionality (Tasks 1-5)
 - **Phase 2**: Advanced Features (Tasks 6-10)
 - **Phase 3**: Polish & Advanced Features (Tasks 11-15)
