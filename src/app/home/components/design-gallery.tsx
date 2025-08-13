@@ -2,30 +2,19 @@
 
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useMobile } from '@/hooks/use-mobile';
 import { Calendar } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useDesignData } from '../hooks/use-design-data';
-import { useDesignFilters } from '../hooks/use-design-filters';
+import { useFilteredDesigns } from '../hooks/use-design-filters';
 import { useHydratedViewMode } from '../hooks/use-hydrated-view-mode';
 
 export function DesignGallery() {
   const { designs, isLoading } = useDesignData();
-  const { filteredDesigns } = useDesignFilters(designs);
-  const router = useRouter();
+  const { filteredDesigns } = useFilteredDesigns(designs);
   const { viewMode, isHydrated } = useHydratedViewMode();
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
+  const isMobile = useMobile();
+  const router = useRouter();
 
   const handleDesignClick = (designId: string) => {
     if (isMobile) {

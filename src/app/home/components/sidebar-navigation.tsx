@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { activeFilterAtom } from '../atoms';
 import { useDesignData } from '../hooks/use-design-data';
-import { FilterType, useDesignFilters } from '../hooks/use-design-filters';
+import { FilterType, useFilteredDesigns } from '../hooks/use-design-filters';
 
 const getNavigationSections = (counts: Record<string, number>) => [
   {
@@ -29,7 +29,7 @@ const getNavigationSections = (counts: Record<string, number>) => [
 export function SidebarNavigation() {
   const [activeFilter, setActiveFilter] = useAtom(activeFilterAtom);
   const { designs } = useDesignData();
-  const { counts } = useDesignFilters(designs);
+  const { counts } = useFilteredDesigns(designs);
   const navigationSections = getNavigationSections(counts);
 
   const router = useRouter();

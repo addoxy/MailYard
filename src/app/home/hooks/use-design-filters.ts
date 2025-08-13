@@ -1,46 +1,42 @@
 'use client';
 
-import { useMemo } from 'react';
 import { useAtomValue } from 'jotai';
+import { useMemo } from 'react';
+import { activeFilterAtom, searchQueryAtom, sortOrderAtom } from '../atoms';
 import { Design } from './use-design-data';
-import { searchQueryAtom, sortOrderAtom, activeFilterAtom } from '../atoms';
 
-export type SortOrder = 
-  | 'name-asc' 
-  | 'name-desc' 
-  | 'modified-desc' 
-  | 'modified-asc' 
-  | 'created-desc' 
+export type SortOrder =
+  | 'name-asc'
+  | 'name-desc'
+  | 'modified-desc'
+  | 'modified-asc'
+  | 'created-desc'
   | 'created-asc';
 
-export type FilterType = 
-  | 'all' 
-  | 'recent' 
-  | 'favorites' 
-  | 'trash';
+export type FilterType = 'all' | 'recent' | 'favorites' | 'trash';
 
 function sortDesigns(designs: Design[], sortOrder: SortOrder): Design[] {
   const sorted = [...designs];
-  
+
   switch (sortOrder) {
     case 'name-asc':
       return sorted.sort((a, b) => a.name.localeCompare(b.name));
-    
+
     case 'name-desc':
       return sorted.sort((a, b) => b.name.localeCompare(a.name));
-    
+
     case 'modified-desc':
       return sorted.sort((a, b) => b.lastModifiedTimestamp - a.lastModifiedTimestamp);
-    
+
     case 'modified-asc':
       return sorted.sort((a, b) => a.lastModifiedTimestamp - b.lastModifiedTimestamp);
-    
+
     case 'created-desc':
       return sorted.sort((a, b) => b.dateCreatedTimestamp - a.dateCreatedTimestamp);
-    
+
     case 'created-asc':
       return sorted.sort((a, b) => a.dateCreatedTimestamp - b.dateCreatedTimestamp);
-    
+
     default:
       return sorted;
   }
@@ -49,27 +45,24 @@ function sortDesigns(designs: Design[], sortOrder: SortOrder): Design[] {
 function filterDesignsByCategory(designs: Design[], filterType: FilterType): Design[] {
   const now = Date.now();
   const weekInMs = 7 * 24 * 60 * 60 * 1000;
-  
+
   switch (filterType) {
     case 'all':
-      return designs.filter(design => !design.isDeleted);
-    
+      return designs.filter((design) => !design.isDeleted);
+
     case 'recent':
-      return designs.filter(design => 
-        !design.isDeleted && 
-        (now - design.lastModifiedTimestamp) < weekInMs
+      return designs.filter(
+        (design) => !design.isDeleted && now - design.lastModifiedTimestamp < weekInMs
       );
-    
+
     case 'favorites':
-      return designs.filter(design => 
-        !design.isDeleted && design.isFavorite
-      );
-    
+      return designs.filter((design) => !design.isDeleted && design.isFavorite);
+
     case 'trash':
-      return designs.filter(design => design.isDeleted);
-    
+      return designs.filter((design) => design.isDeleted);
+
     default:
-      return designs.filter(design => !design.isDeleted);
+      return designs.filter((design) => !design.isDeleted);
   }
 }
 
@@ -79,44 +72,38 @@ function searchDesigns(designs: Design[], query: string): Design[] {
   }
 
   const searchTerm = query.toLowerCase().trim();
-  
-  return designs.filter(design => {
+
+  return designs.filter((design) => {
     const matchesName = design.name.toLowerCase().includes(searchTerm);
     const matchesCategory = design.category.toLowerCase().includes(searchTerm);
     const matchesDescription = design.description?.toLowerCase().includes(searchTerm) || false;
-    const matchesTags = design.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-    
+    const matchesTags = design.tags.some((tag) => tag.toLowerCase().includes(searchTerm));
+
     return matchesName || matchesCategory || matchesDescription || matchesTags;
   });
 }
 
-export function useDesignFilters(designs: Design[]) {
+export function useFilteredDesigns(designs: Design[]) {
   const searchQuery = useAtomValue(searchQueryAtom);
   const sortOrder = useAtomValue(sortOrderAtom);
   const activeFilter = useAtomValue(activeFilterAtom);
 
   const filteredDesigns = useMemo(() => {
-    // Step 1: Filter by category/type
     let filtered = filterDesignsByCategory(designs, activeFilter);
-    
-    // Step 2: Apply search filter
     filtered = searchDesigns(filtered, searchQuery);
-    
-    // Step 3: Sort the results
     filtered = sortDesigns(filtered, sortOrder);
-    
     return filtered;
   }, [designs, searchQuery, sortOrder, activeFilter]);
 
   const getCounts = useMemo(() => {
     return {
-      all: designs.filter(d => !d.isDeleted).length,
-      recent: designs.filter(d => {
+      all: designs.filter((d) => !d.isDeleted).length,
+      recent: designs.filter((d) => {
         const weekInMs = 7 * 24 * 60 * 60 * 1000;
-        return !d.isDeleted && (Date.now() - d.lastModifiedTimestamp) < weekInMs;
+        return !d.isDeleted && Date.now() - d.lastModifiedTimestamp < weekInMs;
       }).length,
-      favorites: designs.filter(d => !d.isDeleted && d.isFavorite).length,
-      trash: designs.filter(d => d.isDeleted).length,
+      favorites: designs.filter((d) => !d.isDeleted && d.isFavorite).length,
+      trash: designs.filter((d) => d.isDeleted).length,
     };
   }, [designs]);
 
