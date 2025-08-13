@@ -13,7 +13,7 @@ import {
 import { useAtom } from 'jotai';
 import { Grid3X3, List } from 'lucide-react';
 import { searchQueryAtom, sortOrderAtom } from '../atoms';
-import { SortOrder } from '../hooks/use-design-filters';
+import { SortOrder } from '../hooks/use-filtered-designs';
 import { useViewMode } from '../hooks/use-view-mode';
 
 const sortOptions = [

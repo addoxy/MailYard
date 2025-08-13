@@ -1,25 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface Design {
   id: string;
   name: string;
-  category: string;
   thumbnail?: string;
   lastModified: string;
   dateCreated: string;
   lastModifiedTimestamp: number;
   dateCreatedTimestamp: number;
-  description?: string;
-  tags: string[];
   isFavorite: boolean;
   isDeleted: boolean;
 }
 
-// Mock data generator
 function generateMockDesigns(): Design[] {
-  const categories = ['Newsletter', 'Marketing', 'Template', 'Announcement', 'Welcome'];
   const baseNames = [
     'Weekly Newsletter',
     'Product Launch',
@@ -44,30 +39,26 @@ function generateMockDesigns(): Design[] {
     'Partnership Announcement',
     'Industry Report',
     'Workshop Invitation',
-    'Success Stories'
+    'Success Stories',
   ];
 
   return baseNames.map((baseName, index) => {
-    const category = categories[index % categories.length];
     const createdDaysAgo = Math.floor(Math.random() * 90) + 1;
     const modifiedDaysAgo = Math.floor(Math.random() * createdDaysAgo) + 1;
-    
+
     const createdDate = new Date();
     createdDate.setDate(createdDate.getDate() - createdDaysAgo);
-    
+
     const modifiedDate = new Date();
     modifiedDate.setDate(modifiedDate.getDate() - modifiedDaysAgo);
 
     return {
       id: `design-${index + 1}`,
       name: `${baseName} ${index > 15 ? 'V2' : ''}`.trim(),
-      category,
       lastModified: formatRelativeDate(modifiedDate),
       dateCreated: formatRelativeDate(createdDate),
       lastModifiedTimestamp: modifiedDate.getTime(),
       dateCreatedTimestamp: createdDate.getTime(),
-      description: `A beautiful ${category.toLowerCase()} email template for engaging with your audience.`,
-      tags: [category.toLowerCase(), index % 3 === 0 ? 'responsive' : '', index % 4 === 0 ? 'modern' : ''].filter(Boolean),
       isFavorite: Math.random() > 0.8,
       isDeleted: Math.random() > 0.9,
     };
@@ -115,27 +106,29 @@ export function useDesignData() {
   }, []);
 
   const updateDesign = (id: string, updates: Partial<Design>) => {
-    setDesigns(prev => prev.map(design => 
-      design.id === id ? { ...design, ...updates } : design
-    ));
+    setDesigns((prev) =>
+      prev.map((design) => (design.id === id ? { ...design, ...updates } : design))
+    );
   };
 
   const deleteDesign = (id: string) => {
-    setDesigns(prev => prev.map(design => 
-      design.id === id ? { ...design, isDeleted: true } : design
-    ));
+    setDesigns((prev) =>
+      prev.map((design) => (design.id === id ? { ...design, isDeleted: true } : design))
+    );
   };
 
   const restoreDesign = (id: string) => {
-    setDesigns(prev => prev.map(design => 
-      design.id === id ? { ...design, isDeleted: false } : design
-    ));
+    setDesigns((prev) =>
+      prev.map((design) => (design.id === id ? { ...design, isDeleted: false } : design))
+    );
   };
 
   const toggleFavorite = (id: string) => {
-    setDesigns(prev => prev.map(design => 
-      design.id === id ? { ...design, isFavorite: !design.isFavorite } : design
-    ));
+    setDesigns((prev) =>
+      prev.map((design) =>
+        design.id === id ? { ...design, isFavorite: !design.isFavorite } : design
+      )
+    );
   };
 
   return {

@@ -2,7 +2,7 @@
 
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
-import { FilterType, SortOrder } from './hooks/use-design-filters';
+import { FilterType, SortOrder } from './hooks/use-filtered-designs';
 
 export const searchQueryAtom = atom<string>('');
 export const sortOrderAtom = atom<SortOrder>('modified-desc');

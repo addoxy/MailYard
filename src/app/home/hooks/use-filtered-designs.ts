@@ -70,17 +70,8 @@ function searchDesigns(designs: Design[], query: string): Design[] {
   if (!query.trim()) {
     return designs;
   }
-
   const searchTerm = query.toLowerCase().trim();
-
-  return designs.filter((design) => {
-    const matchesName = design.name.toLowerCase().includes(searchTerm);
-    const matchesCategory = design.category.toLowerCase().includes(searchTerm);
-    const matchesDescription = design.description?.toLowerCase().includes(searchTerm) || false;
-    const matchesTags = design.tags.some((tag) => tag.toLowerCase().includes(searchTerm));
-
-    return matchesName || matchesCategory || matchesDescription || matchesTags;
-  });
+  return designs.filter((design) => design.name.toLowerCase().includes(searchTerm));
 }
 
 export function useFilteredDesigns(designs: Design[]) {

@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { activeFilterAtom } from '../atoms';
 import { useDesignData } from '../hooks/use-design-data';
-import { FilterType, useFilteredDesigns } from '../hooks/use-design-filters';
+import { FilterType, useFilteredDesigns } from '../hooks/use-filtered-designs';
 
 const getNavigationSections = (counts: Record<string, number>) => [
   {
