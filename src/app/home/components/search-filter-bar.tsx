@@ -14,7 +14,7 @@ import { useAtom } from 'jotai';
 import { Grid3X3, List } from 'lucide-react';
 import { searchQueryAtom, sortOrderAtom } from '../atoms';
 import { SortOrder } from '../hooks/use-design-filters';
-import { useHydratedViewMode } from '../hooks/use-hydrated-view-mode';
+import { useViewMode } from '../hooks/use-view-mode';
 
 const sortOptions = [
   { value: 'name-asc', label: 'Name (A-Z)' },
@@ -28,7 +28,7 @@ const sortOptions = [
 export function SearchFilterBar() {
   const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom);
   const [sortOrder, setSortOrder] = useAtom(sortOrderAtom);
-  const { viewMode, setViewMode, isHydrated } = useHydratedViewMode();
+  const { viewMode, setViewMode, isLoading } = useViewMode();
 
   return (
     <div className="flex h-8 items-center justify-between gap-4 px-2">
@@ -57,10 +57,10 @@ export function SearchFilterBar() {
         </div>
 
         <div className="dark:bg-input/30 flex items-center gap-1 rounded-md border bg-transparent p-1">
-          {!isHydrated ? (
+          {!isLoading ? (
             <>
-              <div className="h-7 w-7 animate-pulse rounded-sm bg-muted" />
-              <div className="h-7 w-7 animate-pulse rounded-sm bg-muted" />
+              <div className="bg-muted h-7 w-7 animate-pulse rounded-sm" />
+              <div className="bg-muted h-7 w-7 animate-pulse rounded-sm" />
             </>
           ) : (
             <>

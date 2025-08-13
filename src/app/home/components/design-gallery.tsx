@@ -7,29 +7,29 @@ import { Calendar } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useDesignData } from '../hooks/use-design-data';
 import { useFilteredDesigns } from '../hooks/use-design-filters';
-import { useHydratedViewMode } from '../hooks/use-hydrated-view-mode';
+import { useViewMode } from '../hooks/use-view-mode';
 
 export function DesignGallery() {
-  const { designs, isLoading } = useDesignData();
+  const { designs, isLoading: isDesignDataLoading } = useDesignData();
   const { filteredDesigns } = useFilteredDesigns(designs);
-  const { viewMode, isHydrated } = useHydratedViewMode();
+  const { viewMode, isLoading: isViewModeLoading } = useViewMode();
   const isMobile = useMobile();
   const router = useRouter();
 
   const handleDesignClick = (designId: string) => {
     if (isMobile) {
-      // On mobile, open preview modal (for now just go to design page, can be updated later)
+      // TODO: on mobile, open preview modal
       router.push(`/designs/${designId}`);
     } else {
       router.push(`/designs/${designId}`);
     }
   };
 
-  if (!isHydrated) {
+  if (!isViewModeLoading) {
     return null;
   }
 
-  if (!isLoading && filteredDesigns.length === 0) {
+  if (!isDesignDataLoading && filteredDesigns.length === 0) {
     return (
       <div className="py-12 text-center">
         <div className="text-muted-foreground mb-2 text-lg">No designs found</div>
@@ -43,7 +43,7 @@ export function DesignGallery() {
   if (viewMode === 'grid') {
     return (
       <div className="grid grid-cols-1 gap-4 p-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {isLoading
+        {isDesignDataLoading
           ? Array.from({ length: 8 }).map((_, index) => (
               <Skeleton key={index} className="h-80 w-full" />
             ))
@@ -97,11 +97,11 @@ export function DesignGallery() {
         <div className="text-muted-foreground col-span-3 text-xs">Created</div>
       </div>
       <div className="mt-4 mb-4 space-y-2 px-6">
-        {isLoading
+        {isDesignDataLoading
           ? Array.from({ length: 8 }).map((_, index) => (
               <div key={index} className="grid animate-pulse grid-cols-12 gap-4 py-3">
                 <div className="col-span-6 flex items-center gap-3">
-                  <Skeleton className="bg-muted h-12 w-12 rounded" />
+                  <Skeleton className="bg-muted h-14 w-20 rounded" />
                   <Skeleton className="bg-muted h-4 w-48 rounded" />
                 </div>
                 <div className="col-span-3 flex items-center">
