@@ -5,6 +5,8 @@ import { UserMenu } from '@/components/user-menu';
 import { cn } from '@/lib/utils';
 import { useAtom } from 'jotai';
 import { Clock, Home, Plus, Star, Trash2 } from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import { activeFilterAtom } from '../atoms';
 import { useDesignData } from '../hooks/use-design-data';
 import { FilterType, useDesignFilters } from '../hooks/use-design-filters';
@@ -30,6 +32,30 @@ export function SidebarNavigation() {
   const { counts } = useDesignFilters(designs);
   const navigationSections = getNavigationSections(counts);
 
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const filterFromUrl = searchParams.get('filter') as FilterType;
+    if (filterFromUrl && ['all', 'recent', 'favorites', 'trash'].includes(filterFromUrl)) {
+      setActiveFilter(filterFromUrl);
+    }
+  }, [searchParams, setActiveFilter]);
+
+  const handleFilterChange = (filter: FilterType) => {
+    setActiveFilter(filter);
+
+    const params = new URLSearchParams(searchParams);
+    if (filter === 'all') {
+      params.delete('filter');
+    } else {
+      params.set('filter', filter);
+    }
+
+    const newUrl = params.toString() ? `?${params.toString()}` : '/home';
+    router.replace(newUrl, { scroll: false });
+  };
+
   return (
     <aside className="h-screen py-2 pl-2">
       <div className="bg-sidebar border-border/40 flex h-full flex-col rounded-lg border">
@@ -44,10 +70,9 @@ export function SidebarNavigation() {
           </Button>
         </div>
 
-        {/* Navigation */}
         <div className="flex-1 space-y-6 overflow-auto px-4 py-2">
           {navigationSections.map((section) => (
-            <div key={section.title}>
+            <div key={section.title} className="mt-4">
               <h3 className="text-muted-foreground mb-3 text-xs font-medium tracking-wider uppercase">
                 {section.title}
               </h3>
@@ -60,7 +85,7 @@ export function SidebarNavigation() {
                   return (
                     <button
                       key={item.id}
-                      onClick={() => setActiveFilter(item.id)}
+                      onClick={() => handleFilterChange(item.id)}
                       className={cn(
                         'flex w-full cursor-pointer items-center justify-between rounded-md px-3 py-2 text-sm transition-colors',
                         'hover:bg-accent hover:text-accent-foreground',
@@ -92,7 +117,6 @@ export function SidebarNavigation() {
           ))}
         </div>
 
-        {/* Footer */}
         <div className="border-border/40 border-t p-4">
           <div className="text-muted-foreground text-xs">
             <div>Storage: 85% used</div>

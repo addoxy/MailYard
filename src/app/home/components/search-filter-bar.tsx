@@ -30,7 +30,7 @@ export function SearchFilterBar() {
   const [viewMode, setViewMode] = useAtom(viewModeAtom);
 
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-center justify-between gap-4 px-2">
       <h1 className="text-lg font-semibold">All Designs</h1>
 
       <div className="flex items-center gap-3">
@@ -38,7 +38,7 @@ export function SearchFilterBar() {
           placeholder="Search designs..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-96 pr-4 pl-9"
+          className="h-10 w-96 pr-4 pl-9"
         />
         <div className="flex items-center gap-2">
           <Select value={sortOrder} onValueChange={(value) => setSortOrder(value as SortOrder)}>
@@ -55,13 +55,13 @@ export function SearchFilterBar() {
           </Select>
         </div>
 
-        <div className="flex items-center rounded-md border p-1">
+        <div className="dark:bg-input/30 flex items-center gap-1 rounded-md border bg-transparent p-1">
           <AtomicTooltip content="Grid view">
             <Button
               variant={viewMode === 'grid' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setViewMode('grid')}
-              className="h-7 w-7 p-0"
+              className="h-7 w-7 rounded-sm"
             >
               <Grid3X3 className="h-3 w-3" />
             </Button>
@@ -72,7 +72,7 @@ export function SearchFilterBar() {
               variant={viewMode === 'list' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setViewMode('list')}
-              className="h-7 w-7 p-0"
+              className="h-7 w-7 rounded-sm"
             >
               <List className="h-3 w-3" />
             </Button>
