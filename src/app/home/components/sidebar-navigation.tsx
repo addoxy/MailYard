@@ -116,15 +116,6 @@ export function SidebarNavigation() {
             </div>
           ))}
         </div>
-
-        <div className="border-border/40 border-t p-4">
-          <div className="text-muted-foreground text-xs">
-            <div>Storage: 85% used</div>
-            <div className="bg-muted mt-1 h-1 w-full overflow-hidden rounded-full">
-              <div className="bg-primary h-full w-[85%] rounded-full" />
-            </div>
-          </div>
-        </div>
       </div>
     </aside>
   );
