@@ -16,7 +16,7 @@ export const UserMenu = () => {
         className="size-6 rounded"
       />
       <AtomicTooltip content="Axii's Workspace">
-        <span className="line-clamp-1 text-sm">Axii's Workspace</span>
+        <span className="line-clamp-1 text-left text-sm">Axii's Workspace</span>
       </AtomicTooltip>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

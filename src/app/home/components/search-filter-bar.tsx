@@ -12,8 +12,9 @@ import {
 } from '@/components/ui/select';
 import { useAtom } from 'jotai';
 import { Grid3X3, List } from 'lucide-react';
-import { searchQueryAtom, sortOrderAtom, viewModeAtom } from '../atoms';
+import { searchQueryAtom, sortOrderAtom } from '../atoms';
 import { SortOrder } from '../hooks/use-design-filters';
+import { useHydratedViewMode } from '../hooks/use-hydrated-view-mode';
 
 const sortOptions = [
   { value: 'name-asc', label: 'Name (A-Z)' },
@@ -27,10 +28,10 @@ const sortOptions = [
 export function SearchFilterBar() {
   const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom);
   const [sortOrder, setSortOrder] = useAtom(sortOrderAtom);
-  const [viewMode, setViewMode] = useAtom(viewModeAtom);
+  const { viewMode, setViewMode, isHydrated } = useHydratedViewMode();
 
   return (
-    <div className="flex items-center justify-between gap-4 px-2">
+    <div className="flex h-8 items-center justify-between gap-4 px-2">
       <h1 className="text-lg font-semibold">All Designs</h1>
 
       <div className="flex items-center gap-3">
@@ -56,27 +57,36 @@ export function SearchFilterBar() {
         </div>
 
         <div className="dark:bg-input/30 flex items-center gap-1 rounded-md border bg-transparent p-1">
-          <AtomicTooltip content="Grid view">
-            <Button
-              variant={viewMode === 'grid' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setViewMode('grid')}
-              className="h-7 w-7 rounded-sm"
-            >
-              <Grid3X3 className="h-3 w-3" />
-            </Button>
-          </AtomicTooltip>
+          {!isHydrated ? (
+            <>
+              <div className="h-7 w-7 animate-pulse rounded-sm bg-muted" />
+              <div className="h-7 w-7 animate-pulse rounded-sm bg-muted" />
+            </>
+          ) : (
+            <>
+              <AtomicTooltip content="Grid view" asChild>
+                <Button
+                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                  className="h-7 w-7 rounded-sm"
+                >
+                  <Grid3X3 className="h-3 w-3" />
+                </Button>
+              </AtomicTooltip>
 
-          <AtomicTooltip content="List view">
-            <Button
-              variant={viewMode === 'list' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setViewMode('list')}
-              className="h-7 w-7 rounded-sm"
-            >
-              <List className="h-3 w-3" />
-            </Button>
-          </AtomicTooltip>
+              <AtomicTooltip content="List view" asChild>
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                  className="h-7 w-7 rounded-sm"
+                >
+                  <List className="h-3 w-3" />
+                </Button>
+              </AtomicTooltip>
+            </>
+          )}
         </div>
       </div>
     </div>
