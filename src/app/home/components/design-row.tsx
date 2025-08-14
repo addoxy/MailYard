@@ -15,7 +15,7 @@ export function DesignRow({ design, onDesignClick, onEditTitle, onDelete }: Desi
       onClick={() => onDesignClick(design.id)}
     >
       <div className="col-span-5 flex items-center gap-3">
-        <div className="relative h-14 w-20 overflow-hidden rounded bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900">
+        <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900">
           {design.thumbnail ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -26,7 +26,7 @@ export function DesignRow({ design, onDesignClick, onEditTitle, onDelete }: Desi
               />
             </>
           ) : (
-            <div className="flex h-full items-center justify-center text-sm font-bold text-blue-400">
+            <div className="flex h-full w-full items-center justify-center text-sm font-bold text-blue-400">
               {design.name.charAt(0).toUpperCase()}
             </div>
           )}

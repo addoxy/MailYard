@@ -6,15 +6,15 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 1. Home Page Foundation
 
-- [ ] Create `src/app/home/page.tsx` - Main gallery page with responsive layout
-- [ ] Create `src/app/home/components/design-gallery.tsx` - Grid view for design cards
-- [ ] Create `src/app/home/components/sidebar-navigation.tsx` - Left sidebar with sections
-- [ ] Create `src/app/home/components/search-filter-bar.tsx` - Search and filter controls
-- [ ] Create `src/app/home/hooks/use-design-data.ts` - Mock design data management
-- [ ] Create `src/app/home/hooks/use-design-filters.ts` - Filter and sorting logic
-- [ ] Create `src/app/home/atoms.ts` - Home page state management
-- [ ] Implement search functionality with real-time filtering
-- [ ] Implement sorting filters:
+- [x] Create `src/app/home/page.tsx` - Main gallery page with responsive layout
+- [x] Create `src/app/home/components/design-gallery.tsx` - Grid view for design cards
+- [x] Create `src/app/home/components/sidebar-navigation.tsx` - Left sidebar with sections
+- [x] Create `src/app/home/components/search-filter-bar.tsx` - Search and filter controls
+- [x] Create `src/app/home/hooks/use-design-data.ts` - Mock design data management
+- [x] Create `src/app/home/hooks/use-design-filters.ts` - Filter and sorting logic
+- [x] Create `src/app/home/atoms.ts` - Home page state management
+- [x] Implement search functionality with real-time filtering
+- [x] Implement sorting filters:
   - Alphabetical order (A-Z, Z-A)
   - Last modified (newest/oldest first)
   - Date created (newest/oldest first)
@@ -23,31 +23,31 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 2. Email Builder Basic Layout
 
-- [ ] Update `src/app/designs/[id]/page.tsx` - Implement 3-column resizable layout
-- [ ] Update `src/app/designs/[id]/components/resource-sidebar.tsx` - Block library foundation
-- [ ] Update `src/app/designs/[id]/components/email-section.tsx` - Canvas area with header actions
-- [ ] Update `src/app/designs/[id]/components/inspector-sidebar.tsx` - Style panel foundation
-- [ ] Create `src/app/designs/[id]/hooks/use-email-builder.ts` - Core builder state logic
+- [x] Update `src/app/designs/[id]/page.tsx` - Implement 3-column resizable layout
+- [x] Update `src/app/designs/[id]/components/resource-sidebar.tsx` - Block library foundation
+- [x] Update `src/app/designs/[id]/components/email-section.tsx` - Canvas area with header actions
+- [x] Update `src/app/designs/[id]/components/inspector-sidebar.tsx` - Style panel foundation
+- [x] Create `src/app/designs/[id]/hooks/use-email-builder.ts` - Core builder state logic
 
 **Notes**: Focus on layout structure first. Use placeholders for complex functionality.
 
 ### 3. Email Block System Foundation
 
-- [ ] Create `src/app/designs/[id]/components/email-blocks/` directory
-- [ ] Create `src/app/designs/[id]/components/email-blocks/heading-block.tsx` - Using @react-email/components
-- [ ] Create `src/app/designs/[id]/components/email-blocks/text-block.tsx` - Using @react-email/components
-- [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Using @react-email/components
-- [ ] Create `src/app/designs/[id]/components/email-blocks/types.ts` - Block type definitions
-- [ ] Create `src/app/designs/[id]/components/email-blocks/block-registry.ts` - Block registration system
+- [x] Create `src/app/designs/[id]/components/email-blocks/` directory
+- [x] Create `src/app/designs/[id]/components/email-blocks/heading-block.tsx` - Using @react-email/components
+- [x] Create `src/app/designs/[id]/components/email-blocks/text-block.tsx` - Using @react-email/components
+- [x] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Using @react-email/components
+- [x] Create `src/app/designs/[id]/components/email-blocks/types.ts` - Block type definitions
+- [x] Create `src/app/designs/[id]/components/email-blocks/block-registry.ts` - Block registration system
 
 **Notes**: CRITICAL - All blocks must use inline styles only, no Tailwind classes. Base all blocks on @react-email/components.
 
 ### 4. Basic Block Library
 
-- [ ] Create `src/app/designs/[id]/components/resource-sidebar/block-library.tsx`
-- [ ] Implement click-to-add functionality for blocks (adds to bottom of email)
-- [ ] Create block icons using Lucide React
-- [ ] Add AtomicTooltip for block descriptions
+- [x] Create `src/app/designs/[id]/components/resource-sidebar/block-library.tsx`
+- [x] Implement click-to-add functionality for blocks (adds to bottom of email)
+- [x] Create block icons using Lucide React
+- [x] Add AtomicTooltip for block descriptions
 
 **Notes**: Start with 3 basic blocks: heading, text, container. More blocks will be added in Phase 2.
 
@@ -57,6 +57,7 @@ This document outlines all frontend development tasks needed to complete the ema
 - [ ] Create `src/app/designs/[id]/components/email-section/block-selector.tsx` - Visual selection indicators
 - [ ] Update email canvas to show selected block with borders/highlighting
 - [ ] Create `src/app/designs/[id]/atoms.ts` - Add selectedBlockId atom
+- [ ] Make the selected block editable
 
 **Notes**: Focus on single block selection first. Multi-select comes in Phase 2.
 

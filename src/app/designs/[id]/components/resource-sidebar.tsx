@@ -5,79 +5,9 @@ import { SearchBar } from '@/components/search-bar';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { UserMenu } from '@/components/user-menu';
-import {
-  ALargeSmall,
-  Box,
-  ChevronsLeftRightEllipsis,
-  Code,
-  Heading,
-  Link,
-  Minus,
-  MousePointerClick,
-  Plus,
-  Table,
-} from 'lucide-react';
-import { Block } from './block';
+import { Plus } from 'lucide-react';
+import { BlockLibrary } from './resource-sidebar/block-library';
 
-const BLOCKS = [
-  {
-    icon: Heading,
-    content: 'Heading',
-  },
-  {
-    icon: ALargeSmall,
-    content: 'Text',
-  },
-  {
-    icon: MousePointerClick,
-    content: 'Button',
-  },
-  {
-    icon: Link,
-    content: 'Link',
-  },
-  {
-    icon: Minus,
-    content: 'Divider',
-  },
-  {
-    icon: Box,
-    content: 'Container',
-  },
-  {
-    icon: Table,
-    content: 'Table',
-  },
-  {
-    icon: Code,
-    content: 'Code Block',
-  },
-  {
-    icon: ChevronsLeftRightEllipsis,
-    content: 'Inline Code',
-  },
-];
-
-const BlocksSection = () => {
-  return (
-    <div className="flex h-[calc(100vh-100px)] flex-col overflow-auto px-4">
-      <span className="text-muted-foreground mt-6 mb-4 font-mono text-xs tracking-wider">
-        BLOCKS
-      </span>
-      <SearchBar placeholder="Search for blocks..." />
-      <div className="mt-3 flex flex-col gap-1.5">
-        {BLOCKS.map((block) => (
-          <Block
-            key={block.content}
-            icon={block.icon}
-            content={block.content}
-            className="last-of-type:mb-6"
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
 
 const AssetsSection = () => {
   return (
@@ -105,7 +35,7 @@ export const ResourceSidebar = () => {
         <div className="border-border/40 flex h-16 shrink-0 items-center border-b px-4">
           <UserMenu />
         </div>
-        <BlocksSection />
+        <BlockLibrary />
         <Separator orientation="horizontal" className="bg-border/40" />
         <AssetsSection />
       </div>

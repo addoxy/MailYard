@@ -193,6 +193,8 @@ When you're asked to work on a specific task (e.g., "do task 1"), refer to the *
 - **Phase 3**: Polish & Advanced Features (Tasks 11-15)
 - **Phase 4**: Mobile & Final Polish (Tasks 16-20)
 
+**IMPORTANT**: After completing any task, you MUST update the TASKS.md file to mark completed sub-tasks with `[x]` instead of `[ ]`. This helps track progress and ensures all requirements are met.
+
 ## Development Context
 
 - **Scope**: Frontend only (no backend integration needed)

@@ -14,9 +14,10 @@ export const UserMenu = () => {
       <img
         src="https://raw.githubusercontent.com/addoxy/axii.sh/refs/heads/main/public/logo.png"
         className="size-6 rounded"
+        alt="Axii's Workspace Logo"
       />
-      <AtomicTooltip content="Axii's Workspace">
-        <span className="line-clamp-1 text-left text-sm">Axii's Workspace</span>
+      <AtomicTooltip content="Axii&apos;s Workspace">
+        <span className="line-clamp-1 text-left text-sm">Axii&apos;s Workspace</span>
       </AtomicTooltip>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
