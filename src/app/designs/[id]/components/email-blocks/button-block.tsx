@@ -18,7 +18,7 @@ export function ButtonBlock({
   borderColor = '#3b82f6',
   borderStyle = 'solid',
   borderRadius = '8px',
-  fontFamily = 'Arial, sans-serif',
+  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
   lineHeight = '1.5',
   marginTop = '0px',
   marginBottom = '16px',

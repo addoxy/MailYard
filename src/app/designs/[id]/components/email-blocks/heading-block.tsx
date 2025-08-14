@@ -13,7 +13,7 @@ export function HeadingBlock({
   fontSize = '32px',
   fontWeight = 'bold',
   color = '#000000',
-  fontFamily = 'Arial, sans-serif',
+  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
   lineHeight = '1.4',
   marginTop = '0px',
   marginBottom = '16px',

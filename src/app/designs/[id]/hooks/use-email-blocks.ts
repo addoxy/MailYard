@@ -7,7 +7,7 @@ import { EmailBlockType } from '../components/email-blocks/types';
 export function useEmailBlocks() {
   const [emailBlocks, setEmailBlocks] = useAtom(emailBlocksAtom);
 
-  const updateBlock = (blockId: string, updates: Partial<EmailBlockType>) => {
+  const updateBlock = (blockId: string, updates: Record<string, string | number>) => {
     setEmailBlocks(prevBlocks => 
       prevBlocks.map(block => 
         block.id === blockId 

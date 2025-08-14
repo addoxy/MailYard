@@ -16,7 +16,7 @@ export default async function DesignPage({ params }: DesignPageProps) {
         <ResourceSidebar />
       </ResizablePanel>
       <ResizableHandle className="hover:bg-border active:bg-border mx-[3px] my-2 w-0.5 rounded-full bg-transparent transition-colors duration-300" />
-      <ResizablePanel>
+      <ResizablePanel minSize={12} maxSize={70} defaultSize={70}>
         <EmailSection />
       </ResizablePanel>
       <ResizableHandle className="hover:bg-border active:bg-border mx-[3px] my-2 w-0.5 rounded-full bg-transparent transition-colors duration-300" />

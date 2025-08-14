@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { useAtomValue } from 'jotai';
-import { deviceViewAtom, emailBlocksAtom } from '../atoms';
+import { deviceViewAtom, emailBlocksAtom, canvasStylesAtom } from '../atoms';
 import { renderBlock } from './email-blocks/block-registry';
 import { useBlockSelection } from '../hooks/use-block-selection';
 import { BlockSelector } from './email-section/block-selector';
@@ -10,6 +10,7 @@ import { BlockSelector } from './email-section/block-selector';
 export const EmailEditor = () => {
   const deviceView = useAtomValue(deviceViewAtom);
   const emailBlocks = useAtomValue(emailBlocksAtom);
+  const canvasStyles = useAtomValue(canvasStylesAtom);
   const { selectBlock, isBlockSelected, clearSelection } = useBlockSelection();
 
   const handleBlockClick = (blockId: string) => {
@@ -33,32 +34,44 @@ export const EmailEditor = () => {
       >
         <div
           className={cn(
-            'h-full w-full overflow-auto bg-white',
-            deviceView === 'mobile' ? 'rounded-lg border' : '',
-            'p-4'
+            'h-full w-full overflow-auto',
+            deviceView === 'mobile' ? 'rounded-lg border' : ''
           )}
+          style={{
+            backgroundColor: canvasStyles.backgroundColor,
+            padding: canvasStyles.padding,
+            fontFamily: canvasStyles.fontFamily,
+          }}
           onClick={handleCanvasClick}
         >
-          {emailBlocks.length === 0 ? (
-            <div className="flex h-full items-center justify-center">
-              <p className="text-muted-foreground text-lg">
-                Click on a block from the sidebar to add it to your email
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-2">
-              {emailBlocks.map((block) => (
-                <BlockSelector
-                  key={block.id}
-                  blockId={block.id}
-                  isSelected={isBlockSelected(block.id)}
-                  onClick={() => handleBlockClick(block.id)}
-                >
-                  {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
-                </BlockSelector>
-              ))}
-            </div>
-          )}
+          <div 
+            className="mx-auto"
+            style={{ 
+              maxWidth: canvasStyles.maxWidth,
+              width: '100%'
+            }}
+          >
+            {emailBlocks.length === 0 ? (
+              <div className="flex h-full items-center justify-center">
+                <p className="text-muted-foreground text-lg">
+                  Click on a block from the sidebar to add it to your email
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {emailBlocks.map((block) => (
+                  <BlockSelector
+                    key={block.id}
+                    blockId={block.id}
+                    isSelected={isBlockSelected(block.id)}
+                    onClick={() => handleBlockClick(block.id)}
+                  >
+                    {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
+                  </BlockSelector>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ export function LinkBlock({
   fontSize = '16px',
   fontWeight = 'normal',
   color = '#3b82f6',
-  fontFamily = 'Arial, sans-serif',
+  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
   lineHeight = '1.5',
   textDecoration = 'underline',
   marginTop = '0px',

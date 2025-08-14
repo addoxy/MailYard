@@ -3,10 +3,10 @@
 import { AtomicTooltip } from '@/components/atomic-tooltip';
 import { SearchBar } from '@/components/search-bar';
 import { cn } from '@/lib/utils';
-import { useAtom } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { ALargeSmall, Box, Heading, LucideIcon } from 'lucide-react';
 import { useState } from 'react';
-import { emailBlocksAtom } from '../../atoms';
+import { emailBlocksAtom, canvasStylesAtom } from '../../atoms';
 import { BLOCK_DEFINITIONS, createDefaultBlock } from '../email-blocks/block-registry';
 
 interface BlockLibraryItemProps {
@@ -48,6 +48,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 
 export const BlockLibrary = () => {
   const [, setEmailBlocks] = useAtom(emailBlocksAtom);
+  const canvasStyles = useAtomValue(canvasStylesAtom);
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredBlocks = BLOCK_DEFINITIONS.filter(
@@ -61,6 +62,10 @@ export const BlockLibrary = () => {
     const newBlock = createDefaultBlock(blockType, blockId);
 
     if (newBlock) {
+      // Apply current canvas font family to new blocks that have fontFamily property
+      if ('fontFamily' in newBlock) {
+        (newBlock as { fontFamily: string }).fontFamily = canvasStyles.fontFamily;
+      }
       setEmailBlocks((prevBlocks) => [...prevBlocks, newBlock]);
     }
   };

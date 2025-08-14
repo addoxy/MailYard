@@ -1,9 +1,9 @@
 'use client';
 
 import { Text } from '@react-email/components';
-import { useState, useRef, useEffect } from 'react';
-import { TextBlockProps } from './types';
+import { useEffect, useRef, useState } from 'react';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
+import { TextBlockProps } from './types';
 
 export function TextBlock({
   id,
@@ -12,7 +12,7 @@ export function TextBlock({
   fontSize = '16px',
   fontWeight = 'normal',
   color = '#000000',
-  fontFamily = 'Arial, sans-serif',
+  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
   lineHeight = '1.5',
   marginTop = '0px',
   marginBottom = '16px',
@@ -23,7 +23,7 @@ export function TextBlock({
   paddingLeft = '0px',
   paddingRight = '0px',
   isSelected = false,
-  onClick
+  onClick,
 }: TextBlockProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(content);
@@ -118,11 +118,7 @@ export function TextBlock({
   }
 
   return (
-    <Text
-      style={baseStyle}
-      onClick={handleClick}
-      onDoubleClick={handleDoubleClick}
-    >
+    <Text style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
       {content}
     </Text>
   );

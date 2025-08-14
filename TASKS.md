@@ -63,16 +63,28 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ## Phase 2: Advanced Features
 
-### 6. Multi-Select and Bulk Editing
+### 6. Block Editing System
+
+- [x] Create `src/app/designs/[id]/components/inspector-sidebar/block-editor.tsx` - Main block editing interface
+- [x] Create `src/app/designs/[id]/components/inspector-sidebar/property-controls/` directory
+- [x] Create basic property controls: text content, font size, color, alignment
+- [x] Connect inspector sidebar to selected block state from atoms
+- [x] Implement real-time block property updates
+- [x] Add validation and error handling for property inputs
+- [x] Create block type-specific property panels (heading vs text vs container)
+
+**Notes**: Focus on core text properties first. Advanced styling comes in Phase 3. Ensure changes update the email canvas in real-time.
+
+### 7. Multi-Select and Bulk Editing
 
 - [ ] Update `use-block-selection.ts` - Support multi-select with Ctrl/Cmd + click
 - [ ] Create `src/app/designs/[id]/hooks/use-bulk-editing.ts` - Bulk property editing logic
 - [ ] Update inspector sidebar to handle multi-select state
 - [ ] Implement "Mixed" state display for different property values
 
-**Notes**: Show "Mixed" when selected blocks have different values for the same property.
+**Notes**: Show "Mixed" when selected blocks have different values for the same property. Build on the block editing system from Task 6.
 
-### 7. Keyboard Shortcuts
+### 8. Keyboard Shortcuts
 
 - [ ] Create `src/hooks/use-keyboard-shortcuts.ts` - Global keyboard shortcut manager
 - [ ] Create `src/app/designs/[id]/hooks/use-email-shortcuts.ts` - Email builder specific shortcuts
@@ -81,7 +93,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Use global hook for app-wide shortcuts, feature-specific hook for email builder shortcuts.
 
-### 8. Drag & Drop System
+### 9. Drag & Drop System
 
 - [ ] Install and configure dnd-kit
 - [ ] Create `src/app/designs/[id]/hooks/use-drag-drop.ts` - Drag and drop logic
@@ -91,7 +103,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Use dnd-kit for all drag-and-drop. Add subtle animations for better UX.
 
-### 9. Complete Block Library
+### 10. Complete Block Library
 
 - [ ] Create remaining email blocks: divider, button, link, grid, image, video
 - [ ] Update block registry with all block types
@@ -100,7 +112,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Each block must use @react-email/components as foundation with inline styles only.
 
-### 10. Asset Integration
+### 11. Asset Integration
 
 - [ ] Create `src/app/designs/[id]/components/resource-sidebar/asset-library.tsx`
 - [ ] Implement URL-based asset management (images, GIFs, videos)
@@ -111,18 +123,18 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ## Phase 3: Polish & Advanced Features
 
-### 11. Style Inspector Panel
+### 12. Advanced Style Inspector Panel
 
 - [ ] Create `src/app/designs/[id]/components/inspector-sidebar/style-controls/` directory
-- [ ] Create typography controls: font family, size, color, alignment, line height, weight
+- [ ] Create advanced typography controls: font family, line height, weight, letter spacing
 - [ ] Create layout controls: width, height, padding, margin (individual sides + shorthand)
 - [ ] Create border controls: width, color, style, radius (per side + all)
 - [ ] Create background controls: color, image URL
 - [ ] Implement real-time preview updates with debounced input
 
-**Notes**: Use collapsible sections with Lucide icons. Add AtomicTooltip for style explanations.
+**Notes**: This builds on the basic property controls from Task 6. Use collapsible sections with Lucide icons. Add AtomicTooltip for style explanations.
 
-### 12. Preview System
+### 13. Preview System
 
 - [ ] Create `src/app/designs/[id]/components/email-section/preview-modal.tsx`
 - [ ] Implement email client preview tabs: Gmail, Outlook, Apple Mail, Yahoo
@@ -131,7 +143,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Modal should show how email renders across different providers.
 
-### 13. Export Functionality
+### 14. Export Functionality
 
 - [ ] Create `src/app/designs/[id]/components/email-section/export-modal.tsx`
 - [ ] Implement React export: clean @react-email/components code generation
@@ -140,7 +152,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Ensure exported code maintains inline styling for email compatibility.
 
-### 14. Device View Toggle
+### 15. Device View Toggle
 
 - [ ] Update email canvas to support desktop/mobile preview modes
 - [ ] Implement smooth transitions between view modes using Framer Motion
@@ -149,7 +161,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile preview should show email in phone-like rounded container with proper scaling.
 
-### 15. Theme System
+### 16. Theme System
 
 - [ ] Update theme toggle to work with email builder
 - [ ] Ensure proper contrast and accessibility in both light/dark modes
@@ -160,7 +172,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ## Phase 4: Mobile & Final Polish
 
-### 16. Mobile Home Page
+### 17. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -169,7 +181,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-### 17. List View for Home Page
+### 18. List View for Home Page
 
 - [ ] Create `src/app/home/components/design-list-view.tsx` - Three-column table layout
 - [ ] Implement view toggle between grid and list views
@@ -178,7 +190,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: List view should show: thumbnail + name, last modified, created date.
 
-### 18. Search and Filtering Enhancement
+### 19. Search and Filtering Enhancement
 
 - [ ] Enhance `src/app/home/hooks/use-design-search.ts` - Advanced search and filter logic
 - [ ] Implement design organization: projects, grouping, hierarchy
@@ -187,7 +199,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Use debounced search with real-time results.
 
-### 19. Animation Polish
+### 20. Animation Polish
 
 - [ ] Add Framer Motion animations throughout the app
 - [ ] Implement subtle hover effects on interactive elements
@@ -197,7 +209,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 20. Final Polish and Testing
+### 21. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
