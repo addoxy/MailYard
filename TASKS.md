@@ -53,11 +53,11 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 5. Basic Block Selection
 
-- [ ] Create `src/app/designs/[id]/hooks/use-block-selection.ts` - Single block selection
-- [ ] Create `src/app/designs/[id]/components/email-section/block-selector.tsx` - Visual selection indicators
-- [ ] Update email canvas to show selected block with borders/highlighting
-- [ ] Create `src/app/designs/[id]/atoms.ts` - Add selectedBlockId atom
-- [ ] Make the selected block editable
+- [x] Create `src/app/designs/[id]/hooks/use-block-selection.ts` - Single block selection
+- [x] Create `src/app/designs/[id]/components/email-section/block-selector.tsx` - Visual selection indicators
+- [x] Update email canvas to show selected block with borders/highlighting
+- [x] Create `src/app/designs/[id]/atoms.ts` - Add selectedBlockId atom
+- [x] Make the selected block editable
 
 **Notes**: Focus on single block selection first. Multi-select comes in Phase 2.
 

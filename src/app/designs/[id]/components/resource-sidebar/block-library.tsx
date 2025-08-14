@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils';
 import { useAtom } from 'jotai';
 import { ALargeSmall, Box, Heading, LucideIcon } from 'lucide-react';
 import { useState } from 'react';
-import { BLOCK_DEFINITIONS, createDefaultBlock } from '../email-blocks/block-registry';
 import { emailBlocksAtom } from '../../atoms';
+import { BLOCK_DEFINITIONS, createDefaultBlock } from '../email-blocks/block-registry';
 
 interface BlockLibraryItemProps {
   icon: LucideIcon;
@@ -18,7 +18,7 @@ interface BlockLibraryItemProps {
 
 const BlockLibraryItem = ({ icon: Icon, name, description, onClick }: BlockLibraryItemProps) => {
   return (
-    <AtomicTooltip content={description} asChild>
+    <AtomicTooltip content={description} side="right" asChild>
       <div
         className={cn(
           'hover:bg-secondary/50 flex cursor-pointer items-center gap-2 rounded-md border border-dashed px-3 py-2 transition-all duration-300'
@@ -41,26 +41,27 @@ const BlockLibraryItem = ({ icon: Icon, name, description, onClick }: BlockLibra
 };
 
 const ICON_MAP: Record<string, LucideIcon> = {
-  'Heading': Heading,
-  'Type': ALargeSmall,
-  'Box': Box,
+  Heading: Heading,
+  Type: ALargeSmall,
+  Box: Box,
 };
 
 export const BlockLibrary = () => {
   const [, setEmailBlocks] = useAtom(emailBlocksAtom);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredBlocks = BLOCK_DEFINITIONS.filter(block =>
-    block.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    block.description.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredBlocks = BLOCK_DEFINITIONS.filter(
+    (block) =>
+      block.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      block.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleAddBlock = (blockType: string) => {
     const blockId = `${blockType}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     const newBlock = createDefaultBlock(blockType, blockId);
-    
+
     if (newBlock) {
-      setEmailBlocks(prevBlocks => [...prevBlocks, newBlock]);
+      setEmailBlocks((prevBlocks) => [...prevBlocks, newBlock]);
     }
   };
 
@@ -69,8 +70,8 @@ export const BlockLibrary = () => {
       <span className="text-muted-foreground mt-6 mb-4 font-mono text-xs tracking-wider">
         BLOCKS
       </span>
-      <SearchBar 
-        placeholder="Search for blocks..." 
+      <SearchBar
+        placeholder="Search for blocks..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />

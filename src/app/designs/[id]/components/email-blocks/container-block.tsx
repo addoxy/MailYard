@@ -2,6 +2,9 @@ import { Container } from '@react-email/components';
 import { ContainerBlockProps, EmailBlockType } from './types';
 import { HeadingBlock } from './heading-block';
 import { TextBlock } from './text-block';
+import { ButtonBlock } from './button-block';
+import { LinkBlock } from './link-block';
+import { DividerBlock } from './divider-block';
 
 export function ContainerBlock({
   id,
@@ -39,9 +42,6 @@ export function ContainerBlock({
     margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
     cursor: onClick ? 'pointer' : 'default',
-    outline: isSelected ? '2px solid #3b82f6' : 'none',
-    outlineOffset: isSelected ? '2px' : '0',
-    transition: 'outline 0.2s ease-in-out',
     minHeight: children && children.length === 0 ? '50px' : undefined,
   };
 
@@ -53,6 +53,12 @@ export function ContainerBlock({
         return <TextBlock key={child.id || index} {...child} />;
       case 'container':
         return <ContainerBlock key={child.id || index} {...child} />;
+      case 'button':
+        return <ButtonBlock key={child.id || index} {...child} />;
+      case 'link':
+        return <LinkBlock key={child.id || index} {...child} />;
+      case 'divider':
+        return <DividerBlock key={child.id || index} {...child} />;
       default:
         return null;
     }
