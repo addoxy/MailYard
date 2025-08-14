@@ -13,8 +13,8 @@ export const EmailEditor = () => {
   const canvasStyles = useAtomValue(canvasStylesAtom);
   const { selectBlock, isBlockSelected, clearSelection } = useBlockSelection();
 
-  const handleBlockClick = (blockId: string) => {
-    selectBlock(blockId);
+  const handleBlockClick = (blockId: string, multiSelect?: boolean) => {
+    selectBlock(blockId, multiSelect);
   };
 
   const handleCanvasClick = (e: React.MouseEvent) => {
@@ -64,7 +64,7 @@ export const EmailEditor = () => {
                     key={block.id}
                     blockId={block.id}
                     isSelected={isBlockSelected(block.id)}
-                    onClick={() => handleBlockClick(block.id)}
+                    onClick={(multiSelect) => handleBlockClick(block.id, multiSelect)}
                   >
                     {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
                   </BlockSelector>

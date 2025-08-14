@@ -6,14 +6,15 @@ import { ReactNode } from 'react';
 interface BlockSelectorProps {
   children: ReactNode;
   isSelected: boolean;
-  onClick: () => void;
+  onClick: (multiSelect?: boolean) => void;
   blockId: string;
 }
 
 export function BlockSelector({ children, isSelected, onClick, blockId }: BlockSelectorProps) {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onClick();
+    const multiSelect = e.ctrlKey || e.metaKey;
+    onClick(multiSelect);
   };
 
   return (

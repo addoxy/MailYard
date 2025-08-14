@@ -77,10 +77,10 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 7. Multi-Select and Bulk Editing
 
-- [ ] Update `use-block-selection.ts` - Support multi-select with Ctrl/Cmd + click
-- [ ] Create `src/app/designs/[id]/hooks/use-bulk-editing.ts` - Bulk property editing logic
-- [ ] Update inspector sidebar to handle multi-select state
-- [ ] Implement "Mixed" state display for different property values
+- [x] Update `use-block-selection.ts` - Support multi-select with Ctrl/Cmd + click
+- [x] Create `src/app/designs/[id]/hooks/use-bulk-editing.ts` - Bulk property editing logic
+- [x] Update inspector sidebar to handle multi-select state
+- [x] Implement "Mixed" state display for different property values
 
 **Notes**: Show "Mixed" when selected blocks have different values for the same property. Build on the block editing system from Task 6.
 

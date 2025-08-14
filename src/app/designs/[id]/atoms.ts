@@ -15,6 +15,7 @@ export const inspectorViewAtom = atom<InspectorView>('style');
 export const deviceViewAtom = atom<DeviceView>('desktop');
 export const emailBlocksAtom = atom<EmailBlockType[]>([]);
 export const selectedBlockIdAtom = atom<string | null>(null);
+export const selectedBlockIdsAtom = atom<string[]>([]);
 export const canvasStylesAtom = atom<CanvasStyles>({
   maxWidth: '600px',
   backgroundColor: '#ffffff',
