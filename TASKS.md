@@ -173,26 +173,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Ensure exported code maintains inline styling for email compatibility.
 
-### 15. Device View Toggle
-
-- [ ] Update email canvas to support desktop/mobile preview modes
-- [ ] Add device frame for mobile preview (phone-like container)
-- [ ] Update atoms to persist device view preference
-
-**Notes**: Mobile preview should show email in phone-like rounded container with proper scaling.
-
-### 16. Theme System
-
-- [ ] Update theme toggle to work with email builder
-- [ ] Ensure proper contrast and accessibility in both light/dark modes
-- [ ] Add smooth theme transition animations
-- [ ] Test all components in both themes
-
-**Notes**: Use next-themes for theme management, add smooth transitions.
-
 ## Phase 4: Mobile & Final Polish
 
-### 17. Mobile Home Page
+### 15. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -201,25 +184,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-### 18. List View for Home Page
-
-- [ ] Create `src/app/home/components/design-list-view.tsx` - Three-column table layout
-- [ ] Implement view toggle between grid and list views
-- [ ] Add sorting functionality: alphabetical, modified date, created date
-- [ ] Implement search functionality with real-time filtering
-
-**Notes**: List view should show: thumbnail + name, last modified, created date.
-
-### 19. Search and Filtering Enhancement
-
-- [ ] Enhance `src/app/home/hooks/use-design-search.ts` - Advanced search and filter logic
-- [ ] Implement design organization: projects, grouping, hierarchy
-- [ ] Add "Recent", "Templates", "Trash" sections with proper filtering
-- [ ] Create project management functionality for grouping designs
-
-**Notes**: Use debounced search with real-time results.
-
-### 20. Animation Polish
+### 16. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -227,7 +192,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 20. Container Block System
+### 17. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -248,7 +213,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-### 21. Grid Block System
+### 18. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -262,7 +227,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is an advanced layout system that requires careful implementation for email client compatibility. Focus on using @react-email/components Row and Column as the foundation. Test thoroughly across Gmail, Outlook, Apple Mail, and Yahoo.
 
-### 22. Final Polish and Testing
+### 19. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -320,7 +285,7 @@ src/
 
 ## Future Features
 
-### 22. Undo/Redo System
+### 20. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -333,7 +298,7 @@ src/
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-### 23. Subtle Framer Motion Animations
+### 21. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
