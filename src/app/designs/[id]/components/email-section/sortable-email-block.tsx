@@ -39,7 +39,7 @@ export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBl
         group relative cursor-grab active:cursor-grabbing transition-all duration-150
         ${isSelected ? 'ring-2 ring-blue-500 ring-offset-2' : ''}
         ${isDragging ? 'z-50 shadow-lg opacity-70 scale-105' : ''}
-        ${isHovered && !isDragging ? 'ring-1 ring-gray-200' : ''}
+        ${isHovered && !isDragging && !isSelected ? 'ring-1 ring-gray-200' : ''}
       `}
     >
       {/* Top drop indicator */}
@@ -63,7 +63,7 @@ export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBl
 
       {/* Dragging overlay effect */}
       {isDragging && (
-        <div className="absolute inset-0 bg-blue-500 rounded pointer-events-none opacity-5" />
+        <div className="absolute inset-0 bg-blue-500 pointer-events-none opacity-5" />
       )}
     </div>
   );

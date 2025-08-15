@@ -44,26 +44,6 @@ export interface TextBlockProps extends BaseBlockProps {
   paddingRight: string;
 }
 
-export interface ContainerBlockProps extends BaseBlockProps {
-  type: 'container';
-  backgroundColor: string;
-  borderWidth: string;
-  borderColor: string;
-  borderStyle: 'solid' | 'dashed' | 'dotted' | 'none';
-  borderRadius: string;
-  width: string;
-  height: string;
-  marginTop: string;
-  marginBottom: string;
-  marginLeft: string;
-  marginRight: string;
-  paddingTop: string;
-  paddingBottom: string;
-  paddingLeft: string;
-  paddingRight: string;
-  children?: EmailBlockType[];
-}
-
 export interface ButtonBlockProps extends BaseBlockProps {
   type: 'button';
   content: string;
@@ -144,7 +124,7 @@ export interface ImageBlockProps extends BaseBlockProps {
   paddingRight: string;
 }
 
-export type EmailBlockType = HeadingBlockProps | TextBlockProps | ContainerBlockProps | ButtonBlockProps | LinkBlockProps | DividerBlockProps | ImageBlockProps;
+export type EmailBlockType = HeadingBlockProps | TextBlockProps | ButtonBlockProps | LinkBlockProps | DividerBlockProps | ImageBlockProps;
 
 export interface BlockDefinition {
   type: string;

@@ -1,7 +1,6 @@
-import { BlockDefinition, EmailBlockType, HeadingBlockProps, TextBlockProps, ContainerBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps, ImageBlockProps } from './types';
+import { BlockDefinition, EmailBlockType, HeadingBlockProps, TextBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps, ImageBlockProps } from './types';
 import { HeadingBlock } from './heading-block';
 import { TextBlock } from './text-block';
-import { ContainerBlock } from './container-block';
 import { ButtonBlock } from './button-block';
 import { LinkBlock } from './link-block';
 import { DividerBlock } from './divider-block';
@@ -58,32 +57,6 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       paddingLeft: '0px',
       paddingRight: '0px',
     } as Partial<TextBlockProps>,
-  },
-  {
-    type: 'container',
-    name: 'Container',
-    icon: 'Box',
-    description: 'A container to group other blocks',
-    category: 'layout',
-    defaultProps: {
-      type: 'container',
-      backgroundColor: 'transparent',
-      borderWidth: '0px',
-      borderColor: '#e5e7eb',
-      borderStyle: 'solid',
-      borderRadius: '0px',
-      width: '100%',
-      height: 'auto',
-      marginTop: '0px',
-      marginBottom: '16px',
-      marginLeft: '0px',
-      marginRight: '0px',
-      paddingTop: '16px',
-      paddingBottom: '16px',
-      paddingLeft: '16px',
-      paddingRight: '16px',
-      children: [],
-    } as Partial<ContainerBlockProps>,
   },
   {
     type: 'button',
@@ -214,8 +187,6 @@ export function renderBlock(block: EmailBlockType, onClick?: (id: string) => voi
       return <HeadingBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
     case 'text':
       return <TextBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
-    case 'container':
-      return <ContainerBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
     case 'button':
       return <ButtonBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
     case 'link':

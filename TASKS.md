@@ -103,8 +103,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 10. Complete Block Library
 
-- [x] Create remaining email blocks: grid, image
-- [x] Enable the grid block to support adjustable grid sizes and allow adding elements to each grid section.
+- [x] Create the image block
 - [x] Make the image block support rendering the image from a provided link.
 - [x] Update block registry with all block types
 - [x] Add drag-from-library functionality (drag block to specific position)
@@ -112,14 +111,20 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Each block must use @react-email/components as foundation with inline styles only.
 
-### 11. Asset Integration
+### 11. Block List and Reordering System
 
-- [ ] Create `src/app/designs/[id]/components/resource-sidebar/asset-library.tsx`
-- [ ] Implement URL-based asset management (images, GIFs, videos)
-- [ ] Add drag-asset-to-block functionality for automatic configuration
-- [ ] Create asset preview and management UI
+- [ ] Remove the assets section from the resource sidebar
+- [ ] Create `src/app/designs/[id]/components/resource-sidebar/block-list.tsx` - Show list of blocks in email canvas
+- [ ] Create `src/app/designs/[id]/components/resource-sidebar/block-list-item.tsx` - Individual block list item component
+- [ ] Implement drag-and-drop reordering functionality for the block list using dnd-kit
+- [ ] Add visual indicators for drag operations (highlighting, insertion points)
+- [ ] Ensure block list updates reflect in real-time on the email canvas
+- [ ] Add block selection from the list (clicking a list item selects the block in canvas)
+- [ ] Show block hierarchy for nested blocks (containers with children)
+- [ ] Add block actions: duplicate, delete from the list context menu or buttons
+- [ ] Display block names/types clearly with appropriate icons
 
-**Notes**: No file upload needed initially, just URL-based assets.
+**Notes**: This replaces the asset management with a more useful block outline/layers panel. Focus on smooth drag-and-drop reordering that syncs with the canvas. Use the existing drag-drop infrastructure.
 
 ## Phase 3: Polish & Advanced Features
 
@@ -205,6 +210,21 @@ This document outlines all frontend development tasks needed to complete the ema
 - [ ] Add loading states and micro-interactions
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
+
+### 20. Container Block System
+
+- [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
+- [ ] Implement container that can hold and group other email blocks
+- [ ] Support nested drag-and-drop: blocks can be dragged into and out of containers
+- [ ] Add container-specific styling: background colors, borders, padding, margins
+- [ ] Implement visual indicators when hovering over containers during drag operations
+- [ ] Add container management: expand/collapse, show/hide children in block list
+- [ ] Support container nesting: containers can contain other containers
+- [ ] Add container templates: common layouts like header, footer, sidebar sections
+- [ ] Implement container-specific inspector controls for layout and styling
+- [ ] Ensure email client compatibility with proper HTML structure
+
+**Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation.
 
 ### 21. Grid Block System
 

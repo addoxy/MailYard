@@ -165,26 +165,6 @@ export const BlockEditor = () => {
           </>
         );
 
-      case 'container':
-        return (
-          <>
-            <ColorControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
-            <Separator className="my-4" />
-            <BorderControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
-            <Separator className="my-4" />
-            <SpacingControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
-          </>
-        );
-
       case 'divider':
         return (
           <>

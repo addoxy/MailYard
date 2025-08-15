@@ -69,7 +69,7 @@ export function ImageBlock({
         <Img src={src} alt={alt} style={imageStyle} />
       ) : (
         <div style={placeholderStyle}>
-          <Image />
+          <Image aria-label="Image placeholder icon" />
           <div>
             <div style={{ fontWeight: '500', marginBottom: '4px' }}>No image URL provided</div>
             <div style={{ fontSize: '12px', opacity: 0.7 }}>
