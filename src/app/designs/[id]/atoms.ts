@@ -22,3 +22,6 @@ export const canvasStylesAtom = atom<CanvasStyles>({
   padding: '20px',
   fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
 });
+
+// Clipboard for copy/paste functionality
+export const clipboardAtom = atom<EmailBlockType[]>([]);

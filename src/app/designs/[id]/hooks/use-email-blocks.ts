@@ -38,7 +38,7 @@ export function useEmailBlocks() {
 
     const clonedBlock = {
       ...blockToClone,
-      id: `${blockToClone.type}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `${blockToClone.type}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
     };
 
     const currentIndex = emailBlocks.findIndex(block => block.id === blockId);

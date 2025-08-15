@@ -86,26 +86,26 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 8. Keyboard Shortcuts
 
-- [ ] Create `src/hooks/use-keyboard-shortcuts.ts` - Global keyboard shortcut manager
-- [ ] Create `src/app/designs/[id]/hooks/use-email-shortcuts.ts` - Email builder specific shortcuts
-- [ ] Implement all shortcuts: Delete, Undo/Redo, Select All, Duplicate, Copy/Paste, Arrow navigation
-- [ ] Add undo/redo system with history stack in atoms
+- [x] Create `src/hooks/use-keyboard-shortcuts.ts` - Global keyboard shortcut manager
+- [x] Create `src/app/designs/[id]/hooks/use-email-shortcuts.ts` - Email builder specific shortcuts
+- [x] Implement shortcuts: Delete, Select All, Duplicate, Copy/Paste, Arrow navigation
 
-**Notes**: Use global hook for app-wide shortcuts, feature-specific hook for email builder shortcuts.
+**Notes**: Use global hook for app-wide shortcuts, feature-specific hook for email builder shortcuts. Undo/Redo moved to separate task.
 
 ### 9. Drag & Drop System
 
-- [ ] Install and configure dnd-kit
-- [ ] Create `src/app/designs/[id]/hooks/use-drag-drop.ts` - Drag and drop logic
-- [ ] Create `src/app/designs/[id]/components/email-section/drag-drop-handler.tsx` - D&D component
-- [ ] Implement block reordering within email canvas
-- [ ] Add visual drop indicators with Framer Motion animations
+- [x] Install and configure dnd-kit
+- [x] Create `src/app/designs/[id]/hooks/use-drag-drop.ts` - Drag and drop logic
+- [x] Create `src/app/designs/[id]/components/email-section/drag-drop-handler.tsx` - D&D component
+- [x] Implement block reordering within email canvas
 
 **Notes**: Use dnd-kit for all drag-and-drop. Add subtle animations for better UX.
 
 ### 10. Complete Block Library
 
-- [ ] Create remaining email blocks: divider, button, link, grid, image, video
+- [ ] Create remaining email blocks: grid, image
+- [ ] Enable the grid block to support adjustable grid sizes and allow adding elements to each grid section.
+- [ ] Make the image block support rendering the image from a provided link.
 - [ ] Update block registry with all block types
 - [ ] Add drag-from-library functionality (drag block to specific position)
 - [ ] Implement block categories/grouping in resource sidebar
@@ -155,7 +155,6 @@ This document outlines all frontend development tasks needed to complete the ema
 ### 15. Device View Toggle
 
 - [ ] Update email canvas to support desktop/mobile preview modes
-- [ ] Implement smooth transitions between view modes using Framer Motion
 - [ ] Add device frame for mobile preview (phone-like container)
 - [ ] Update atoms to persist device view preference
 
@@ -201,10 +200,8 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 20. Animation Polish
 
-- [ ] Add Framer Motion animations throughout the app
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
-- [ ] Polish drag-and-drop with visual feedback animations
 - [ ] Add loading states and micro-interactions
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
@@ -264,3 +261,30 @@ src/
 - Test responsive design across mobile and desktop viewports
 - Validate keyboard shortcuts work correctly and don't conflict with browser shortcuts
 - Ensure accessibility features work with screen readers and keyboard navigation
+
+## Future Features
+
+### 22. Undo/Redo System
+
+- [ ] Implement robust undo/redo history stack system
+- [ ] Add undo/redo buttons to Actions component with proper disabled states
+- [ ] Implement keyboard shortcuts: Cmd/Ctrl + Z (undo), Cmd/Ctrl + Shift + Z (redo)
+- [ ] Save history for all operations: block add/remove/edit/move/duplicate, bulk editing
+- [ ] Handle debouncing for rapid text edits to avoid saving every keystroke
+- [ ] Ensure history captures intermediate states correctly (e.g., text changes should undo to previous text, not delete block)
+- [ ] Limit history stack to reasonable size (50 entries) with proper cleanup
+- [ ] Test undo/redo works correctly for all block operations and property changes
+
+**Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
+
+### 23. Subtle Framer Motion Animations
+
+- [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
+- [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
+- [ ] Add smooth state transitions for theme switching and view mode changes
+- [ ] Polish drag-and-drop with gentle feedback animations (scale, opacity changes)
+- [ ] Add subtle modal/dialog entrance and exit animations
+- [ ] Implement smooth loading states and micro-interactions
+- [ ] Add gentle layout animations for block reordering and selection changes
+
+**Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.

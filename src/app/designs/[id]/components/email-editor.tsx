@@ -6,6 +6,8 @@ import { deviceViewAtom, emailBlocksAtom, canvasStylesAtom } from '../atoms';
 import { renderBlock } from './email-blocks/block-registry';
 import { useBlockSelection } from '../hooks/use-block-selection';
 import { BlockSelector } from './email-section/block-selector';
+import { DragDropHandler } from './email-section/drag-drop-handler';
+import { SortableEmailBlock } from './email-section/sortable-email-block';
 
 export const EmailEditor = () => {
   const deviceView = useAtomValue(deviceViewAtom);
@@ -58,18 +60,28 @@ export const EmailEditor = () => {
                 </p>
               </div>
             ) : (
-              <div className="space-y-2">
-                {emailBlocks.map((block) => (
-                  <BlockSelector
-                    key={block.id}
-                    blockId={block.id}
-                    isSelected={isBlockSelected(block.id)}
-                    onClick={(multiSelect) => handleBlockClick(block.id, multiSelect)}
-                  >
-                    {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
-                  </BlockSelector>
-                ))}
-              </div>
+              <DragDropHandler 
+                blocks={emailBlocks}
+                renderBlock={(block) => renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
+              >
+                <div className="space-y-2">
+                  {emailBlocks.map((block) => (
+                    <SortableEmailBlock
+                      key={block.id}
+                      id={block.id}
+                      isSelected={isBlockSelected(block.id)}
+                    >
+                      <BlockSelector
+                        blockId={block.id}
+                        isSelected={isBlockSelected(block.id)}
+                        onClick={(multiSelect) => handleBlockClick(block.id, multiSelect)}
+                      >
+                        {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
+                      </BlockSelector>
+                    </SortableEmailBlock>
+                  ))}
+                </div>
+              </DragDropHandler>
             )}
           </div>
         </div>

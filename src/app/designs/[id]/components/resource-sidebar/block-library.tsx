@@ -3,11 +3,12 @@
 import { AtomicTooltip } from '@/components/atomic-tooltip';
 import { SearchBar } from '@/components/search-bar';
 import { cn } from '@/lib/utils';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { ALargeSmall, Box, Heading, LucideIcon } from 'lucide-react';
 import { useState } from 'react';
-import { emailBlocksAtom, canvasStylesAtom } from '../../atoms';
+import { canvasStylesAtom } from '../../atoms';
 import { BLOCK_DEFINITIONS, createDefaultBlock } from '../email-blocks/block-registry';
+import { useEmailBlocks } from '../../hooks/use-email-blocks';
 
 interface BlockLibraryItemProps {
   icon: LucideIcon;
@@ -47,7 +48,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 export const BlockLibrary = () => {
-  const [, setEmailBlocks] = useAtom(emailBlocksAtom);
+  const { addBlock } = useEmailBlocks();
   const canvasStyles = useAtomValue(canvasStylesAtom);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -58,7 +59,7 @@ export const BlockLibrary = () => {
   );
 
   const handleAddBlock = (blockType: string) => {
-    const blockId = `${blockType}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const blockId = `${blockType}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
     const newBlock = createDefaultBlock(blockType, blockId);
 
     if (newBlock) {
@@ -66,7 +67,7 @@ export const BlockLibrary = () => {
       if ('fontFamily' in newBlock) {
         (newBlock as { fontFamily: string }).fontFamily = canvasStyles.fontFamily;
       }
-      setEmailBlocks((prevBlocks) => [...prevBlocks, newBlock]);
+      addBlock(newBlock);
     }
   };
 
