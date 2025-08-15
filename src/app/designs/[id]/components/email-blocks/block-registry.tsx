@@ -92,7 +92,7 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       lineHeight: '1.5',
       letterSpacing: '0px',
       marginTop: '0px',
-      marginBottom: '0px',
+      marginBottom: '16px',
       marginLeft: '0px',
       marginRight: '0px',
       paddingTop: '12px',

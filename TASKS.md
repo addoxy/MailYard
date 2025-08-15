@@ -157,10 +157,10 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 13. Preview System
 
-- [ ] Create `src/app/designs/[id]/components/email-section/preview-modal.tsx`
-- [ ] Implement email client preview tabs: Gmail, Outlook, Apple Mail, Yahoo
-- [ ] Add desktop/mobile preview toggle within modal
-- [ ] Use @react-email/render for generating preview HTML
+- [x] Create `src/app/designs/[id]/components/email-section/preview-modal.tsx`
+- [x] Implement email client preview tabs: Gmail, Outlook, Apple Mail, Yahoo
+- [x] Add desktop/mobile preview toggle within modal
+- [x] Use @react-email/render for generating preview HTML
 
 **Notes**: Modal should show how email renders across different providers.
 

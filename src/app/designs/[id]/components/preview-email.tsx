@@ -1,13 +1,7 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Eye } from 'lucide-react';
+import { PreviewModal } from './email-section/preview-modal';
 
 export const PreviewEmail = () => {
-  return (
-    <Button variant="secondary">
-      <Eye />
-      Preview
-    </Button>
-  );
+  return <PreviewModal />;
 };

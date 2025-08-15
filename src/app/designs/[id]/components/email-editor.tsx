@@ -55,7 +55,7 @@ export const EmailEditor = () => {
           >
             {emailBlocks.length === 0 ? (
               <div className="flex h-full items-center justify-center">
-                <p className="text-muted-foreground text-lg">
+                <p className="text-muted-foreground mt-32 text-lg">
                   Click on a block from the sidebar to add it to your email
                 </p>
               </div>
