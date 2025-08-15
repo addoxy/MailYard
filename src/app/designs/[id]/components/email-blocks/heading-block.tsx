@@ -1,9 +1,9 @@
 'use client';
 
 import { Heading } from '@react-email/components';
-import { useState, useRef, useEffect } from 'react';
-import { HeadingBlockProps } from './types';
+import { useEffect, useRef, useState } from 'react';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
+import { HeadingBlockProps } from './types';
 
 export function HeadingBlock({
   id,
@@ -11,10 +11,11 @@ export function HeadingBlock({
   level = 1,
   textAlign = 'left',
   fontSize = '32px',
-  fontWeight = 'bold',
+  fontWeight = '700',
   color = '#000000',
-  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
+  fontFamily = 'inherit',
   lineHeight = '1.4',
+  letterSpacing = '0px',
   marginTop = '0px',
   marginBottom = '16px',
   marginLeft = '0px',
@@ -24,7 +25,7 @@ export function HeadingBlock({
   paddingLeft = '0px',
   paddingRight = '0px',
   isSelected = false,
-  onClick
+  onClick,
 }: HeadingBlockProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(content);
@@ -77,6 +78,7 @@ export function HeadingBlock({
     color,
     fontFamily,
     lineHeight,
+    letterSpacing,
     textAlign,
     margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
@@ -98,18 +100,15 @@ export function HeadingBlock({
             color,
             fontFamily,
             lineHeight,
+            letterSpacing,
             textAlign,
             padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
-            border: '2px solid #3b82f6',
-            borderRadius: '4px',
+            border: 'none',
             outline: 'none',
             width: '100%',
             background: 'white',
           }}
         />
-        <div style={{ marginTop: '4px', fontSize: '12px', color: '#6b7280' }}>
-          Press Enter to save, Escape to cancel
-        </div>
       </div>
     );
   }

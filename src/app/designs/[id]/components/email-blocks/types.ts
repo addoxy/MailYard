@@ -15,6 +15,7 @@ export interface HeadingBlockProps extends BaseBlockProps {
   color: string;
   fontFamily: string;
   lineHeight: string;
+  letterSpacing: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
@@ -34,6 +35,7 @@ export interface TextBlockProps extends BaseBlockProps {
   color: string;
   fontFamily: string;
   lineHeight: string;
+  letterSpacing: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
@@ -59,6 +61,7 @@ export interface ButtonBlockProps extends BaseBlockProps {
   borderRadius: string;
   fontFamily: string;
   lineHeight: string;
+  letterSpacing: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
@@ -79,6 +82,7 @@ export interface LinkBlockProps extends BaseBlockProps {
   color: string;
   fontFamily: string;
   lineHeight: string;
+  letterSpacing: string;
   textDecoration: 'none' | 'underline' | 'line-through';
   marginTop: string;
   marginBottom: string;

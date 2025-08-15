@@ -1,10 +1,19 @@
-import { BlockDefinition, EmailBlockType, HeadingBlockProps, TextBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps, ImageBlockProps } from './types';
-import { HeadingBlock } from './heading-block';
-import { TextBlock } from './text-block';
 import { ButtonBlock } from './button-block';
-import { LinkBlock } from './link-block';
 import { DividerBlock } from './divider-block';
+import { HeadingBlock } from './heading-block';
 import { ImageBlock } from './image-block';
+import { LinkBlock } from './link-block';
+import { TextBlock } from './text-block';
+import {
+  BlockDefinition,
+  ButtonBlockProps,
+  DividerBlockProps,
+  EmailBlockType,
+  HeadingBlockProps,
+  ImageBlockProps,
+  LinkBlockProps,
+  TextBlockProps,
+} from './types';
 
 export const BLOCK_DEFINITIONS: BlockDefinition[] = [
   {
@@ -19,10 +28,11 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       level: 1,
       textAlign: 'left',
       fontSize: '32px',
-      fontWeight: 'bold',
+      fontWeight: '700',
       color: '#000000',
-      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+      fontFamily: 'inherit',
       lineHeight: '1.4',
+      letterSpacing: '0px',
       marginTop: '0px',
       marginBottom: '16px',
       marginLeft: '0px',
@@ -44,10 +54,11 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       content: 'Your text content goes here. You can edit this text and style it however you like.',
       textAlign: 'left',
       fontSize: '16px',
-      fontWeight: 'normal',
+      fontWeight: '400',
       color: '#000000',
-      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+      fontFamily: 'inherit',
       lineHeight: '1.5',
+      letterSpacing: '0px',
       marginTop: '0px',
       marginBottom: '16px',
       marginLeft: '0px',
@@ -70,17 +81,18 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       href: '#',
       textAlign: 'left',
       fontSize: '16px',
-      fontWeight: 'bold',
+      fontWeight: '600',
       color: '#ffffff',
       backgroundColor: '#3b82f6',
       borderWidth: '0px',
       borderColor: '#3b82f6',
       borderStyle: 'solid',
       borderRadius: '8px',
-      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+      fontFamily: 'inherit',
       lineHeight: '1.5',
+      letterSpacing: '0px',
       marginTop: '0px',
-      marginBottom: '16px',
+      marginBottom: '0px',
       marginLeft: '0px',
       marginRight: '0px',
       paddingTop: '12px',
@@ -101,10 +113,11 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       href: '#',
       textAlign: 'left',
       fontSize: '16px',
-      fontWeight: 'normal',
+      fontWeight: '400',
       color: '#3b82f6',
-      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+      fontFamily: 'inherit',
       lineHeight: '1.5',
+      letterSpacing: '0px',
       textDecoration: 'underline',
       marginTop: '0px',
       marginBottom: '16px',
@@ -165,7 +178,7 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
 ];
 
 export function getBlockDefinition(type: string): BlockDefinition | undefined {
-  return BLOCK_DEFINITIONS.find(def => def.type === type);
+  return BLOCK_DEFINITIONS.find((def) => def.type === type);
 }
 
 export function createDefaultBlock(type: string, id: string): EmailBlockType | null {
@@ -181,7 +194,11 @@ export function createDefaultBlock(type: string, id: string): EmailBlockType | n
   } as EmailBlockType;
 }
 
-export function renderBlock(block: EmailBlockType, onClick?: (id: string) => void, isSelected = false) {
+export function renderBlock(
+  block: EmailBlockType,
+  onClick?: (id: string) => void,
+  isSelected = false
+) {
   switch (block.type) {
     case 'heading':
       return <HeadingBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
@@ -205,7 +222,7 @@ export function getBlocksByCategory(category?: string): BlockDefinition[] {
   if (!category) {
     return BLOCK_DEFINITIONS;
   }
-  return BLOCK_DEFINITIONS.filter(def => def.category === category);
+  return BLOCK_DEFINITIONS.filter((def) => def.category === category);
 }
 
 export const BLOCK_CATEGORIES = [

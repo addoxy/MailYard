@@ -1,4 +1,4 @@
-import { EmailBlockType, HeadingBlockProps, TextBlockProps, ContainerBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps } from '../../email-blocks/types';
+import { EmailBlockType, HeadingBlockProps, TextBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps, ImageBlockProps } from '../../email-blocks/types';
 
 // Type guard functions
 export const hasProperty = (block: EmailBlockType, property: string): boolean => {
@@ -31,13 +31,14 @@ export const updateTextBlock = (
   ...updates,
 });
 
-export const updateContainerBlock = (
-  block: ContainerBlockProps,
-  updates: Partial<ContainerBlockProps>
-): ContainerBlockProps => ({
-  ...block,
-  ...updates,
-});
+// TODO: Re-enable when ContainerBlockProps is implemented
+// export const updateContainerBlock = (
+//   block: ContainerBlockProps,
+//   updates: Partial<ContainerBlockProps>
+// ): ContainerBlockProps => ({
+//   ...block,
+//   ...updates,
+// });
 
 export const updateButtonBlock = (
   block: ButtonBlockProps,

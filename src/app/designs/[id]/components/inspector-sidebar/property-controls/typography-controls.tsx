@@ -16,13 +16,36 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
   const hasFontWeight = hasProperty(block, 'fontWeight');
   const hasFontFamily = hasProperty(block, 'fontFamily');
   const hasLineHeight = hasProperty(block, 'lineHeight');
+  const hasLetterSpacing = hasProperty(block, 'letterSpacing');
 
-  if (!hasFontSize && !hasFontWeight && !hasFontFamily && !hasLineHeight) return null;
+  if (!hasFontSize && !hasFontWeight && !hasFontFamily && !hasLineHeight && !hasLetterSpacing) return null;
 
-  const fontSize = getBlockProperty(block, 'fontSize') || '16px';
+  // Helper functions to convert between px strings and numeric values
+  const pxToNumber = (value: string): number => {
+    return parseInt(value?.replace('px', '') || '16');
+  };
+  
+  const numberToPx = (value: number): string => {
+    return `${value}px`;
+  };
+
+  const fontSize = pxToNumber(getBlockProperty(block, 'fontSize') || '16px');
   const fontWeight = getBlockProperty(block, 'fontWeight') || '400';
-  const fontFamily = getBlockProperty(block, 'fontFamily') || 'Arial, sans-serif';
-  const lineHeight = getBlockProperty(block, 'lineHeight') || '1.5';
+  const fontFamily = getBlockProperty(block, 'fontFamily') || 'inherit';
+  
+  // When fontFamily is 'inherit', show the first option (Inter) in the select
+  const displayFontFamily = fontFamily === 'inherit' ? 'Inter, system-ui, -apple-system, sans-serif' : fontFamily;
+  // Convert line height to number (it's unitless)
+  const lineHeightToNumber = (value: string): number => {
+    return parseFloat(value || '1.5');
+  };
+  
+  const numberToLineHeight = (value: number): string => {
+    return value.toString();
+  };
+
+  const lineHeight = lineHeightToNumber(getBlockProperty(block, 'lineHeight') || '1.5');
+  const letterSpacing = pxToNumber(getBlockProperty(block, 'letterSpacing') || '0px');
 
   const fontWeightOptions = [
     { value: '300', label: 'Light' },
@@ -34,6 +57,7 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
   ];
 
   const fontFamilyOptions = [
+    { value: 'Inter, system-ui, -apple-system, sans-serif', label: 'Inter' },
     { value: 'Arial, sans-serif', label: 'Arial' },
     { value: 'Georgia, serif', label: 'Georgia' },
     { value: 'Times New Roman, serif', label: 'Times New Roman' },
@@ -51,11 +75,13 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
           <div className="space-y-2">
             <Label className="text-xs text-muted-foreground">Font Size</Label>
             <Input
-              type="text"
+              type="number"
               value={fontSize}
-              onChange={(e) => onUpdate('fontSize', e.target.value)}
+              onChange={(e) => onUpdate('fontSize', numberToPx(Number(e.target.value) || 16))}
               className="h-8 text-xs"
-              placeholder="16px"
+              placeholder="16"
+              min="8"
+              max="72"
             />
           </div>
         )}
@@ -86,7 +112,7 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
         <div className="space-y-2">
           <Label className="text-xs text-muted-foreground">Font Family</Label>
           <Select
-            value={fontFamily}
+            value={displayFontFamily}
             onValueChange={(value) => onUpdate('fontFamily', value)}
           >
             <SelectTrigger className="h-8">
@@ -107,11 +133,30 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
         <div className="space-y-2">
           <Label className="text-xs text-muted-foreground">Line Height</Label>
           <Input
-            type="text"
+            type="number"
             value={lineHeight}
-            onChange={(e) => onUpdate('lineHeight', e.target.value)}
+            onChange={(e) => onUpdate('lineHeight', numberToLineHeight(Number(e.target.value) || 1.5))}
             className="h-8 text-xs"
             placeholder="1.5"
+            step="0.1"
+            min="0.5"
+            max="3"
+          />
+        </div>
+      )}
+
+      {hasLetterSpacing && (
+        <div className="space-y-2">
+          <Label className="text-xs text-muted-foreground">Letter Spacing</Label>
+          <Input
+            type="number"
+            value={letterSpacing}
+            onChange={(e) => onUpdate('letterSpacing', numberToPx(Number(e.target.value) || 0))}
+            className="h-8 text-xs"
+            placeholder="0"
+            step="0.1"
+            min="-5"
+            max="10"
           />
         </div>
       )}

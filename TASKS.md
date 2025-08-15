@@ -120,7 +120,6 @@ This document outlines all frontend development tasks needed to complete the ema
 - [x] Add visual indicators for drag operations (highlighting, insertion points)
 - [x] Ensure block list updates reflect in real-time on the email canvas
 - [x] Add block selection from the list (clicking a list item selects the block in canvas)
-- [x] Add block actions: duplicate, delete from the list context menu or buttons
 - [x] Display block names/types clearly with appropriate icons
 
 **Notes**: This replaces the asset management with a more useful block outline/layers panel. Focus on smooth drag-and-drop reordering that syncs with the canvas. Use the existing drag-drop infrastructure.
@@ -129,34 +128,30 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 12. Advanced Style Inspector Panel
 
-- [ ] Update `src/app/designs/[id]/components/inspector-sidebar/style-controls/` directory
-- [ ] Update advanced typography controls: font family, line height, weight, letter spacing
-- [ ] Update layout controls: width, height, padding, margin (individual sides + shorthand)
-- [ ] Update border controls: width, color, style, radius (per side + all)
-- [ ] Update background controls: color, image URL
-- [ ] Implement real-time preview updates with debounced input
-- [ ] Ensure all default styles are uniform and sensible across all blocks
-- [ ] Convert all distance-related styles to use px units only (inputs should be numbers, not strings like "20px")
+- [x] Update `src/app/designs/[id]/components/inspector-sidebar/style-controls/` directory
+- [x] Update advanced typography controls: letter spacing
+- [x] Ensure all default styles are uniform and sensible across all blocks
+- [x] Convert all distance-related styles to use px units only (inputs should be numbers, not strings like "20px")
 
 **Notes**: This updates the existing property controls from Task 6. All distance inputs should be numeric only, internally converted to px.
 
 ### 12.1. Fix Default Font Weight Bug
 
-- [ ] Fix heading blocks to show proper default font weight (should be bold/600 for headings)
-- [ ] Fix text blocks to show proper default font weight (should be normal/400 for text)
-- [ ] Ensure font weight property controls display the correct current values
-- [ ] Update block type definitions to include proper default font weights
-- [ ] Increase white spacing in the inspector sidebar for better readability and visual breathing room
+- [x] Fix heading blocks to show proper default font weight (should be bold/600 for headings)
+- [x] Fix text blocks to show proper default font weight (should be normal/400 for text)
+- [x] Ensure font weight property controls display the correct current values
+- [x] Update block type definitions to include proper default font weights
+- [x] Increase white spacing in the inspector sidebar for better readability and visual breathing room
 
 **Notes**: Currently heading and text blocks are not showing any default font weight. This makes headings appear the same as regular text, which is incorrect. Also improve the visual spacing in the inspector sidebar.
 
 ### 12.2. Fix Canvas Font Family Inheritance Bug
 
-- [ ] Fix the page-level font family selector to actually apply font-family changes to the canvas
-- [ ] Implement font-family inheritance system where blocks inherit the canvas font-family by default
-- [ ] Only override inherited font-family when a block has its own font-family explicitly set
-- [ ] Ensure the canvas font-family updates are reflected in real-time across all blocks
-- [ ] Test that individual block font-family overrides still work correctly
+- [x] Fix the page-level font family selector to actually apply font-family changes to the canvas
+- [x] Implement font-family inheritance system where blocks inherit the canvas font-family by default
+- [x] Only override inherited font-family when a block has its own font-family explicitly set
+- [x] Ensure the canvas font-family updates are reflected in real-time across all blocks
+- [x] Test that individual block font-family overrides still work correctly
 
 **Notes**: Currently the font family selector in the page doesn't change the font-family of blocks. Blocks should inherit the canvas font-family unless they have their own font-family specified.
 

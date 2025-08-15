@@ -2,9 +2,9 @@
 
 import { cn } from '@/lib/utils';
 import { useAtomValue } from 'jotai';
-import { deviceViewAtom, emailBlocksAtom, canvasStylesAtom } from '../atoms';
-import { renderBlock } from './email-blocks/block-registry';
+import { canvasStylesAtom, deviceViewAtom, emailBlocksAtom } from '../atoms';
 import { useBlockSelection } from '../hooks/use-block-selection';
+import { renderBlock } from './email-blocks/block-registry';
 import { BlockSelector } from './email-section/block-selector';
 import { DragDropHandler } from './email-section/drag-drop-handler';
 import { SortableEmailBlock } from './email-section/sortable-email-block';
@@ -46,11 +46,11 @@ export const EmailEditor = () => {
           }}
           onClick={handleCanvasClick}
         >
-          <div 
+          <div
             className="mx-auto"
-            style={{ 
+            style={{
               maxWidth: canvasStyles.maxWidth,
-              width: '100%'
+              width: '100%',
             }}
           >
             {emailBlocks.length === 0 ? (
@@ -60,9 +60,11 @@ export const EmailEditor = () => {
                 </p>
               </div>
             ) : (
-              <DragDropHandler 
+              <DragDropHandler
                 blocks={emailBlocks}
-                renderBlock={(block) => renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
+                renderBlock={(block) =>
+                  renderBlock(block, handleBlockClick, isBlockSelected(block.id))
+                }
               >
                 <div className="space-y-2">
                   {emailBlocks.map((block) => (

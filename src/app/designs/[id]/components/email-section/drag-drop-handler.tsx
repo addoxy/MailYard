@@ -1,8 +1,17 @@
 'use client';
 
-import { ReactNode, useState } from 'react';
-import { DndContext, DragOverlay, closestCenter, PointerSensor, useSensor, useSensors, DragStartEvent, DragEndEvent } from '@dnd-kit/core';
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
+import { ReactNode, useState } from 'react';
 import { useDragDrop } from '../../hooks/use-drag-drop';
 import { EmailBlockType } from '../email-blocks/types';
 
@@ -15,7 +24,7 @@ interface DragDropHandlerProps {
 export function DragDropHandler({ children, blocks, renderBlock }: DragDropHandlerProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [draggedBlock, setDraggedBlock] = useState<EmailBlockType | null>(null);
-  
+
   const {
     handleDragStart: originalHandleDragStart,
     handleDragOver,
@@ -33,7 +42,7 @@ export function DragDropHandler({ children, blocks, renderBlock }: DragDropHandl
 
   const handleDragStart = (event: DragStartEvent) => {
     setIsDragging(true);
-    const draggedBlockData = blocks.find(block => block.id === event.active.id);
+    const draggedBlockData = blocks.find((block) => block.id === event.active.id);
     setDraggedBlock(draggedBlockData || null);
     originalHandleDragStart(event);
   };
@@ -52,23 +61,18 @@ export function DragDropHandler({ children, blocks, renderBlock }: DragDropHandl
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <SortableContext items={blocks.map(block => block.id)} strategy={sortingStrategy}>
-        <div className="relative">
-          {children}
-          
-          {/* Global drag overlay effect */}
-          {isDragging && (
-            <div className="absolute inset-0 bg-blue-500 pointer-events-none rounded-md opacity-5" />
-          )}
-        </div>
+      <SortableContext items={blocks.map((block) => block.id)} strategy={sortingStrategy}>
+        <div className="relative">{children}</div>
       </SortableContext>
 
-      <DragOverlay dropAnimation={{
-        duration: 200,
-        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      }}>
+      <DragOverlay
+        dropAnimation={{
+          duration: 200,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        }}
+      >
         {draggedBlock ? (
-          <div className="bg-white shadow-lg rounded-md border border-blue-400 opacity-80 scale-105">
+          <div className="border-2 border-blue-400 bg-white p-0.5 opacity-80 shadow-lg">
             {renderBlock(draggedBlock)}
           </div>
         ) : null}

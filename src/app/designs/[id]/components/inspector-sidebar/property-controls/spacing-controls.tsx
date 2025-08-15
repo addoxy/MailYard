@@ -22,27 +22,38 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
 
   if (!hasMargin && !hasPadding) return null;
 
-  const marginTop = getBlockProperty(block, 'marginTop') || '0px';
-  const marginRight = getBlockProperty(block, 'marginRight') || '0px';
-  const marginBottom = getBlockProperty(block, 'marginBottom') || '0px';
-  const marginLeft = getBlockProperty(block, 'marginLeft') || '0px';
-  const paddingTop = getBlockProperty(block, 'paddingTop') || '0px';
-  const paddingRight = getBlockProperty(block, 'paddingRight') || '0px';
-  const paddingBottom = getBlockProperty(block, 'paddingBottom') || '0px';
-  const paddingLeft = getBlockProperty(block, 'paddingLeft') || '0px';
-
-  const updateLinkedMargin = (value: string) => {
-    onUpdate('marginTop', value);
-    onUpdate('marginBottom', value);
-    onUpdate('marginLeft', value);
-    onUpdate('marginRight', value);
+  // Helper functions to convert between px strings and numeric values
+  const pxToNumber = (value: string): number => {
+    return parseInt(value?.replace('px', '') || '0');
+  };
+  
+  const numberToPx = (value: number): string => {
+    return `${value}px`;
   };
 
-  const updateLinkedPadding = (value: string) => {
-    onUpdate('paddingTop', value);
-    onUpdate('paddingBottom', value);
-    onUpdate('paddingLeft', value);
-    onUpdate('paddingRight', value);
+  const marginTop = pxToNumber(getBlockProperty(block, 'marginTop') || '0px');
+  const marginRight = pxToNumber(getBlockProperty(block, 'marginRight') || '0px');
+  const marginBottom = pxToNumber(getBlockProperty(block, 'marginBottom') || '0px');
+  const marginLeft = pxToNumber(getBlockProperty(block, 'marginLeft') || '0px');
+  const paddingTop = pxToNumber(getBlockProperty(block, 'paddingTop') || '0px');
+  const paddingRight = pxToNumber(getBlockProperty(block, 'paddingRight') || '0px');
+  const paddingBottom = pxToNumber(getBlockProperty(block, 'paddingBottom') || '0px');
+  const paddingLeft = pxToNumber(getBlockProperty(block, 'paddingLeft') || '0px');
+
+  const updateLinkedMargin = (value: number) => {
+    const pxValue = numberToPx(value);
+    onUpdate('marginTop', pxValue);
+    onUpdate('marginBottom', pxValue);
+    onUpdate('marginLeft', pxValue);
+    onUpdate('marginRight', pxValue);
+  };
+
+  const updateLinkedPadding = (value: number) => {
+    const pxValue = numberToPx(value);
+    onUpdate('paddingTop', pxValue);
+    onUpdate('paddingBottom', pxValue);
+    onUpdate('paddingLeft', pxValue);
+    onUpdate('paddingRight', pxValue);
   };
 
   return (
@@ -65,52 +76,52 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
           
           {marginLinked ? (
             <Input
-              type="text"
+              type="number"
               value={marginTop}
-              onChange={(e) => updateLinkedMargin(e.target.value)}
+              onChange={(e) => updateLinkedMargin(Number(e.target.value) || 0)}
               className="h-8 text-xs"
-              placeholder="0px"
+              placeholder="0"
             />
           ) : (
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Top</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={marginTop}
-                  onChange={(e) => onUpdate('marginTop', e.target.value)}
+                  onChange={(e) => onUpdate('marginTop', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Right</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={marginRight}
-                  onChange={(e) => onUpdate('marginRight', e.target.value)}
+                  onChange={(e) => onUpdate('marginRight', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Bottom</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={marginBottom}
-                  onChange={(e) => onUpdate('marginBottom', e.target.value)}
+                  onChange={(e) => onUpdate('marginBottom', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Left</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={marginLeft}
-                  onChange={(e) => onUpdate('marginLeft', e.target.value)}
+                  onChange={(e) => onUpdate('marginLeft', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
             </div>
@@ -134,52 +145,52 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
           
           {paddingLinked ? (
             <Input
-              type="text"
+              type="number"
               value={paddingTop}
-              onChange={(e) => updateLinkedPadding(e.target.value)}
+              onChange={(e) => updateLinkedPadding(Number(e.target.value) || 0)}
               className="h-8 text-xs"
-              placeholder="0px"
+              placeholder="0"
             />
           ) : (
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Top</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={paddingTop}
-                  onChange={(e) => onUpdate('paddingTop', e.target.value)}
+                  onChange={(e) => onUpdate('paddingTop', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Right</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={paddingRight}
-                  onChange={(e) => onUpdate('paddingRight', e.target.value)}
+                  onChange={(e) => onUpdate('paddingRight', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Bottom</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={paddingBottom}
-                  onChange={(e) => onUpdate('paddingBottom', e.target.value)}
+                  onChange={(e) => onUpdate('paddingBottom', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Left</Label>
                 <Input
-                  type="text"
+                  type="number"
                   value={paddingLeft}
-                  onChange={(e) => onUpdate('paddingLeft', e.target.value)}
+                  onChange={(e) => onUpdate('paddingLeft', numberToPx(Number(e.target.value) || 0))}
                   className="h-8 text-xs"
-                  placeholder="0px"
+                  placeholder="0"
                 />
               </div>
             </div>

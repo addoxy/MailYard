@@ -76,6 +76,12 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    // Preserve dimensions during drag
+    ...(isDragging && {
+      width: 'auto',
+      minWidth: '200px', // Ensure minimum width during drag
+      maxWidth: '100%',
+    }),
   };
 
   const Icon = getBlockIcon(block.type);
@@ -93,7 +99,7 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
       className={cn(
         'hover:bg-muted/50 flex items-center gap-1 rounded-md border p-3 transition-colors',
         isSelected && 'bg-muted border-primary',
-        isDragging && 'opacity-50'
+        isDragging && 'opacity-50 shadow-lg bg-background border-primary z-50'
       )}
       onClick={handleClick}
     >
@@ -102,17 +108,27 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
         className="hover:bg-muted-foreground/10 cursor-grab rounded p-1 transition-colors"
         {...attributes}
         {...listeners}
+        onMouseDown={() => {
+          // Select the block when starting to drag
+          onSelect?.(block.id);
+        }}
       >
         <GripVertical className="text-muted-foreground size-3" />
       </div>
 
       {/* Clickable content area */}
-      <div className="flex flex-1 cursor-pointer items-center gap-3">
+      <div className={cn(
+        "flex flex-1 cursor-pointer items-center gap-3",
+        isDragging && "pointer-events-none" // Disable pointer events during drag
+      )}>
         <Icon
           className={cn('size-4 shrink-0', isSelected ? 'text-primary' : 'text-muted-foreground')}
         />
 
-        <div className="min-w-0 flex-1">
+        <div className={cn(
+          "min-w-0 flex-1",
+          isDragging && "whitespace-nowrap" // Prevent wrapping during drag
+        )}>
           <div className="text-foreground truncate text-sm font-medium">{blockName}</div>
           {blockContent && (
             <div className="text-muted-foreground line-clamp-1 text-xs">{blockContent}</div>

@@ -11,10 +11,11 @@ export function LinkBlock({
   href = '#',
   textAlign = 'left',
   fontSize = '16px',
-  fontWeight = 'normal',
+  fontWeight = '400',
   color = '#3b82f6',
-  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
+  fontFamily = 'inherit',
   lineHeight = '1.5',
+  letterSpacing = '0px',
   textDecoration = 'underline',
   marginTop = '0px',
   marginBottom = '16px',
@@ -81,6 +82,7 @@ export function LinkBlock({
     color,
     fontFamily,
     lineHeight,
+    letterSpacing,
     textAlign,
     textDecoration,
     margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
@@ -106,7 +108,7 @@ export function LinkBlock({
               color: '#000',
               fontFamily,
               padding: '8px 12px',
-              border: '2px solid #3b82f6',
+              border: 'none',
               borderRadius: '4px',
               outline: 'none',
               width: '100%',
@@ -128,16 +130,13 @@ export function LinkBlock({
               color: '#000',
               fontFamily,
               padding: '8px 12px',
-              border: '2px solid #3b82f6',
+              border: 'none',
               borderRadius: '4px',
               outline: 'none',
               width: '100%',
               background: 'white',
             }}
           />
-        </div>
-        <div style={{ fontSize: '12px', color: '#6b7280' }}>
-          Press Enter to save, Escape to cancel
         </div>
       </div>
     );

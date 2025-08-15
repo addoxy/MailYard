@@ -1,9 +1,9 @@
 'use client';
 
 import { Button } from '@react-email/components';
-import { useState, useRef, useEffect } from 'react';
-import { ButtonBlockProps } from './types';
+import { useEffect, useRef, useState } from 'react';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
+import { ButtonBlockProps } from './types';
 
 export function ButtonBlock({
   id,
@@ -11,17 +11,18 @@ export function ButtonBlock({
   href = '#',
   textAlign = 'left',
   fontSize = '16px',
-  fontWeight = 'bold',
+  fontWeight = '600',
   color = '#ffffff',
   backgroundColor = '#3b82f6',
   borderWidth = '0px',
   borderColor = '#3b82f6',
   borderStyle = 'solid',
   borderRadius = '8px',
-  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
+  fontFamily = 'inherit',
   lineHeight = '1.5',
+  letterSpacing = '0px',
   marginTop = '0px',
-  marginBottom = '16px',
+  marginBottom = '0px',
   marginLeft = '0px',
   marginRight = '0px',
   paddingTop = '12px',
@@ -29,7 +30,7 @@ export function ButtonBlock({
   paddingLeft = '24px',
   paddingRight = '24px',
   isSelected = false,
-  onClick
+  onClick,
 }: ButtonBlockProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(content);
@@ -88,6 +89,7 @@ export function ButtonBlock({
     borderRadius,
     fontFamily,
     lineHeight,
+    letterSpacing,
     textAlign,
     margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
@@ -100,7 +102,9 @@ export function ButtonBlock({
     return (
       <div style={{ margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}` }}>
         <div style={{ marginBottom: '8px' }}>
-          <label style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
+          <label
+            style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}
+          >
             Button Text:
           </label>
           <input
@@ -114,7 +118,7 @@ export function ButtonBlock({
               color: '#000',
               fontFamily,
               padding: '8px 12px',
-              border: '2px solid #3b82f6',
+              border: 'none',
               borderRadius: '4px',
               outline: 'none',
               width: '100%',
@@ -123,7 +127,9 @@ export function ButtonBlock({
           />
         </div>
         <div style={{ marginBottom: '8px' }}>
-          <label style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
+          <label
+            style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}
+          >
             Link URL:
           </label>
           <input
@@ -136,7 +142,7 @@ export function ButtonBlock({
               color: '#000',
               fontFamily,
               padding: '8px 12px',
-              border: '2px solid #3b82f6',
+              border: 'none',
               borderRadius: '4px',
               outline: 'none',
               width: '100%',
@@ -144,21 +150,13 @@ export function ButtonBlock({
             }}
           />
         </div>
-        <div style={{ fontSize: '12px', color: '#6b7280' }}>
-          Press Enter to save, Escape to cancel
-        </div>
       </div>
     );
   }
 
   return (
     <div style={{ textAlign: textAlign as 'left' | 'center' | 'right' }}>
-      <Button
-        href={href}
-        style={baseStyle}
-        onClick={handleClick}
-        onDoubleClick={handleDoubleClick}
-      >
+      <Button href={href} style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
         {content}
       </Button>
     </div>

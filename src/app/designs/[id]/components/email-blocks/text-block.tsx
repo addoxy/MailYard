@@ -10,10 +10,11 @@ export function TextBlock({
   content = 'Your text content goes here. You can edit this text and style it however you like.',
   textAlign = 'left',
   fontSize = '16px',
-  fontWeight = 'normal',
+  fontWeight = '400',
   color = '#000000',
-  fontFamily = 'Inter, system-ui, -apple-system, sans-serif',
+  fontFamily = 'inherit',
   lineHeight = '1.5',
+  letterSpacing = '0px',
   marginTop = '0px',
   marginBottom = '16px',
   marginLeft = '0px',
@@ -55,7 +56,8 @@ export function TextBlock({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && e.ctrlKey) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
       handleSave();
     } else if (e.key === 'Escape') {
       handleCancel();
@@ -71,12 +73,24 @@ export function TextBlock({
     }
   }, [isEditing]);
 
+  // Auto-resize textarea as content changes
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setEditContent(e.target.value);
+
+    // Auto-resize textarea
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+    }
+  };
+
   const baseStyle = {
     fontSize,
     fontWeight,
     color,
     fontFamily,
     lineHeight,
+    letterSpacing,
     textAlign,
     margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
@@ -90,7 +104,7 @@ export function TextBlock({
         <textarea
           ref={textareaRef}
           value={editContent}
-          onChange={(e) => setEditContent(e.target.value)}
+          onChange={handleTextChange}
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{
@@ -99,20 +113,16 @@ export function TextBlock({
             color,
             fontFamily,
             lineHeight,
+            letterSpacing,
             textAlign,
             padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
-            border: '2px solid #3b82f6',
-            borderRadius: '4px',
+            border: 'none',
             outline: 'none',
             resize: 'none',
             width: '100%',
-            minHeight: '40px',
             background: 'white',
           }}
         />
-        <div style={{ marginTop: '4px', fontSize: '12px', color: '#6b7280' }}>
-          Press Ctrl+Enter to save, Escape to cancel
-        </div>
       </div>
     );
   }

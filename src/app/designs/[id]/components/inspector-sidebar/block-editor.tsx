@@ -34,7 +34,7 @@ export const BlockEditor = () => {
     };
 
     return (
-      <div className="p-4">
+      <div className="p-6">
         <CanvasControls 
           canvasStyles={canvasStyles} 
           onUpdate={updateCanvasStyle} 
@@ -48,8 +48,8 @@ export const BlockEditor = () => {
     const blockTypes = getCommonBlockTypes(selectedBlockIds);
     
     return (
-      <div className="p-4">
-        <div className="border-b pb-2">
+      <div className="p-6">
+        <div className="border-b pb-4">
           <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
             Multi-Select
           </div>
@@ -63,7 +63,7 @@ export const BlockEditor = () => {
           </div>
         </div>
         
-        <div className="space-y-4 mt-4">
+        <div className="space-y-6 mt-6">
           <BulkEditControls selectedBlockIds={selectedBlockIds} />
         </div>
       </div>
@@ -97,22 +97,22 @@ export const BlockEditor = () => {
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <AlignmentControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <TypographyControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <ColorControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <SpacingControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
@@ -128,34 +128,34 @@ export const BlockEditor = () => {
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <LinkControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <AlignmentControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <TypographyControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <ColorControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             {selectedBlock.type === 'button' && (
               <>
                 <BorderControls 
                   block={selectedBlock} 
                   onUpdate={updateBlockProperty} 
                 />
-                <Separator className="my-4" />
+                <Separator className="my-6" />
               </>
             )}
             <SpacingControls 
@@ -172,7 +172,7 @@ export const BlockEditor = () => {
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <SpacingControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
@@ -221,17 +221,17 @@ export const BlockEditor = () => {
                 />
               </div>
             </div>
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <AlignmentControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <BorderControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
-            <Separator className="my-4" />
+            <Separator className="my-6" />
             <SpacingControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
@@ -248,8 +248,8 @@ export const BlockEditor = () => {
   if (!selectedBlock) return null;
 
   return (
-    <div className="p-4 space-y-4">
-      <div className="border-b pb-2">
+    <div className="p-6 space-y-6">
+      <div className="border-b pb-4">
         <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
           {selectedBlock.type} Block
         </div>
@@ -258,7 +258,7 @@ export const BlockEditor = () => {
         </div>
       </div>
       
-      <div className="space-y-4">
+      <div className="space-y-6">
         {renderBlockTypeControls()}
       </div>
     </div>

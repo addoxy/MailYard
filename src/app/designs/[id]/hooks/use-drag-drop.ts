@@ -1,7 +1,7 @@
 import { useAtom } from 'jotai';
 import { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core';
 import { arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { emailBlocksAtom, selectedBlockIdsAtom, canvasStylesAtom } from '../atoms';
+import { emailBlocksAtom, selectedBlockIdsAtom, selectedBlockIdAtom, canvasStylesAtom } from '../atoms';
 import { useCallback } from 'react';
 import { createDefaultBlock } from '../components/email-blocks/block-registry';
 import { useAtomValue } from 'jotai';
@@ -9,6 +9,7 @@ import { useAtomValue } from 'jotai';
 export function useDragDrop() {
   const [emailBlocks, setEmailBlocks] = useAtom(emailBlocksAtom);
   const [selectedBlockIds, setSelectedBlockIds] = useAtom(selectedBlockIdsAtom);
+  const [selectedBlockId, setSelectedBlockId] = useAtom(selectedBlockIdAtom);
   const canvasStyles = useAtomValue(canvasStylesAtom);
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -18,6 +19,7 @@ export function useDragDrop() {
     // If the dragged block is not in the current selection, select only it
     if (!selectedBlockIds.includes(blockId)) {
       setSelectedBlockIds([blockId]);
+      setSelectedBlockId(blockId);
     }
   };
 
@@ -63,6 +65,7 @@ export function useDragDrop() {
 
         // Select the newly added block
         setSelectedBlockIds([newBlock.id]);
+        setSelectedBlockId(newBlock.id);
       }
       return;
     }
@@ -79,7 +82,7 @@ export function useDragDrop() {
       // Reorder blocks with optimistic update
       return arrayMove(currentBlocks, activeIndex, overIndex);
     });
-  }, [setEmailBlocks, canvasStyles.fontFamily, setSelectedBlockIds]);
+  }, [setEmailBlocks, canvasStyles.fontFamily, setSelectedBlockIds, setSelectedBlockId]);
 
   const moveBlock = (blockId: string, direction: 'up' | 'down') => {
     const currentIndex = emailBlocks.findIndex(block => block.id === blockId);

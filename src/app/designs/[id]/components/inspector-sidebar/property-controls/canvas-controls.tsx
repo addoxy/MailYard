@@ -29,7 +29,7 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
     { value: 'Times New Roman, serif', label: 'Times New Roman' },
     { value: 'Helvetica, Arial, sans-serif', label: 'Helvetica' },
     { value: 'Verdana, sans-serif', label: 'Verdana' },
-    { value: 'system-ui, -apple-system, sans-serif', label: 'System UI' },
+    { value: 'Courier New, monospace', label: 'Courier New' },
   ];
 
   return (
