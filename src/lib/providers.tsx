@@ -1,5 +1,6 @@
 'use client';
 
+import { Provider } from 'jotai';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import * as React from 'react';
 
@@ -9,13 +10,15 @@ interface ProvidersProps {
 
 export const Providers = ({ children }: ProvidersProps) => {
   return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      {children}
-    </NextThemesProvider>
+    <Provider>
+      <NextThemesProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </NextThemesProvider>
+    </Provider>
   );
 };

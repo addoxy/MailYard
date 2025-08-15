@@ -113,16 +113,15 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 11. Block List and Reordering System
 
-- [ ] Remove the assets section from the resource sidebar
-- [ ] Create `src/app/designs/[id]/components/resource-sidebar/block-list.tsx` - Show list of blocks in email canvas
-- [ ] Create `src/app/designs/[id]/components/resource-sidebar/block-list-item.tsx` - Individual block list item component
-- [ ] Implement drag-and-drop reordering functionality for the block list using dnd-kit
-- [ ] Add visual indicators for drag operations (highlighting, insertion points)
-- [ ] Ensure block list updates reflect in real-time on the email canvas
-- [ ] Add block selection from the list (clicking a list item selects the block in canvas)
-- [ ] Show block hierarchy for nested blocks (containers with children)
-- [ ] Add block actions: duplicate, delete from the list context menu or buttons
-- [ ] Display block names/types clearly with appropriate icons
+- [x] Remove the assets section from the resource sidebar
+- [x] Create `src/app/designs/[id]/components/resource-sidebar/block-list.tsx` - Show list of blocks in email canvas
+- [x] Create `src/app/designs/[id]/components/resource-sidebar/block-list-item.tsx` - Individual block list item component
+- [x] Implement drag-and-drop reordering functionality for the block list using dnd-kit
+- [x] Add visual indicators for drag operations (highlighting, insertion points)
+- [x] Ensure block list updates reflect in real-time on the email canvas
+- [x] Add block selection from the list (clicking a list item selects the block in canvas)
+- [x] Add block actions: duplicate, delete from the list context menu or buttons
+- [x] Display block names/types clearly with appropriate icons
 
 **Notes**: This replaces the asset management with a more useful block outline/layers panel. Focus on smooth drag-and-drop reordering that syncs with the canvas. Use the existing drag-drop infrastructure.
 
@@ -245,8 +244,14 @@ This document outlines all frontend development tasks needed to complete the ema
 - [ ] Add container templates: common layouts like header, footer, sidebar sections
 - [ ] Implement container-specific inspector controls for layout and styling
 - [ ] Ensure email client compatibility with proper HTML structure
+- [ ] **Update BlockList component** - Show block hierarchy for nested blocks (containers with children)
+- [ ] **Update BlockListItem component** - Add indentation and expand/collapse functionality for container children
+- [ ] **Implement tree structure** - Display nested blocks with proper indentation levels
+- [ ] **Add hierarchy navigation** - Allow expanding/collapsing container blocks to show/hide children
+- [ ] **Update drag-and-drop** - Support dragging blocks into/out of containers within the block list
+- [ ] **Visual hierarchy indicators** - Use connecting lines, indentation, or folder-like icons for nested structure
 
-**Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation.
+**Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
 ### 21. Grid Block System
 
