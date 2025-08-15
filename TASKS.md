@@ -166,10 +166,10 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 14. Export Functionality
 
-- [ ] Create `src/app/designs/[id]/components/email-section/export-modal.tsx`
-- [ ] Implement React export: clean @react-email/components code generation
-- [ ] Implement HTML export using @react-email/render with pretty() function
-- [ ] Add copy-to-clipboard functionality for both exports
+- [x] Create `src/app/designs/[id]/components/email-section/export-modal.tsx`
+- [x] Implement React export: clean @react-email/components code generation
+- [x] Implement HTML export using @react-email/render with pretty() function
+- [x] Add copy-to-clipboard functionality for both exports
 
 **Notes**: Ensure exported code maintains inline styling for email compatibility.
 

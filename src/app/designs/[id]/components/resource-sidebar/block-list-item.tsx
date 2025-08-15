@@ -97,9 +97,9 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
       ref={setNodeRef}
       style={style}
       className={cn(
-        'hover:bg-muted/50 flex items-center gap-1 rounded-md border p-3 transition-colors',
-        isSelected && 'bg-muted border-primary',
-        isDragging && 'opacity-50 shadow-lg bg-background border-primary z-50'
+        'hover:bg-muted/50 flex cursor-pointer items-center gap-1 rounded-md border p-3 transition-colors last-of-type:mb-6',
+        isSelected && 'bg-muted hover:bg-muted',
+        isDragging && 'opacity-0'
       )}
       onClick={handleClick}
     >
@@ -117,18 +117,22 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
       </div>
 
       {/* Clickable content area */}
-      <div className={cn(
-        "flex flex-1 cursor-pointer items-center gap-3",
-        isDragging && "pointer-events-none" // Disable pointer events during drag
-      )}>
+      <div
+        className={cn(
+          'flex flex-1 items-center gap-3',
+          isDragging && 'pointer-events-none' // Disable pointer events during drag
+        )}
+      >
         <Icon
           className={cn('size-4 shrink-0', isSelected ? 'text-primary' : 'text-muted-foreground')}
         />
 
-        <div className={cn(
-          "min-w-0 flex-1",
-          isDragging && "whitespace-nowrap" // Prevent wrapping during drag
-        )}>
+        <div
+          className={cn(
+            'min-w-0 flex-1',
+            isDragging && 'whitespace-nowrap' // Prevent wrapping during drag
+          )}
+        >
           <div className="text-foreground truncate text-sm font-medium">{blockName}</div>
           {blockContent && (
             <div className="text-muted-foreground line-clamp-1 text-xs">{blockContent}</div>
