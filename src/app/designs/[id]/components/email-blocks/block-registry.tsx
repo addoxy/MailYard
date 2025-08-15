@@ -1,10 +1,11 @@
-import { BlockDefinition, EmailBlockType, HeadingBlockProps, TextBlockProps, ContainerBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps } from './types';
+import { BlockDefinition, EmailBlockType, HeadingBlockProps, TextBlockProps, ContainerBlockProps, ButtonBlockProps, LinkBlockProps, DividerBlockProps, ImageBlockProps } from './types';
 import { HeadingBlock } from './heading-block';
 import { TextBlock } from './text-block';
 import { ContainerBlock } from './container-block';
 import { ButtonBlock } from './button-block';
 import { LinkBlock } from './link-block';
 import { DividerBlock } from './divider-block';
+import { ImageBlock } from './image-block';
 
 export const BLOCK_DEFINITIONS: BlockDefinition[] = [
   {
@@ -161,6 +162,33 @@ export const BLOCK_DEFINITIONS: BlockDefinition[] = [
       marginRight: '0px',
     } as Partial<DividerBlockProps>,
   },
+  {
+    type: 'image',
+    name: 'Image',
+    icon: 'Image',
+    description: 'Add an image from a URL',
+    category: 'media',
+    defaultProps: {
+      type: 'image',
+      src: '',
+      alt: 'Image',
+      width: '100%',
+      height: 'auto',
+      textAlign: 'center',
+      borderWidth: '0px',
+      borderColor: '#e5e7eb',
+      borderStyle: 'solid',
+      borderRadius: '8px',
+      marginTop: '0px',
+      marginBottom: '16px',
+      marginLeft: '0px',
+      marginRight: '0px',
+      paddingTop: '0px',
+      paddingBottom: '0px',
+      paddingLeft: '0px',
+      paddingRight: '0px',
+    } as Partial<ImageBlockProps>,
+  },
 ];
 
 export function getBlockDefinition(type: string): BlockDefinition | undefined {
@@ -194,6 +222,8 @@ export function renderBlock(block: EmailBlockType, onClick?: (id: string) => voi
       return <LinkBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
     case 'divider':
       return <DividerBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
+    case 'image':
+      return <ImageBlock key={block.id} {...block} onClick={onClick} isSelected={isSelected} />;
     default:
       console.warn(`Unknown block type: ${(block as { type: string }).type}`);
       return null;

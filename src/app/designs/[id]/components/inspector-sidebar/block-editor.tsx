@@ -200,6 +200,65 @@ export const BlockEditor = () => {
           </>
         );
 
+      case 'image':
+        return (
+          <>
+            <div className="space-y-3">
+              <div>
+                <label className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                  Image Source
+                </label>
+                <input
+                  type="url"
+                  value={('src' in selectedBlock ? selectedBlock.src : '') || ''}
+                  onChange={(e) => updateBlockProperty('src', e.target.value)}
+                  placeholder="https://example.com/image.jpg"
+                  className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                  Alt Text
+                </label>
+                <input
+                  type="text"
+                  value={('alt' in selectedBlock ? selectedBlock.alt : '') || ''}
+                  onChange={(e) => updateBlockProperty('alt', e.target.value)}
+                  placeholder="Image description"
+                  className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                  Width
+                </label>
+                <input
+                  type="text"
+                  value={('width' in selectedBlock ? selectedBlock.width : '') || ''}
+                  onChange={(e) => updateBlockProperty('width', e.target.value)}
+                  placeholder="300px"
+                  className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+              </div>
+            </div>
+            <Separator className="my-4" />
+            <AlignmentControls 
+              block={selectedBlock} 
+              onUpdate={updateBlockProperty} 
+            />
+            <Separator className="my-4" />
+            <BorderControls 
+              block={selectedBlock} 
+              onUpdate={updateBlockProperty} 
+            />
+            <Separator className="my-4" />
+            <SpacingControls 
+              block={selectedBlock} 
+              onUpdate={updateBlockProperty} 
+            />
+          </>
+        );
+
       default:
         return <div className="text-muted-foreground text-sm">Unsupported block type</div>;
     }

@@ -1,12 +1,15 @@
 import { useAtom } from 'jotai';
 import { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core';
 import { arrayMove, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { emailBlocksAtom, selectedBlockIdsAtom } from '../atoms';
+import { emailBlocksAtom, selectedBlockIdsAtom, canvasStylesAtom } from '../atoms';
 import { useCallback } from 'react';
+import { createDefaultBlock } from '../components/email-blocks/block-registry';
+import { useAtomValue } from 'jotai';
 
 export function useDragDrop() {
   const [emailBlocks, setEmailBlocks] = useAtom(emailBlocksAtom);
   const [selectedBlockIds, setSelectedBlockIds] = useAtom(selectedBlockIdsAtom);
+  const canvasStyles = useAtomValue(canvasStylesAtom);
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
@@ -29,7 +32,42 @@ export function useDragDrop() {
 
     const activeId = active.id as string;
     const overId = over.id as string;
+    const activeData = active.data.current;
 
+    // Handle library block drops
+    if (activeData?.type === 'library-block') {
+      const blockType = activeData.blockType;
+      const blockId = `${blockType}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+      const newBlock = createDefaultBlock(blockType, blockId);
+
+      if (newBlock) {
+        // Apply current canvas font family to new blocks that have fontFamily property
+        if ('fontFamily' in newBlock) {
+          (newBlock as { fontFamily: string }).fontFamily = canvasStyles.fontFamily;
+        }
+
+        setEmailBlocks(currentBlocks => {
+          // Find the drop position
+          const overIndex = currentBlocks.findIndex(block => block.id === overId);
+          
+          if (overIndex === -1) {
+            // Drop at the end if no specific position found
+            return [...currentBlocks, newBlock];
+          }
+          
+          // Insert at the drop position
+          const newBlocks = [...currentBlocks];
+          newBlocks.splice(overIndex, 0, newBlock);
+          return newBlocks;
+        });
+
+        // Select the newly added block
+        setSelectedBlockIds([newBlock.id]);
+      }
+      return;
+    }
+
+    // Handle existing block reordering
     if (activeId === overId) return;
 
     setEmailBlocks(currentBlocks => {
@@ -41,7 +79,7 @@ export function useDragDrop() {
       // Reorder blocks with optimistic update
       return arrayMove(currentBlocks, activeIndex, overIndex);
     });
-  }, [setEmailBlocks]);
+  }, [setEmailBlocks, canvasStyles.fontFamily, setSelectedBlockIds]);
 
   const moveBlock = (blockId: string, direction: 'up' | 'down') => {
     const currentIndex = emailBlocks.findIndex(block => block.id === blockId);

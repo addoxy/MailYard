@@ -103,12 +103,12 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ### 10. Complete Block Library
 
-- [ ] Create remaining email blocks: grid, image
-- [ ] Enable the grid block to support adjustable grid sizes and allow adding elements to each grid section.
-- [ ] Make the image block support rendering the image from a provided link.
-- [ ] Update block registry with all block types
-- [ ] Add drag-from-library functionality (drag block to specific position)
-- [ ] Implement block categories/grouping in resource sidebar
+- [x] Create remaining email blocks: grid, image
+- [x] Enable the grid block to support adjustable grid sizes and allow adding elements to each grid section.
+- [x] Make the image block support rendering the image from a provided link.
+- [x] Update block registry with all block types
+- [x] Add drag-from-library functionality (drag block to specific position)
+- [x] Implement block categories/grouping in resource sidebar
 
 **Notes**: Each block must use @react-email/components as foundation with inline styles only.
 
@@ -206,7 +206,21 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 21. Final Polish and Testing
+### 21. Grid Block System
+
+- [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
+- [ ] Implement grid system using Row and Column from @react-email/components
+- [ ] Support adjustable grid sizes (1x1 to 6x6) with dynamic row/column configuration
+- [ ] Enable drag-and-drop of blocks into specific grid cells
+- [ ] Add separate horizontal (columnGap) and vertical (rowGap) spacing controls
+- [ ] Create responsive grid system that works across email clients
+- [ ] Add grid cell management: add, remove functionality
+- [ ] Implement grid templates (2x2, 3x1, 1x3, etc.) for quick layouts
+- [ ] Add visual grid guidelines and cell highlighting during editing
+
+**Notes**: This is an advanced layout system that requires careful implementation for email client compatibility. Focus on using @react-email/components Row and Column as the foundation. Test thoroughly across Gmail, Outlook, Apple Mail, and Yahoo.
+
+### 22. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance

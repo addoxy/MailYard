@@ -123,7 +123,28 @@ export interface DividerBlockProps extends BaseBlockProps {
   marginRight: string;
 }
 
-export type EmailBlockType = HeadingBlockProps | TextBlockProps | ContainerBlockProps | ButtonBlockProps | LinkBlockProps | DividerBlockProps;
+export interface ImageBlockProps extends BaseBlockProps {
+  type: 'image';
+  src: string;
+  alt: string;
+  width: string;
+  height: string;
+  textAlign: 'left' | 'center' | 'right';
+  borderWidth: string;
+  borderColor: string;
+  borderStyle: 'solid' | 'dashed' | 'dotted' | 'none';
+  borderRadius: string;
+  marginTop: string;
+  marginBottom: string;
+  marginLeft: string;
+  marginRight: string;
+  paddingTop: string;
+  paddingBottom: string;
+  paddingLeft: string;
+  paddingRight: string;
+}
+
+export type EmailBlockType = HeadingBlockProps | TextBlockProps | ContainerBlockProps | ButtonBlockProps | LinkBlockProps | DividerBlockProps | ImageBlockProps;
 
 export interface BlockDefinition {
   type: string;

@@ -5,6 +5,7 @@ import { TextBlock } from './text-block';
 import { ButtonBlock } from './button-block';
 import { LinkBlock } from './link-block';
 import { DividerBlock } from './divider-block';
+import { ImageBlock } from './image-block';
 
 export function ContainerBlock({
   id,
@@ -59,6 +60,8 @@ export function ContainerBlock({
         return <LinkBlock key={child.id || index} {...child} />;
       case 'divider':
         return <DividerBlock key={child.id || index} {...child} />;
+      case 'image':
+        return <ImageBlock key={child.id || index} {...child} />;
       default:
         return null;
     }
