@@ -189,7 +189,21 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: These are critical UX improvements and bug fixes identified during testing. Focus on making controls more intuitive and consistent across all block types.
 
-### 16. Mobile Home Page
+### 16. Block Editing and Styling Enhancements
+
+- [ ] Make button and link text editable directly in the block (remove link URL editing from block). It should look like I am editing the block itself and not some other input.
+- [ ] Fix margins and padding not working properly for the link block
+- [ ] Audit and fix link block properties - many properties don't seem to be working correctly
+- [ ] Add text decoration controls (underline, strikethrough, none) to heading, text, button, and link blocks
+- [ ] Add background color support to heading, text, and link blocks
+- [ ] Add border controls (width, color, style) to heading, text, and link blocks
+- [ ] Add border radius controls to heading, text, and link blocks
+- [ ] Update bulk editing to only allow numeric values for distance-based inputs and default to "px" units
+- [ ] Ensure all block styling is consistent with inline styles for email compatibility
+
+**Notes**: This task focuses on improving the editing experience and adding missing styling options across all text-based blocks. Pay special attention to the link block which seems to have several property issues. All new styling controls must use inline styles only for email client compatibility.
+
+### 17. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -198,7 +212,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-### 17. Animation Polish
+### 18. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -206,7 +220,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 18. Container Block System
+### 19. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -227,7 +241,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-### 19. Grid Block System
+### 20. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
