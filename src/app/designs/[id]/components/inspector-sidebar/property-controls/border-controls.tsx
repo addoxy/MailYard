@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
 import { ClearableNumberInput } from '@/components/clearable-number-input';
+import { pxToNumber, numberToPx, borderStyleOptions } from '@/lib/style-utils';
 
 interface BorderControlsProps {
   block: EmailBlockType;
@@ -23,25 +24,9 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
   const borderColor = getBlockProperty(block, 'borderColor') || '#cccccc';
   const borderRadius = getBlockProperty(block, 'borderRadius') || '0px';
 
-  // Helper functions to convert between px strings and numeric values
-  const pxToNumber = (value: string): number => {
-    return parseInt(value?.replace('px', '') || '0');
-  };
-  
-  const numberToPx = (value: number): string => {
-    return `${value}px`;
-  };
-
   // Extract numeric values
   const borderWidthValue = pxToNumber(borderWidth);
   const borderRadiusValue = pxToNumber(borderRadius);
-
-  const borderStyleOptions = [
-    { value: 'none', label: 'None' },
-    { value: 'solid', label: 'Solid' },
-    { value: 'dashed', label: 'Dashed' },
-    { value: 'dotted', label: 'Dotted' },
-  ];
 
   return (
     <div className="space-y-3">

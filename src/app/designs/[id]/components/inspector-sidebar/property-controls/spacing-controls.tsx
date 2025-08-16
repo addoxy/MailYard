@@ -6,6 +6,7 @@ import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
 import { LinkToggleButton } from './link-toggle-button';
 import { ClearableNumberInput } from '@/components/clearable-number-input';
+import { pxToNumber, numberToPx } from '@/lib/style-utils';
 
 interface SpacingControlsProps {
   block: EmailBlockType;
@@ -20,15 +21,6 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
   const hasPadding = hasProperty(block, 'paddingTop');
 
   if (!hasMargin && !hasPadding) return null;
-
-  // Helper functions to convert between px strings and numeric values
-  const pxToNumber = (value: string): number => {
-    return parseInt(value?.replace('px', '') || '0');
-  };
-  
-  const numberToPx = (value: number): string => {
-    return `${value}px`;
-  };
 
   const marginTop = pxToNumber(getBlockProperty(block, 'marginTop') || '0px');
   const marginRight = pxToNumber(getBlockProperty(block, 'marginRight') || '0px');

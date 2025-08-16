@@ -5,6 +5,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
 import { ClearableNumberInput } from '@/components/clearable-number-input';
+import { 
+  pxToNumber, 
+  numberToPx, 
+  lineHeightToNumber, 
+  numberToLineHeight, 
+  fontWeightOptions, 
+  fontFamilyOptions 
+} from '@/lib/style-utils';
 
 interface TypographyControlsProps {
   block: EmailBlockType;
@@ -20,51 +28,15 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
 
   if (!hasFontSize && !hasFontWeight && !hasFontFamily && !hasLineHeight && !hasLetterSpacing) return null;
 
-  // Helper functions to convert between px strings and numeric values
-  const pxToNumber = (value: string): number => {
-    return parseInt(value?.replace('px', '') || '16');
-  };
-  
-  const numberToPx = (value: number): string => {
-    return `${value}px`;
-  };
-
   const fontSize = pxToNumber(getBlockProperty(block, 'fontSize') || '16px');
   const fontWeight = getBlockProperty(block, 'fontWeight') || '400';
   const fontFamily = getBlockProperty(block, 'fontFamily') || 'inherit';
   
   // When fontFamily is 'inherit', show the first option (Inter) in the select
   const displayFontFamily = fontFamily === 'inherit' ? 'Inter, system-ui, -apple-system, sans-serif' : fontFamily;
-  // Convert line height to number (it's unitless)
-  const lineHeightToNumber = (value: string): number => {
-    return parseFloat(value || '1.5');
-  };
-  
-  const numberToLineHeight = (value: number): string => {
-    return value.toString();
-  };
 
   const lineHeight = lineHeightToNumber(getBlockProperty(block, 'lineHeight') || '1.5');
   const letterSpacing = pxToNumber(getBlockProperty(block, 'letterSpacing') || '0px');
-
-  const fontWeightOptions = [
-    { value: '300', label: 'Light' },
-    { value: '400', label: 'Normal' },
-    { value: '500', label: 'Medium' },
-    { value: '600', label: 'Semi Bold' },
-    { value: '700', label: 'Bold' },
-    { value: '800', label: 'Extra Bold' },
-  ];
-
-  const fontFamilyOptions = [
-    { value: 'Inter, system-ui, -apple-system, sans-serif', label: 'Inter' },
-    { value: 'Arial, sans-serif', label: 'Arial' },
-    { value: 'Georgia, serif', label: 'Georgia' },
-    { value: 'Times New Roman, serif', label: 'Times New Roman' },
-    { value: 'Helvetica, Arial, sans-serif', label: 'Helvetica' },
-    { value: 'Verdana, sans-serif', label: 'Verdana' },
-    { value: 'Courier New, monospace', label: 'Courier New' },
-  ];
 
   return (
     <div className="space-y-3">
