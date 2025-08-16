@@ -34,7 +34,8 @@ export function LinkBlock({
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateBlock } = useEmailBlocks();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (onClick) {
       onClick(id);
     }

@@ -2,11 +2,84 @@
 
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Link, Unlink } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
+import { LinkToggleButton } from './link-toggle-button';
+
+// Custom number input that allows clearing
+const ClearableNumberInput = ({ 
+  value, 
+  onChange, 
+  placeholder = "0",
+  className = "",
+  min,
+  max,
+  step
+}: {
+  value: number;
+  onChange: (value: number) => void;
+  placeholder?: string;
+  className?: string;
+  min?: number;
+  max?: number;
+  step?: number | string;
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [tempValue, setTempValue] = useState('');
+  const lastValidValue = useRef(value);
+
+  // Update last valid value when prop changes
+  if (value !== lastValidValue.current && !isFocused) {
+    lastValidValue.current = value;
+  }
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setTempValue(value.toString());
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (tempValue === '' || tempValue === undefined) {
+      // If empty, use last valid value
+      onChange(lastValidValue.current);
+    } else {
+      const numValue = Number(tempValue);
+      if (!isNaN(numValue)) {
+        lastValidValue.current = numValue;
+        onChange(numValue);
+      } else {
+        onChange(lastValidValue.current);
+      }
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setTempValue(newValue);
+    
+    // Only update immediately if it's a valid number
+    if (newValue !== '' && !isNaN(Number(newValue))) {
+      onChange(Number(newValue));
+    }
+  };
+
+  return (
+    <Input
+      type="number"
+      value={isFocused ? tempValue : value}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      className={className}
+      placeholder={placeholder}
+      min={min}
+      max={max}
+      step={step}
+    />
+  );
+};
 
 interface SpacingControlsProps {
   block: EmailBlockType;
@@ -56,6 +129,7 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
     onUpdate('paddingRight', pxValue);
   };
 
+
   return (
     <div className="space-y-4">
       <Label className="text-xs font-medium">Spacing</Label>
@@ -64,21 +138,16 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <Label className="text-xs text-muted-foreground">Margin</Label>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-6 w-6 p-0"
-              onClick={() => setMarginLinked(!marginLinked)}
-            >
-              {marginLinked ? <Link className="h-3 w-3" /> : <Unlink className="h-3 w-3" />}
-            </Button>
+            <LinkToggleButton
+              mode={marginLinked ? 'linked' : 'unlinked'}
+              onToggle={() => setMarginLinked(!marginLinked)}
+            />
           </div>
           
           {marginLinked ? (
-            <Input
-              type="number"
+            <ClearableNumberInput
               value={marginTop}
-              onChange={(e) => updateLinkedMargin(Number(e.target.value) || 0)}
+              onChange={updateLinkedMargin}
               className="h-8 text-xs"
               placeholder="0"
             />
@@ -86,40 +155,36 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Top</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={marginTop}
-                  onChange={(e) => onUpdate('marginTop', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('marginTop', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Right</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={marginRight}
-                  onChange={(e) => onUpdate('marginRight', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('marginRight', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Bottom</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={marginBottom}
-                  onChange={(e) => onUpdate('marginBottom', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('marginBottom', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Left</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={marginLeft}
-                  onChange={(e) => onUpdate('marginLeft', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('marginLeft', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
@@ -133,21 +198,16 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <Label className="text-xs text-muted-foreground">Padding</Label>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-6 w-6 p-0"
-              onClick={() => setPaddingLinked(!paddingLinked)}
-            >
-              {paddingLinked ? <Link className="h-3 w-3" /> : <Unlink className="h-3 w-3" />}
-            </Button>
+            <LinkToggleButton
+              mode={paddingLinked ? 'linked' : 'unlinked'}
+              onToggle={() => setPaddingLinked(!paddingLinked)}
+            />
           </div>
           
           {paddingLinked ? (
-            <Input
-              type="number"
+            <ClearableNumberInput
               value={paddingTop}
-              onChange={(e) => updateLinkedPadding(Number(e.target.value) || 0)}
+              onChange={updateLinkedPadding}
               className="h-8 text-xs"
               placeholder="0"
             />
@@ -155,40 +215,36 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
             <div className="grid grid-cols-2 gap-2">
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Top</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={paddingTop}
-                  onChange={(e) => onUpdate('paddingTop', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('paddingTop', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Right</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={paddingRight}
-                  onChange={(e) => onUpdate('paddingRight', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('paddingRight', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Bottom</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={paddingBottom}
-                  onChange={(e) => onUpdate('paddingBottom', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('paddingBottom', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />
               </div>
               <div className="space-y-1">
                 <Label className="text-xs text-muted-foreground">Left</Label>
-                <Input
-                  type="number"
+                <ClearableNumberInput
                   value={paddingLeft}
-                  onChange={(e) => onUpdate('paddingLeft', numberToPx(Number(e.target.value) || 0))}
+                  onChange={(value) => onUpdate('paddingLeft', numberToPx(value))}
                   className="h-8 text-xs"
                   placeholder="0"
                 />

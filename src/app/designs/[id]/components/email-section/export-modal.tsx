@@ -1,6 +1,21 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import {
+  BundledLanguage,
+  CodeBlock,
+  CodeBlockBody,
+  CodeBlockContent,
+  CodeBlockCopyButton,
+  CodeBlockFilename,
+  CodeBlockFiles,
+  CodeBlockHeader,
+  CodeBlockItem,
+  CodeBlockSelect,
+  CodeBlockSelectContent,
+  CodeBlockSelectItem,
+  CodeBlockSelectTrigger,
+  CodeBlockSelectValue,
+} from '@/components/ui/code-block';
 import {
   Dialog,
   DialogContent,
@@ -8,11 +23,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
 import { pretty, render } from '@react-email/render';
 import { useAtomValue } from 'jotai';
-import { Check, Copy } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { canvasStylesAtom, emailBlocksAtom } from '../../atoms';
 import { generateEmailComponent } from '../../utils/export-utils';
@@ -23,17 +36,13 @@ interface ExportModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-type TabType = 'react' | 'html';
-
 export function ExportModal({ open, onOpenChange }: ExportModalProps) {
   const emailBlocks = useAtomValue(emailBlocksAtom);
   const canvasStyles = useAtomValue(canvasStylesAtom);
 
-  const [tab, setTab] = useState<TabType>('react');
   const [reactCode, setReactCode] = useState('');
   const [htmlCode, setHtmlCode] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [copiedCode, setCopiedCode] = useState(false);
 
   const generateEmailJSX = useCallback((blocks: EmailBlockType[], styles: typeof canvasStyles) => {
     return (
@@ -186,12 +195,11 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
   const generateExports = useCallback(async () => {
     setIsGenerating(true);
     try {
-      // Generate React component code with formatting
       const reactComponent = generateEmailComponent(emailBlocks, canvasStyles);
       setReactCode(reactComponent);
 
-      const html = await pretty(await render(generateEmailJSX(emailBlocks, canvasStyles)));
-      setHtmlCode(html);
+      const htmlComponent = await pretty(await render(generateEmailJSX(emailBlocks, canvasStyles)));
+      setHtmlCode(htmlComponent);
     } catch (error) {
       console.error('Error generating exports:', error);
       setReactCode('// Error generating React code');
@@ -207,79 +215,68 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
     }
   }, [open, generateExports]);
 
-  const copyToClipboard = async (text: string, type: 'react' | 'html') => {
-    try {
-      await navigator.clipboard.writeText(text);
-      if (type === 'react') {
-        setCopiedCode(true);
-        setTimeout(() => setCopiedCode(false), 2000);
-      } else {
-        setCopiedCode(true);
-        setTimeout(() => setCopiedCode(false), 2000);
-      }
-    } catch (error) {
-      console.error('Failed to copy to clipboard:', error);
-    }
-  };
+  const code = [
+    {
+      language: 'tsx',
+      filename: 'email-template.tsx',
+      code: reactCode,
+    },
+    {
+      language: 'html',
+      filename: 'email-template.html',
+      code: htmlCode,
+    },
+  ];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] !max-w-7xl">
+      <DialogContent className="flex !max-w-7xl flex-col transition-all">
         <DialogHeader>
           <DialogTitle>Export Email</DialogTitle>
           <DialogDescription>
             Export your email as React component code or clean HTML.
           </DialogDescription>
         </DialogHeader>
-
-        <Tabs
-          defaultValue="react"
-          className="w-full"
-          value={tab}
-          onValueChange={(value) => setTab(value as TabType)}
-        >
-          <div className="mb-2 flex items-center justify-between">
-            <TabsList className="grid grid-cols-2">
-              <TabsTrigger value="react">React Code</TabsTrigger>
-              <TabsTrigger value="html">HTML</TabsTrigger>
-            </TabsList>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                if (tab === 'react') {
-                  copyToClipboard(reactCode, 'react');
-                } else {
-                  copyToClipboard(htmlCode, 'html');
-                }
-              }}
-              disabled={isGenerating}
-            >
-              {copiedCode ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              {copiedCode ? 'Copied!' : 'Copy'}
-            </Button>
-          </div>
-
-          <TabsContent value="react" className="space-y-4">
-            <ScrollArea className="bg-muted/50 h-96 w-full rounded border">
-              <pre className="overflow-x-auto p-4 font-mono text-sm break-words whitespace-pre-wrap">
-                <code className="text-xs leading-relaxed">
-                  {isGenerating ? 'Generating...' : reactCode}
-                </code>
-              </pre>
-            </ScrollArea>
-          </TabsContent>
-
-          <TabsContent value="html" className="space-y-4">
-            <ScrollArea className="bg-muted/50 h-96 w-full rounded border">
-              <pre className="overflow-x-auto p-4 font-mono text-sm break-words whitespace-pre-wrap">
-                <code className="text-xs leading-relaxed">
-                  {isGenerating ? 'Generating...' : htmlCode}
-                </code>
-              </pre>
-            </ScrollArea>
-          </TabsContent>
-        </Tabs>
+        {isGenerating ? (
+          <Skeleton className="h-[400px] w-full" />
+        ) : (
+          <CodeBlock data={code} defaultValue={code[0].language}>
+            <CodeBlockHeader>
+              <CodeBlockFiles>
+                {(item) => (
+                  <CodeBlockFilename key={item.language} value={item.language}>
+                    {item.filename}
+                  </CodeBlockFilename>
+                )}
+              </CodeBlockFiles>
+              <CodeBlockSelect>
+                <CodeBlockSelectTrigger>
+                  <CodeBlockSelectValue />
+                </CodeBlockSelectTrigger>
+                <CodeBlockSelectContent>
+                  {(item) => (
+                    <CodeBlockSelectItem key={item.language} value={item.language}>
+                      {item.language}
+                    </CodeBlockSelectItem>
+                  )}
+                </CodeBlockSelectContent>
+              </CodeBlockSelect>
+              <CodeBlockCopyButton
+                onCopy={() => console.log('Copied code to clipboard')}
+                onError={() => console.error('Failed to copy code to clipboard')}
+              />
+            </CodeBlockHeader>
+            <CodeBlockBody>
+              {(item) => (
+                <CodeBlockItem key={item.language} value={item.language}>
+                  <CodeBlockContent language={item.language as BundledLanguage}>
+                    {item.code}
+                  </CodeBlockContent>
+                </CodeBlockItem>
+              )}
+            </CodeBlockBody>
+          </CodeBlock>
+        )}
       </DialogContent>
     </Dialog>
   );

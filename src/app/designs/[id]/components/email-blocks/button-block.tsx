@@ -38,7 +38,8 @@ export function ButtonBlock({
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateBlock } = useEmailBlocks();
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (onClick) {
       onClick(id);
     }
@@ -91,11 +92,15 @@ export function ButtonBlock({
     lineHeight,
     letterSpacing,
     textAlign,
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
     cursor: onClick ? 'pointer' : 'default',
     textDecoration: 'none',
     display: 'inline-block',
+  };
+
+  const containerStyle = {
+    textAlign: textAlign as 'left' | 'center' | 'right',
+    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
   };
 
   if (isEditing) {
@@ -155,7 +160,7 @@ export function ButtonBlock({
   }
 
   return (
-    <div style={{ textAlign: textAlign as 'left' | 'center' | 'right' }}>
+    <div style={containerStyle}>
       <Button href={href} style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
         {content}
       </Button>

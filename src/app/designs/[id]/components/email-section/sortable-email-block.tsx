@@ -24,23 +24,20 @@ export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBl
   return (
     <div
       ref={setNodeRef}
-      style={style}
+      style={{
+        ...style,
+        zIndex: isDragging ? 1000 : 'auto',
+      }}
       {...attributes}
       {...listeners}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
         'group relative cursor-grab transition-all duration-150 active:cursor-grabbing',
-        isSelected && 'ring-2 ring-blue-500 ring-offset-2',
-        isDragging && 'z-50 opacity-70 shadow-lg ring-0 ring-offset-0',
-        isHovered && !isDragging && !isSelected && 'ring-1 ring-gray-200'
+        isDragging && 'opacity-50'
       )}
     >
-      {isDragging ? (
-        <div className="pointer-events-none h-10 rounded-md border border-dashed border-blue-400/50 bg-blue-400/10" />
-      ) : (
-        children
-      )}
+      {children}
     </div>
   );
 }

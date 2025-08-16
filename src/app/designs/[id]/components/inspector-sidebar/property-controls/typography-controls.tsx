@@ -5,6 +5,81 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
+import { useState, useRef } from 'react';
+
+// Custom number input that allows clearing
+const ClearableNumberInput = ({ 
+  value, 
+  onChange, 
+  placeholder = "0",
+  className = "",
+  min,
+  max,
+  step
+}: {
+  value: number;
+  onChange: (value: number) => void;
+  placeholder?: string;
+  className?: string;
+  min?: number;
+  max?: number;
+  step?: number | string;
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [tempValue, setTempValue] = useState('');
+  const lastValidValue = useRef(value);
+
+  // Update last valid value when prop changes
+  if (value !== lastValidValue.current && !isFocused) {
+    lastValidValue.current = value;
+  }
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setTempValue(value.toString());
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (tempValue === '' || tempValue === undefined) {
+      // If empty, use last valid value
+      onChange(lastValidValue.current);
+    } else {
+      const numValue = Number(tempValue);
+      if (!isNaN(numValue)) {
+        lastValidValue.current = numValue;
+        onChange(numValue);
+      } else {
+        onChange(lastValidValue.current);
+      }
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setTempValue(newValue);
+    
+    // Only update immediately if it's a valid number
+    if (newValue !== '' && !isNaN(Number(newValue))) {
+      onChange(Number(newValue));
+    }
+  };
+
+  return (
+    <Input
+      type="number"
+      value={isFocused ? tempValue : value}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      className={className}
+      placeholder={placeholder}
+      min={min}
+      max={max}
+      step={step}
+    />
+  );
+};
 
 interface TypographyControlsProps {
   block: EmailBlockType;
@@ -74,14 +149,13 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
         {hasFontSize && (
           <div className="space-y-2">
             <Label className="text-xs text-muted-foreground">Font Size</Label>
-            <Input
-              type="number"
+            <ClearableNumberInput
               value={fontSize}
-              onChange={(e) => onUpdate('fontSize', numberToPx(Number(e.target.value) || 16))}
+              onChange={(value) => onUpdate('fontSize', numberToPx(value))}
               className="h-8 text-xs"
               placeholder="16"
-              min="8"
-              max="72"
+              min={8}
+              max={72}
             />
           </div>
         )}
@@ -132,15 +206,14 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
       {hasLineHeight && (
         <div className="space-y-2">
           <Label className="text-xs text-muted-foreground">Line Height</Label>
-          <Input
-            type="number"
+          <ClearableNumberInput
             value={lineHeight}
-            onChange={(e) => onUpdate('lineHeight', numberToLineHeight(Number(e.target.value) || 1.5))}
+            onChange={(value) => onUpdate('lineHeight', numberToLineHeight(value))}
             className="h-8 text-xs"
             placeholder="1.5"
             step="0.1"
-            min="0.5"
-            max="3"
+            min={0.5}
+            max={3}
           />
         </div>
       )}
@@ -148,15 +221,14 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
       {hasLetterSpacing && (
         <div className="space-y-2">
           <Label className="text-xs text-muted-foreground">Letter Spacing</Label>
-          <Input
-            type="number"
+          <ClearableNumberInput
             value={letterSpacing}
-            onChange={(e) => onUpdate('letterSpacing', numberToPx(Number(e.target.value) || 0))}
+            onChange={(value) => onUpdate('letterSpacing', numberToPx(value))}
             className="h-8 text-xs"
             placeholder="0"
             step="0.1"
-            min="-5"
-            max="10"
+            min={-5}
+            max={10}
           />
         </div>
       )}

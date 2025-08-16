@@ -18,10 +18,15 @@ export const AlignmentControls = ({ block, onUpdate }: AlignmentControlsProps) =
 
   const textAlign = getBlockProperty(block, 'textAlign') || 'left';
   const isText = block.type === 'text';
+  const isButton = block.type === 'button';
+  const isImage = block.type === 'image';
+
+  // Use "Alignment" for button and image blocks, "Text Alignment" for text blocks
+  const labelText = (isButton || isImage) ? 'Alignment' : 'Text Alignment';
 
   return (
     <div className="space-y-3">
-      <Label className="text-xs font-medium">Text Alignment</Label>
+      <Label className="text-xs font-medium">{labelText}</Label>
       
       <div className="grid grid-cols-4 gap-1">
         <Button

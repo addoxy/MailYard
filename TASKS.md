@@ -175,7 +175,21 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ## Phase 4: Mobile & Final Polish
 
-### 15. Mobile Home Page
+### 15. Bug Fixes and Refinements
+
+- [x] Update Container padding controls to have separate x and y padding fields instead of single field
+- [x] Convert max-width input to number input (px values only)
+- [x] Add more max-width select options and order from smallest to largest
+- [x] Remove heading level control from heading blocks
+- [x] Fix number inputs in inspector sidebar to allow clearing values without auto-assigning defaults
+- [x] Fix button margin display to show outside selected box (like other elements)
+- [x] Fix top margin effect threshold (currently only works after 16px)
+- [x] Prevent button and link elements from opening new pages when clicked
+- [x] Change "text alignment" to "alignment" for button and image blocks (aligning whole element, not just text)
+
+**Notes**: These are critical UX improvements and bug fixes identified during testing. Focus on making controls more intuitive and consistent across all block types.
+
+### 16. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -184,7 +198,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-### 16. Animation Polish
+### 17. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -192,7 +206,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 17. Container Block System
+### 18. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -213,7 +227,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-### 18. Grid Block System
+### 19. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -227,7 +241,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is an advanced layout system that requires careful implementation for email client compatibility. Focus on using @react-email/components Row and Column as the foundation. Test thoroughly across Gmail, Outlook, Apple Mail, and Yahoo.
 
-### 19. Final Polish and Testing
+### 20. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -285,7 +299,7 @@ src/
 
 ## Future Features
 
-### 20. Undo/Redo System
+### 21. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -298,7 +312,7 @@ src/
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-### 21. Subtle Framer Motion Animations
+### 22. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
@@ -309,3 +323,13 @@ src/
 - [ ] Add gentle layout animations for block reordering and selection changes
 
 **Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
+
+### 23. Fix Export Code Formatting
+
+- [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
+- [ ] Investigate why Shiki syntax highlighting is not applying proper formatting
+- [ ] Ensure code appears with proper indentation and line breaks in export modal
+- [ ] Test both React component export and HTML export formatting
+- [ ] Consider alternative formatting solutions if CodeBlock component continues to have issues
+
+**Notes**: Currently the exported code in the export modal is not being formatted properly, appearing as unformatted strings. The CodeBlock component should handle syntax highlighting and formatting automatically.
