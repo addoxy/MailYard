@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -6,9 +8,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Ellipsis, Home, LogOut } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { AtomicTooltip } from './atomic-tooltip';
 
 export const UserMenu = () => {
+  const router = useRouter();
+
   return (
     <div className="flex w-full items-center gap-2">
       <img
@@ -16,7 +21,7 @@ export const UserMenu = () => {
         className="size-6 rounded"
         alt="Axii's Workspace Logo"
       />
-      <AtomicTooltip content="Axii&apos;s Workspace">
+      <AtomicTooltip content="Axii's Workspace">
         <span className="line-clamp-1 text-left text-sm">Axii&apos;s Workspace</span>
       </AtomicTooltip>
       <DropdownMenu>
@@ -26,7 +31,7 @@ export const UserMenu = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem>
+          <DropdownMenuItem onSelect={() => router.push('/home')}>
             <Home />
             Home
           </DropdownMenuItem>

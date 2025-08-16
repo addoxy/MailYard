@@ -1,3 +1,6 @@
+import prettierPluginBabel from 'prettier/plugins/babel';
+import prettierPluginEstree from 'prettier/plugins/estree';
+import { format as prettierFormatCode } from 'prettier/standalone';
 import { EmailBlockType } from '../components/email-blocks/types';
 
 interface CanvasStyles {
@@ -80,8 +83,12 @@ function generateBlockCode(block: EmailBlockType): string {
         fontSize: block.fontSize,
         fontWeight: block.fontWeight,
         color: block.color,
-        backgroundColor: block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border: block.borderWidth !== '0px' ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}` : undefined,
+        backgroundColor:
+          block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
+        border:
+          block.borderWidth !== '0px'
+            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
+            : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -105,8 +112,12 @@ function generateBlockCode(block: EmailBlockType): string {
         fontSize: block.fontSize,
         fontWeight: block.fontWeight,
         color: block.color,
-        backgroundColor: block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border: block.borderWidth !== '0px' ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}` : undefined,
+        backgroundColor:
+          block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
+        border:
+          block.borderWidth !== '0px'
+            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
+            : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -158,8 +169,12 @@ function generateBlockCode(block: EmailBlockType): string {
         fontSize: block.fontSize,
         fontWeight: block.fontWeight,
         color: block.color,
-        backgroundColor: block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border: block.borderWidth !== '0px' ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}` : undefined,
+        backgroundColor:
+          block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
+        border:
+          block.borderWidth !== '0px'
+            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
+            : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -238,3 +253,17 @@ function formatStyles(styles: Record<string, unknown>): string {
   return `{ ${styleEntries.join(', ')} }`;
 }
 
+type Parser = 'babel' | 'typescript' | 'html';
+
+export async function formatCode(code: string, parser: Parser) {
+  try {
+    const formattedCode = await prettierFormatCode(code, {
+      parser: 'babel',
+      plugins: [prettierPluginBabel, prettierPluginEstree], // 👈 must include
+    });
+    return formattedCode;
+  } catch (err) {
+    console.error('Formatting error:', err);
+    return code;
+  }
+}

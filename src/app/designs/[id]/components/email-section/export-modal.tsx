@@ -28,7 +28,7 @@ import { pretty, render } from '@react-email/render';
 import { useAtomValue } from 'jotai';
 import React, { useCallback, useEffect, useState } from 'react';
 import { canvasStylesAtom, emailBlocksAtom } from '../../atoms';
-import { generateEmailComponent } from '../../utils/export-utils';
+import { formatCode, generateEmailComponent } from '../../utils/export-utils';
 import type { EmailBlockType } from '../email-blocks/types';
 
 interface ExportModalProps {
@@ -196,10 +196,12 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
     setIsGenerating(true);
     try {
       const reactComponent = generateEmailComponent(emailBlocks, canvasStyles);
-      setReactCode(reactComponent);
+      const formattedReactCode = await formatCode(reactComponent, 'typescript');
+      setReactCode(formattedReactCode);
 
       const htmlComponent = await pretty(await render(generateEmailJSX(emailBlocks, canvasStyles)));
-      setHtmlCode(htmlComponent);
+      const formattedHtmlCode = await formatCode(htmlComponent, 'html');
+      setHtmlCode(formattedHtmlCode);
     } catch (error) {
       console.error('Error generating exports:', error);
       setReactCode('// Error generating React code');
@@ -266,7 +268,7 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
                 onError={() => console.error('Failed to copy code to clipboard')}
               />
             </CodeBlockHeader>
-            <CodeBlockBody>
+            <CodeBlockBody className="max-h-[80vh] overflow-auto">
               {(item) => (
                 <CodeBlockItem key={item.language} value={item.language}>
                   <CodeBlockContent language={item.language as BundledLanguage}>
