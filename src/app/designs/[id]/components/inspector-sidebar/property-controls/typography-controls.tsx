@@ -25,8 +25,9 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
   const hasFontFamily = hasProperty(block, 'fontFamily');
   const hasLineHeight = hasProperty(block, 'lineHeight');
   const hasLetterSpacing = hasProperty(block, 'letterSpacing');
+  const hasTextDecoration = hasProperty(block, 'textDecoration');
 
-  if (!hasFontSize && !hasFontWeight && !hasFontFamily && !hasLineHeight && !hasLetterSpacing) return null;
+  if (!hasFontSize && !hasFontWeight && !hasFontFamily && !hasLineHeight && !hasLetterSpacing && !hasTextDecoration) return null;
 
   const fontSize = pxToNumber(getBlockProperty(block, 'fontSize') || '16px');
   const fontWeight = getBlockProperty(block, 'fontWeight') || '400';
@@ -37,6 +38,13 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
 
   const lineHeight = lineHeightToNumber(getBlockProperty(block, 'lineHeight') || '1.5');
   const letterSpacing = pxToNumber(getBlockProperty(block, 'letterSpacing') || '0px');
+  const textDecoration = getBlockProperty(block, 'textDecoration') || 'none';
+
+  const textDecorationOptions = [
+    { value: 'none', label: 'None' },
+    { value: 'underline', label: 'Underline' },
+    { value: 'line-through', label: 'Line Through' },
+  ];
 
   return (
     <div className="space-y-3">
@@ -127,6 +135,27 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
             min={-5}
             max={10}
           />
+        </div>
+      )}
+
+      {hasTextDecoration && (
+        <div className="space-y-2">
+          <Label className="text-xs text-muted-foreground">Text Decoration</Label>
+          <Select
+            value={textDecoration}
+            onValueChange={(value) => onUpdate('textDecoration', value)}
+          >
+            <SelectTrigger className="h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {textDecorationOptions.map(option => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       )}
     </div>

@@ -264,15 +264,15 @@ This section contains all client-side development tasks for the email builder in
 
 #### 23. Typography Controls Enhancement & Editing Mode Fixes
 
-- [ ] Move text decoration controls from link-specific controls to Typography Controls component
-- [ ] Ensure text decoration controls (underline, strikethrough, none) are available for all text-based blocks: heading, text, button, and link
-- [ ] Create reusable text decoration control component within `typography-controls.tsx`
-- [ ] Remove text decoration logic from link-specific property controls
-- [ ] Test that text decoration works consistently across all block types
-- [ ] Ensure text decoration changes are reflected in real-time in the email canvas
-- [ ] Maintain inline style compatibility for email client support
-- [ ] **Fix link block editing mode**: Make width full and height grow as typing (use textarea instead of input)
-- [ ] **Fix button block editing mode**: Prevent characters from being hidden on the left side during typing
+- [x] Move text decoration controls from link-specific controls to Typography Controls component
+- [x] Ensure text decoration controls (underline, strikethrough, none) are available for all text-based blocks: heading, text, button, and link
+- [x] Create reusable text decoration control component within `typography-controls.tsx`
+- [x] Remove text decoration logic from link-specific property controls
+- [x] Test that text decoration works consistently across all block types
+- [x] Ensure text decoration changes are reflected in real-time in the email canvas
+- [x] Maintain inline style compatibility for email client support
+- [x] **Fix link block editing mode**: Make width full and height grow as typing (use textarea instead of input)
+- [x] **Fix button block editing mode**: Prevent characters from being hidden on the left side during typing
 
 **Notes**: Text decorations should be part of the general typography system, not specific to links. This makes the styling system more consistent and allows all text-based blocks to have text decoration options. The editing mode fixes ensure better UX when editing block content inline.
 

@@ -98,11 +98,6 @@ export const BlockEditor = () => {
               onUpdate={updateBlockProperty} 
             />
             <Separator className="my-6" />
-            <LinkControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
-            <Separator className="my-6" />
             <AlignmentControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 

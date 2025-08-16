@@ -102,8 +102,9 @@ export function ButtonBlock({
             outline: '2px solid #3b82f6',
             outlineOffset: '2px',
             border: 'none',
-            width: `${Math.max(editContent.length * 8 + 48, 120)}px`,
+            width: `${Math.max(editContent.length * 10 + 64, 140)}px`,
             maxWidth: '100%',
+            textAlign: 'center',
           }}
         />
       ) : (

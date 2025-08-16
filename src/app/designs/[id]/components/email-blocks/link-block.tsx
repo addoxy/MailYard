@@ -88,26 +88,27 @@ export function LinkBlock({
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} onDoubleClick={handleDoubleClick}>
       {isEditing ? (
-        <input
-          ref={inputRef as React.RefObject<HTMLInputElement>}
+        <textarea
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
           onChange={handleContentChange}
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{
             ...baseStyle,
-            outline: '2px solid #3b82f6',
-            outlineOffset: '2px',
+            outline: 'none',
             backgroundColor: 'transparent',
             border: 'none',
-            width: 'auto',
-            minWidth: '80px',
+            width: '100%',
+            resize: 'none',
+            overflow: 'hidden',
+            minHeight: 'auto',
           }}
         />
       ) : (
-        <Link href={href} style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
+        <Link href={href} style={baseStyle} onClick={handleClick}>
           {content}
         </Link>
       )}
