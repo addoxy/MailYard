@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@react-email/components';
-import { useEffect, useRef, useState } from 'react';
+import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { ButtonBlockProps } from './types';
 
@@ -33,10 +33,22 @@ export function ButtonBlock({
   isSelected = false,
   onClick,
 }: ButtonBlockProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(content);
-  const inputRef = useRef<HTMLInputElement>(null);
   const { updateBlock } = useEmailBlocks();
+
+  const {
+    isEditing,
+    editContent,
+    inputRef,
+    handleDoubleClick,
+    handleSave,
+    handleContentChange,
+    handleKeyDown,
+  } = useInlineEditing({
+    content,
+    isSelected,
+    onSave: (newContent) => updateBlock(id, { content: newContent }),
+    multiline: false,
+  });
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -44,40 +56,6 @@ export function ButtonBlock({
       onClick(id);
     }
   };
-
-  const handleDoubleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (isSelected) {
-      setIsEditing(true);
-      setEditContent(content);
-    }
-  };
-
-  const handleSave = () => {
-    updateBlock(id, { content: editContent });
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setEditContent(content);
-    setIsEditing(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSave();
-    } else if (e.key === 'Escape') {
-      handleCancel();
-    }
-  };
-
-  // Auto-focus when editing starts
-  useEffect(() => {
-    if (isEditing && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [isEditing]);
 
   const baseStyle = {
     fontSize,
@@ -107,13 +85,13 @@ export function ButtonBlock({
     marginLeft,
   };
 
-  if (isEditing) {
-    return (
-      <div style={containerStyle}>
+  return (
+    <div style={containerStyle}>
+      {isEditing ? (
         <input
-          ref={inputRef}
+          ref={inputRef as React.RefObject<HTMLInputElement>}
           value={editContent}
-          onChange={(e) => setEditContent(e.target.value)}
+          onChange={handleContentChange}
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{
@@ -125,15 +103,16 @@ export function ButtonBlock({
             maxWidth: '100%',
           }}
         />
-      </div>
-    );
-  }
-
-  return (
-    <div style={containerStyle}>
-      <Button href={href} style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
-        {content}
-      </Button>
+      ) : (
+        <Button
+          href={href}
+          style={baseStyle}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+        >
+          {content}
+        </Button>
+      )}
     </div>
   );
 }

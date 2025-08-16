@@ -1,14 +1,13 @@
 'use client';
 
 import { Heading } from '@react-email/components';
-import { useEffect, useRef, useState } from 'react';
+import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { HeadingBlockProps } from './types';
 
 export function HeadingBlock({
   id,
   content = 'Your heading text',
-  level = 1,
   textAlign = 'left',
   fontSize = '32px',
   fontWeight = '700',
@@ -33,50 +32,28 @@ export function HeadingBlock({
   isSelected = false,
   onClick,
 }: HeadingBlockProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(content);
-  const inputRef = useRef<HTMLInputElement>(null);
   const { updateBlock } = useEmailBlocks();
+
+  const {
+    isEditing,
+    editContent,
+    inputRef,
+    handleDoubleClick,
+    handleSave,
+    handleContentChange,
+    handleKeyDown,
+  } = useInlineEditing({
+    content,
+    isSelected,
+    onSave: (newContent) => updateBlock(id, { content: newContent }),
+    multiline: false,
+  });
 
   const handleClick = () => {
     if (onClick) {
       onClick(id);
     }
   };
-
-  const handleDoubleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (isSelected) {
-      setIsEditing(true);
-      setEditContent(content);
-    }
-  };
-
-  const handleSave = () => {
-    updateBlock(id, { content: editContent });
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setEditContent(content);
-    setIsEditing(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSave();
-    } else if (e.key === 'Escape') {
-      handleCancel();
-    }
-  };
-
-  // Auto-focus when editing starts
-  useEffect(() => {
-    if (isEditing && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
-    }
-  }, [isEditing]);
 
   const baseStyle = {
     fontSize,
@@ -103,16 +80,18 @@ export function HeadingBlock({
 
   if (isEditing) {
     return (
-      <div style={{ 
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft
-      }}>
+      <div
+        style={{
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+        }}
+      >
         <input
-          ref={inputRef}
+          ref={inputRef as React.RefObject<HTMLInputElement>}
           value={editContent}
-          onChange={(e) => setEditContent(e.target.value)}
+          onChange={handleContentChange}
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{
@@ -138,12 +117,7 @@ export function HeadingBlock({
   }
 
   return (
-    <Heading
-      as={`h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'}
-      style={baseStyle}
-      onClick={handleClick}
-      onDoubleClick={handleDoubleClick}
-    >
+    <Heading style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
       {content}
     </Heading>
   );

@@ -1,8 +1,8 @@
 'use client';
 
 import { Text } from '@react-email/components';
-import { useEffect, useRef, useState } from 'react';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
+import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { TextBlockProps } from './types';
 
 export function TextBlock({
@@ -32,61 +32,26 @@ export function TextBlock({
   isSelected = false,
   onClick,
 }: TextBlockProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editContent, setEditContent] = useState(content);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { updateBlock } = useEmailBlocks();
+
+  const {
+    isEditing,
+    editContent,
+    inputRef,
+    handleDoubleClick,
+    handleSave,
+    handleContentChange,
+    handleKeyDown,
+  } = useInlineEditing({
+    content,
+    isSelected,
+    onSave: (newContent) => updateBlock(id, { content: newContent }),
+    multiline: true,
+  });
 
   const handleClick = () => {
     if (onClick) {
       onClick(id);
-    }
-  };
-
-  const handleDoubleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (isSelected) {
-      setIsEditing(true);
-      setEditContent(content);
-    }
-  };
-
-  const handleSave = () => {
-    updateBlock(id, { content: editContent });
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setEditContent(content);
-    setIsEditing(false);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleSave();
-    } else if (e.key === 'Escape') {
-      handleCancel();
-    }
-  };
-
-  // Auto-focus and resize textarea when editing starts
-  useEffect(() => {
-    if (isEditing && textareaRef.current) {
-      textareaRef.current.focus();
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
-    }
-  }, [isEditing]);
-
-  // Auto-resize textarea as content changes
-  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setEditContent(e.target.value);
-
-    // Auto-resize textarea
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
     }
   };
 
@@ -123,9 +88,9 @@ export function TextBlock({
         marginLeft
       }}>
         <textarea
-          ref={textareaRef}
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
-          onChange={handleTextChange}
+          onChange={handleContentChange}
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{

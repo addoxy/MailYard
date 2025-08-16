@@ -233,15 +233,15 @@ This section contains all client-side development tasks for the email builder in
 
 #### 21. Extract Inline Editing Hook
 
-- [ ] Create `/src/hooks/use-inline-editing.ts` hook with shared editing behavior:
-  - [ ] `handleDoubleClick` - Enter editing mode on double-click
-  - [ ] `handleSave` - Save changes and exit editing
-  - [ ] `handleCancel` - Cancel changes and exit editing
-  - [ ] `handleKeyDown` - Handle Enter (save) and Escape (cancel) keys
-  - [ ] State management for `isEditing`, `editContent`, auto-focus logic
-- [ ] Update all block components (`heading-block.tsx`, `text-block.tsx`, `button-block.tsx`, `link-block.tsx`) to use the shared hook
-- [ ] Remove duplicate editing logic from individual block files
-- [ ] Ensure consistent editing behavior across all text-based blocks
+- [x] Create `/src/hooks/use-inline-editing.ts` hook with shared editing behavior:
+  - [x] `handleDoubleClick` - Enter editing mode on double-click
+  - [x] `handleSave` - Save changes and exit editing
+  - [x] `handleCancel` - Cancel changes and exit editing
+  - [x] `handleKeyDown` - Handle Enter (save) and Escape (cancel) keys
+  - [x] State management for `isEditing`, `editContent`, auto-focus logic
+- [x] Update all block components (`heading-block.tsx`, `text-block.tsx`, `button-block.tsx`, `link-block.tsx`) to use the shared hook
+- [x] Remove duplicate editing logic from individual block files
+- [x] Ensure consistent editing behavior across all text-based blocks
 
 **Impact**: Eliminates repeated editing patterns and ensures consistent UX
 
@@ -262,7 +262,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Reduces redundancy in block system and improves maintainability
 
-#### 23. Typography Controls Enhancement
+#### 23. Typography Controls Enhancement & Editing Mode Fixes
 
 - [ ] Move text decoration controls from link-specific controls to Typography Controls component
 - [ ] Ensure text decoration controls (underline, strikethrough, none) are available for all text-based blocks: heading, text, button, and link
@@ -271,8 +271,10 @@ This section contains all client-side development tasks for the email builder in
 - [ ] Test that text decoration works consistently across all block types
 - [ ] Ensure text decoration changes are reflected in real-time in the email canvas
 - [ ] Maintain inline style compatibility for email client support
+- [ ] **Fix link block editing mode**: Make width full and height grow as typing (use textarea instead of input)
+- [ ] **Fix button block editing mode**: Prevent characters from being hidden on the left side during typing
 
-**Notes**: Text decorations should be part of the general typography system, not specific to links. This makes the styling system more consistent and allows all text-based blocks to have text decoration options.
+**Notes**: Text decorations should be part of the general typography system, not specific to links. This makes the styling system more consistent and allows all text-based blocks to have text decoration options. The editing mode fixes ensure better UX when editing block content inline.
 
 #### 24. Create Reusable Color Picker Component
 

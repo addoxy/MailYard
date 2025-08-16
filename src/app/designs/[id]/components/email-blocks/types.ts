@@ -8,7 +8,6 @@ export interface BaseBlockProps {
 export interface HeadingBlockProps extends BaseBlockProps {
   type: 'heading';
   content: string;
-  level: 1 | 2 | 3 | 4 | 5 | 6;
   textAlign: 'left' | 'center' | 'right';
   fontSize: string;
   fontWeight: string;
@@ -146,7 +145,13 @@ export interface ImageBlockProps extends BaseBlockProps {
   paddingRight: string;
 }
 
-export type EmailBlockType = HeadingBlockProps | TextBlockProps | ButtonBlockProps | LinkBlockProps | DividerBlockProps | ImageBlockProps;
+export type EmailBlockType =
+  | HeadingBlockProps
+  | TextBlockProps
+  | ButtonBlockProps
+  | LinkBlockProps
+  | DividerBlockProps
+  | ImageBlockProps;
 
 export interface BlockDefinition {
   type: string;
