@@ -42,7 +42,7 @@ const getBlockIcon = (type: string) => {
 const getBlockName = (block: EmailBlockType) => {
   switch (block.type) {
     case 'heading':
-      return `Heading ${block.level}`;
+      return 'Heading';
     case 'text':
       return 'Text';
     case 'button':

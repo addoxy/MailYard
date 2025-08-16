@@ -59,7 +59,7 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
           switch (block.type) {
             case 'heading':
               return React.createElement(
-                `h${block.level}`,
+                'h1',
                 {
                   key: block.id,
                   style: {

@@ -2,33 +2,36 @@
 
 import { Heading } from '@react-email/components';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
+import { blockDefaults } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { HeadingBlockProps } from './types';
 
+const defaults = blockDefaults.heading;
+
 export function HeadingBlock({
   id,
-  content = 'Your heading text',
-  textAlign = 'left',
-  fontSize = '32px',
-  fontWeight = '700',
-  color = '#000000',
-  backgroundColor = 'transparent',
-  borderWidth = '0px',
-  borderColor = '#000000',
-  borderStyle = 'solid',
-  borderRadius = '0px',
-  fontFamily = 'inherit',
-  lineHeight = '1.4',
-  letterSpacing = '0px',
-  textDecoration = 'none',
-  marginTop = '0px',
-  marginBottom = '16px',
-  marginLeft = '0px',
-  marginRight = '0px',
-  paddingTop = '0px',
-  paddingBottom = '0px',
-  paddingLeft = '0px',
-  paddingRight = '0px',
+  content = defaults.content,
+  textAlign = defaults.textAlign,
+  fontSize = defaults.fontSize,
+  fontWeight = defaults.fontWeight,
+  color = defaults.color,
+  backgroundColor = defaults.backgroundColor,
+  borderWidth = defaults.borderWidth,
+  borderColor = defaults.borderColor,
+  borderStyle = defaults.borderStyle,
+  borderRadius = defaults.borderRadius,
+  fontFamily = defaults.fontFamily,
+  lineHeight = defaults.lineHeight,
+  letterSpacing = defaults.letterSpacing,
+  textDecoration = defaults.textDecoration,
+  marginTop = defaults.marginTop,
+  marginBottom = defaults.marginBottom,
+  marginLeft = defaults.marginLeft,
+  marginRight = defaults.marginRight,
+  paddingTop = defaults.paddingTop,
+  paddingBottom = defaults.paddingBottom,
+  paddingLeft = defaults.paddingLeft,
+  paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
 }: HeadingBlockProps) {

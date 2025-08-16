@@ -152,3 +152,185 @@ export const borderStyleOptions = [
   { value: 'dashed', label: 'Dashed' },
   { value: 'dotted', label: 'Dotted' },
 ];
+
+/**
+ * Common default style values used across blocks
+ */
+export const commonDefaults = {
+  spacing: {
+    marginTop: '0px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  },
+  typography: {
+    fontFamily: 'inherit',
+    lineHeight: '1.5',
+    letterSpacing: '0px',
+    textDecoration: 'none',
+    textAlign: 'left' as const,
+  },
+  borders: {
+    borderWidth: '0px',
+    borderColor: '#000000',
+    borderStyle: 'solid' as const,
+    borderRadius: '0px',
+  },
+  background: {
+    backgroundColor: 'transparent',
+  },
+} as const;
+
+/**
+ * Block-specific default configurations
+ */
+export const blockDefaults = {
+  heading: {
+    content: 'Your heading text',
+    fontSize: '32px',
+    fontWeight: '700',
+    color: '#000000',
+    lineHeight: '1.4',
+    textAlign: 'left' as const,
+    fontFamily: 'inherit',
+    letterSpacing: '0px',
+    textDecoration: 'none',
+    backgroundColor: 'transparent',
+    borderWidth: '0px',
+    borderColor: '#000000',
+    borderStyle: 'solid' as const,
+    borderRadius: '0px',
+    marginTop: '0px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  },
+  text: {
+    content: 'Your text content goes here. You can edit this text and style it however you like.',
+    fontSize: '16px',
+    fontWeight: '400',
+    color: '#000000',
+    lineHeight: '1.5',
+    textAlign: 'left' as const,
+    fontFamily: 'inherit',
+    letterSpacing: '0px',
+    textDecoration: 'none',
+    backgroundColor: 'transparent',
+    borderWidth: '0px',
+    borderColor: '#000000',
+    borderStyle: 'solid' as const,
+    borderRadius: '0px',
+    marginTop: '0px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  },
+  button: {
+    content: 'Click me',
+    href: '#',
+    fontSize: '16px',
+    fontWeight: '600',
+    color: '#ffffff',
+    backgroundColor: '#3b82f6',
+    borderColor: '#3b82f6',
+    borderRadius: '8px',
+    textAlign: 'left' as const,
+    fontFamily: 'inherit',
+    lineHeight: '1.5',
+    letterSpacing: '0px',
+    textDecoration: 'none',
+    borderWidth: '0px',
+    borderStyle: 'solid' as const,
+    marginTop: '0px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+    paddingTop: '12px',
+    paddingBottom: '12px',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+  },
+  link: {
+    content: 'Click here',
+    href: '#',
+    fontSize: '16px',
+    fontWeight: '400',
+    color: '#3b82f6',
+    textDecoration: 'underline',
+    textAlign: 'left' as const,
+    fontFamily: 'inherit',
+    lineHeight: '1.5',
+    letterSpacing: '0px',
+    backgroundColor: 'transparent',
+    borderWidth: '0px',
+    borderColor: '#000000',
+    borderStyle: 'solid' as const,
+    borderRadius: '0px',
+    marginTop: '0px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  },
+  divider: {
+    width: '100%',
+    height: '1px',
+    borderColor: '#e5e7eb',
+    borderStyle: 'solid' as const,
+    borderWidth: '0px',
+    marginTop: '16px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+  },
+  image: {
+    src: '',
+    alt: 'Image',
+    width: '100%',
+    height: 'auto',
+    textAlign: 'center' as const,
+    borderColor: '#e5e7eb',
+    borderRadius: '8px',
+    borderWidth: '0px',
+    borderStyle: 'solid' as const,
+    marginTop: '0px',
+    marginBottom: '16px',
+    marginLeft: '0px',
+    marginRight: '0px',
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    paddingLeft: '0px',
+    paddingRight: '0px',
+  },
+} as const;
+
+/**
+ * Create block defaults with optional overrides
+ * @param blockType - The type of block to create defaults for
+ * @param overrides - Optional property overrides
+ * @returns Complete block properties with defaults applied
+ */
+export function createBlockDefaults<T extends keyof typeof blockDefaults>(
+  blockType: T,
+  overrides: Partial<typeof blockDefaults[T]> = {}
+): typeof blockDefaults[T] & typeof overrides {
+  return {
+    ...blockDefaults[blockType],
+    ...overrides,
+  };
+}

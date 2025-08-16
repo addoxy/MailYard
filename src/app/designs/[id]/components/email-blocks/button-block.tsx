@@ -2,34 +2,37 @@
 
 import { Button } from '@react-email/components';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
+import { blockDefaults } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { ButtonBlockProps } from './types';
 
+const defaults = blockDefaults.button;
+
 export function ButtonBlock({
   id,
-  content = 'Click me',
-  href = '#',
-  textAlign = 'left',
-  fontSize = '16px',
-  fontWeight = '600',
-  color = '#ffffff',
-  backgroundColor = '#3b82f6',
-  borderWidth = '0px',
-  borderColor = '#3b82f6',
-  borderStyle = 'solid',
-  borderRadius = '8px',
-  fontFamily = 'inherit',
-  lineHeight = '1.5',
-  letterSpacing = '0px',
-  textDecoration = 'none',
-  marginTop = '0px',
-  marginBottom = '0px',
-  marginLeft = '0px',
-  marginRight = '0px',
-  paddingTop = '12px',
-  paddingBottom = '12px',
-  paddingLeft = '24px',
-  paddingRight = '24px',
+  content = defaults.content,
+  href = defaults.href,
+  textAlign = defaults.textAlign,
+  fontSize = defaults.fontSize,
+  fontWeight = defaults.fontWeight,
+  color = defaults.color,
+  backgroundColor = defaults.backgroundColor,
+  borderWidth = defaults.borderWidth,
+  borderColor = defaults.borderColor,
+  borderStyle = defaults.borderStyle,
+  borderRadius = defaults.borderRadius,
+  fontFamily = defaults.fontFamily,
+  lineHeight = defaults.lineHeight,
+  letterSpacing = defaults.letterSpacing,
+  textDecoration = defaults.textDecoration,
+  marginTop = defaults.marginTop,
+  marginBottom = defaults.marginBottom,
+  marginLeft = defaults.marginLeft,
+  marginRight = defaults.marginRight,
+  paddingTop = defaults.paddingTop,
+  paddingBottom = defaults.paddingBottom,
+  paddingLeft = defaults.paddingLeft,
+  paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
 }: ButtonBlockProps) {

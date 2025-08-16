@@ -158,6 +158,5 @@ export interface BlockDefinition {
   name: string;
   icon: string;
   description: string;
-  defaultProps: Partial<EmailBlockType>;
   category: 'basic' | 'layout' | 'content' | 'media';
 }

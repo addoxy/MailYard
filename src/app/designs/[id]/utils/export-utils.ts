@@ -98,7 +98,7 @@ function generateBlockCode(block: EmailBlockType): string {
         paddingLeft: block.paddingLeft,
       };
 
-      return `<Heading as="h${block.level}" style={${formatStyles(headingStyles)}}>${block.content}</Heading>`;
+      return `<Heading as="h1" style={${formatStyles(headingStyles)}}>${block.content}</Heading>`;
 
     case 'text':
       const textStyles = {

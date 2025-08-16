@@ -247,18 +247,18 @@ This section contains all client-side development tasks for the email builder in
 
 #### 22. Optimize Block Default Styles System
 
-- [ ] **Remove redundant default styles from block registry**:
-  - [ ] Let each block component define its own default styles internally
-  - [ ] Simplify block registry to only contain metadata (name, icon, description, category)
-  - [ ] Remove verbose `defaultProps` objects from `block-registry.tsx`
-- [ ] **Update block components** to define their own defaults:
-  - [ ] Add `getDefaultProps()` static method or default prop values to each block
-  - [ ] Ensure consistent default patterns across all blocks
-  - [ ] Reduce type casting with better TypeScript interfaces
-- [ ] **Create shared default style patterns**:
-  - [ ] `createBlockDefaults(overrides: Partial<BlockProps>): BlockProps` utility
-  - [ ] Consistent spacing, typography, and color defaults across blocks
-  - [ ] Standardize property naming and units (px vs numbers)
+- [x] **Remove redundant default styles from block registry**:
+  - [x] Let each block component define its own default styles internally
+  - [x] Simplify block registry to only contain metadata (name, icon, description, category)
+  - [x] Remove verbose `defaultProps` objects from `block-registry.tsx`
+- [x] **Update block components** to define their own defaults:
+  - [x] Add `getDefaultProps()` static method or default prop values to each block
+  - [x] Ensure consistent default patterns across all blocks
+  - [x] Reduce type casting with better TypeScript interfaces
+- [x] **Create shared default style patterns**:
+  - [x] `createBlockDefaults(overrides: Partial<BlockProps>): BlockProps` utility
+  - [x] Consistent spacing, typography, and color defaults across blocks
+  - [x] Standardize property naming and units (px vs numbers)
 
 **Impact**: Reduces redundancy in block system and improves maintainability
 

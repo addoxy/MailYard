@@ -1,26 +1,29 @@
 import { Container, Img } from '@react-email/components';
 import { Image } from 'lucide-react';
+import { blockDefaults } from '../../../../../lib/style-utils';
 import { ImageBlockProps } from './types';
+
+const defaults = blockDefaults.image;
 
 export function ImageBlock({
   id,
-  src = '',
-  alt = 'Image',
-  width = '100%',
-  height = 'auto',
-  textAlign = 'center',
-  borderWidth = '0px',
-  borderColor = '#e5e7eb',
-  borderStyle = 'solid',
-  borderRadius = '8px',
-  marginTop = '0px',
-  marginBottom = '16px',
-  marginLeft = '0px',
-  marginRight = '0px',
-  paddingTop = '0px',
-  paddingBottom = '0px',
-  paddingLeft = '0px',
-  paddingRight = '0px',
+  src = defaults.src,
+  alt = defaults.alt,
+  width = defaults.width,
+  height = defaults.height,
+  textAlign = defaults.textAlign,
+  borderWidth = defaults.borderWidth,
+  borderColor = defaults.borderColor,
+  borderStyle = defaults.borderStyle,
+  borderRadius = defaults.borderRadius,
+  marginTop = defaults.marginTop,
+  marginBottom = defaults.marginBottom,
+  marginLeft = defaults.marginLeft,
+  marginRight = defaults.marginRight,
+  paddingTop = defaults.paddingTop,
+  paddingBottom = defaults.paddingBottom,
+  paddingLeft = defaults.paddingLeft,
+  paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
 }: ImageBlockProps) {

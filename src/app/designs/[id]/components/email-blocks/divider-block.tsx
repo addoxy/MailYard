@@ -1,19 +1,22 @@
 'use client';
 
 import { Hr } from '@react-email/components';
+import { blockDefaults } from '../../../../../lib/style-utils';
 import { DividerBlockProps } from './types';
+
+const defaults = blockDefaults.divider;
 
 export function DividerBlock({
   id,
-  width = '100%',
-  height = '1px',
-  borderWidth = '0px',
-  borderColor = '#e5e7eb',
-  borderStyle = 'solid',
-  marginTop = '16px',
-  marginBottom = '16px',
-  marginLeft = '0px',
-  marginRight = '0px',
+  width = defaults.width,
+  height = defaults.height,
+  borderWidth = defaults.borderWidth,
+  borderColor = defaults.borderColor,
+  borderStyle = defaults.borderStyle,
+  marginTop = defaults.marginTop,
+  marginBottom = defaults.marginBottom,
+  marginLeft = defaults.marginLeft,
+  marginRight = defaults.marginRight,
   isSelected = false,
   onClick
 }: DividerBlockProps) {

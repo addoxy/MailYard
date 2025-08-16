@@ -3,32 +3,35 @@
 import { Text } from '@react-email/components';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
+import { blockDefaults } from '../../../../../lib/style-utils';
 import { TextBlockProps } from './types';
+
+const defaults = blockDefaults.text;
 
 export function TextBlock({
   id,
-  content = 'Your text content goes here. You can edit this text and style it however you like.',
-  textAlign = 'left',
-  fontSize = '16px',
-  fontWeight = '400',
-  color = '#000000',
-  backgroundColor = 'transparent',
-  borderWidth = '0px',
-  borderColor = '#000000',
-  borderStyle = 'solid',
-  borderRadius = '0px',
-  fontFamily = 'inherit',
-  lineHeight = '1.5',
-  letterSpacing = '0px',
-  textDecoration = 'none',
-  marginTop = '0px',
-  marginBottom = '16px',
-  marginLeft = '0px',
-  marginRight = '0px',
-  paddingTop = '0px',
-  paddingBottom = '0px',
-  paddingLeft = '0px',
-  paddingRight = '0px',
+  content = defaults.content,
+  textAlign = defaults.textAlign,
+  fontSize = defaults.fontSize,
+  fontWeight = defaults.fontWeight,
+  color = defaults.color,
+  backgroundColor = defaults.backgroundColor,
+  borderWidth = defaults.borderWidth,
+  borderColor = defaults.borderColor,
+  borderStyle = defaults.borderStyle,
+  borderRadius = defaults.borderRadius,
+  fontFamily = defaults.fontFamily,
+  lineHeight = defaults.lineHeight,
+  letterSpacing = defaults.letterSpacing,
+  textDecoration = defaults.textDecoration,
+  marginTop = defaults.marginTop,
+  marginBottom = defaults.marginBottom,
+  marginLeft = defaults.marginLeft,
+  marginRight = defaults.marginRight,
+  paddingTop = defaults.paddingTop,
+  paddingBottom = defaults.paddingBottom,
+  paddingLeft = defaults.paddingLeft,
+  paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
 }: TextBlockProps) {
