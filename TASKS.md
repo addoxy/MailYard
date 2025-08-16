@@ -173,9 +173,64 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Ensure exported code maintains inline styling for email compatibility.
 
-## Phase 4: Styling & UX Enhancement
+## Phase 4: Code Optimization & Technical Debt
 
-### 15. Bug Fixes and Refinements
+### 15. Extract Shared Components
+
+- [ ] **CRITICAL**: Extract `ClearableNumberInput` component to `/src/components/clearable-number-input.tsx`
+  - [ ] Remove duplicate implementations from `spacing-controls.tsx`, `border-controls.tsx`, and `typography-controls.tsx`
+  - [ ] Update all three files to import the shared component
+  - [ ] Ensure consistent API and behavior across all usages
+  - [ ] Test that all number inputs still work correctly after extraction
+
+**Impact**: Eliminates 246 lines of duplicated code across 3 files
+
+### 16. Create Shared Style Utilities
+
+- [ ] Create `/src/lib/style-utils.ts` with shared utility functions:
+  - [ ] `pxToNumber(value: string): number` - Convert "20px" to 20
+  - [ ] `numberToPx(value: number): string` - Convert 20 to "20px"
+  - [ ] `validateStyleValue(value: any, type: 'px' | 'color' | 'string'): boolean`
+  - [ ] `createBaseStyle(props: StyleProps): CSSProperties` - Shared style object construction
+- [ ] Update `spacing-controls.tsx`, `border-controls.tsx`, and `typography-controls.tsx` to use shared utilities
+- [ ] Remove duplicate conversion functions from all property control files
+
+**Impact**: Eliminates utility function duplication and standardizes style handling
+
+### 17. Extract Inline Editing Hook
+
+- [ ] Create `/src/hooks/use-inline-editing.ts` hook with shared editing behavior:
+  - [ ] `handleDoubleClick` - Enter editing mode on double-click
+  - [ ] `handleSave` - Save changes and exit editing
+  - [ ] `handleCancel` - Cancel changes and exit editing
+  - [ ] `handleKeyDown` - Handle Enter (save) and Escape (cancel) keys
+  - [ ] State management for `isEditing`, `editContent`, auto-focus logic
+- [ ] Update all block components (`heading-block.tsx`, `text-block.tsx`, `button-block.tsx`, `link-block.tsx`) to use the shared hook
+- [ ] Remove duplicate editing logic from individual block files
+- [ ] Ensure consistent editing behavior across all text-based blocks
+
+**Impact**: Eliminates repeated editing patterns and ensures consistent UX
+
+### 18. Optimize Block Default Styles System
+
+- [ ] **Remove redundant default styles from block registry**:
+  - [ ] Let each block component define its own default styles internally
+  - [ ] Simplify block registry to only contain metadata (name, icon, description, category)
+  - [ ] Remove verbose `defaultProps` objects from `block-registry.tsx`
+- [ ] **Update block components** to define their own defaults:
+  - [ ] Add `getDefaultProps()` static method or default prop values to each block
+  - [ ] Ensure consistent default patterns across all blocks
+  - [ ] Reduce type casting with better TypeScript interfaces
+- [ ] **Create shared default style patterns**:
+  - [ ] `createBlockDefaults(overrides: Partial<BlockProps>): BlockProps` utility
+  - [ ] Consistent spacing, typography, and color defaults across blocks
+  - [ ] Standardize property naming and units (px vs numbers)
+
+**Impact**: Reduces redundancy in block system and improves maintainability
+
+## Phase 5: Styling & UX Enhancement
+
+### 19. Bug Fixes and Refinements
 
 - [x] Update Container padding controls to have separate x and y padding fields instead of single field
 - [x] Convert max-width input to number input (px values only)
@@ -189,7 +244,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: These are critical UX improvements and bug fixes identified during testing. Focus on making controls more intuitive and consistent across all block types.
 
-### 16. Block Editing and Styling Enhancements
+### 20. Block Editing and Styling Enhancements
 
 - [x] Make button and link text editable directly in the block (remove link URL editing from block). It should look like I am editing the block itself and not some other input.
 - [x] Fix margins and padding not working properly for the link block
@@ -203,9 +258,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This task focuses on improving the editing experience and adding missing styling options across all text-based blocks. Pay special attention to the link block which seems to have several property issues. All new styling controls must use inline styles only for email client compatibility.
 
-## Phase 4: Advanced Layout Systems
+## Phase 6: Advanced Layout Systems
 
-### 17. Container Block System
+### 21. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -226,7 +281,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-### 18. Grid Block System
+### 22. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -240,9 +295,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is an advanced layout system that requires careful implementation for email client compatibility. Focus on using @react-email/components Row and Column as the foundation. Test thoroughly across Gmail, Outlook, Apple Mail, and Yahoo.
 
-## Phase 5: Mobile & Final Polish
+## Phase 7: Mobile & Final Polish
 
-### 19. Mobile Home Page
+### 23. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -251,7 +306,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-### 20. Animation Polish
+### 24. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -259,7 +314,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 21. Final Polish and Testing
+### 25. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -272,7 +327,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 ## Future Features
 
-### 22. Undo/Redo System
+### 26. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -285,7 +340,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-### 23. Subtle Framer Motion Animations
+### 27. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
@@ -297,7 +352,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
 
-### 24. Fix Export Code Formatting
+### 28. Fix Export Code Formatting
 
 - [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
 - [ ] Investigate why Shiki syntax highlighting is not applying proper formatting
@@ -351,40 +406,3 @@ src/
 - Test responsive design across mobile and desktop viewports
 - Validate keyboard shortcuts work correctly and don't conflict with browser shortcuts
 - Ensure accessibility features work with screen readers and keyboard navigation
-
-## Future Features
-
-### 21. Undo/Redo System
-
-- [ ] Implement robust undo/redo history stack system
-- [ ] Add undo/redo buttons to Actions component with proper disabled states
-- [ ] Implement keyboard shortcuts: Cmd/Ctrl + Z (undo), Cmd/Ctrl + Shift + Z (redo)
-- [ ] Save history for all operations: block add/remove/edit/move/duplicate, bulk editing
-- [ ] Handle debouncing for rapid text edits to avoid saving every keystroke
-- [ ] Ensure history captures intermediate states correctly (e.g., text changes should undo to previous text, not delete block)
-- [ ] Limit history stack to reasonable size (50 entries) with proper cleanup
-- [ ] Test undo/redo works correctly for all block operations and property changes
-
-**Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
-
-### 22. Subtle Framer Motion Animations
-
-- [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
-- [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
-- [ ] Add smooth state transitions for theme switching and view mode changes
-- [ ] Polish drag-and-drop with gentle feedback animations (scale, opacity changes)
-- [ ] Add subtle modal/dialog entrance and exit animations
-- [ ] Implement smooth loading states and micro-interactions
-- [ ] Add gentle layout animations for block reordering and selection changes
-
-**Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
-
-### 23. Fix Export Code Formatting
-
-- [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
-- [ ] Investigate why Shiki syntax highlighting is not applying proper formatting
-- [ ] Ensure code appears with proper indentation and line breaks in export modal
-- [ ] Test both React component export and HTML export formatting
-- [ ] Consider alternative formatting solutions if CodeBlock component continues to have issues
-
-**Notes**: Currently the exported code in the export modal is not being formatted properly, appearing as unformatted strings. The CodeBlock component should handle syntax highlighting and formatting automatically.
