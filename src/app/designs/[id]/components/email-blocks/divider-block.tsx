@@ -28,7 +28,10 @@ export function DividerBlock({
     height,
     border: 'none',
     borderTop: `${height} ${borderStyle} ${borderColor}`,
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
     cursor: onClick ? 'pointer' : 'default',
     backgroundColor: 'transparent',
   };

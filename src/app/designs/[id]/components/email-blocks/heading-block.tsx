@@ -90,14 +90,25 @@ export function HeadingBlock({
     letterSpacing,
     textDecoration,
     textAlign,
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
-    padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
     cursor: onClick ? 'pointer' : 'default',
   };
 
   if (isEditing) {
     return (
-      <div style={{ margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}` }}>
+      <div style={{ 
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft
+      }}>
         <input
           ref={inputRef}
           value={editContent}
@@ -112,7 +123,10 @@ export function HeadingBlock({
             lineHeight,
             letterSpacing,
             textAlign,
-            padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
+            paddingTop,
+            paddingRight,
+            paddingBottom,
+            paddingLeft,
             border: 'none',
             outline: 'none',
             width: '100%',

@@ -88,8 +88,14 @@ function generateBlockCode(block: EmailBlockType): string {
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
         textDecoration: block.textDecoration !== 'none' ? block.textDecoration : undefined,
         textAlign: block.textAlign,
-        margin: `${block.marginTop} ${block.marginRight} ${block.marginBottom} ${block.marginLeft}`,
-        padding: `${block.paddingTop} ${block.paddingRight} ${block.paddingBottom} ${block.paddingLeft}`,
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+        paddingTop: block.paddingTop,
+        paddingRight: block.paddingRight,
+        paddingBottom: block.paddingBottom,
+        paddingLeft: block.paddingLeft,
       };
 
       return `<Heading as="h${block.level}" style={${formatStyles(headingStyles)}}>${block.content}</Heading>`;
@@ -107,8 +113,14 @@ function generateBlockCode(block: EmailBlockType): string {
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
         textDecoration: block.textDecoration !== 'none' ? block.textDecoration : undefined,
         textAlign: block.textAlign,
-        margin: `${block.marginTop} ${block.marginRight} ${block.marginBottom} ${block.marginLeft}`,
-        padding: `${block.paddingTop} ${block.paddingRight} ${block.paddingBottom} ${block.paddingLeft}`,
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+        paddingTop: block.paddingTop,
+        paddingRight: block.paddingRight,
+        paddingBottom: block.paddingBottom,
+        paddingLeft: block.paddingLeft,
       };
 
       return `<Text style={${formatStyles(textStyles)}}>${block.content}</Text>`;
@@ -129,8 +141,14 @@ function generateBlockCode(block: EmailBlockType): string {
             ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
             : 'none',
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
-        margin: `${block.marginTop} ${block.marginRight} ${block.marginBottom} ${block.marginLeft}`,
-        padding: `${block.paddingTop} ${block.paddingRight} ${block.paddingBottom} ${block.paddingLeft}`,
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+        paddingTop: block.paddingTop,
+        paddingRight: block.paddingRight,
+        paddingBottom: block.paddingBottom,
+        paddingLeft: block.paddingLeft,
       };
 
       return `<Button href="${block.href}" style={${formatStyles(buttonStyles)}}>${block.content}</Button>`;
@@ -148,8 +166,14 @@ function generateBlockCode(block: EmailBlockType): string {
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
         textAlign: block.textAlign,
         textDecoration: block.textDecoration,
-        margin: `${block.marginTop} ${block.marginRight} ${block.marginBottom} ${block.marginLeft}`,
-        padding: `${block.paddingTop} ${block.paddingRight} ${block.paddingBottom} ${block.paddingLeft}`,
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+        paddingTop: block.paddingTop,
+        paddingRight: block.paddingRight,
+        paddingBottom: block.paddingBottom,
+        paddingLeft: block.paddingLeft,
       };
 
       return `<Link href="${block.href}" style={${formatStyles(linkStyles)}}>${block.content}</Link>`;
@@ -162,7 +186,10 @@ function generateBlockCode(block: EmailBlockType): string {
           block.borderWidth !== '0px'
             ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
             : 'none',
-        margin: `${block.marginTop} ${block.marginRight} ${block.marginBottom} ${block.marginLeft}`,
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
       };
 
       return `<Hr style={${formatStyles(dividerStyles)}} />`;
@@ -176,8 +203,14 @@ function generateBlockCode(block: EmailBlockType): string {
             ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
             : 'none',
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
-        margin: `${block.marginTop} ${block.marginRight} ${block.marginBottom} ${block.marginLeft}`,
-        padding: `${block.paddingTop} ${block.paddingRight} ${block.paddingBottom} ${block.paddingLeft}`,
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+        paddingTop: block.paddingTop,
+        paddingRight: block.paddingRight,
+        paddingBottom: block.paddingBottom,
+        paddingLeft: block.paddingLeft,
       };
 
       return `<Img src="${block.src}" alt="${block.alt}" style={${formatStyles(imageStyles)}} />`;

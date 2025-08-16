@@ -102,15 +102,26 @@ export function TextBlock({
     letterSpacing,
     textDecoration,
     textAlign,
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
-    padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
     cursor: onClick ? 'pointer' : 'default',
     whiteSpace: 'pre-wrap' as const,
   };
 
   if (isEditing) {
     return (
-      <div style={{ margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}` }}>
+      <div style={{ 
+        marginTop,
+        marginRight,
+        marginBottom,
+        marginLeft
+      }}>
         <textarea
           ref={textareaRef}
           value={editContent}
@@ -125,7 +136,10 @@ export function TextBlock({
             lineHeight,
             letterSpacing,
             textAlign,
-            padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
+            paddingTop,
+            paddingRight,
+            paddingBottom,
+            paddingLeft,
             border: 'none',
             outline: 'none',
             resize: 'none',

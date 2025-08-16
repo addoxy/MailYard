@@ -91,14 +91,20 @@ export function ButtonBlock({
     letterSpacing,
     textDecoration,
     textAlign,
-    padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
     cursor: onClick ? 'pointer' : 'default',
     display: 'inline-block',
   };
 
   const containerStyle = {
     textAlign: textAlign as 'left' | 'center' | 'right',
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
   };
 
   if (isEditing) {

@@ -32,8 +32,14 @@ export function ImageBlock({
 
   const containerStyle = {
     textAlign,
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
-    padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
     cursor: onClick ? 'pointer' : 'default',
   };
 
