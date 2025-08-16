@@ -1,4 +1,5 @@
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
+import { Suspense } from 'react';
 import { DesignGallery } from './components/design-gallery';
 import { SearchFilterBar } from './components/search-filter-bar';
 import { SidebarNavigation } from './components/sidebar-navigation';
@@ -7,7 +8,9 @@ export default function HomePage() {
   return (
     <ResizablePanelGroup direction="horizontal" className="w-full">
       <ResizablePanel minSize={12} maxSize={25} defaultSize={16} className="hidden lg:block">
-        <SidebarNavigation />
+        <Suspense>
+          <SidebarNavigation />
+        </Suspense>
       </ResizablePanel>
       <ResizableHandle className="hover:bg-border active:bg-border mx-[3px] my-2 hidden w-0.5 rounded-full bg-transparent transition-colors duration-300 lg:block" />
       <ResizablePanel minSize={12} defaultSize={84} className="flex-1 overflow-hidden">

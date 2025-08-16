@@ -1,85 +1,11 @@
 'use client';
 
-import { useState, useRef } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
-
-// Custom number input that allows clearing
-const ClearableNumberInput = ({ 
-  value, 
-  onChange, 
-  placeholder = "0",
-  className = "",
-  min,
-  max,
-  step
-}: {
-  value: number;
-  onChange: (value: number) => void;
-  placeholder?: string;
-  className?: string;
-  min?: number;
-  max?: number;
-  step?: number | string;
-}) => {
-  const [isFocused, setIsFocused] = useState(false);
-  const [tempValue, setTempValue] = useState('');
-  const lastValidValue = useRef(value);
-
-  // Update last valid value when prop changes
-  if (value !== lastValidValue.current && !isFocused) {
-    lastValidValue.current = value;
-  }
-
-  const handleFocus = () => {
-    setIsFocused(true);
-    setTempValue(value.toString());
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-    if (tempValue === '' || tempValue === undefined) {
-      // If empty, use last valid value
-      onChange(lastValidValue.current);
-    } else {
-      const numValue = Number(tempValue);
-      if (!isNaN(numValue)) {
-        lastValidValue.current = numValue;
-        onChange(numValue);
-      } else {
-        onChange(lastValidValue.current);
-      }
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setTempValue(newValue);
-    
-    // Only update immediately if it's a valid number
-    if (newValue !== '' && !isNaN(Number(newValue))) {
-      onChange(Number(newValue));
-    }
-  };
-
-  return (
-    <Input
-      type="number"
-      value={isFocused ? tempValue : value}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      className={className}
-      placeholder={placeholder}
-      min={min}
-      max={max}
-      step={step}
-    />
-  );
-};
+import { ClearableNumberInput } from '@/components/clearable-number-input';
 
 interface BorderControlsProps {
   block: EmailBlockType;

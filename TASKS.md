@@ -139,7 +139,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This updates the existing property controls from Task 6. All distance inputs should be numeric only, internally converted to px.
 
-#### 12.1. Fix Default Font Weight Bug
+#### 13. Fix Default Font Weight Bug
 
 - [x] Fix heading blocks to show proper default font weight (should be bold/600 for headings)
 - [x] Fix text blocks to show proper default font weight (should be normal/400 for text)
@@ -149,7 +149,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Currently heading and text blocks are not showing any default font weight. This makes headings appear the same as regular text, which is incorrect. Also improve the visual spacing in the inspector sidebar.
 
-#### 12.2. Fix Canvas Font Family Inheritance Bug
+#### 14. Fix Canvas Font Family Inheritance Bug
 
 - [x] Fix the page-level font family selector to actually apply font-family changes to the canvas
 - [x] Implement font-family inheritance system where blocks inherit the canvas font-family by default
@@ -159,7 +159,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Currently the font family selector in the page doesn't change the font-family of blocks. Blocks should inherit the canvas font-family unless they have their own font-family specified.
 
-#### 13. Preview System
+#### 15. Preview System
 
 - [x] Create `src/app/designs/[id]/components/email-section/preview-modal.tsx`
 - [x] Implement email client preview tabs: Gmail, Outlook, Apple Mail, Yahoo
@@ -168,7 +168,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Modal should show how email renders across different providers.
 
-#### 14. Export Functionality
+#### 16. Export Functionality
 
 - [x] Create `src/app/designs/[id]/components/email-section/export-modal.tsx`
 - [x] Implement React export: clean @react-email/components code generation
@@ -179,7 +179,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 4: Styling & UX Enhancement
 
-#### 19. Bug Fixes and Refinements
+#### 17. Bug Fixes and Refinements
 
 - [x] Update Container padding controls to have separate x and y padding fields instead of single field
 - [x] Convert max-width input to number input (px values only)
@@ -193,7 +193,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: These are critical UX improvements and bug fixes identified during testing. Focus on making controls more intuitive and consistent across all block types.
 
-#### 20. Block Editing and Styling Enhancements
+#### 18. Block Editing and Styling Enhancements
 
 - [x] Make button and link text editable directly in the block (remove link URL editing from block). It should look like I am editing the block itself and not some other input.
 - [x] Fix margins and padding not working properly for the link block
@@ -209,17 +209,17 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 5: Code Optimization & Technical Debt
 
-#### 15. Extract Shared Components
+#### 19. Extract Shared Components
 
-- [ ] **CRITICAL**: Extract `ClearableNumberInput` component to `/src/components/clearable-number-input.tsx`
-  - [ ] Remove duplicate implementations from `spacing-controls.tsx`, `border-controls.tsx`, and `typography-controls.tsx`
-  - [ ] Update all three files to import the shared component
-  - [ ] Ensure consistent API and behavior across all usages
-  - [ ] Test that all number inputs still work correctly after extraction
+- [x] **CRITICAL**: Extract `ClearableNumberInput` component to `/src/components/clearable-number-input.tsx`
+  - [x] Remove duplicate implementations from `spacing-controls.tsx`, `border-controls.tsx`, and `typography-controls.tsx`
+  - [x] Update all three files to import the shared component
+  - [x] Ensure consistent API and behavior across all usages
+  - [x] Test that all number inputs still work correctly after extraction
 
 **Impact**: Eliminates 246 lines of duplicated code across 3 files
 
-#### 16. Create Shared Style Utilities
+#### 20. Create Shared Style Utilities
 
 - [ ] Create `/src/lib/style-utils.ts` with shared utility functions:
   - [ ] `pxToNumber(value: string): number` - Convert "20px" to 20
@@ -231,7 +231,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Eliminates utility function duplication and standardizes style handling
 
-#### 17. Extract Inline Editing Hook
+#### 21. Extract Inline Editing Hook
 
 - [ ] Create `/src/hooks/use-inline-editing.ts` hook with shared editing behavior:
   - [ ] `handleDoubleClick` - Enter editing mode on double-click
@@ -245,7 +245,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Eliminates repeated editing patterns and ensures consistent UX
 
-#### 18. Optimize Block Default Styles System
+#### 22. Optimize Block Default Styles System
 
 - [ ] **Remove redundant default styles from block registry**:
   - [ ] Let each block component define its own default styles internally
@@ -262,7 +262,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Reduces redundancy in block system and improves maintainability
 
-#### 19. Typography Controls Enhancement
+#### 23. Typography Controls Enhancement
 
 - [ ] Move text decoration controls from link-specific controls to Typography Controls component
 - [ ] Ensure text decoration controls (underline, strikethrough, none) are available for all text-based blocks: heading, text, button, and link
@@ -276,7 +276,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 6: Advanced Layout Systems
 
-#### 21. Container Block System
+#### 24. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -297,7 +297,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-#### 22. Grid Block System
+#### 25. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -313,7 +313,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 7: Mobile & Final Polish
 
-#### 23. Mobile Home Page
+#### 26. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -322,7 +322,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-#### 24. Animation Polish
+#### 27. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -330,7 +330,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-#### 25. Final Polish and Testing
+#### 28. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -343,7 +343,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 8: Future Features
 
-#### 26. Undo/Redo System
+#### 29. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -356,7 +356,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-#### 27. Subtle Framer Motion Animations
+#### 30. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
@@ -368,7 +368,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
 
-#### 28. Fix Export Code Formatting
+#### 31. Fix Export Code Formatting
 
 - [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
 - [ ] Investigate why Shiki syntax highlighting is not applying proper formatting
