@@ -262,6 +262,18 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Reduces redundancy in block system and improves maintainability
 
+#### 19. Typography Controls Enhancement
+
+- [ ] Move text decoration controls from link-specific controls to Typography Controls component
+- [ ] Ensure text decoration controls (underline, strikethrough, none) are available for all text-based blocks: heading, text, button, and link
+- [ ] Create reusable text decoration control component within `typography-controls.tsx`
+- [ ] Remove text decoration logic from link-specific property controls
+- [ ] Test that text decoration works consistently across all block types
+- [ ] Ensure text decoration changes are reflected in real-time in the email canvas
+- [ ] Maintain inline style compatibility for email client support
+
+**Notes**: Text decorations should be part of the general typography system, not specific to links. This makes the styling system more consistent and allows all text-based blocks to have text decoration options.
+
 ### Phase 6: Advanced Layout Systems
 
 #### 21. Container Block System
