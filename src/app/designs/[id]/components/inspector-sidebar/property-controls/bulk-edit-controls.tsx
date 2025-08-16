@@ -96,13 +96,21 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
         return (
           <div key={property} className="space-y-2">
             <Label className="text-xs font-medium">Font Size</Label>
-            <Input
-              value={propertyResult.hasMultipleValues ? 'Mixed' : (displayValue as string || '')}
-              onChange={(e) => handleChange(e.target.value)}
-              placeholder="e.g., 16px"
-              className={propertyResult.hasMultipleValues ? 'text-muted-foreground' : ''}
-              readOnly={propertyResult.hasMultipleValues}
-            />
+            <div className="flex items-center gap-2">
+              <Input
+                type="number"
+                value={propertyResult.hasMultipleValues ? '' : (parseInt(displayValue as string) || '')}
+                onChange={(e) => handleChange(`${e.target.value}px`)}
+                placeholder="16"
+                className={propertyResult.hasMultipleValues ? 'text-muted-foreground flex-1' : 'flex-1'}
+                readOnly={propertyResult.hasMultipleValues}
+                min="1"
+              />
+              <span className="text-xs text-muted-foreground">px</span>
+            </div>
+            {propertyResult.hasMultipleValues && (
+              <div className="text-xs text-muted-foreground">Mixed values</div>
+            )}
           </div>
         );
 
@@ -169,24 +177,81 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
         );
 
       default:
-        // Handle spacing and border properties
+        // Handle spacing properties
         if (property.includes('padding') || property.includes('margin')) {
           return (
             <div key={property} className="space-y-2">
               <Label className="text-xs font-medium capitalize">
                 {property.replace(/([A-Z])/g, ' $1').toLowerCase()}
               </Label>
-              <Input
-                value={propertyResult.hasMultipleValues ? 'Mixed' : (displayValue as string || '')}
-                onChange={(e) => handleChange(e.target.value)}
-                placeholder="e.g., 10px"
-                className={propertyResult.hasMultipleValues ? 'text-muted-foreground' : ''}
-                readOnly={propertyResult.hasMultipleValues}
-              />
+              <div className="flex items-center gap-2">
+                <Input
+                  type="number"
+                  value={propertyResult.hasMultipleValues ? '' : (parseInt(displayValue as string) || '')}
+                  onChange={(e) => handleChange(`${e.target.value}px`)}
+                  placeholder="0"
+                  className={propertyResult.hasMultipleValues ? 'text-muted-foreground flex-1' : 'flex-1'}
+                  readOnly={propertyResult.hasMultipleValues}
+                  min="0"
+                />
+                <span className="text-xs text-muted-foreground">px</span>
+              </div>
+              {propertyResult.hasMultipleValues && (
+                <div className="text-xs text-muted-foreground">Mixed values</div>
+              )}
             </div>
           );
         }
 
+        // Handle border width properties
+        if (property === 'borderWidth') {
+          return (
+            <div key={property} className="space-y-2">
+              <Label className="text-xs font-medium">Border Width</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  type="number"
+                  value={propertyResult.hasMultipleValues ? '' : (parseInt(displayValue as string) || '')}
+                  onChange={(e) => handleChange(`${e.target.value}px`)}
+                  placeholder="0"
+                  className={propertyResult.hasMultipleValues ? 'text-muted-foreground flex-1' : 'flex-1'}
+                  readOnly={propertyResult.hasMultipleValues}
+                  min="0"
+                />
+                <span className="text-xs text-muted-foreground">px</span>
+              </div>
+              {propertyResult.hasMultipleValues && (
+                <div className="text-xs text-muted-foreground">Mixed values</div>
+              )}
+            </div>
+          );
+        }
+
+        // Handle border radius properties
+        if (property === 'borderRadius') {
+          return (
+            <div key={property} className="space-y-2">
+              <Label className="text-xs font-medium">Border Radius</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  type="number"
+                  value={propertyResult.hasMultipleValues ? '' : (parseInt(displayValue as string) || '')}
+                  onChange={(e) => handleChange(`${e.target.value}px`)}
+                  placeholder="0"
+                  className={propertyResult.hasMultipleValues ? 'text-muted-foreground flex-1' : 'flex-1'}
+                  readOnly={propertyResult.hasMultipleValues}
+                  min="0"
+                />
+                <span className="text-xs text-muted-foreground">px</span>
+              </div>
+              {propertyResult.hasMultipleValues && (
+                <div className="text-xs text-muted-foreground">Mixed values</div>
+              )}
+            </div>
+          );
+        }
+
+        // Handle other border properties
         if (property.includes('border')) {
           return (
             <div key={property} className="space-y-2">
@@ -196,10 +261,13 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
               <Input
                 value={propertyResult.hasMultipleValues ? 'Mixed' : (displayValue as string || '')}
                 onChange={(e) => handleChange(e.target.value)}
-                placeholder={property === 'borderColor' ? '#000000' : property === 'borderWidth' ? '1px' : 'solid'}
+                placeholder={property === 'borderColor' ? '#000000' : 'solid'}
                 className={propertyResult.hasMultipleValues ? 'text-muted-foreground' : ''}
                 readOnly={propertyResult.hasMultipleValues}
               />
+              {propertyResult.hasMultipleValues && (
+                <div className="text-xs text-muted-foreground">Mixed values</div>
+              )}
             </div>
           );
         }

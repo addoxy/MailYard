@@ -98,6 +98,11 @@ export const BlockEditor = () => {
               onUpdate={updateBlockProperty} 
             />
             <Separator className="my-6" />
+            <LinkControls 
+              block={selectedBlock} 
+              onUpdate={updateBlockProperty} 
+            />
+            <Separator className="my-6" />
             <AlignmentControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
@@ -109,6 +114,11 @@ export const BlockEditor = () => {
             />
             <Separator className="my-6" />
             <ColorControls 
+              block={selectedBlock} 
+              onUpdate={updateBlockProperty} 
+            />
+            <Separator className="my-6" />
+            <BorderControls 
               block={selectedBlock} 
               onUpdate={updateBlockProperty} 
             />
@@ -149,7 +159,7 @@ export const BlockEditor = () => {
               onUpdate={updateBlockProperty} 
             />
             <Separator className="my-6" />
-            {selectedBlock.type === 'button' && (
+            {(selectedBlock.type === 'button' || selectedBlock.type === 'link') && (
               <>
                 <BorderControls 
                   block={selectedBlock} 

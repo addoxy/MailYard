@@ -21,6 +21,7 @@ export function ButtonBlock({
   fontFamily = 'inherit',
   lineHeight = '1.5',
   letterSpacing = '0px',
+  textDecoration = 'none',
   marginTop = '0px',
   marginBottom = '0px',
   marginLeft = '0px',
@@ -34,7 +35,6 @@ export function ButtonBlock({
 }: ButtonBlockProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(content);
-  const [editHref, setEditHref] = useState(href);
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateBlock } = useEmailBlocks();
 
@@ -50,18 +50,16 @@ export function ButtonBlock({
     if (isSelected) {
       setIsEditing(true);
       setEditContent(content);
-      setEditHref(href);
     }
   };
 
   const handleSave = () => {
-    updateBlock(id, { content: editContent, href: editHref });
+    updateBlock(id, { content: editContent });
     setIsEditing(false);
   };
 
   const handleCancel = () => {
     setEditContent(content);
-    setEditHref(href);
     setIsEditing(false);
   };
 
@@ -91,10 +89,10 @@ export function ButtonBlock({
     fontFamily,
     lineHeight,
     letterSpacing,
+    textDecoration,
     textAlign,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
     cursor: onClick ? 'pointer' : 'default',
-    textDecoration: 'none',
     display: 'inline-block',
   };
 
@@ -105,56 +103,22 @@ export function ButtonBlock({
 
   if (isEditing) {
     return (
-      <div style={{ margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}` }}>
-        <div style={{ marginBottom: '8px' }}>
-          <label
-            style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}
-          >
-            Button Text:
-          </label>
-          <input
-            ref={inputRef}
-            value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
-            onKeyDown={handleKeyDown}
-            style={{
-              fontSize,
-              fontWeight,
-              color: '#000',
-              fontFamily,
-              padding: '8px 12px',
-              border: 'none',
-              borderRadius: '4px',
-              outline: 'none',
-              width: '100%',
-              background: 'white',
-            }}
-          />
-        </div>
-        <div style={{ marginBottom: '8px' }}>
-          <label
-            style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}
-          >
-            Link URL:
-          </label>
-          <input
-            value={editHref}
-            onChange={(e) => setEditHref(e.target.value)}
-            onKeyDown={handleKeyDown}
-            onBlur={handleSave}
-            style={{
-              fontSize: '14px',
-              color: '#000',
-              fontFamily,
-              padding: '8px 12px',
-              border: 'none',
-              borderRadius: '4px',
-              outline: 'none',
-              width: '100%',
-              background: 'white',
-            }}
-          />
-        </div>
+      <div style={containerStyle}>
+        <input
+          ref={inputRef}
+          value={editContent}
+          onChange={(e) => setEditContent(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onBlur={handleSave}
+          style={{
+            ...baseStyle,
+            outline: '2px solid #3b82f6',
+            outlineOffset: '2px',
+            border: 'none',
+            width: `${Math.max(editContent.length * 8 + 48, 120)}px`,
+            maxWidth: '100%',
+          }}
+        />
       </div>
     );
   }

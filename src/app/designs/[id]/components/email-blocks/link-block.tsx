@@ -13,6 +13,11 @@ export function LinkBlock({
   fontSize = '16px',
   fontWeight = '400',
   color = '#3b82f6',
+  backgroundColor = 'transparent',
+  borderWidth = '0px',
+  borderColor = '#3b82f6',
+  borderStyle = 'solid',
+  borderRadius = '0px',
   fontFamily = 'inherit',
   lineHeight = '1.5',
   letterSpacing = '0px',
@@ -30,7 +35,6 @@ export function LinkBlock({
 }: LinkBlockProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(content);
-  const [editHref, setEditHref] = useState(href);
   const inputRef = useRef<HTMLInputElement>(null);
   const { updateBlock } = useEmailBlocks();
 
@@ -46,18 +50,16 @@ export function LinkBlock({
     if (isSelected) {
       setIsEditing(true);
       setEditContent(content);
-      setEditHref(href);
     }
   };
 
   const handleSave = () => {
-    updateBlock(id, { content: editContent, href: editHref });
+    updateBlock(id, { content: editContent });
     setIsEditing(false);
   };
 
   const handleCancel = () => {
     setEditContent(content);
-    setEditHref(href);
     setIsEditing(false);
   };
 
@@ -81,76 +83,56 @@ export function LinkBlock({
     fontSize,
     fontWeight,
     color,
+    backgroundColor: backgroundColor === 'transparent' ? 'transparent' : backgroundColor,
+    border: borderWidth !== '0px' ? `${borderWidth} ${borderStyle} ${borderColor}` : 'none',
+    borderRadius,
     fontFamily,
     lineHeight,
     letterSpacing,
-    textAlign,
     textDecoration,
-    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
     padding: `${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft}`,
     cursor: onClick ? 'pointer' : 'default',
+    display: 'inline-block',
+  };
+
+  const containerStyle = {
+    textAlign: textAlign as 'left' | 'center' | 'right',
+    margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}`,
   };
 
   if (isEditing) {
     return (
-      <div style={{ margin: `${marginTop} ${marginRight} ${marginBottom} ${marginLeft}` }}>
-        <div style={{ marginBottom: '8px' }}>
-          <label style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
-            Link Text:
-          </label>
-          <input
-            ref={inputRef}
-            value={editContent}
-            onChange={(e) => setEditContent(e.target.value)}
-            onKeyDown={handleKeyDown}
-            style={{
-              fontSize,
-              fontWeight,
-              color: '#000',
-              fontFamily,
-              padding: '8px 12px',
-              border: 'none',
-              borderRadius: '4px',
-              outline: 'none',
-              width: '100%',
-              background: 'white',
-            }}
-          />
-        </div>
-        <div style={{ marginBottom: '8px' }}>
-          <label style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>
-            Link URL:
-          </label>
-          <input
-            value={editHref}
-            onChange={(e) => setEditHref(e.target.value)}
-            onKeyDown={handleKeyDown}
-            onBlur={handleSave}
-            style={{
-              fontSize: '14px',
-              color: '#000',
-              fontFamily,
-              padding: '8px 12px',
-              border: 'none',
-              borderRadius: '4px',
-              outline: 'none',
-              width: '100%',
-              background: 'white',
-            }}
-          />
-        </div>
+      <div style={containerStyle}>
+        <input
+          ref={inputRef}
+          value={editContent}
+          onChange={(e) => setEditContent(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onBlur={handleSave}
+          style={{
+            ...baseStyle,
+            outline: '2px solid #3b82f6',
+            outlineOffset: '2px',
+            backgroundColor: 'transparent',
+            border: 'none',
+            width: 'auto',
+            minWidth: '80px',
+          }}
+        />
       </div>
     );
   }
 
   return (
-    <Link
-      href={href}
-      style={baseStyle}
-      onClick={handleClick}
-      onDoubleClick={handleDoubleClick}
-    >
-      {content}
-    </Link>
+    <div style={containerStyle}>
+      <Link
+        href={href}
+        style={baseStyle}
+        onClick={handleClick}
+        onDoubleClick={handleDoubleClick}
+      >
+        {content}
+      </Link>
+    </div>
   );
 }

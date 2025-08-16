@@ -14,8 +14,10 @@ interface LinkControlsProps {
 export const LinkControls = ({ block, onUpdate }: LinkControlsProps) => {
   const hasHref = hasProperty(block, 'href');
   const hasTextDecoration = hasProperty(block, 'textDecoration');
+  const showHref = hasHref && (block.type === 'button' || block.type === 'link');
+  const showTextDecoration = hasTextDecoration;
 
-  if (!hasHref && !hasTextDecoration) return null;
+  if (!showHref && !showTextDecoration) return null;
 
   const href = getBlockProperty(block, 'href') || '';
   const textDecoration = getBlockProperty(block, 'textDecoration') || 'none';
@@ -28,9 +30,12 @@ export const LinkControls = ({ block, onUpdate }: LinkControlsProps) => {
 
   return (
     <div className="space-y-3">
-      <Label className="text-xs font-medium">Link Settings</Label>
+      <Label className="text-xs font-medium">
+        {showHref && showTextDecoration ? 'Link Settings' : 
+         showHref ? 'Link URL' : 'Text Decoration'}
+      </Label>
       
-      {hasHref && (
+      {showHref && (
         <div className="space-y-2">
           <Label className="text-xs text-muted-foreground">URL</Label>
           <Input
@@ -43,7 +48,7 @@ export const LinkControls = ({ block, onUpdate }: LinkControlsProps) => {
         </div>
       )}
 
-      {hasTextDecoration && (
+      {showTextDecoration && (
         <div className="space-y-2">
           <Label className="text-xs text-muted-foreground">Text Decoration</Label>
           <Select
