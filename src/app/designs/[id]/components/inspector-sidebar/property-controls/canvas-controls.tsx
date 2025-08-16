@@ -9,8 +9,78 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { LinkToggleButton } from './link-toggle-button';
+
+// Custom clearable input for max width
+const ClearableMaxWidthInput = ({ 
+  value, 
+  onChange, 
+  placeholder = "600",
+  className = ""
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  className?: string;
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [tempValue, setTempValue] = useState('');
+  const lastValidValue = useRef(value);
+
+  // Update last valid value when prop changes and it's not empty
+  if (value !== lastValidValue.current && !isFocused && value.trim() !== '') {
+    lastValidValue.current = value;
+  }
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    // Show just the numeric part for editing
+    const numericValue = value.replace('px', '').replace('%', '');
+    setTempValue(numericValue);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (tempValue === '' || tempValue === undefined) {
+      // If empty, use last valid value
+      onChange(lastValidValue.current);
+    } else {
+      const numValue = Number(tempValue);
+      if (!isNaN(numValue) && numValue > 0) {
+        const newValue = `${numValue}px`;
+        lastValidValue.current = newValue;
+        onChange(newValue);
+      } else {
+        onChange(lastValidValue.current);
+      }
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setTempValue(newValue);
+    
+    // Only update immediately if it's a valid number
+    if (newValue !== '' && !isNaN(Number(newValue)) && Number(newValue) > 0) {
+      const pxValue = `${newValue}px`;
+      onChange(pxValue);
+    }
+  };
+
+  return (
+    <Input
+      type="number"
+      value={isFocused ? tempValue : value.replace('px', '').replace('%', '')}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      className={className}
+      placeholder={placeholder}
+      min="1"
+    />
+  );
+};
 
 interface CanvasControlsProps {
   canvasStyles: {
@@ -64,16 +134,20 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
   };
 
   const maxWidthPresets = [
-    { value: '320px', label: '320px (Small Mobile)' },
-    { value: '375px', label: '375px (Mobile)' },
-    { value: '414px', label: '414px (Large Mobile)' },
-    { value: '480px', label: '480px (Small Tablet)' },
-    { value: '600px', label: '600px (Standard)' },
-    { value: '640px', label: '640px (Wide)' },
-    { value: '768px', label: '768px (Tablet)' },
-    { value: '1024px', label: '1024px (Desktop)' },
-    { value: '100%', label: '100% (Full Width)' },
+    { value: '320px', label: 'Small Mobile (320px)' },
+    { value: '375px', label: 'Mobile (375px)' },
+    { value: '414px', label: 'Large Mobile (414px)' },
+    { value: '480px', label: 'Small Tablet (480px)' },
+    { value: '600px', label: 'Standard (600px)' },
+    { value: '640px', label: 'Wide (640px)' },
+    { value: '768px', label: 'Tablet (768px)' },
+    { value: '1024px', label: 'Desktop (1024px)' },
+    { value: '100%', label: 'Full Width (100%)' },
   ];
+
+  // Check if current maxWidth matches any preset
+  const isCustomMaxWidth = !maxWidthPresets.some(preset => preset.value === canvasStyles.maxWidth);
+  const displayValue = isCustomMaxWidth ? 'custom' : canvasStyles.maxWidth;
 
   const fontFamilyOptions = [
     { value: 'Inter, system-ui, -apple-system, sans-serif', label: 'Inter' },
@@ -103,8 +177,12 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
             <Label className="text-muted-foreground text-xs">Max Width</Label>
             <div className="mt-1 flex items-center gap-2">
               <Select
-                value={canvasStyles.maxWidth}
-                onValueChange={(value) => onUpdate('maxWidth', value)}
+                value={displayValue}
+                onValueChange={(value) => {
+                  if (value !== 'custom') {
+                    onUpdate('maxWidth', value);
+                  }
+                }}
               >
                 <SelectTrigger className="h-8 w-2/3 text-left">
                   <SelectValue />
@@ -115,23 +193,18 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
                       {preset.label}
                     </SelectItem>
                   ))}
+                  {isCustomMaxWidth && (
+                    <SelectItem value="custom" disabled>
+                      Custom ({canvasStyles.maxWidth})
+                    </SelectItem>
+                  )}
                 </SelectContent>
               </Select>
-              <Input
-                type="number"
-                value={canvasStyles.maxWidth.replace('px', '').replace('%', '')}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  // Only apply px if it's a valid number, keep original format for %
-                  if (canvasStyles.maxWidth.includes('%')) {
-                    onUpdate('maxWidth', `${value}%`);
-                  } else {
-                    onUpdate('maxWidth', value ? `${value}px` : '');
-                  }
-                }}
+              <ClearableMaxWidthInput
+                value={canvasStyles.maxWidth}
+                onChange={(value) => onUpdate('maxWidth', value)}
                 className="h-8 w-1/3 font-mono text-xs"
                 placeholder="600"
-                min="1"
               />
             </div>
           </div>

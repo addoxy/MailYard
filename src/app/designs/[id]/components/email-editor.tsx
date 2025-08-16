@@ -66,21 +66,22 @@ export const EmailEditor = () => {
                   renderBlock(block, handleBlockClick, isBlockSelected(block.id))
                 }
               >
-                <div className="space-y-2">
+                <div>
                   {emailBlocks.map((block) => (
-                    <SortableEmailBlock
-                      key={block.id}
-                      id={block.id}
-                      isSelected={isBlockSelected(block.id)}
-                    >
-                      <BlockSelector
-                        blockId={block.id}
+                    <div key={block.id} style={{ display: 'flow-root' }}>
+                      <SortableEmailBlock
+                        id={block.id}
                         isSelected={isBlockSelected(block.id)}
-                        onClick={(multiSelect) => handleBlockClick(block.id, multiSelect)}
                       >
-                        {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
-                      </BlockSelector>
-                    </SortableEmailBlock>
+                        <BlockSelector
+                          blockId={block.id}
+                          isSelected={isBlockSelected(block.id)}
+                          onClick={(multiSelect) => handleBlockClick(block.id, multiSelect)}
+                        >
+                          {renderBlock(block, handleBlockClick, isBlockSelected(block.id))}
+                        </BlockSelector>
+                      </SortableEmailBlock>
+                    </div>
                   ))}
                 </div>
               </DragDropHandler>
