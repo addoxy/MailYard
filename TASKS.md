@@ -1,10 +1,14 @@
 # TASKS.md
 
-This document outlines all frontend development tasks needed to complete the email builder application, organized by development phases.
+This document outlines all development tasks needed to complete the email builder application, organized by frontend and backend components.
 
-## Phase 1: Core Functionality
+## Frontend Tasks
 
-### 1. Home Page Foundation
+This section contains all client-side development tasks for the email builder interface, organized by development phases.
+
+### Phase 1: Core Functionality
+
+#### 1. Home Page Foundation
 
 - [x] Create `src/app/home/page.tsx` - Main gallery page with responsive layout
 - [x] Create `src/app/home/components/design-gallery.tsx` - Grid view for design cards
@@ -21,7 +25,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Start with mock data for designs. Focus on responsive layout that works on both desktop and mobile. Include all filter options from requirements.
 
-### 2. Email Builder Basic Layout
+#### 2. Email Builder Basic Layout
 
 - [x] Update `src/app/designs/[id]/page.tsx` - Implement 3-column resizable layout
 - [x] Update `src/app/designs/[id]/components/resource-sidebar.tsx` - Block library foundation
@@ -31,7 +35,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Focus on layout structure first. Use placeholders for complex functionality.
 
-### 3. Email Block System Foundation
+#### 3. Email Block System Foundation
 
 - [x] Create `src/app/designs/[id]/components/email-blocks/` directory
 - [x] Create `src/app/designs/[id]/components/email-blocks/heading-block.tsx` - Using @react-email/components
@@ -42,7 +46,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: CRITICAL - All blocks must use inline styles only, no Tailwind classes. Base all blocks on @react-email/components.
 
-### 4. Basic Block Library
+#### 4. Basic Block Library
 
 - [x] Create `src/app/designs/[id]/components/resource-sidebar/block-library.tsx`
 - [x] Implement click-to-add functionality for blocks (adds to bottom of email)
@@ -51,7 +55,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Start with 3 basic blocks: heading, text, container. More blocks will be added in Phase 2.
 
-### 5. Basic Block Selection
+#### 5. Basic Block Selection
 
 - [x] Create `src/app/designs/[id]/hooks/use-block-selection.ts` - Single block selection
 - [x] Create `src/app/designs/[id]/components/email-section/block-selector.tsx` - Visual selection indicators
@@ -61,9 +65,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Focus on single block selection first. Multi-select comes in Phase 2.
 
-## Phase 2: Interactive Editing
+### Phase 2: Interactive Editing
 
-### 6. Block Editing System
+#### 6. Block Editing System
 
 - [x] Create `src/app/designs/[id]/components/inspector-sidebar/block-editor.tsx` - Main block editing interface
 - [x] Create `src/app/designs/[id]/components/inspector-sidebar/property-controls/` directory
@@ -75,7 +79,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Focus on core text properties first. Advanced styling comes in Phase 3. Ensure changes update the email canvas in real-time.
 
-### 7. Multi-Select and Bulk Editing
+#### 7. Multi-Select and Bulk Editing
 
 - [x] Update `use-block-selection.ts` - Support multi-select with Ctrl/Cmd + click
 - [x] Create `src/app/designs/[id]/hooks/use-bulk-editing.ts` - Bulk property editing logic
@@ -84,7 +88,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Show "Mixed" when selected blocks have different values for the same property. Build on the block editing system from Task 6.
 
-### 8. Keyboard Shortcuts
+#### 8. Keyboard Shortcuts
 
 - [x] Create `src/hooks/use-keyboard-shortcuts.ts` - Global keyboard shortcut manager
 - [x] Create `src/app/designs/[id]/hooks/use-email-shortcuts.ts` - Email builder specific shortcuts
@@ -92,7 +96,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Use global hook for app-wide shortcuts, feature-specific hook for email builder shortcuts. Undo/Redo moved to separate task.
 
-### 9. Drag & Drop System
+#### 9. Drag & Drop System
 
 - [x] Install and configure dnd-kit
 - [x] Create `src/app/designs/[id]/hooks/use-drag-drop.ts` - Drag and drop logic
@@ -101,7 +105,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Use dnd-kit for all drag-and-drop. Add subtle animations for better UX.
 
-### 10. Complete Block Library
+#### 10. Complete Block Library
 
 - [x] Create the image block
 - [x] Make the image block support rendering the image from a provided link.
@@ -111,7 +115,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Each block must use @react-email/components as foundation with inline styles only.
 
-### 11. Block List and Reordering System
+#### 11. Block List and Reordering System
 
 - [x] Remove the assets section from the resource sidebar
 - [x] Create `src/app/designs/[id]/components/resource-sidebar/block-list.tsx` - Show list of blocks in email canvas
@@ -124,9 +128,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This replaces the asset management with a more useful block outline/layers panel. Focus on smooth drag-and-drop reordering that syncs with the canvas. Use the existing drag-drop infrastructure.
 
-## Phase 3: Export & Preview Systems
+### Phase 3: Export & Preview Systems
 
-### 12. Advanced Style Inspector Panel
+#### 12. Advanced Style Inspector Panel
 
 - [x] Update `src/app/designs/[id]/components/inspector-sidebar/style-controls/` directory
 - [x] Update advanced typography controls: letter spacing
@@ -135,7 +139,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This updates the existing property controls from Task 6. All distance inputs should be numeric only, internally converted to px.
 
-### 12.1. Fix Default Font Weight Bug
+#### 12.1. Fix Default Font Weight Bug
 
 - [x] Fix heading blocks to show proper default font weight (should be bold/600 for headings)
 - [x] Fix text blocks to show proper default font weight (should be normal/400 for text)
@@ -145,7 +149,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Currently heading and text blocks are not showing any default font weight. This makes headings appear the same as regular text, which is incorrect. Also improve the visual spacing in the inspector sidebar.
 
-### 12.2. Fix Canvas Font Family Inheritance Bug
+#### 12.2. Fix Canvas Font Family Inheritance Bug
 
 - [x] Fix the page-level font family selector to actually apply font-family changes to the canvas
 - [x] Implement font-family inheritance system where blocks inherit the canvas font-family by default
@@ -155,7 +159,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Currently the font family selector in the page doesn't change the font-family of blocks. Blocks should inherit the canvas font-family unless they have their own font-family specified.
 
-### 13. Preview System
+#### 13. Preview System
 
 - [x] Create `src/app/designs/[id]/components/email-section/preview-modal.tsx`
 - [x] Implement email client preview tabs: Gmail, Outlook, Apple Mail, Yahoo
@@ -164,7 +168,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Modal should show how email renders across different providers.
 
-### 14. Export Functionality
+#### 14. Export Functionality
 
 - [x] Create `src/app/designs/[id]/components/email-section/export-modal.tsx`
 - [x] Implement React export: clean @react-email/components code generation
@@ -173,9 +177,39 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Ensure exported code maintains inline styling for email compatibility.
 
-## Phase 4: Code Optimization & Technical Debt
+### Phase 4: Styling & UX Enhancement
 
-### 15. Extract Shared Components
+#### 19. Bug Fixes and Refinements
+
+- [x] Update Container padding controls to have separate x and y padding fields instead of single field
+- [x] Convert max-width input to number input (px values only)
+- [x] Add more max-width select options and order from smallest to largest
+- [x] Remove heading level control from heading blocks
+- [x] Fix number inputs in inspector sidebar to allow clearing values without auto-assigning defaults
+- [x] Fix button margin display to show outside selected box (like other elements)
+- [x] Fix top margin effect threshold (currently only works after 16px)
+- [x] Prevent button and link elements from opening new pages when clicked
+- [x] Change "text alignment" to "alignment" for button and image blocks (aligning whole element, not just text)
+
+**Notes**: These are critical UX improvements and bug fixes identified during testing. Focus on making controls more intuitive and consistent across all block types.
+
+#### 20. Block Editing and Styling Enhancements
+
+- [x] Make button and link text editable directly in the block (remove link URL editing from block). It should look like I am editing the block itself and not some other input.
+- [x] Fix margins and padding not working properly for the link block
+- [x] Audit and fix link block properties - many properties don't seem to be working correctly
+- [x] Add text decoration controls (underline, strikethrough, none) to heading, text, button, and link blocks
+- [x] Add background color support to heading, text, and link blocks
+- [x] Add border controls (width, color, style) to heading, text, and link blocks
+- [x] Add border radius controls to heading, text, and link blocks
+- [x] Update bulk editing to only allow numeric values for distance-based inputs and default to "px" units
+- [x] Ensure all block styling is consistent with inline styles for email compatibility
+
+**Notes**: This task focuses on improving the editing experience and adding missing styling options across all text-based blocks. Pay special attention to the link block which seems to have several property issues. All new styling controls must use inline styles only for email client compatibility.
+
+### Phase 5: Code Optimization & Technical Debt
+
+#### 15. Extract Shared Components
 
 - [ ] **CRITICAL**: Extract `ClearableNumberInput` component to `/src/components/clearable-number-input.tsx`
   - [ ] Remove duplicate implementations from `spacing-controls.tsx`, `border-controls.tsx`, and `typography-controls.tsx`
@@ -185,7 +219,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Impact**: Eliminates 246 lines of duplicated code across 3 files
 
-### 16. Create Shared Style Utilities
+#### 16. Create Shared Style Utilities
 
 - [ ] Create `/src/lib/style-utils.ts` with shared utility functions:
   - [ ] `pxToNumber(value: string): number` - Convert "20px" to 20
@@ -197,7 +231,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Impact**: Eliminates utility function duplication and standardizes style handling
 
-### 17. Extract Inline Editing Hook
+#### 17. Extract Inline Editing Hook
 
 - [ ] Create `/src/hooks/use-inline-editing.ts` hook with shared editing behavior:
   - [ ] `handleDoubleClick` - Enter editing mode on double-click
@@ -211,7 +245,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Impact**: Eliminates repeated editing patterns and ensures consistent UX
 
-### 18. Optimize Block Default Styles System
+#### 18. Optimize Block Default Styles System
 
 - [ ] **Remove redundant default styles from block registry**:
   - [ ] Let each block component define its own default styles internally
@@ -228,39 +262,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Impact**: Reduces redundancy in block system and improves maintainability
 
-## Phase 5: Styling & UX Enhancement
+### Phase 6: Advanced Layout Systems
 
-### 19. Bug Fixes and Refinements
-
-- [x] Update Container padding controls to have separate x and y padding fields instead of single field
-- [x] Convert max-width input to number input (px values only)
-- [x] Add more max-width select options and order from smallest to largest
-- [x] Remove heading level control from heading blocks
-- [x] Fix number inputs in inspector sidebar to allow clearing values without auto-assigning defaults
-- [x] Fix button margin display to show outside selected box (like other elements)
-- [x] Fix top margin effect threshold (currently only works after 16px)
-- [x] Prevent button and link elements from opening new pages when clicked
-- [x] Change "text alignment" to "alignment" for button and image blocks (aligning whole element, not just text)
-
-**Notes**: These are critical UX improvements and bug fixes identified during testing. Focus on making controls more intuitive and consistent across all block types.
-
-### 20. Block Editing and Styling Enhancements
-
-- [x] Make button and link text editable directly in the block (remove link URL editing from block). It should look like I am editing the block itself and not some other input.
-- [x] Fix margins and padding not working properly for the link block
-- [x] Audit and fix link block properties - many properties don't seem to be working correctly
-- [x] Add text decoration controls (underline, strikethrough, none) to heading, text, button, and link blocks
-- [x] Add background color support to heading, text, and link blocks
-- [x] Add border controls (width, color, style) to heading, text, and link blocks
-- [x] Add border radius controls to heading, text, and link blocks
-- [x] Update bulk editing to only allow numeric values for distance-based inputs and default to "px" units
-- [x] Ensure all block styling is consistent with inline styles for email compatibility
-
-**Notes**: This task focuses on improving the editing experience and adding missing styling options across all text-based blocks. Pay special attention to the link block which seems to have several property issues. All new styling controls must use inline styles only for email client compatibility.
-
-## Phase 6: Advanced Layout Systems
-
-### 21. Container Block System
+#### 21. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -281,7 +285,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-### 22. Grid Block System
+#### 22. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -295,9 +299,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is an advanced layout system that requires careful implementation for email client compatibility. Focus on using @react-email/components Row and Column as the foundation. Test thoroughly across Gmail, Outlook, Apple Mail, and Yahoo.
 
-## Phase 7: Mobile & Final Polish
+### Phase 7: Mobile & Final Polish
 
-### 23. Mobile Home Page
+#### 23. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -306,7 +310,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-### 24. Animation Polish
+#### 24. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -314,7 +318,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-### 25. Final Polish and Testing
+#### 25. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -325,9 +329,9 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Focus on accessibility, performance, and reliability. Test thoroughly across different environments.
 
-## Future Features
+### Phase 8: Future Features
 
-### 26. Undo/Redo System
+#### 26. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -340,7 +344,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-### 27. Subtle Framer Motion Animations
+#### 27. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
@@ -352,7 +356,7 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
 
-### 28. Fix Export Code Formatting
+#### 28. Fix Export Code Formatting
 
 - [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
 - [ ] Investigate why Shiki syntax highlighting is not applying proper formatting
@@ -362,47 +366,8 @@ This document outlines all frontend development tasks needed to complete the ema
 
 **Notes**: Currently the exported code in the export modal is not being formatted properly, appearing as unformatted strings. The CodeBlock component should handle syntax highlighting and formatting automatically.
 
-## Development Notes
+---
 
-### Dependencies to Install
+## Backend Tasks
 
-```bash
-npm install framer-motion dnd-kit @react-email/components @react-email/render
-```
-
-### File Structure to Create
-
-```
-src/
-├── hooks/                          # Global hooks
-├── app/
-│   ├── home/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   └── atoms.ts
-│   └── designs/[id]/
-│       ├── components/
-│       │   ├── email-blocks/
-│       │   ├── resource-sidebar/
-│       │   ├── email-section/
-│       │   └── inspector-sidebar/
-│       └── hooks/
-```
-
-### Key Technical Considerations
-
-1. **Email Block Inline Styles**: Every email block component MUST use inline styles only for email client compatibility
-2. **State Management**: Use Jotai atoms for global state, useState for component-local state
-3. **Hook Organization**: Global hooks in `src/hooks/`, feature-specific hooks in `[feature]/hooks/`
-4. **Component Splitting**: Break large components (>200 lines) into smaller, focused files
-5. **Accessibility**: Implement proper ARIA labels, keyboard navigation, and WCAG compliance
-6. **Performance**: Use React.memo, useMemo, useCallback where appropriate for smooth drag-and-drop
-7. **Animation**: Use Framer Motion for subtle, performant animations that enhance UX
-
-### Testing Strategy
-
-- Test drag-and-drop functionality across different browsers
-- Verify email exports render correctly in Gmail, Outlook, Apple Mail, Yahoo
-- Test responsive design across mobile and desktop viewports
-- Validate keyboard shortcuts work correctly and don't conflict with browser shortcuts
-- Ensure accessibility features work with screen readers and keyboard navigation
+This section contains all server-side development tasks for the email builder application. Currently, the application is frontend-only with no backend integration planned.
