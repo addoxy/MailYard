@@ -50,7 +50,7 @@ export function ButtonBlock({
     content,
     isSelected,
     onSave: (newContent) => updateBlock(id, { content: newContent }),
-    multiline: false,
+    multiline: true,
   });
 
   const handleClick = (e: React.MouseEvent) => {
@@ -91,8 +91,7 @@ export function ButtonBlock({
   return (
     <div style={containerStyle}>
       {isEditing ? (
-        <input
-          ref={inputRef as React.RefObject<HTMLInputElement>}
+        <textarea
           value={editContent}
           onChange={handleContentChange}
           onKeyDown={handleKeyDown}
@@ -102,10 +101,10 @@ export function ButtonBlock({
             outline: '2px solid #3b82f6',
             outlineOffset: '2px',
             border: 'none',
-            width: `${Math.max(editContent.length * 10 + 64, 140)}px`,
             maxWidth: '100%',
             textAlign: 'center',
           }}
+          className="field-sizing-content resize-none"
         />
       ) : (
         <Button

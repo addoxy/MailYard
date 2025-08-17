@@ -49,7 +49,7 @@ export function HeadingBlock({
     content,
     isSelected,
     onSave: (newContent) => updateBlock(id, { content: newContent }),
-    multiline: false,
+    multiline: true,
   });
 
   const handleClick = () => {
@@ -91,8 +91,8 @@ export function HeadingBlock({
           marginLeft,
         }}
       >
-        <input
-          ref={inputRef as React.RefObject<HTMLInputElement>}
+        <textarea
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
           onChange={handleContentChange}
           onKeyDown={handleKeyDown}
@@ -113,7 +113,9 @@ export function HeadingBlock({
             outline: 'none',
             width: '100%',
             background: 'white',
+            minHeight: 'auto',
           }}
+          className="field-sizing-content resize-none"
         />
       </div>
     );

@@ -106,6 +106,7 @@ export function LinkBlock({
             overflow: 'hidden',
             minHeight: 'auto',
           }}
+          className="field-sizing-content resize-none"
         />
       ) : (
         <Link href={href} style={baseStyle} onClick={handleClick}>

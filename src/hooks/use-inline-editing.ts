@@ -83,13 +83,6 @@ export function useInlineEditing({
 
   const handleContentChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setEditContent(e.target.value);
-
-    // Auto-resize textarea for multiline editing
-    if (multiline && inputRef.current && 'style' in inputRef.current) {
-      const textarea = inputRef.current as HTMLTextAreaElement;
-      textarea.style.height = 'auto';
-      textarea.style.height = textarea.scrollHeight + 'px';
-    }
   };
 
   // Auto-focus and setup when editing starts
@@ -99,13 +92,6 @@ export function useInlineEditing({
 
       if ('select' in inputRef.current) {
         inputRef.current.select();
-      }
-
-      // For textarea, set initial height
-      if (multiline && 'style' in inputRef.current) {
-        const textarea = inputRef.current as HTMLTextAreaElement;
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
       }
     }
   }, [isEditing, multiline]);

@@ -1,9 +1,9 @@
 'use client';
 
 import { Text } from '@react-email/components';
-import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { blockDefaults } from '../../../../../lib/style-utils';
+import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { TextBlockProps } from './types';
 
 const defaults = blockDefaults.text;
@@ -80,16 +80,19 @@ export function TextBlock({
     paddingLeft,
     cursor: onClick ? 'pointer' : 'default',
     whiteSpace: 'pre-wrap' as const,
+    wordWrap: 'break-word' as const,
   };
 
   if (isEditing) {
     return (
-      <div style={{ 
-        marginTop,
-        marginRight,
-        marginBottom,
-        marginLeft
-      }}>
+      <div
+        style={{
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+        }}
+      >
         <textarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
@@ -114,6 +117,7 @@ export function TextBlock({
             width: '100%',
             background: 'white',
           }}
+          className="field-sizing-content resize-none"
         />
       </div>
     );
