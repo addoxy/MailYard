@@ -287,7 +287,7 @@ This section contains all client-side development tasks for the email builder in
   - [x] Props: `value`, `onChange`, `onBlur`, `onKeyDown`, `style`, `className`, `ref`
 - [x] Update all text-based block components to use the shared EditableTextarea:
   - [x] Update `heading-block.tsx` - Replace duplicate textarea with shared component
-  - [x] Update `text-block.tsx` - Replace duplicate textarea with shared component  
+  - [x] Update `text-block.tsx` - Replace duplicate textarea with shared component
   - [x] Update `button-block.tsx` - Replace duplicate textarea with shared component
   - [x] Update `link-block.tsx` - Replace duplicate textarea with shared component
   - [x] Maintain existing functionality and styling behavior for each block type
@@ -336,28 +336,9 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Centralizes style object construction, reduces code duplication, and ensures consistent styling behavior across all email blocks.
 
-#### 27. Integrate validateStyleValue for Property Validation
-
-- [ ] **Add validation to property control components**:
-  - [ ] Update `color-controls.tsx` to validate hex color inputs using validateStyleValue
-  - [ ] Update `border-controls.tsx` to validate color and px values
-  - [ ] Update `spacing-controls.tsx` to validate px values for margins/padding
-  - [ ] Update `typography-controls.tsx` to validate px values for font size and letter spacing
-- [ ] **Implement validation feedback**:
-  - [ ] Add visual feedback for invalid values (red border, error message)
-  - [ ] Prevent invalid values from being applied to blocks
-  - [ ] Show validation errors to users with helpful messages
-  - [ ] Add proper TypeScript types for validation results
-- [ ] **Add validation to block property updates**:
-  - [ ] Validate values before updating block properties in useEmailBlocks hook
-  - [ ] Handle invalid values gracefully without breaking the interface
-  - [ ] Add fallback to default values when validation fails
-
-**Impact**: Improves data quality, prevents invalid styles from breaking email rendering, and provides better user experience with validation feedback.
-
 ### Phase 6: Advanced Layout Systems
 
-#### 28. Container Block System
+#### 27. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -378,7 +359,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-#### 29. Grid Block System
+#### 28. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -394,7 +375,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 7: Mobile & Final Polish
 
-#### 30. Mobile Home Page
+#### 29. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -403,7 +384,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-#### 31. Animation Polish
+#### 30. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -411,7 +392,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-#### 32. Final Polish and Testing
+#### 31. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -421,6 +402,26 @@ This section contains all client-side development tasks for the email builder in
 - [ ] Email client compatibility testing for exports
 
 **Notes**: Focus on accessibility, performance, and reliability. Test thoroughly across different environments.
+
+#### 32. Input Validation for Property Controls
+
+- [ ] **Add real-time input validation to property control components**:
+  - [ ] Update `ColorPicker` component to validate hex color format (#RRGGBB)
+  - [ ] Update `ClearableNumberInput` component to validate numeric px values
+  - [ ] Add validation to font family inputs (reject invalid CSS font values)
+  - [ ] Validate border style selections against allowed CSS values
+- [ ] **Implement visual validation feedback**:
+  - [ ] Add red border styling for invalid inputs
+  - [ ] Show inline error messages for invalid values
+  - [ ] Disable "apply" functionality when inputs are invalid
+  - [ ] Add success/valid state indicators for correct inputs
+- [ ] **Enhance user experience**:
+  - [ ] Prevent submission of invalid values to block properties
+  - [ ] Show helpful validation messages (e.g., "Must be valid hex color like #FF0000")
+  - [ ] Add input format hints and examples in placeholders
+  - [ ] Implement debounced validation to avoid excessive error messaging
+
+**Impact**: Improves user experience by preventing invalid inputs and providing immediate feedback. Ensures only valid CSS values are used in email blocks, preventing rendering issues.
 
 ### Phase 8: Future Features
 
@@ -448,16 +449,6 @@ This section contains all client-side development tasks for the email builder in
 - [ ] Add gentle layout animations for block reordering and selection changes
 
 **Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
-
-#### 35. Fix Export Code Formatting
-
-- [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
-- [ ] Investigate why Shiki syntax highlighting is not applying proper formatting
-- [ ] Ensure code appears with proper indentation and line breaks in export modal
-- [ ] Test both React component export and HTML export formatting
-- [ ] Consider alternative formatting solutions if CodeBlock component continues to have issues
-
-**Notes**: Currently the exported code in the export modal is not being formatted properly, appearing as unformatted strings. The CodeBlock component should handle syntax highlighting and formatting automatically.
 
 ---
 
