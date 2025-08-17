@@ -1,18 +1,23 @@
 'use client';
 
-import { useAtom } from 'jotai';
-import { selectedBlockIdAtom, selectedBlockIdsAtom, emailBlocksAtom, canvasStylesAtom } from '../../atoms';
-import { TextControls } from './property-controls/text-controls';
-import { AlignmentControls } from './property-controls/alignment-controls';
-import { ColorControls } from './property-controls/color-controls';
-import { TypographyControls } from './property-controls/typography-controls';
-import { SpacingControls } from './property-controls/spacing-controls';
-import { BorderControls } from './property-controls/border-controls';
-import { LinkControls } from './property-controls/link-controls';
-import { CanvasControls } from './property-controls/canvas-controls';
-import { BulkEditControls } from './property-controls/bulk-edit-controls';
 import { Separator } from '@/components/ui/separator';
+import { useAtom } from 'jotai';
+import {
+  canvasStylesAtom,
+  emailBlocksAtom,
+  selectedBlockIdAtom,
+  selectedBlockIdsAtom,
+} from '../../atoms';
 import { useBulkEditing } from '../../hooks/use-bulk-editing';
+import { AlignmentControls } from './property-controls/alignment-controls';
+import { BorderControls } from './property-controls/border-controls';
+import { BulkEditControls } from './property-controls/bulk-edit-controls';
+import { CanvasControls } from './property-controls/canvas-controls';
+import { ColorControls } from './property-controls/color-controls';
+import { LinkControls } from './property-controls/link-controls';
+import { SpacingControls } from './property-controls/spacing-controls';
+import { TextControls } from './property-controls/text-controls';
+import { TypographyControls } from './property-controls/typography-controls';
 
 export const BlockEditor = () => {
   const [selectedBlockId] = useAtom(selectedBlockIdAtom);
@@ -21,24 +26,21 @@ export const BlockEditor = () => {
   const [canvasStyles, setCanvasStyles] = useAtom(canvasStylesAtom);
   const { updateBulkProperty, getCommonBlockTypes } = useBulkEditing();
 
-  const selectedBlock = emailBlocks.find(block => block.id === selectedBlockId);
+  const selectedBlock = emailBlocks.find((block) => block.id === selectedBlockId);
   const hasMultipleSelected = selectedBlockIds.length > 1;
 
   // Show canvas controls when no block is selected
   if (!selectedBlock && selectedBlockIds.length === 0) {
     const updateCanvasStyle = (property: string, value: string) => {
-      setCanvasStyles(prev => ({
+      setCanvasStyles((prev) => ({
         ...prev,
-        [property]: value
+        [property]: value,
       }));
     };
 
     return (
       <div className="p-6">
-        <CanvasControls 
-          canvasStyles={canvasStyles} 
-          onUpdate={updateCanvasStyle} 
-        />
+        <CanvasControls canvasStyles={canvasStyles} onUpdate={updateCanvasStyle} />
       </div>
     );
   }
@@ -46,24 +48,19 @@ export const BlockEditor = () => {
   // Handle multi-select
   if (hasMultipleSelected) {
     const blockTypes = getCommonBlockTypes(selectedBlockIds);
-    
+
     return (
       <div className="p-6">
         <div className="border-b pb-4">
-          <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+          <div className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
             Multi-Select
           </div>
-          <div className="text-sm text-foreground mt-1">
+          <div className="text-foreground mt-1 text-sm">
             {selectedBlockIds.length} blocks selected
-            {blockTypes.length > 1 && (
-              <span className="text-muted-foreground ml-1">
-                ({blockTypes.join(', ')})
-              </span>
-            )}
           </div>
         </div>
-        
-        <div className="space-y-6 mt-6">
+
+        <div className="mt-6 space-y-6">
           <BulkEditControls selectedBlockIds={selectedBlockIds} />
         </div>
       </div>
@@ -75,11 +72,9 @@ export const BlockEditor = () => {
     if (hasMultipleSelected) {
       updateBulkProperty(selectedBlockIds, property, value);
     } else {
-      setEmailBlocks(blocks =>
-        blocks.map(block =>
-          block.id === selectedBlockId
-            ? { ...block, [property]: value }
-            : block
+      setEmailBlocks((blocks) =>
+        blocks.map((block) =>
+          block.id === selectedBlockId ? { ...block, [property]: value } : block
         )
       );
     }
@@ -87,101 +82,56 @@ export const BlockEditor = () => {
 
   const renderBlockTypeControls = () => {
     if (!selectedBlock) return null;
-    
+
     switch (selectedBlock.type) {
       case 'heading':
       case 'text':
         return (
           <>
-            <TextControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <TextControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <AlignmentControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <TypographyControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <TypographyControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <ColorControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <BorderControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <SpacingControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
-      
+
       case 'button':
       case 'link':
         return (
           <>
-            <TextControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <TextControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <LinkControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <LinkControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <AlignmentControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <TypographyControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <TypographyControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <ColorControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
             {(selectedBlock.type === 'button' || selectedBlock.type === 'link') && (
               <>
-                <BorderControls 
-                  block={selectedBlock} 
-                  onUpdate={updateBlockProperty} 
-                />
+                <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
                 <Separator className="my-6" />
               </>
             )}
-            <SpacingControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
 
       case 'divider':
         return (
           <>
-            <BorderControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <SpacingControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
 
@@ -190,7 +140,7 @@ export const BlockEditor = () => {
           <>
             <div className="space-y-3">
               <div>
-                <label className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                <label className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                   Image Source
                 </label>
                 <input
@@ -198,11 +148,11 @@ export const BlockEditor = () => {
                   value={('src' in selectedBlock ? selectedBlock.src : '') || ''}
                   onChange={(e) => updateBlockProperty('src', e.target.value)}
                   placeholder="https://example.com/image.jpg"
-                  className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring mt-1 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
               <div>
-                <label className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                <label className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                   Alt Text
                 </label>
                 <input
@@ -210,11 +160,11 @@ export const BlockEditor = () => {
                   value={('alt' in selectedBlock ? selectedBlock.alt : '') || ''}
                   onChange={(e) => updateBlockProperty('alt', e.target.value)}
                   placeholder="Image description"
-                  className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring mt-1 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
               <div>
-                <label className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                <label className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
                   Width
                 </label>
                 <input
@@ -222,25 +172,16 @@ export const BlockEditor = () => {
                   value={('width' in selectedBlock ? selectedBlock.width : '') || ''}
                   onChange={(e) => updateBlockProperty('width', e.target.value)}
                   placeholder="300px"
-                  className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring mt-1 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </div>
             </div>
             <Separator className="my-6" />
-            <AlignmentControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <BorderControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
-            <SpacingControls 
-              block={selectedBlock} 
-              onUpdate={updateBlockProperty} 
-            />
+            <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
 
@@ -253,19 +194,14 @@ export const BlockEditor = () => {
   if (!selectedBlock) return null;
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="space-y-6 p-6">
       <div className="border-b pb-4">
-        <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+        <div className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
           {selectedBlock.type} Block
         </div>
-        <div className="text-sm text-foreground capitalize mt-1">
-          {selectedBlock.type === 'heading' ? `H${('level' in selectedBlock ? selectedBlock.level : '1')} Heading` : selectedBlock.type}
-        </div>
+        <div className="text-foreground mt-1.5 text-sm capitalize">{selectedBlock.type}</div>
       </div>
-      
-      <div className="space-y-6">
-        {renderBlockTypeControls()}
-      </div>
+      <div className="space-y-6">{renderBlockTypeControls()}</div>
     </div>
   );
 };

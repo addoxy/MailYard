@@ -19,7 +19,11 @@ export const LinkToggleButton = ({ mode, onToggle, className }: LinkToggleButton
     <Button
       variant="ghost"
       size="sm"
-      className={cn('size-5 rounded p-0', isActive && '!bg-blue-500 !text-white', className)}
+      className={cn(
+        'hover:!bg-primary/20 size-5 rounded p-0',
+        isActive && '!bg-primary hover:!bg-primary !text-background',
+        className
+      )}
       onClick={onToggle}
     >
       <Scan />

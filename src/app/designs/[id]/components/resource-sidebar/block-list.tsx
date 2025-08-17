@@ -1,5 +1,6 @@
 'use client';
 
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   closestCenter,
   DndContext,
@@ -19,7 +20,6 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { useAtom } from 'jotai';
-import { Layers } from 'lucide-react';
 import { useState } from 'react';
 import { emailBlocksAtom } from '../../atoms';
 import { useBlockSelection } from '../../hooks/use-block-selection';
@@ -57,49 +57,50 @@ export const BlockList = () => {
   };
 
   return (
-    <div className="flex h-[calc(100vh-100px)] flex-col overflow-auto px-4">
-      <div className="mt-6 mb-4 flex items-center gap-2">
-        <Layers className="text-muted-foreground size-4" />
-        <span className="text-muted-foreground font-mono text-xs tracking-wider">BLOCKS</span>
-        <span className="text-muted-foreground bg-muted rounded-sm px-1.5 py-0.5 text-xs">
-          {emailBlocks.length}
-        </span>
-      </div>
+    <ScrollArea className="flex h-[calc(50vh-40px)] flex-col">
+      <div className="px-4">
+        <div className="mt-6 mb-4 flex items-center gap-2">
+          <span className="text-muted-foreground font-mono text-xs tracking-wider">LAYERS</span>
+          <span className="text-muted-foreground bg-muted rounded-sm px-1.5 py-0.5 text-xs">
+            {emailBlocks.length}
+          </span>
+        </div>
 
-      {emailBlocks.length === 0 ? (
-        <p className="text-muted-foreground mt-10 text-center text-sm">
-          No blocks yet. Add blocks from the library above.
-        </p>
-      ) : (
-        <DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
-          modifiers={[restrictToVerticalAxis]}
-        >
-          <SortableContext items={emailBlocks} strategy={verticalListSortingStrategy}>
-            <div className="flex flex-col gap-1">
-              {emailBlocks.map((block) => (
+        {emailBlocks.length === 0 ? (
+          <p className="text-muted-foreground mt-10 text-center text-sm">
+            No blocks yet. Add blocks from the library above.
+          </p>
+        ) : (
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            modifiers={[restrictToVerticalAxis]}
+          >
+            <SortableContext items={emailBlocks} strategy={verticalListSortingStrategy}>
+              <div className="flex flex-col gap-1">
+                {emailBlocks.map((block) => (
+                  <BlockListItem
+                    key={block.id}
+                    block={block}
+                    isSelected={isBlockSelected(block.id)}
+                    onSelect={selectBlock}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+            <DragOverlay>
+              {activeId ? (
                 <BlockListItem
-                  key={block.id}
-                  block={block}
-                  isSelected={isBlockSelected(block.id)}
-                  onSelect={selectBlock}
+                  block={emailBlocks.find((block) => block.id === activeId)!}
+                  isSelected={false}
                 />
-              ))}
-            </div>
-          </SortableContext>
-          <DragOverlay>
-            {activeId ? (
-              <BlockListItem
-                block={emailBlocks.find((block) => block.id === activeId)!}
-                isSelected={false}
-              />
-            ) : null}
-          </DragOverlay>
-        </DndContext>
-      )}
-    </div>
+              ) : null}
+            </DragOverlay>
+          </DndContext>
+        )}
+      </div>
+    </ScrollArea>
   );
 };

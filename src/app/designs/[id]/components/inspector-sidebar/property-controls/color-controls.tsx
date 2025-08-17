@@ -1,7 +1,7 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
 import { ColorPicker } from '@/components/color-picker';
+import { FieldLabel } from '@/components/settings-labels';
 import { EmailBlockType } from '../../email-blocks/types';
 import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 
@@ -20,13 +20,11 @@ export const ColorControls = ({ block, onUpdate }: ColorControlsProps) => {
   const backgroundColor = getBlockProperty(block, 'backgroundColor') || '#ffffff';
 
   return (
-    <div className="space-y-3">
-      <Label className="text-xs font-medium">Colors</Label>
-
-      <div className="grid grid-cols-2 gap-3">
+    <div className="flex flex-col gap-4">
+      <div className="grid gap-4">
         {hasColor && (
-          <div className="space-y-2">
-            <Label className="text-muted-foreground text-xs">Text Color</Label>
+          <div className="flex flex-col gap-2">
+            <FieldLabel text="Text Color" />
             <ColorPicker
               value={color}
               onChange={(value) => onUpdate('color', value)}
@@ -37,8 +35,8 @@ export const ColorControls = ({ block, onUpdate }: ColorControlsProps) => {
         )}
 
         {hasBackgroundColor && (
-          <div className="space-y-2">
-            <Label className="text-muted-foreground text-xs">Background Color</Label>
+          <div className="flex flex-col gap-2">
+            <FieldLabel text="Background Color" />
             <ColorPicker
               value={backgroundColor}
               onChange={(value) => onUpdate('backgroundColor', value)}

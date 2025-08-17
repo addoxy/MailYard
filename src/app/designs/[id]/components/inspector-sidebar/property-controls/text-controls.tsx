@@ -1,6 +1,6 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
+import { SectionLabel } from '@/components/settings-labels';
 import { Textarea } from '@/components/ui/textarea';
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
@@ -18,10 +18,8 @@ export const TextControls = ({ block, onUpdate }: TextControlsProps) => {
   const content = getBlockProperty(block, 'content') || '';
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <Label className="text-xs font-medium">Content</Label>
-      </div>
+    <div className="flex flex-col gap-2">
+      <SectionLabel text="Content" />
       
       <Textarea
         value={content}

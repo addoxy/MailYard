@@ -1,6 +1,6 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
+import { SectionLabel } from '@/components/settings-labels';
 import { Button } from '@/components/ui/button';
 import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'lucide-react';
 import { EmailBlockType } from '../../email-blocks/types';
@@ -25,8 +25,8 @@ export const AlignmentControls = ({ block, onUpdate }: AlignmentControlsProps) =
   const labelText = (isButton || isImage) ? 'Alignment' : 'Text Alignment';
 
   return (
-    <div className="space-y-3">
-      <Label className="text-xs font-medium">{labelText}</Label>
+    <div className="flex flex-col gap-2">
+      <SectionLabel text={labelText} />
       
       <div className="grid grid-cols-4 gap-1">
         <Button

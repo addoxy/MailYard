@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
 import { Input } from '@/components/ui/input';
+import { useRef, useState } from 'react';
 
 interface ClearableNumberInputProps {
   value: number;
@@ -13,14 +13,14 @@ interface ClearableNumberInputProps {
   step?: number | string;
 }
 
-export const ClearableNumberInput = ({ 
-  value, 
-  onChange, 
-  placeholder = "0",
-  className = "",
-  min,
+export const ClearableNumberInput = ({
+  value,
+  onChange,
+  placeholder = '0',
+  className = 'h-8',
+  min = 0,
   max,
-  step
+  step,
 }: ClearableNumberInputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const [tempValue, setTempValue] = useState('');
@@ -55,7 +55,7 @@ export const ClearableNumberInput = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setTempValue(newValue);
-    
+
     // Only update immediately if it's a valid number
     if (newValue !== '' && !isNaN(Number(newValue))) {
       onChange(Number(newValue));

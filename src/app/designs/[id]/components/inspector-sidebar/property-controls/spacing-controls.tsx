@@ -1,12 +1,12 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
+import { ClearableNumberInput } from '@/components/clearable-number-input';
+import { FieldLabel, SectionLabel } from '@/components/settings-labels';
+import { numberToPx, pxToNumber } from '@/lib/style-utils';
 import { useState } from 'react';
 import { EmailBlockType } from '../../email-blocks/types';
-import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
+import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 import { LinkToggleButton } from './link-toggle-button';
-import { ClearableNumberInput } from '@/components/clearable-number-input';
-import { pxToNumber, numberToPx } from '@/lib/style-utils';
 
 interface SpacingControlsProps {
   block: EmailBlockType;
@@ -47,64 +47,48 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
     onUpdate('paddingRight', pxValue);
   };
 
-
   return (
-    <div className="space-y-4">
-      <Label className="text-xs font-medium">Spacing</Label>
-      
+    <div className="flex flex-col gap-6">
       {hasMargin && (
-        <div className="space-y-3">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <Label className="text-xs text-muted-foreground">Margin</Label>
+            <SectionLabel text="Margin" />
             <LinkToggleButton
               mode={marginLinked ? 'linked' : 'unlinked'}
               onToggle={() => setMarginLinked(!marginLinked)}
             />
           </div>
-          
+
           {marginLinked ? (
-            <ClearableNumberInput
-              value={marginTop}
-              onChange={updateLinkedMargin}
-              className="h-8 text-xs"
-              placeholder="0"
-            />
+            <ClearableNumberInput value={marginTop} onChange={updateLinkedMargin} />
           ) : (
             <div className="grid grid-cols-2 gap-2">
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Top</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Top" />
                 <ClearableNumberInput
                   value={marginTop}
                   onChange={(value) => onUpdate('marginTop', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Right</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Right" />
                 <ClearableNumberInput
                   value={marginRight}
                   onChange={(value) => onUpdate('marginRight', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Bottom</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Bottom" />
                 <ClearableNumberInput
                   value={marginBottom}
                   onChange={(value) => onUpdate('marginBottom', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Left</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Left" />
                 <ClearableNumberInput
                   value={marginLeft}
                   onChange={(value) => onUpdate('marginLeft', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
             </div>
@@ -113,58 +97,45 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
       )}
 
       {hasPadding && (
-        <div className="space-y-3">
+        <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <Label className="text-xs text-muted-foreground">Padding</Label>
+            <SectionLabel text="Padding" />
             <LinkToggleButton
               mode={paddingLinked ? 'linked' : 'unlinked'}
               onToggle={() => setPaddingLinked(!paddingLinked)}
             />
           </div>
-          
+
           {paddingLinked ? (
-            <ClearableNumberInput
-              value={paddingTop}
-              onChange={updateLinkedPadding}
-              className="h-8 text-xs"
-              placeholder="0"
-            />
+            <ClearableNumberInput value={paddingTop} onChange={updateLinkedPadding} />
           ) : (
             <div className="grid grid-cols-2 gap-2">
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Top</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Top" />
                 <ClearableNumberInput
                   value={paddingTop}
                   onChange={(value) => onUpdate('paddingTop', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Right</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Right" />
                 <ClearableNumberInput
                   value={paddingRight}
                   onChange={(value) => onUpdate('paddingRight', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Bottom</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Bottom" />
                 <ClearableNumberInput
                   value={paddingBottom}
                   onChange={(value) => onUpdate('paddingBottom', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
-              <div className="space-y-1">
-                <Label className="text-xs text-muted-foreground">Left</Label>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Left" />
                 <ClearableNumberInput
                   value={paddingLeft}
                   onChange={(value) => onUpdate('paddingLeft', numberToPx(value))}
-                  className="h-8 text-xs"
-                  placeholder="0"
                 />
               </div>
             </div>

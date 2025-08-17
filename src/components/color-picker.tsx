@@ -2,7 +2,7 @@
 
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { useCallback, useRef, useState, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface ColorPickerProps {
   value: string;
@@ -14,14 +14,14 @@ interface ColorPickerProps {
   textInputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
-export const ColorPicker = ({ 
-  value, 
-  onChange, 
-  label, 
-  placeholder = "#000000",
+export const ColorPicker = ({
+  value,
+  onChange,
+  label,
+  placeholder = '#000000',
   className,
   textValue,
-  textInputProps
+  textInputProps,
 }: ColorPickerProps) => {
   const [localValue, setLocalValue] = useState(value);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,24 +32,30 @@ export const ColorPicker = ({
   }
 
   // Debounced onChange to reduce rapid updates during dragging
-  const debouncedOnChange = useCallback((newValue: string) => {
-    setLocalValue(newValue);
-    
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    
-    debounceRef.current = setTimeout(() => {
-      onChange(newValue);
-    }, 16); // ~60fps update rate
-  }, [onChange]);
+  const debouncedOnChange = useCallback(
+    (newValue: string) => {
+      setLocalValue(newValue);
+
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+
+      debounceRef.current = setTimeout(() => {
+        onChange(newValue);
+      }, 16); // ~60fps update rate
+    },
+    [onChange]
+  );
 
   // Immediate onChange for text input (no debouncing needed)
-  const handleTextChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    setLocalValue(newValue);
-    onChange(newValue);
-  }, [onChange]);
+  const handleTextChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      setLocalValue(newValue);
+      onChange(newValue);
+    },
+    [onChange]
+  );
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -61,9 +67,9 @@ export const ColorPicker = ({
   }, []);
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn('flex items-center gap-2', className)}>
       <div
-        className="relative flex size-[30px] cursor-pointer items-center justify-center overflow-hidden rounded border"
+        className="relative flex size-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded border"
         style={{ backgroundColor: localValue }}
       >
         <input
@@ -71,7 +77,7 @@ export const ColorPicker = ({
           value={localValue}
           onChange={(e) => debouncedOnChange(e.target.value)}
           className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-          aria-label={label || "Color picker"}
+          aria-label={label || 'Color picker'}
         />
       </div>
       <Input

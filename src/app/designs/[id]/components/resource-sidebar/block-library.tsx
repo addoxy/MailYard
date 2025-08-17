@@ -2,6 +2,7 @@
 
 import { AtomicTooltip } from '@/components/atomic-tooltip';
 import { SearchBar } from '@/components/search-bar';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn, generateBlockId } from '@/lib/utils';
 import { useDraggable } from '@dnd-kit/core';
 import { useAtomValue } from 'jotai';
@@ -120,65 +121,67 @@ export const BlockLibrary = () => {
   })).filter((category) => category.blocks.length > 0);
 
   return (
-    <div className="flex h-[calc(100vh-100px)] flex-col overflow-auto px-4">
-      <span className="text-muted-foreground mt-6 mb-4 font-mono text-xs tracking-wider">
-        BLOCKS
-      </span>
-      <SearchBar
-        placeholder="Search for blocks..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+    <ScrollArea className="flex h-[calc(50vh-40px)] flex-col">
+      <div className="px-4">
+        <div className="h-4 w-full" />
+        <span className="text-muted-foreground font-mono text-xs tracking-wider">BLOCKS</span>
+        <div className="h-2 w-full" />
+        <SearchBar
+          placeholder="Search for blocks..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
 
-      {searchQuery ? (
-        // Show flat list when searching
-        <div className="mt-3 flex flex-col gap-1.5">
-          {filteredBlocks.map((block) => {
-            const Icon = ICON_MAP[block.icon] || Box;
-            return (
-              <BlockLibraryItem
-                key={block.type}
-                icon={Icon}
-                name={block.name}
-                description={block.description}
-                blockType={block.type}
-                onClick={() => handleAddBlock(block.type)}
-              />
-            );
-          })}
-          {filteredBlocks.length === 0 && (
-            <p className="text-muted-foreground mt-4 text-center text-sm">
-              No blocks found matching &quot;{searchQuery}&quot;
-            </p>
-          )}
-        </div>
-      ) : (
-        // Show categorized list when not searching
-        <div className="mt-3 flex flex-col gap-4">
-          {blocksByCategory.map((category) => (
-            <div key={category.id}>
-              <h3 className="text-muted-foreground mb-2 text-xs font-medium tracking-wider uppercase">
-                {category.name}
-              </h3>
-              <div className="flex flex-col gap-1.5">
-                {category.blocks.map((block) => {
-                  const Icon = ICON_MAP[block.icon] || Box;
-                  return (
-                    <BlockLibraryItem
-                      key={block.type}
-                      icon={Icon}
-                      name={block.name}
-                      description={block.description}
-                      blockType={block.type}
-                      onClick={() => handleAddBlock(block.type)}
-                    />
-                  );
-                })}
+        {searchQuery ? (
+          // Show flat list when searching
+          <div className="mt-5 flex flex-col gap-1.5">
+            {filteredBlocks.map((block) => {
+              const Icon = ICON_MAP[block.icon] || Box;
+              return (
+                <BlockLibraryItem
+                  key={block.type}
+                  icon={Icon}
+                  name={block.name}
+                  description={block.description}
+                  blockType={block.type}
+                  onClick={() => handleAddBlock(block.type)}
+                />
+              );
+            })}
+            {filteredBlocks.length === 0 && (
+              <p className="text-muted-foreground mt-4 text-center text-sm">
+                No blocks found matching &quot;{searchQuery}&quot;
+              </p>
+            )}
+          </div>
+        ) : (
+          // Show categorized list when not searching
+          <div className="mt-5 flex flex-col">
+            {blocksByCategory.map((category) => (
+              <div key={category.id}>
+                <h3 className="text-muted-foreground mb-2 text-xs tracking-wider uppercase">
+                  {category.name}
+                </h3>
+                <div className="flex flex-col gap-1.5">
+                  {category.blocks.map((block) => {
+                    const Icon = ICON_MAP[block.icon] || Box;
+                    return (
+                      <BlockLibraryItem
+                        key={block.type}
+                        icon={Icon}
+                        name={block.name}
+                        description={block.description}
+                        blockType={block.type}
+                        onClick={() => handleAddBlock(block.type)}
+                      />
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </ScrollArea>
   );
 };

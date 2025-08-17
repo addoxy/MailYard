@@ -44,7 +44,7 @@ export const numberToLineHeight = (value: number): string => {
  */
 export const validateStyleValue = (value: unknown, type: 'px' | 'color' | 'string'): boolean => {
   if (value === null || value === undefined) return false;
-  
+
   switch (type) {
     case 'px':
       return typeof value === 'string' && /^\d+px$/.test(value);
@@ -70,7 +70,7 @@ export interface StyleProps {
   paddingRight?: string;
   paddingBottom?: string;
   paddingLeft?: string;
-  
+
   // Typography
   fontSize?: string;
   fontWeight?: string;
@@ -80,14 +80,14 @@ export interface StyleProps {
   textAlign?: string;
   textDecoration?: string;
   color?: string;
-  
+
   // Background and borders
   backgroundColor?: string;
   borderWidth?: string;
   borderStyle?: string;
   borderColor?: string;
   borderRadius?: string;
-  
+
   // Layout
   maxWidth?: string;
   width?: string;
@@ -101,7 +101,7 @@ export interface StyleProps {
  */
 export const createBaseStyle = (props: StyleProps): CSSProperties => {
   const style: CSSProperties = {};
-  
+
   // Only include properties that have defined values
   Object.entries(props).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== '') {
@@ -110,11 +110,11 @@ export const createBaseStyle = (props: StyleProps): CSSProperties => {
         // Don't set fontFamily if it's inherit - let it inherit naturally
         return;
       }
-      
+
       (style as Record<string, string>)[key] = value;
     }
   });
-  
+
   return style;
 };
 
@@ -151,6 +151,21 @@ export const borderStyleOptions = [
   { value: 'solid', label: 'Solid' },
   { value: 'dashed', label: 'Dashed' },
   { value: 'dotted', label: 'Dotted' },
+];
+
+/**
+ * Max width presets for responsive design
+ */
+export const maxWidthPresets = [
+  { value: '320px', label: 'Small Mobile (320px)' },
+  { value: '375px', label: 'Mobile (375px)' },
+  { value: '414px', label: 'Large Mobile (414px)' },
+  { value: '480px', label: 'Small Tablet (480px)' },
+  { value: '600px', label: 'Standard (600px)' },
+  { value: '640px', label: 'Wide (640px)' },
+  { value: '768px', label: 'Tablet (768px)' },
+  { value: '1024px', label: 'Desktop (1024px)' },
+  { value: '100%', label: 'Full Width (100%)' },
 ];
 
 /**
@@ -327,8 +342,8 @@ export const blockDefaults = {
  */
 export function createBlockDefaults<T extends keyof typeof blockDefaults>(
   blockType: T,
-  overrides: Partial<typeof blockDefaults[T]> = {}
-): typeof blockDefaults[T] & typeof overrides {
+  overrides: Partial<(typeof blockDefaults)[T]> = {}
+): (typeof blockDefaults)[T] & typeof overrides {
   return {
     ...blockDefaults[blockType],
     ...overrides,

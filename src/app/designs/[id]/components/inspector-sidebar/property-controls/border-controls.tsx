@@ -1,12 +1,18 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ColorPicker } from '@/components/color-picker';
-import { EmailBlockType } from '../../email-blocks/types';
-import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
 import { ClearableNumberInput } from '@/components/clearable-number-input';
-import { pxToNumber, numberToPx, borderStyleOptions } from '@/lib/style-utils';
+import { ColorPicker } from '@/components/color-picker';
+import { FieldLabel, SectionLabel } from '@/components/settings-labels';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { borderStyleOptions, numberToPx, pxToNumber } from '@/lib/style-utils';
+import { EmailBlockType } from '../../email-blocks/types';
+import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 
 interface BorderControlsProps {
   block: EmailBlockType;
@@ -29,37 +35,26 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
   const borderRadiusValue = pxToNumber(borderRadius);
 
   return (
-    <div className="space-y-3">
-      <Label className="text-xs font-medium">Border</Label>
-      
+    <div className="flex flex-col gap-6">
       {hasBorder && (
-        <>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="space-y-2">
-              <Label className="text-xs text-muted-foreground">Width</Label>
-              <div className="flex items-center gap-2">
-                <ClearableNumberInput
-                  value={borderWidthValue}
-                  onChange={(value) => onUpdate('borderWidth', numberToPx(value))}
-                  className="h-8 text-xs flex-1"
-                  placeholder="0"
-                  min={0}
-                />
-                <span className="text-xs text-muted-foreground">px</span>
-              </div>
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col gap-2">
+              <FieldLabel text="Width" />
+              <ClearableNumberInput
+                value={borderWidthValue}
+                onChange={(value) => onUpdate('borderWidth', numberToPx(value))}
+              />
             </div>
-            
-            <div className="space-y-2">
-              <Label className="text-xs text-muted-foreground">Style</Label>
-              <Select
-                value={borderStyle}
-                onValueChange={(value) => onUpdate('borderStyle', value)}
-              >
+
+            <div className="flex flex-col gap-2">
+              <FieldLabel text="Style" />
+              <Select value={borderStyle} onValueChange={(value) => onUpdate('borderStyle', value)}>
                 <SelectTrigger className="h-8">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  {borderStyleOptions.map(option => (
+                  {borderStyleOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}
                     </SelectItem>
@@ -69,8 +64,8 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label className="text-xs text-muted-foreground">Color</Label>
+          <div className="flex flex-col gap-2">
+            <SectionLabel text="Color" />
             <ColorPicker
               value={borderColor}
               onChange={(value) => onUpdate('borderColor', value)}
@@ -78,22 +73,16 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
               placeholder="#cccccc"
             />
           </div>
-        </>
+        </div>
       )}
 
       {hasBorderRadius && (
-        <div className="space-y-2">
-          <Label className="text-xs text-muted-foreground">Border Radius</Label>
-          <div className="flex items-center gap-2">
-            <ClearableNumberInput
-              value={borderRadiusValue}
-              onChange={(value) => onUpdate('borderRadius', numberToPx(value))}
-              className="h-8 text-xs flex-1"
-              placeholder="0"
-              min={0}
-            />
-            <span className="text-xs text-muted-foreground">px</span>
-          </div>
+        <div className="flex flex-col gap-2">
+          <SectionLabel text="Border Radius" />
+          <ClearableNumberInput
+            value={borderRadiusValue}
+            onChange={(value) => onUpdate('borderRadius', numberToPx(value))}
+          />
         </div>
       )}
     </div>

@@ -86,7 +86,7 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
 
   const Icon = getBlockIcon(block.type);
   const blockName = getBlockName(block);
-  const blockContent = getBlockContent(block);
+  const blockContent = getBlockContent(block) || blockName;
 
   const handleClick = () => {
     onSelect?.(block.id);
@@ -133,10 +133,7 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
             isDragging && 'whitespace-nowrap' // Prevent wrapping during drag
           )}
         >
-          <div className="text-foreground truncate text-sm font-medium">{blockName}</div>
-          {blockContent && (
-            <div className="text-muted-foreground line-clamp-1 text-xs">{blockContent}</div>
-          )}
+          {blockContent && <div className="line-clamp-1 text-sm">{blockContent}</div>}
         </div>
       </div>
     </div>

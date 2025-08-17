@@ -1,6 +1,6 @@
 'use client';
 
-import { Label } from '@/components/ui/label';
+import { FieldLabel, SectionLabel } from '@/components/settings-labels';
 import { Input } from '@/components/ui/input';
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
@@ -19,19 +19,16 @@ export const LinkControls = ({ block, onUpdate }: LinkControlsProps) => {
   const href = getBlockProperty(block, 'href') || '';
 
   return (
-    <div className="space-y-3">
-      <Label className="text-xs font-medium">Link URL</Label>
+    <div className="flex flex-col gap-2">
+      <SectionLabel text="Link URL" />
       
-      <div className="space-y-2">
-        <Label className="text-xs text-muted-foreground">URL</Label>
-        <Input
-          type="url"
-          value={href}
-          onChange={(e) => onUpdate('href', e.target.value)}
-          className="h-8 text-xs"
-          placeholder="https://example.com"
-        />
-      </div>
+      <Input
+        type="url"
+        value={href}
+        onChange={(e) => onUpdate('href', e.target.value)}
+        className="h-8 text-xs"
+        placeholder="https://example.com"
+      />
     </div>
   );
 };

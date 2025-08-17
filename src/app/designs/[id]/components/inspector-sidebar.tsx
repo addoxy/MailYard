@@ -1,18 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useAtom } from 'jotai';
 import { Paintbrush, Sparkles } from 'lucide-react';
 import { inspectorViewAtom } from '../atoms';
+import { AIAssistView } from './inspector-sidebar/ai-assist';
 import { BlockEditor } from './inspector-sidebar/block-editor';
-
-const StyleView = () => {
-  return <BlockEditor />;
-};
-
-const AIAssistView = () => {
-  return <div className="text-muted-foreground mt-10 p-4 text-center">Coming soon</div>;
-};
 
 export const InspectorSidebar = () => {
   const [activeView, setActiveView] = useAtom(inspectorViewAtom);
@@ -36,10 +30,10 @@ export const InspectorSidebar = () => {
             </Button>
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto">
-          {activeView === 'style' && <StyleView />}
+        <ScrollArea className="flex-1 overflow-y-auto">
+          {activeView === 'style' && <BlockEditor />}
           {activeView === 'ai' && <AIAssistView />}
-        </div>
+        </ScrollArea>
       </div>
     </aside>
   );
