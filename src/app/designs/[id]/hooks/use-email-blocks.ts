@@ -3,6 +3,7 @@
 import { useAtom } from 'jotai';
 import { emailBlocksAtom } from '../atoms';
 import { EmailBlockType } from '../components/email-blocks/types';
+import { generateBlockId } from '@/lib/utils';
 
 export function useEmailBlocks() {
   const [emailBlocks, setEmailBlocks] = useAtom(emailBlocksAtom);
@@ -38,7 +39,7 @@ export function useEmailBlocks() {
 
     const clonedBlock = {
       ...blockToClone,
-      id: `${blockToClone.type}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
+      id: generateBlockId(blockToClone.type),
     };
 
     const currentIndex = emailBlocks.findIndex(block => block.id === blockId);

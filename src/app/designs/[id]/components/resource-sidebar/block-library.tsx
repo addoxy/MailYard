@@ -2,7 +2,7 @@
 
 import { AtomicTooltip } from '@/components/atomic-tooltip';
 import { SearchBar } from '@/components/search-bar';
-import { cn } from '@/lib/utils';
+import { cn, generateBlockId } from '@/lib/utils';
 import { useDraggable } from '@dnd-kit/core';
 import { useAtomValue } from 'jotai';
 import {
@@ -101,7 +101,7 @@ export const BlockLibrary = () => {
   );
 
   const handleAddBlock = (blockType: string) => {
-    const blockId = `${blockType}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+    const blockId = generateBlockId(blockType);
     const newBlock = createDefaultBlock(blockType, blockId);
 
     if (newBlock) {

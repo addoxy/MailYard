@@ -5,6 +5,7 @@ import { emailBlocksAtom, selectedBlockIdsAtom, selectedBlockIdAtom, canvasStyle
 import { useCallback } from 'react';
 import { createDefaultBlock } from '../components/email-blocks/block-registry';
 import { useAtomValue } from 'jotai';
+import { generateBlockId } from '@/lib/utils';
 
 export function useDragDrop() {
   const [emailBlocks, setEmailBlocks] = useAtom(emailBlocksAtom);
@@ -39,7 +40,7 @@ export function useDragDrop() {
     // Handle library block drops
     if (activeData?.type === 'library-block') {
       const blockType = activeData.blockType;
-      const blockId = `${blockType}-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+      const blockId = generateBlockId(blockType);
       const newBlock = createDefaultBlock(blockType, blockId);
 
       if (newBlock) {
