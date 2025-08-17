@@ -7,7 +7,6 @@ interface DesignPageContentProps {
 }
 
 export function DesignPageContent({ children }: DesignPageContentProps) {
-  // Initialize keyboard shortcuts
   useEmailShortcuts();
 
   return <>{children}</>;

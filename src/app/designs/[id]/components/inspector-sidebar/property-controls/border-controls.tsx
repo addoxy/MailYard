@@ -36,6 +36,7 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
 
   return (
     <div className="flex flex-col gap-6">
+      <SectionLabel text="Border" />
       {hasBorder && (
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-2">

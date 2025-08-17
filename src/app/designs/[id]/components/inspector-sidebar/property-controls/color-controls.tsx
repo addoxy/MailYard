@@ -1,7 +1,7 @@
 'use client';
 
 import { ColorPicker } from '@/components/color-picker';
-import { FieldLabel } from '@/components/settings-labels';
+import { FieldLabel, SectionLabel } from '@/components/settings-labels';
 import { EmailBlockType } from '../../email-blocks/types';
 import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 
@@ -21,6 +21,7 @@ export const ColorControls = ({ block, onUpdate }: ColorControlsProps) => {
 
   return (
     <div className="flex flex-col gap-4">
+      <SectionLabel text="Color" />
       <div className="grid gap-4">
         {hasColor && (
           <div className="flex flex-col gap-2">

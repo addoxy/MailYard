@@ -48,7 +48,8 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
+      <SectionLabel text="Spacing" />
       {hasMargin && (
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">

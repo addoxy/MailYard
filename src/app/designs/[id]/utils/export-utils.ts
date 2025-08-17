@@ -6,7 +6,16 @@ import { EmailBlockType } from '../components/email-blocks/types';
 interface CanvasStyles {
   maxWidth: string;
   backgroundColor: string;
-  padding: string;
+  paddingTop: string;
+  paddingRight: string;
+  paddingBottom: string;
+  paddingLeft: string;
+  marginTop: string;
+  marginBottom: string;
+  borderWidth: string;
+  borderStyle: string;
+  borderColor: string;
+  borderRadius: string;
   fontFamily: string;
 }
 
@@ -29,7 +38,7 @@ ${componentCode}
 function generateImports(blocks: EmailBlockType[]): string {
   const usedComponents = new Set<string>();
 
-  // Add container by default for wrapper
+  // Add Container for the root wrapper
   usedComponents.add('Container');
 
   blocks.forEach((block) => {
@@ -61,11 +70,21 @@ function generateImports(blocks: EmailBlockType[]): string {
 
 function generateComponentBody(blocks: EmailBlockType[], canvasStyles: CanvasStyles): string {
   const containerStyles = {
+    marginTop: canvasStyles.marginTop,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: canvasStyles.marginBottom,
     maxWidth: canvasStyles.maxWidth,
     backgroundColor: canvasStyles.backgroundColor,
-    padding: canvasStyles.padding,
+    paddingTop: canvasStyles.paddingTop,
+    paddingRight: canvasStyles.paddingRight,
+    paddingBottom: canvasStyles.paddingBottom,
+    paddingLeft: canvasStyles.paddingLeft,
+    borderWidth: canvasStyles.borderWidth,
+    borderStyle: canvasStyles.borderStyle,
+    borderColor: canvasStyles.borderColor,
+    borderRadius: canvasStyles.borderRadius,
     fontFamily: canvasStyles.fontFamily,
-    margin: '0 auto',
   };
 
   const containerStylesString = formatStyles(containerStyles);

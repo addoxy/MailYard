@@ -158,29 +158,35 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
             {/* Email Content */}
             <div className="flex-1 overflow-auto">
               <div
-                className="p-4"
                 style={{
+                  maxWidth: canvasStyles.maxWidth,
+                  width: '100%',
+                  height: '100%',
+                  marginTop: canvasStyles.marginTop,
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  marginBottom: canvasStyles.marginBottom,
                   backgroundColor: canvasStyles.backgroundColor,
+                  paddingTop: canvasStyles.paddingTop,
+                  paddingRight: canvasStyles.paddingRight,
+                  paddingBottom: canvasStyles.paddingBottom,
+                  paddingLeft: canvasStyles.paddingLeft,
+                  borderWidth: canvasStyles.borderWidth,
+                  borderStyle: canvasStyles.borderStyle,
+                  borderColor: canvasStyles.borderColor,
+                  borderRadius: canvasStyles.borderRadius,
+                  fontFamily: canvasStyles.fontFamily,
                 }}
               >
-                <div
-                  style={{
-                    backgroundColor: canvasStyles.backgroundColor,
-                    padding: canvasStyles.padding,
-                    fontFamily: canvasStyles.fontFamily,
-                    borderRadius: '8px',
-                  }}
-                >
-                  {emailBlocks.length === 0 ? (
-                    <div className="py-12 text-center">
-                      <Mail className="text-muted-foreground mx-auto mb-3 h-8 w-8" />
-                      <h3 className="mb-2 text-base font-medium">No content yet</h3>
-                      <p className="text-muted-foreground text-sm">Add blocks to see your email</p>
-                    </div>
-                  ) : (
-                    emailBlocks.map((block) => renderEmailBlock(block))
-                  )}
-                </div>
+                {emailBlocks.length === 0 ? (
+                  <div className="py-12 text-center">
+                    <Mail className="text-muted-foreground mx-auto mb-3 h-8 w-8" />
+                    <h3 className="mb-2 text-base font-medium">No content yet</h3>
+                    <p className="text-muted-foreground text-sm">Add blocks to see your email</p>
+                  </div>
+                ) : (
+                  emailBlocks.map((block) => renderEmailBlock(block))
+                )}
               </div>
             </div>
           </div>
@@ -241,33 +247,36 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
         </div>
 
         {/* Email Body */}
-        <div
-          className="flex-1 overflow-auto p-6"
-          style={{
-            backgroundColor: canvasStyles.backgroundColor,
-          }}
-        >
-          <div
-            style={{
-              maxWidth: canvasStyles.maxWidth,
-              backgroundColor: canvasStyles.backgroundColor,
-              padding: canvasStyles.padding,
-              fontFamily: canvasStyles.fontFamily,
-              margin: '0 auto',
-            }}
-          >
-            {emailBlocks.length === 0 ? (
-              <div className="py-12 text-center">
-                <Mail className="text-muted-foreground mx-auto mb-4 h-12 w-12" />
-                <h3 className="mb-2 text-lg font-medium">No content yet</h3>
-                <p className="text-muted-foreground">
-                  Add some blocks to see how your email will look in an inbox
-                </p>
-              </div>
-            ) : (
-              emailBlocks.map((block) => renderEmailBlock(block))
-            )}
-          </div>
+        <div className="flex-1 overflow-auto bg-white">
+          {emailBlocks.length === 0 ? (
+            <div className="flex h-full w-full items-center justify-center">
+              <p className="text-background">
+                Add some blocks to see how your email will look in an inbox
+              </p>
+            </div>
+          ) : (
+            <div
+              style={{
+                marginTop: canvasStyles.marginTop,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                marginBottom: canvasStyles.marginBottom,
+                maxWidth: canvasStyles.maxWidth,
+                backgroundColor: canvasStyles.backgroundColor,
+                paddingTop: canvasStyles.paddingTop,
+                paddingRight: canvasStyles.paddingRight,
+                paddingBottom: canvasStyles.paddingBottom,
+                paddingLeft: canvasStyles.paddingLeft,
+                borderWidth: canvasStyles.borderWidth,
+                borderStyle: canvasStyles.borderStyle,
+                borderColor: canvasStyles.borderColor,
+                borderRadius: canvasStyles.borderRadius,
+                fontFamily: canvasStyles.fontFamily,
+              }}
+            >
+              {emailBlocks.map((block) => renderEmailBlock(block))}
+            </div>
+          )}
         </div>
       </div>
     </div>

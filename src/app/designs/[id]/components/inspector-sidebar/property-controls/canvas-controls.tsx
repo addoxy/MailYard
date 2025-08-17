@@ -11,7 +11,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { fontFamilyOptions, maxWidthPresets, numberToPx, pxToNumber } from '@/lib/style-utils';
+import { Separator } from '@/components/ui/separator';
+import {
+  borderStyleOptions,
+  fontFamilyOptions,
+  maxWidthPresets,
+  numberToPx,
+  pxToNumber,
+} from '@/lib/style-utils';
 import { useRef, useState } from 'react';
 import { ControlsHeader } from './controls-header';
 import { LinkToggleButton } from './link-toggle-button';
@@ -89,51 +96,36 @@ interface CanvasControlsProps {
   canvasStyles: {
     maxWidth: string;
     backgroundColor: string;
-    padding: string;
+    paddingTop: string;
+    paddingRight: string;
+    paddingBottom: string;
+    paddingLeft: string;
+    marginTop: string;
+    marginBottom: string;
+    borderWidth: string;
+    borderStyle: string;
+    borderColor: string;
+    borderRadius: string;
     fontFamily: string;
   };
   onUpdate: (property: string, value: string) => void;
 }
 
 export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) => {
-  const [paddingMode, setPaddingMode] = useState<'single' | 'xy'>('single');
+  const [paddingMode, setPaddingMode] = useState<'single' | 'unlinked'>('single');
 
-  // Parse current padding value
-  const parsePadding = (padding: string) => {
-    const values = padding.split(' ');
-    if (values.length === 1) {
-      // Single value (e.g., "20px")
-      const val = parseInt(values[0].replace('px', '')) || 0;
-      return { x: val, y: val };
-    } else if (values.length === 2) {
-      // Two values: Y X (e.g., "20px 30px")
-      const y = parseInt(values[0].replace('px', '')) || 0;
-      const x = parseInt(values[1].replace('px', '')) || 0;
-      return { x, y };
-    } else if (values.length === 4) {
-      // Four values: top right bottom left
-      const top = parseInt(values[0].replace('px', '')) || 0;
-      const right = parseInt(values[1].replace('px', '')) || 0;
-      const bottom = parseInt(values[2].replace('px', '')) || 0;
-      const left = parseInt(values[3].replace('px', '')) || 0;
-      // Convert to X/Y: if top===bottom and left===right, use those values
-      if (top === bottom && left === right) {
-        return { x: left, y: top };
-      }
-      // Otherwise, use average
-      return { x: (left + right) / 2, y: (top + bottom) / 2 };
-    }
-    return { x: 0, y: 0 };
-  };
+  // Check if all padding values are the same for single mode
+  const allPaddingsSame =
+    canvasStyles.paddingTop === canvasStyles.paddingRight &&
+    canvasStyles.paddingRight === canvasStyles.paddingBottom &&
+    canvasStyles.paddingBottom === canvasStyles.paddingLeft;
 
-  const currentPadding = parsePadding(canvasStyles.padding);
-
-  const updatePaddingX = (x: number) => {
-    onUpdate('padding', `${currentPadding.y}px ${x}px`);
-  };
-
-  const updatePaddingY = (y: number) => {
-    onUpdate('padding', `${y}px ${currentPadding.x}px`);
+  const updateAllPadding = (value: number) => {
+    const pxValue = numberToPx(value);
+    onUpdate('paddingTop', pxValue);
+    onUpdate('paddingRight', pxValue);
+    onUpdate('paddingBottom', pxValue);
+    onUpdate('paddingLeft', pxValue);
   };
 
   // Check if current maxWidth matches any preset
@@ -143,13 +135,16 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
   const displayValue = isCustomMaxWidth ? 'custom' : canvasStyles.maxWidth;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <ControlsHeader title="Canvas Settings" description="Page Layout & Defaults" />
 
+      {/* Layout Section */}
       <div className="flex flex-col gap-4">
+        <SectionLabel text="Layout" />
+
         {/* Max Width */}
         <div className="flex flex-col gap-2">
-          <SectionLabel text="Max Width" />
+          <FieldLabel text="Max Width" />
           <div className="flex items-center gap-2">
             <Select
               value={displayValue}
@@ -183,73 +178,187 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
             />
           </div>
         </div>
+      </div>
+
+      <Separator className="my-2" />
+
+      {/* Spacing Section */}
+      <div className="flex flex-col gap-4">
+        <SectionLabel text="Spacing" />
 
         {/* Padding */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <SectionLabel text="Padding" />
+            <FieldLabel text="Padding" />
             <LinkToggleButton
               mode={paddingMode}
-              onToggle={() => setPaddingMode(paddingMode === 'single' ? 'xy' : 'single')}
+              onToggle={() => setPaddingMode(paddingMode === 'single' ? 'unlinked' : 'single')}
             />
           </div>
 
           {paddingMode === 'single' ? (
             <ClearableNumberInput
-              value={pxToNumber(canvasStyles.padding)}
-              onChange={(value) => onUpdate('padding', numberToPx(value))}
-              placeholder="20"
+              value={allPaddingsSame ? pxToNumber(canvasStyles.paddingTop) : 0}
+              onChange={(value) => updateAllPadding(value)}
+              placeholder="32"
               min={0}
             />
           ) : (
             <div className="grid grid-cols-2 gap-2">
               <div className="flex flex-col gap-1">
-                <FieldLabel text="Left & Right" />
+                <FieldLabel text="Top" />
                 <ClearableNumberInput
-                  value={currentPadding.x}
-                  onChange={(value) => updatePaddingX(value)}
+                  value={pxToNumber(canvasStyles.paddingTop)}
+                  onChange={(value) => onUpdate('paddingTop', numberToPx(value))}
+                  placeholder="32"
+                  min={0}
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <FieldLabel text="Top & Bottom" />
+                <FieldLabel text="Right" />
                 <ClearableNumberInput
-                  value={currentPadding.y}
-                  onChange={(value) => updatePaddingY(value)}
+                  value={pxToNumber(canvasStyles.paddingRight)}
+                  onChange={(value) => onUpdate('paddingRight', numberToPx(value))}
+                  placeholder="32"
+                  min={0}
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Bottom" />
+                <ClearableNumberInput
+                  value={pxToNumber(canvasStyles.paddingBottom)}
+                  onChange={(value) => onUpdate('paddingBottom', numberToPx(value))}
+                  placeholder="32"
+                  min={0}
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <FieldLabel text="Left" />
+                <ClearableNumberInput
+                  value={pxToNumber(canvasStyles.paddingLeft)}
+                  onChange={(value) => onUpdate('paddingLeft', numberToPx(value))}
+                  placeholder="32"
+                  min={0}
                 />
               </div>
             </div>
           )}
         </div>
+
+        {/* Vertical Margin */}
+        <div className="flex flex-col gap-2">
+          <FieldLabel text="Vertical Margin" />
+          <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col gap-1">
+              <FieldLabel text="Top" />
+              <ClearableNumberInput
+                value={pxToNumber(canvasStyles.marginTop)}
+                onChange={(value) => onUpdate('marginTop', numberToPx(value))}
+                placeholder="0"
+                min={0}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <FieldLabel text="Bottom" />
+              <ClearableNumberInput
+                value={pxToNumber(canvasStyles.marginBottom)}
+                onChange={(value) => onUpdate('marginBottom', numberToPx(value))}
+                placeholder="0"
+                min={0}
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Background */}
-      <div className="flex flex-col gap-2">
-        <SectionLabel text="Background Color" />
-        <ColorPicker
-          value={canvasStyles.backgroundColor}
-          onChange={(value) => onUpdate('backgroundColor', value)}
-          placeholder="#ffffff"
-        />
+      <Separator className="my-2" />
+
+      {/* Border Section */}
+      <div className="flex flex-col gap-4">
+        <SectionLabel text="Border" />
+
+        <div className="grid grid-cols-2 gap-2">
+          <div className="flex flex-col gap-2">
+            <FieldLabel text="Width" />
+            <ClearableNumberInput
+              value={pxToNumber(canvasStyles.borderWidth)}
+              onChange={(value) => onUpdate('borderWidth', numberToPx(value))}
+              min={0}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <FieldLabel text="Style" />
+            <Select
+              value={canvasStyles.borderStyle}
+              onValueChange={(value) => onUpdate('borderStyle', value)}
+            >
+              <SelectTrigger className="h-8">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {borderStyleOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <FieldLabel text="Color" />
+          <ColorPicker
+            value={canvasStyles.borderColor}
+            onChange={(value) => onUpdate('borderColor', value)}
+            placeholder="#cccccc"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <FieldLabel text="Border Radius" />
+          <ClearableNumberInput
+            value={pxToNumber(canvasStyles.borderRadius)}
+            onChange={(value) => onUpdate('borderRadius', numberToPx(value))}
+            min={0}
+          />
+        </div>
       </div>
 
-      {/* Font */}
-      <div className="flex flex-col gap-2">
-        <SectionLabel text="Font" />
-        <Select
-          value={canvasStyles.fontFamily}
-          onValueChange={(value) => onUpdate('fontFamily', value)}
-        >
-          <SelectTrigger className="h-8">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {fontFamilyOptions.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <Separator className="my-2" />
+
+      {/* Appearance Section */}
+      <div className="flex flex-col gap-4">
+        <SectionLabel text="Appearance" />
+
+        <div className="flex flex-col gap-2">
+          <FieldLabel text="Background Color" />
+          <ColorPicker
+            value={canvasStyles.backgroundColor}
+            onChange={(value) => onUpdate('backgroundColor', value)}
+            placeholder="#ffffff"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <FieldLabel text="Font Family" />
+          <Select
+            value={canvasStyles.fontFamily}
+            onValueChange={(value) => onUpdate('fontFamily', value)}
+          >
+            <SelectTrigger className="h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {fontFamilyOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
     </div>
   );
