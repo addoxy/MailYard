@@ -299,20 +299,20 @@ This section contains all client-side development tasks for the email builder in
 
 #### 25. Create Reusable Color Picker Component
 
-- [ ] Create `/src/components/color-picker.tsx` - Reusable color picker component with:
-  - [ ] Color preview square with hover states
-  - [ ] Hidden HTML color input for browser color picker
-  - [ ] Text input field for hex color values with validation
-  - [ ] Consistent styling and behavior across all usages
-  - [ ] Props: `value`, `onChange`, `label`, `placeholder`, `className`
-- [ ] Update `color-controls.tsx` to use the shared ColorPicker component:
-  - [ ] Replace duplicate color picker UI with shared component
-  - [ ] Maintain existing functionality for text and background colors
-  - [ ] Ensure proper integration with existing block property system
-- [ ] Update `border-controls.tsx` to use shared ColorPicker for border color
-- [ ] Update `canvas-controls.tsx` to use shared ColorPicker for canvas background
-- [ ] Update `bulk-edit-controls.tsx` to use shared ColorPicker for bulk color editing
-- [ ] Remove all duplicate color picker implementations across property control files
+- [x] Create `/src/components/color-picker.tsx` - Reusable color picker component with:
+  - [x] Color preview square with hover states
+  - [x] Hidden HTML color input for browser color picker
+  - [x] Text input field for hex color values with validation
+  - [x] Consistent styling and behavior across all usages
+  - [x] Props: `value`, `onChange`, `label`, `placeholder`, `className`
+- [x] Update `color-controls.tsx` to use the shared ColorPicker component:
+  - [x] Replace duplicate color picker UI with shared component
+  - [x] Maintain existing functionality for text and background colors
+  - [x] Ensure proper integration with existing block property system
+- [x] Update `border-controls.tsx` to use shared ColorPicker for border color
+- [x] Update `canvas-controls.tsx` to use shared ColorPicker for canvas background
+- [x] Update `bulk-edit-controls.tsx` to use shared ColorPicker for bulk color editing
+- [x] Remove all duplicate color picker implementations across property control files
 
 **Impact**: Eliminates duplicate color picker UI patterns and ensures consistent color selection experience across the application.
 

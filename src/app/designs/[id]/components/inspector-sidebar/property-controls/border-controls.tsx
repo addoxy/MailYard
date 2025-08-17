@@ -1,8 +1,8 @@
 'use client';
 
 import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ColorPicker } from '@/components/color-picker';
 import { EmailBlockType } from '../../email-blocks/types';
 import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
 import { ClearableNumberInput } from '@/components/clearable-number-input';
@@ -71,21 +71,12 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
 
           <div className="space-y-2">
             <Label className="text-xs text-muted-foreground">Color</Label>
-            <div className="flex items-center gap-2">
-              <Input
-                type="color"
-                value={borderColor}
-                onChange={(e) => onUpdate('borderColor', e.target.value)}
-                className="h-8 w-12 p-1 cursor-pointer"
-              />
-              <Input
-                type="text"
-                value={borderColor}
-                onChange={(e) => onUpdate('borderColor', e.target.value)}
-                className="h-8 flex-1 text-xs font-mono"
-                placeholder="#cccccc"
-              />
-            </div>
+            <ColorPicker
+              value={borderColor}
+              onChange={(value) => onUpdate('borderColor', value)}
+              label="Border Color"
+              placeholder="#cccccc"
+            />
           </div>
         </>
       )}

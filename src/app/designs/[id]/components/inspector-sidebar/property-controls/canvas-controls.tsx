@@ -9,6 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { ColorPicker } from '@/components/color-picker';
+import { ClearableNumberInput } from '@/components/clearable-number-input';
+import { pxToNumber, numberToPx } from '@/lib/style-utils';
 import { useState, useRef } from 'react';
 import { LinkToggleButton } from './link-toggle-button';
 
@@ -219,34 +222,43 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
             </div>
 
             {paddingMode === 'single' ? (
-              <Input
-                type="text"
-                value={canvasStyles.padding}
-                onChange={(e) => onUpdate('padding', e.target.value)}
-                className="mt-1 h-8 text-xs"
-                placeholder="20px"
-              />
+              <div className="mt-1 flex items-center gap-2">
+                <ClearableNumberInput
+                  value={pxToNumber(canvasStyles.padding)}
+                  onChange={(value) => onUpdate('padding', numberToPx(value))}
+                  className="h-8 text-xs flex-1"
+                  placeholder="20"
+                  min={0}
+                />
+                <span className="text-xs text-muted-foreground">px</span>
+              </div>
             ) : (
               <div className="mt-1 grid grid-cols-2 gap-2">
                 <div className="space-y-1">
                   <Label className="text-muted-foreground text-xs">X (Left/Right)</Label>
-                  <Input
-                    type="number"
-                    value={currentPadding.x}
-                    onChange={(e) => updatePaddingX(Number(e.target.value) || 0)}
-                    className="h-8 text-xs"
-                    placeholder="0"
-                  />
+                  <div className="flex items-center gap-2">
+                    <ClearableNumberInput
+                      value={currentPadding.x}
+                      onChange={(value) => updatePaddingX(value)}
+                      className="h-8 text-xs flex-1"
+                      placeholder="0"
+                      min={0}
+                    />
+                    <span className="text-xs text-muted-foreground">px</span>
+                  </div>
                 </div>
                 <div className="space-y-1">
                   <Label className="text-muted-foreground text-xs">Y (Top/Bottom)</Label>
-                  <Input
-                    type="number"
-                    value={currentPadding.y}
-                    onChange={(e) => updatePaddingY(Number(e.target.value) || 0)}
-                    className="h-8 text-xs"
-                    placeholder="0"
-                  />
+                  <div className="flex items-center gap-2">
+                    <ClearableNumberInput
+                      value={currentPadding.y}
+                      onChange={(value) => updatePaddingY(value)}
+                      className="h-8 text-xs flex-1"
+                      placeholder="0"
+                      min={0}
+                    />
+                    <span className="text-xs text-muted-foreground">px</span>
+                  </div>
                 </div>
               </div>
             )}
@@ -260,26 +272,12 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
 
         <div className="space-y-2">
           <Label className="text-muted-foreground text-xs">Background Color</Label>
-          <div className="flex items-center gap-2">
-            <div
-              className="relative flex size-[30px] cursor-pointer items-center justify-center overflow-hidden rounded border"
-              style={{ backgroundColor: canvasStyles.backgroundColor }}
-            >
-              <input
-                type="color"
-                value={canvasStyles.backgroundColor}
-                onChange={(e) => onUpdate('backgroundColor', e.target.value)}
-                className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-              />
-            </div>
-            <Input
-              type="text"
-              value={canvasStyles.backgroundColor}
-              onChange={(e) => onUpdate('backgroundColor', e.target.value)}
-              className="h-8 flex-1 font-mono text-xs"
-              placeholder="#ffffff"
-            />
-          </div>
+          <ColorPicker
+            value={canvasStyles.backgroundColor}
+            onChange={(value) => onUpdate('backgroundColor', value)}
+            label="Canvas Background Color"
+            placeholder="#ffffff"
+          />
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { ColorPicker } from '@/components/color-picker';
 import { useBulkEditing } from '../../../hooks/use-bulk-editing';
 
 interface BulkEditControlsProps {
@@ -52,21 +53,17 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
         return (
           <div key={property} className="space-y-2">
             <Label className="text-xs font-medium">Text Color</Label>
-            <div className="flex gap-2">
-              <Input
-                type="color"
-                value={propertyResult.hasMultipleValues ? '#000000' : (displayValue as string || '#000000')}
-                onChange={(e) => handleChange(e.target.value)}
-                className="w-12 h-8 p-1 border rounded"
-              />
-              <Input
-                value={propertyResult.hasMultipleValues ? 'Mixed' : (displayValue as string || '')}
-                onChange={(e) => handleChange(e.target.value)}
-                placeholder="Color value"
-                className={propertyResult.hasMultipleValues ? 'text-muted-foreground flex-1' : 'flex-1'}
-                readOnly={propertyResult.hasMultipleValues}
-              />
-            </div>
+            <ColorPicker
+              value={propertyResult.hasMultipleValues ? '#000000' : (displayValue as string || '#000000')}
+              textValue={propertyResult.hasMultipleValues ? 'Mixed' : undefined}
+              onChange={handleChange}
+              label="Text Color"
+              placeholder="#000000"
+              textInputProps={{
+                className: propertyResult.hasMultipleValues ? 'text-muted-foreground' : '',
+                readOnly: propertyResult.hasMultipleValues
+              }}
+            />
           </div>
         );
 
@@ -74,21 +71,17 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
         return (
           <div key={property} className="space-y-2">
             <Label className="text-xs font-medium">Background Color</Label>
-            <div className="flex gap-2">
-              <Input
-                type="color"
-                value={propertyResult.hasMultipleValues ? '#ffffff' : (displayValue as string || '#ffffff')}
-                onChange={(e) => handleChange(e.target.value)}
-                className="w-12 h-8 p-1 border rounded"
-              />
-              <Input
-                value={propertyResult.hasMultipleValues ? 'Mixed' : (displayValue as string || '')}
-                onChange={(e) => handleChange(e.target.value)}
-                placeholder="Background color"
-                className={propertyResult.hasMultipleValues ? 'text-muted-foreground flex-1' : 'flex-1'}
-                readOnly={propertyResult.hasMultipleValues}
-              />
-            </div>
+            <ColorPicker
+              value={propertyResult.hasMultipleValues ? '#ffffff' : (displayValue as string || '#ffffff')}
+              textValue={propertyResult.hasMultipleValues ? 'Mixed' : undefined}
+              onChange={handleChange}
+              label="Background Color"
+              placeholder="#ffffff"
+              textInputProps={{
+                className: propertyResult.hasMultipleValues ? 'text-muted-foreground' : '',
+                readOnly: propertyResult.hasMultipleValues
+              }}
+            />
           </div>
         );
 
