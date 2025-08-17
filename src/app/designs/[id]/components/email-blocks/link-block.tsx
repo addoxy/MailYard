@@ -81,7 +81,7 @@ export function LinkBlock({
       paddingLeft,
     }),
     cursor: onClick ? 'pointer' : 'default',
-    display: 'inline-block',
+    display: 'block',
   };
 
   const containerStyle = {

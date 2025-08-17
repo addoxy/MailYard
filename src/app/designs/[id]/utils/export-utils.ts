@@ -185,6 +185,7 @@ function generateBlockCode(block: EmailBlockType): string {
 
     case 'link':
       const linkStyles = {
+        display: 'block',
         fontSize: block.fontSize,
         fontWeight: block.fontWeight,
         color: block.color,
