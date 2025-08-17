@@ -340,24 +340,18 @@ This section contains all client-side development tasks for the email builder in
 
 #### 27. Container Block System
 
-- [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
-- [ ] Implement container that can hold and group other email blocks
-- [ ] Support nested drag-and-drop: blocks can be dragged into and out of containers
-- [ ] Add container-specific styling: background colors, borders, padding, margins
+- [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component using @react-email/components Container
+- [ ] Implement container that can hold and group other email blocks with proper nesting support (containers can contain other containers)
+- [ ] Support nested drag-and-drop: blocks can be dragged into/out of containers and reordered within containers
+- [ ] Add container-specific styling controls: background colors, borders, padding, margins
 - [ ] Implement visual indicators when hovering over containers during drag operations
-- [ ] Add container management: expand/collapse, show/hide children in block list
-- [ ] Support container nesting: containers can contain other containers
-- [ ] Add container templates: common layouts like header, footer, sidebar sections
-- [ ] Implement container-specific inspector controls for layout and styling
-- [ ] Ensure email client compatibility with proper HTML structure
-- [ ] **Update BlockList component** - Show block hierarchy for nested blocks (containers with children)
-- [ ] **Update BlockListItem component** - Add indentation and expand/collapse functionality for container children
-- [ ] **Implement tree structure** - Display nested blocks with proper indentation levels
-- [ ] **Add hierarchy navigation** - Allow expanding/collapsing container blocks to show/hide children
-- [ ] **Update drag-and-drop** - Support dragging blocks into/out of containers within the block list
-- [ ] **Visual hierarchy indicators** - Use connecting lines, indentation, or folder-like icons for nested structure
+- [ ] **Normal block editing within containers**: Double-clicking any block inside a container should select it for editing/styling/dragging, just like blocks outside containers
+- [ ] **Update BlockList component** - Show hierarchical tree structure with indentation for container children
+- [ ] **Update BlockListItem component** - Add expand/collapse functionality and proper indentation for nested blocks
+- [ ] **Enhanced drag-and-drop** - Support dragging blocks into/out of containers within both canvas and block list
+- [ ] Ensure email client compatibility with proper HTML structure and inline styles
 
-**Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
+**Notes**: Focus on intuitive editing where blocks inside containers behave exactly like standalone blocks when selected. Users should be able to seamlessly edit, style, and move blocks regardless of their container status.
 
 #### 28. Grid Block System
 
