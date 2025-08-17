@@ -1,6 +1,7 @@
 'use client';
 
 import { Link } from '@react-email/components';
+import { EditableTextarea } from '../../../../../components/editable-textarea';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { blockDefaults } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
@@ -90,7 +91,7 @@ export function LinkBlock({
   return (
     <div style={containerStyle} onDoubleClick={handleDoubleClick}>
       {isEditing ? (
-        <textarea
+        <EditableTextarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
           onChange={handleContentChange}
@@ -102,11 +103,9 @@ export function LinkBlock({
             backgroundColor: 'transparent',
             border: 'none',
             width: '100%',
-            resize: 'none',
             overflow: 'hidden',
             minHeight: 'auto',
           }}
-          className="field-sizing-content resize-none"
         />
       ) : (
         <Link href={href} style={baseStyle} onClick={handleClick}>

@@ -1,6 +1,7 @@
 'use client';
 
 import { Heading } from '@react-email/components';
+import { EditableTextarea } from '../../../../../components/editable-textarea';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { blockDefaults } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
@@ -91,7 +92,7 @@ export function HeadingBlock({
           marginLeft,
         }}
       >
-        <textarea
+        <EditableTextarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
           onChange={handleContentChange}
@@ -109,13 +110,8 @@ export function HeadingBlock({
             paddingRight,
             paddingBottom,
             paddingLeft,
-            border: 'none',
-            outline: 'none',
-            width: '100%',
             background: 'white',
-            minHeight: 'auto',
           }}
-          className="field-sizing-content resize-none"
         />
       </div>
     );

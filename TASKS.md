@@ -276,7 +276,28 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Text decorations should be part of the general typography system, not specific to links. This makes the styling system more consistent and allows all text-based blocks to have text decoration options. The editing mode fixes ensure better UX when editing block content inline.
 
-#### 24. Create Reusable Color Picker Component
+#### 24. Create Reusable Editable Textarea Component
+
+- [x] Create `/src/components/editable-textarea.tsx` - Reusable textarea component for block editing with:
+  - [x] Consistent styling across all text-based blocks (heading, text, button, link)
+  - [x] Auto-resize functionality using `field-sizing-content` class
+  - [x] Proper style inheritance from parent block (font properties, colors, spacing)
+  - [x] Standard event handling props: `onBlur`, `onKeyDown`, `onChange`
+  - [x] Ref forwarding for focus management
+  - [x] Props: `value`, `onChange`, `onBlur`, `onKeyDown`, `style`, `className`, `ref`
+- [x] Update all text-based block components to use the shared EditableTextarea:
+  - [x] Update `heading-block.tsx` - Replace duplicate textarea with shared component
+  - [x] Update `text-block.tsx` - Replace duplicate textarea with shared component  
+  - [x] Update `button-block.tsx` - Replace duplicate textarea with shared component
+  - [x] Update `link-block.tsx` - Replace duplicate textarea with shared component
+  - [x] Maintain existing functionality and styling behavior for each block type
+  - [x] Ensure proper style inheritance and override patterns work correctly
+- [x] Remove all duplicate textarea implementations from individual block files
+- [x] Test that editing behavior remains consistent across all block types after refactoring
+
+**Impact**: Eliminates ~60 lines of duplicated textarea code across 4 block components and ensures consistent editing experience.
+
+#### 25. Create Reusable Color Picker Component
 
 - [ ] Create `/src/components/color-picker.tsx` - Reusable color picker component with:
   - [ ] Color preview square with hover states
@@ -295,7 +316,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Eliminates duplicate color picker UI patterns and ensures consistent color selection experience across the application.
 
-#### 25. Integrate createBaseStyle Utility in Email Blocks
+#### 26. Integrate createBaseStyle Utility in Email Blocks
 
 - [ ] **Update all email block components** to use `createBaseStyle()` from style-utils:
   - [ ] Update `heading-block.tsx` - Replace manual baseStyle object with createBaseStyle()
@@ -315,7 +336,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Impact**: Centralizes style object construction, reduces code duplication, and ensures consistent styling behavior across all email blocks.
 
-#### 26. Integrate validateStyleValue for Property Validation
+#### 27. Integrate validateStyleValue for Property Validation
 
 - [ ] **Add validation to property control components**:
   - [ ] Update `color-controls.tsx` to validate hex color inputs using validateStyleValue
@@ -336,7 +357,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 6: Advanced Layout Systems
 
-#### 27. Container Block System
+#### 28. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component
 - [ ] Implement container that can hold and group other email blocks
@@ -357,7 +378,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex layout system that enables advanced email structures. Focus on intuitive drag-and-drop behavior and clear visual feedback. Use @react-email/components Container as the foundation. The block hierarchy functionality from Task 11 will be implemented here once containers are available.
 
-#### 28. Grid Block System
+#### 29. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -373,7 +394,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 7: Mobile & Final Polish
 
-#### 29. Mobile Home Page
+#### 30. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -382,7 +403,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-#### 30. Animation Polish
+#### 31. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -390,7 +411,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-#### 31. Final Polish and Testing
+#### 32. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -403,7 +424,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 8: Future Features
 
-#### 32. Undo/Redo System
+#### 33. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -416,7 +437,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-#### 33. Subtle Framer Motion Animations
+#### 34. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
@@ -428,7 +449,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Focus on performance and subtlety. Animations should enhance UX without being distracting or impacting performance. Use transform and opacity changes primarily, avoid animating layout properties when possible.
 
-#### 34. Fix Export Code Formatting
+#### 35. Fix Export Code Formatting
 
 - [ ] Fix CodeBlock component to properly format exported React TSX and HTML code
 - [ ] Investigate why Shiki syntax highlighting is not applying proper formatting

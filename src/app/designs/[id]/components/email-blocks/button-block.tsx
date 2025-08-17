@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@react-email/components';
+import { EditableTextarea } from '../../../../../components/editable-textarea';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
 import { blockDefaults } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
@@ -91,7 +92,8 @@ export function ButtonBlock({
   return (
     <div style={containerStyle}>
       {isEditing ? (
-        <textarea
+        <EditableTextarea
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
           onChange={handleContentChange}
           onKeyDown={handleKeyDown}
@@ -104,7 +106,6 @@ export function ButtonBlock({
             maxWidth: '100%',
             textAlign: 'center',
           }}
-          className="field-sizing-content resize-none"
         />
       ) : (
         <Button
