@@ -1,7 +1,7 @@
 'use client';
 
 import { Hr } from '@react-email/components';
-import { blockDefaults } from '../../../../../lib/style-utils';
+import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
 import { DividerBlockProps } from './types';
 
 const defaults = blockDefaults.divider;
@@ -27,14 +27,16 @@ export function DividerBlock({
   };
 
   const baseStyle = {
-    width,
-    height,
+    ...createBaseStyle({
+      width,
+      height,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+    }),
     border: 'none',
     borderTop: `${height} ${borderStyle} ${borderColor}`,
-    marginTop,
-    marginRight,
-    marginBottom,
-    marginLeft,
     cursor: onClick ? 'pointer' : 'default',
     backgroundColor: 'transparent',
   };

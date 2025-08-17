@@ -318,21 +318,21 @@ This section contains all client-side development tasks for the email builder in
 
 #### 26. Integrate createBaseStyle Utility in Email Blocks
 
-- [ ] **Update all email block components** to use `createBaseStyle()` from style-utils:
-  - [ ] Update `heading-block.tsx` - Replace manual baseStyle object with createBaseStyle()
-  - [ ] Update `text-block.tsx` - Replace manual baseStyle object with createBaseStyle()
-  - [ ] Update `button-block.tsx` - Replace manual baseStyle object with createBaseStyle()
-  - [ ] Update `link-block.tsx` - Replace manual baseStyle object with createBaseStyle()
-  - [ ] Update `divider-block.tsx` - Replace manual baseStyle object with createBaseStyle()
-  - [ ] Update `image-block.tsx` - Replace manual style objects with createBaseStyle()
-- [ ] **Standardize style property handling**:
-  - [ ] Use consistent prop destructuring patterns across all blocks
-  - [ ] Handle transparent/default values consistently using createBaseStyle logic
-  - [ ] Ensure border construction logic is centralized in createBaseStyle
-- [ ] **Test style functionality** after integration:
-  - [ ] Verify all existing styling works correctly after refactoring
-  - [ ] Test edge cases like transparent backgrounds, zero borders, inherit font-family
-  - [ ] Ensure email export still generates correct inline styles
+- [x] **Update all email block components** to use `createBaseStyle()` from style-utils:
+  - [x] Update `heading-block.tsx` - Replace manual baseStyle object with createBaseStyle()
+  - [x] Update `text-block.tsx` - Replace manual baseStyle object with createBaseStyle()
+  - [x] Update `button-block.tsx` - Replace manual baseStyle object with createBaseStyle()
+  - [x] Update `link-block.tsx` - Replace manual baseStyle object with createBaseStyle()
+  - [x] Update `divider-block.tsx` - Replace manual baseStyle object with createBaseStyle()
+  - [x] Update `image-block.tsx` - Replace manual style objects with createBaseStyle()
+- [x] **Standardize style property handling**:
+  - [x] Use consistent prop destructuring patterns across all blocks
+  - [x] Handle transparent/default values consistently using createBaseStyle logic
+  - [x] Ensure border construction logic is centralized in createBaseStyle
+- [x] **Test style functionality** after integration:
+  - [x] Verify all existing styling works correctly after refactoring
+  - [x] Test edge cases like transparent backgrounds, zero borders, inherit font-family
+  - [x] Ensure email export still generates correct inline styles
 
 **Impact**: Centralizes style object construction, reduces code duplication, and ensures consistent styling behavior across all email blocks.
 

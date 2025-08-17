@@ -1,6 +1,6 @@
 import { Container, Img } from '@react-email/components';
 import { Image } from 'lucide-react';
-import { blockDefaults } from '../../../../../lib/style-utils';
+import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
 import { ImageBlockProps } from './types';
 
 const defaults = blockDefaults.image;
@@ -34,23 +34,29 @@ export function ImageBlock({
   };
 
   const containerStyle = {
-    textAlign,
-    marginTop,
-    marginRight,
-    marginBottom,
-    marginLeft,
-    paddingTop,
-    paddingRight,
-    paddingBottom,
-    paddingLeft,
+    ...createBaseStyle({
+      textAlign,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+      paddingLeft,
+    }),
     cursor: onClick ? 'pointer' : 'default',
   };
 
   const imageStyle = {
-    width,
+    ...createBaseStyle({
+      width,
+      borderWidth,
+      borderColor,
+      borderStyle,
+      borderRadius,
+    }),
     height: height !== 'auto' ? height : undefined,
-    border: `${borderWidth} ${borderStyle} ${borderColor}`,
-    borderRadius,
     display: 'block',
     maxWidth: '100%',
   };

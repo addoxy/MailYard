@@ -3,7 +3,7 @@
 import { Link } from '@react-email/components';
 import { EditableTextarea } from '../../../../../components/editable-textarea';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
-import { blockDefaults } from '../../../../../lib/style-utils';
+import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { LinkBlockProps } from './types';
 
@@ -62,20 +62,24 @@ export function LinkBlock({
   };
 
   const baseStyle = {
-    fontSize,
-    fontWeight,
-    color,
-    backgroundColor: backgroundColor === 'transparent' ? 'transparent' : backgroundColor,
-    border: borderWidth !== '0px' ? `${borderWidth} ${borderStyle} ${borderColor}` : 'none',
-    borderRadius,
-    fontFamily,
-    lineHeight,
-    letterSpacing,
-    textDecoration,
-    paddingTop,
-    paddingRight,
-    paddingBottom,
-    paddingLeft,
+    ...createBaseStyle({
+      fontSize,
+      fontWeight,
+      color,
+      backgroundColor,
+      borderWidth,
+      borderColor,
+      borderStyle,
+      borderRadius,
+      fontFamily,
+      lineHeight,
+      letterSpacing,
+      textDecoration,
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+      paddingLeft,
+    }),
     cursor: onClick ? 'pointer' : 'default',
     display: 'inline-block',
   };

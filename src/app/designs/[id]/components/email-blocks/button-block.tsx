@@ -3,7 +3,7 @@
 import { Button } from '@react-email/components';
 import { EditableTextarea } from '../../../../../components/editable-textarea';
 import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
-import { blockDefaults } from '../../../../../lib/style-utils';
+import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { ButtonBlockProps } from './types';
 
@@ -62,21 +62,25 @@ export function ButtonBlock({
   };
 
   const baseStyle = {
-    fontSize,
-    fontWeight,
-    color,
-    backgroundColor,
-    border: `${borderWidth} ${borderStyle} ${borderColor}`,
-    borderRadius,
-    fontFamily,
-    lineHeight,
-    letterSpacing,
-    textDecoration,
-    textAlign,
-    paddingTop,
-    paddingRight,
-    paddingBottom,
-    paddingLeft,
+    ...createBaseStyle({
+      fontSize,
+      fontWeight,
+      color,
+      backgroundColor,
+      borderWidth,
+      borderColor,
+      borderStyle,
+      borderRadius,
+      fontFamily,
+      lineHeight,
+      letterSpacing,
+      textDecoration,
+      textAlign,
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+      paddingLeft,
+    }),
     cursor: onClick ? 'pointer' : 'default',
     display: 'inline-block',
   };
@@ -103,8 +107,9 @@ export function ButtonBlock({
             outline: '2px solid #3b82f6',
             outlineOffset: '2px',
             border: 'none',
-            maxWidth: '100%',
             textAlign: 'center',
+            minWidth: 'auto',
+            width: 'auto',
           }}
         />
       ) : (
