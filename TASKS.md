@@ -340,17 +340,16 @@ This section contains all client-side development tasks for the email builder in
 
 #### 27. Image Resizing Functionality
 
-- [ ] Create image resizing controls in `src/app/designs/[id]/components/inspector-sidebar/property-controls/image-controls.tsx`
-- [ ] Add width and height input controls for images with number inputs (px values)
-- [ ] Implement aspect ratio preservation toggle - when enabled, changing width automatically adjusts height to maintain image proportions
-- [ ] Add preset size options: small (200px), medium (400px), large (600px), and custom size input
-- [ ] Create aspect ratio lock/unlock toggle button with visual indicator (chain link icon)
-- [ ] Implement "Fit to container" option that sets width to 100% and height to auto
-- [ ] Add validation to prevent images from being resized to unreasonable dimensions (min: 10px, max: 800px)
-- [ ] Update `image-block.tsx` to support width and height style properties
-- [ ] Ensure resized images maintain email client compatibility with inline styles
-- [ ] Add real-time preview of size changes in the email canvas
-- [ ] Handle edge cases: images with no intrinsic dimensions, broken image URLs
+- [x] Create image resizing controls in `src/app/designs/[id]/components/inspector-sidebar/property-controls/image-controls.tsx`
+- [x] Add width and height input controls for images with number inputs (px values)
+- [x] Implement aspect ratio preservation toggle - when enabled, changing width automatically adjusts height to maintain image proportions
+- [x] Add preset size options: small (200px), medium (400px), large (600px), and custom size input
+- [x] Create aspect ratio lock/unlock toggle button with visual indicator (chain link icon)
+- [x] Implement "Fit to container" option that sets width to 100% and height to auto
+- [x] Update `image-block.tsx` to support width and height style properties
+- [x] Ensure resized images maintain email client compatibility with inline styles
+- [x] Add real-time preview of size changes in the email canvas
+- [x] Handle edge cases: images with no intrinsic dimensions, broken image URLs
 
 **Notes**: Focus on intuitive controls that make it easy to resize images while maintaining their quality and aspect ratios. Include validation to prevent invalid sizes that could break email layouts.
 

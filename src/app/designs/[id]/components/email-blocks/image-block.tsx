@@ -35,7 +35,6 @@ export function ImageBlock({
 
   const containerStyle = {
     ...createBaseStyle({
-      textAlign,
       marginTop,
       marginRight,
       marginBottom,
@@ -45,7 +44,20 @@ export function ImageBlock({
       paddingBottom,
       paddingLeft,
     }),
-    cursor: onClick ? 'pointer' : 'default',
+    display: 'block',
+  };
+
+  // Create proper alignment styles for the image
+  const getImageAlignment = () => {
+    switch (textAlign) {
+      case 'center':
+        return { marginLeft: 'auto', marginRight: 'auto' };
+      case 'right':
+        return { marginLeft: 'auto', marginRight: '0' };
+      case 'left':
+      default:
+        return { marginLeft: '0', marginRight: 'auto' };
+    }
   };
 
   const imageStyle = {
@@ -56,14 +68,16 @@ export function ImageBlock({
       borderStyle,
       borderRadius,
     }),
+    ...getImageAlignment(),
     height: height !== 'auto' ? height : undefined,
     display: 'block',
     maxWidth: '100%',
+    boxSizing: 'border-box' as const,
   };
 
   const placeholderStyle = {
-    width,
-    height: height !== 'auto' ? height : '200px',
+    width: width,
+    height: '200px',
     border: '2px dashed #e5e7eb',
     borderRadius,
     display: 'flex',
@@ -76,23 +90,28 @@ export function ImageBlock({
     flexDirection: 'column' as const,
     gap: '8px',
     transition: 'all 0.2s ease',
+    boxSizing: 'border-box' as const,
   };
 
   return (
-    <Container style={containerStyle} onClick={handleClick}>
+    <>
       {src ? (
-        <Img src={src} alt={alt} style={imageStyle} />
+        <Container style={containerStyle} onClick={handleClick}>
+          <Img src={src} alt={alt} style={imageStyle} />
+        </Container>
       ) : (
-        <div style={placeholderStyle}>
-          <Image aria-label="Image placeholder icon" />
-          <div>
-            <div style={{ fontWeight: '500', marginBottom: '4px' }}>No image URL provided</div>
-            <div style={{ fontSize: '12px', opacity: 0.7 }}>
-              Add an image URL to display the image
+        <div style={containerStyle}>
+          <div style={placeholderStyle}>
+            <Image aria-label="Image placeholder icon" />
+            <div>
+              <div style={{ fontWeight: '500', marginBottom: '4px' }}>No image URL provided</div>
+              <div style={{ fontSize: '12px', opacity: 0.7 }}>
+                Add an image URL to display the image
+              </div>
             </div>
           </div>
         </div>
       )}
-    </Container>
+    </>
   );
 }

@@ -318,7 +318,7 @@ export const blockDefaults = {
     alt: 'Image',
     width: '100%',
     height: 'auto',
-    textAlign: 'center' as const,
+    textAlign: 'left' as const,
     borderColor: '#e5e7eb',
     borderRadius: '8px',
     borderWidth: '0px',

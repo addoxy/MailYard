@@ -10,11 +10,13 @@ import {
 } from '../../atoms';
 import { useBulkEditing } from '../../hooks/use-bulk-editing';
 import { getBlockDisplayName, getBlockIcon } from '../email-blocks/block-icons';
+import { ImageBlockProps } from '../email-blocks/types';
 import { AlignmentControls } from './property-controls/alignment-controls';
 import { BorderControls } from './property-controls/border-controls';
 import { BulkEditControls } from './property-controls/bulk-edit-controls';
 import { CanvasControls } from './property-controls/canvas-controls';
 import { ColorControls } from './property-controls/color-controls';
+import { ImageControls } from './property-controls/image-controls';
 import { LinkControls } from './property-controls/link-controls';
 import { SpacingControls } from './property-controls/spacing-controls';
 import { TextControls } from './property-controls/text-controls';
@@ -136,44 +138,7 @@ export const BlockEditor = () => {
       case 'image':
         return (
           <>
-            <div className="space-y-3">
-              <div>
-                <label className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-                  Image Source
-                </label>
-                <input
-                  type="url"
-                  value={('src' in selectedBlock ? selectedBlock.src : '') || ''}
-                  onChange={(e) => updateBlockProperty('src', e.target.value)}
-                  placeholder="https://example.com/image.jpg"
-                  className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring mt-1 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                />
-              </div>
-              <div>
-                <label className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-                  Alt Text
-                </label>
-                <input
-                  type="text"
-                  value={('alt' in selectedBlock ? selectedBlock.alt : '') || ''}
-                  onChange={(e) => updateBlockProperty('alt', e.target.value)}
-                  placeholder="Image description"
-                  className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring mt-1 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                />
-              </div>
-              <div>
-                <label className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
-                  Width
-                </label>
-                <input
-                  type="text"
-                  value={('width' in selectedBlock ? selectedBlock.width : '') || ''}
-                  onChange={(e) => updateBlockProperty('width', e.target.value)}
-                  placeholder="300px"
-                  className="border-input bg-background ring-offset-background placeholder:text-muted-foreground focus-visible:ring-ring mt-1 w-full rounded-md border px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
-                />
-              </div>
-            </div>
+            <ImageControls block={selectedBlock as ImageBlockProps} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
