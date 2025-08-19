@@ -20,7 +20,6 @@ import {
   pxToNumber,
 } from '@/lib/style-utils';
 import { useRef, useState } from 'react';
-import { ControlsHeader } from './controls-header';
 import { LinkToggleButton } from './link-toggle-button';
 
 const ClearableMaxWidthInput = ({
@@ -136,7 +135,11 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
 
   return (
     <div className="flex flex-col gap-4">
-      <ControlsHeader title="Canvas Settings" description="Page Layout & Defaults" />
+      <div className="-mx-6 flex h-16 items-center border-b px-6">
+        <span className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+          Canvas Settings
+        </span>
+      </div>
 
       {/* Layout Section */}
       <div className="flex flex-col gap-4">

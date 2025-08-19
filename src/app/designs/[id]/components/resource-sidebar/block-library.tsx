@@ -6,19 +6,11 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn, generateBlockId } from '@/lib/utils';
 import { useDraggable } from '@dnd-kit/core';
 import { useAtomValue } from 'jotai';
-import {
-  ALargeSmall,
-  Box,
-  Heading,
-  Image,
-  Link,
-  LucideIcon,
-  Minus,
-  MousePointer,
-} from 'lucide-react';
+import { Box, LucideIcon } from 'lucide-react';
 import { useState } from 'react';
 import { canvasStylesAtom } from '../../atoms';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
+import { BLOCK_ICON_MAP } from '../email-blocks/block-icons';
 import {
   BLOCK_CATEGORIES,
   BLOCK_DEFINITIONS,
@@ -80,15 +72,6 @@ const BlockLibraryItem = ({
   );
 };
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Heading: Heading,
-  Type: ALargeSmall,
-  Box: Box,
-  MousePointer: MousePointer,
-  Link: Link,
-  Minus: Minus,
-  Image: Image,
-};
 
 export const BlockLibrary = () => {
   const { addBlock } = useEmailBlocks();
@@ -136,7 +119,7 @@ export const BlockLibrary = () => {
           // Show flat list when searching
           <div className="mt-5 flex flex-col gap-1.5">
             {filteredBlocks.map((block) => {
-              const Icon = ICON_MAP[block.icon] || Box;
+              const Icon = BLOCK_ICON_MAP[block.icon] || Box;
               return (
                 <BlockLibraryItem
                   key={block.type}
@@ -164,7 +147,7 @@ export const BlockLibrary = () => {
                 </h3>
                 <div className="flex flex-col gap-1.5">
                   {category.blocks.map((block) => {
-                    const Icon = ICON_MAP[block.icon] || Box;
+                    const Icon = BLOCK_ICON_MAP[block.icon] || Box;
                     return (
                       <BlockLibraryItem
                         key={block.type}

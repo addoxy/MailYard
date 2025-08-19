@@ -3,15 +3,8 @@
 import { cn } from '@/lib/utils';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import {
-  GripVertical,
-  Heading1,
-  Image,
-  Link,
-  Minus,
-  RectangleHorizontal,
-  Type,
-} from 'lucide-react';
+import { GripVertical } from 'lucide-react';
+import { getBlockDisplayName, getBlockIcon } from '../email-blocks/block-icons';
 import { EmailBlockType } from '../email-blocks/types';
 
 interface BlockListItemProps {
@@ -19,44 +12,6 @@ interface BlockListItemProps {
   isSelected?: boolean;
   onSelect?: (blockId: string) => void;
 }
-
-const getBlockIcon = (type: string) => {
-  switch (type) {
-    case 'heading':
-      return Heading1;
-    case 'text':
-      return Type;
-    case 'button':
-      return RectangleHorizontal;
-    case 'link':
-      return Link;
-    case 'divider':
-      return Minus;
-    case 'image':
-      return Image;
-    default:
-      return Type;
-  }
-};
-
-const getBlockName = (block: EmailBlockType) => {
-  switch (block.type) {
-    case 'heading':
-      return 'Heading';
-    case 'text':
-      return 'Text';
-    case 'button':
-      return 'Button';
-    case 'link':
-      return 'Link';
-    case 'divider':
-      return 'Divider';
-    case 'image':
-      return 'Image';
-    default:
-      return 'Block';
-  }
-};
 
 const getBlockContent = (block: EmailBlockType) => {
   if ('content' in block && block.content) {
@@ -85,7 +40,7 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
   };
 
   const Icon = getBlockIcon(block.type);
-  const blockName = getBlockName(block);
+  const blockName = getBlockDisplayName(block.type);
   const blockContent = getBlockContent(block) || blockName;
 
   const handleClick = () => {
@@ -124,7 +79,7 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
         )}
       >
         <Icon
-          className={cn('size-4 shrink-0', isSelected ? 'text-primary' : 'text-muted-foreground')}
+          className={cn('size-3 shrink-0', isSelected ? 'text-primary' : 'text-muted-foreground')}
         />
 
         <div

@@ -2,9 +2,9 @@
 
 import { SectionLabel } from '@/components/settings-labels';
 import { Button } from '@/components/ui/button';
-import { AlignLeft, AlignCenter, AlignRight, AlignJustify } from 'lucide-react';
+import { AlignCenter, AlignJustify, AlignLeft, AlignRight } from 'lucide-react';
 import { EmailBlockType } from '../../email-blocks/types';
-import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
+import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 
 interface AlignmentControlsProps {
   block: EmailBlockType;
@@ -22,12 +22,12 @@ export const AlignmentControls = ({ block, onUpdate }: AlignmentControlsProps) =
   const isImage = block.type === 'image';
 
   // Use "Alignment" for button and image blocks, "Text Alignment" for text blocks
-  const labelText = (isButton || isImage) ? 'Alignment' : 'Text Alignment';
+  const labelText = isButton || isImage ? 'Alignment' : 'Text Alignment';
 
   return (
     <div className="flex flex-col gap-2">
       <SectionLabel text={labelText} />
-      
+
       <div className="grid grid-cols-4 gap-1">
         <Button
           variant={textAlign === 'left' ? 'default' : 'outline'}

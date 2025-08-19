@@ -9,6 +9,7 @@ import {
   selectedBlockIdsAtom,
 } from '../../atoms';
 import { useBulkEditing } from '../../hooks/use-bulk-editing';
+import { getBlockDisplayName, getBlockIcon } from '../email-blocks/block-icons';
 import { AlignmentControls } from './property-controls/alignment-controls';
 import { BorderControls } from './property-controls/border-controls';
 import { BulkEditControls } from './property-controls/bulk-edit-controls';
@@ -39,7 +40,7 @@ export const BlockEditor = () => {
     };
 
     return (
-      <div className="p-6">
+      <div className="px-6 pb-6">
         <CanvasControls canvasStyles={canvasStyles} onUpdate={updateCanvasStyle} />
       </div>
     );
@@ -50,14 +51,11 @@ export const BlockEditor = () => {
     const blockTypes = getCommonBlockTypes(selectedBlockIds);
 
     return (
-      <div className="p-6">
-        <div className="border-b pb-4">
-          <div className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
+      <div className="px-6 pb-6">
+        <div className="-mx-6 flex h-16 items-center border-b px-6">
+          <span className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
             Multi-Select
-          </div>
-          <div className="text-foreground mt-1 text-sm">
-            {selectedBlockIds.length} blocks selected
-          </div>
+          </span>
         </div>
 
         <div className="mt-6 space-y-6">
@@ -193,15 +191,16 @@ export const BlockEditor = () => {
   // Handle single block selection
   if (!selectedBlock) return null;
 
+  const BlockIcon = getBlockIcon(selectedBlock.type);
+  const blockDisplayName = getBlockDisplayName(selectedBlock.type);
+
   return (
-    <div className="space-y-6 p-6">
-      <div className="border-b pb-4">
-        <div className="text-muted-foreground font-mono text-xs tracking-wider uppercase">
-          {selectedBlock.type} Block
-        </div>
-        <div className="text-foreground mt-1.5 text-sm capitalize">{selectedBlock.type}</div>
+    <div className="space-y-6">
+      <div className="flex h-16 items-center gap-3 border-b px-6">
+        <BlockIcon className="text-muted-foreground size-3.5" />
+        <div className="text-foreground text-sm">{blockDisplayName}</div>
       </div>
-      <div className="space-y-6">{renderBlockTypeControls()}</div>
+      <div className="space-y-6 px-6 pb-6">{renderBlockTypeControls()}</div>
     </div>
   );
 };

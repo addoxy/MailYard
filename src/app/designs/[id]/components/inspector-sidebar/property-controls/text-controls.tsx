@@ -3,7 +3,7 @@
 import { SectionLabel } from '@/components/settings-labels';
 import { Textarea } from '@/components/ui/textarea';
 import { EmailBlockType } from '../../email-blocks/types';
-import { hasProperty, getBlockProperty } from '../utils/block-property-utils';
+import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 
 interface TextControlsProps {
   block: EmailBlockType;
@@ -20,7 +20,7 @@ export const TextControls = ({ block, onUpdate }: TextControlsProps) => {
   return (
     <div className="flex flex-col gap-2">
       <SectionLabel text="Content" />
-      
+
       <Textarea
         value={content}
         onChange={(e) => onUpdate('content', e.target.value)}
