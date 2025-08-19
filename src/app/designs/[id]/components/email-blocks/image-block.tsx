@@ -1,4 +1,4 @@
-import { Container, Img } from '@react-email/components';
+import { Img, Section } from '@react-email/components';
 import { Image } from 'lucide-react';
 import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
 import { ImageBlockProps } from './types';
@@ -76,6 +76,7 @@ export function ImageBlock({
   };
 
   const placeholderStyle = {
+    ...getImageAlignment(),
     width: width,
     height: '200px',
     border: '2px dashed #e5e7eb',
@@ -96,9 +97,9 @@ export function ImageBlock({
   return (
     <>
       {src ? (
-        <Container style={containerStyle} onClick={handleClick}>
+        <Section style={containerStyle} onClick={handleClick}>
           <Img src={src} alt={alt} style={imageStyle} />
-        </Container>
+        </Section>
       ) : (
         <div style={containerStyle}>
           <div style={placeholderStyle}>

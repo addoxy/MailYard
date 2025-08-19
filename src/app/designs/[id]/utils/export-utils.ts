@@ -60,6 +60,7 @@ function generateImports(blocks: EmailBlockType[]): string {
         break;
       case 'image':
         usedComponents.add('Img');
+        usedComponents.add('Section');
         break;
     }
   });
@@ -230,14 +231,7 @@ function generateBlockCode(block: EmailBlockType): string {
       return `<Hr style={${formatStyles(dividerStyles)}} />`;
 
     case 'image':
-      const imageStyles = {
-        width: block.width,
-        height: block.height,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : 'none',
-        borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
+      const sectionStyles = {
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -246,9 +240,39 @@ function generateBlockCode(block: EmailBlockType): string {
         paddingRight: block.paddingRight,
         paddingBottom: block.paddingBottom,
         paddingLeft: block.paddingLeft,
+        display: 'block',
       };
 
-      return `<Img src="${block.src}" alt="${block.alt}" style={${formatStyles(imageStyles)}} />`;
+      // Handle image alignment
+      const getImageAlignment = () => {
+        switch (block.textAlign) {
+          case 'center':
+            return { marginLeft: 'auto', marginRight: 'auto' };
+          case 'right':
+            return { marginLeft: 'auto', marginRight: '0' };
+          case 'left':
+          default:
+            return { marginLeft: '0', marginRight: 'auto' };
+        }
+      };
+
+      const imageStyles = {
+        width: block.width,
+        height: block.height !== 'auto' ? block.height : undefined,
+        border:
+          block.borderWidth !== '0px'
+            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
+            : undefined,
+        borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
+        display: 'block',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        ...getImageAlignment(),
+      };
+
+      return `<Section style={${formatStyles(sectionStyles)}}>
+  <Img src="${block.src || ''}" alt="${block.alt}" style={${formatStyles(imageStyles)}} />
+</Section>`;
 
     default:
       return `<!-- Unknown block type: ${(block as EmailBlockType).type} -->`;
