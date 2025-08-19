@@ -100,7 +100,7 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
 
         {hasFontFamily && (
           <div className="flex flex-col gap-2">
-            <SectionLabel text="Font Family" />
+            <FieldLabel text="Font Family" />
             <Select
               value={displayFontFamily}
               onValueChange={(value) => onUpdate('fontFamily', value)}
@@ -121,7 +121,7 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
 
         {hasLineHeight && (
           <div className="flex flex-col gap-2">
-            <SectionLabel text="Line Height" />
+            <FieldLabel text="Line Height" />
             <ClearableNumberInput
               value={lineHeight}
               onChange={(value) => onUpdate('lineHeight', numberToLineHeight(value))}
@@ -135,7 +135,7 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
 
         {hasLetterSpacing && (
           <div className="flex flex-col gap-2">
-            <SectionLabel text="Letter Spacing" />
+            <FieldLabel text="Letter Spacing" />
             <ClearableNumberInput
               value={letterSpacing}
               onChange={(value) => onUpdate('letterSpacing', numberToPx(value))}
@@ -149,7 +149,7 @@ export const TypographyControls = ({ block, onUpdate }: TypographyControlsProps)
 
         {hasTextDecoration && (
           <div className="flex flex-col gap-2">
-            <SectionLabel text="Text Decoration" />
+            <FieldLabel text="Text Decoration" />
             <Select
               value={textDecoration}
               onValueChange={(value) => onUpdate('textDecoration', value)}

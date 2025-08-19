@@ -95,7 +95,7 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
     if (firstHeading && 'content' in firstHeading) {
       return firstHeading.content || 'Welcome to our newsletter!';
     }
-    return 'Welcome to our newsletter!';
+    return 'Your Heading Text';
   };
 
   const getEmailPreview = () => {
@@ -104,7 +104,7 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
     if (firstText && 'content' in firstText) {
       return firstText.content.slice(0, 100) + (firstText.content.length > 100 ? '...' : '');
     }
-    return 'Check out our latest updates and offers...';
+    return 'This is a preview of your email content. Add more blocks to see how it looks in an inbox.';
   };
 
   const emailSubject = getEmailSubject();
@@ -198,7 +198,7 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
   return (
     <div className="bg-background flex h-full overflow-hidden rounded-lg border">
       {/* Desktop Email List */}
-      <div className="flex w-80 flex-col border-r">
+      <div className="flex w-72 flex-col border-r">
         <div className="flex items-center justify-between border-b p-4">
           <h2 className="font-semibold">Inbox</h2>
         </div>
@@ -218,7 +218,7 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
                   </div>
                 </div>
                 <p className="mb-1 line-clamp-1 text-sm font-medium">{emailSubject}</p>
-                <p className="text-muted-foreground line-clamp-2 text-xs">{emailPreviewText}</p>
+                <p className="text-muted-foreground line-clamp-1 text-xs">{emailPreviewText}</p>
               </div>
             </div>
           </div>
@@ -229,13 +229,12 @@ export const InboxPreview: React.FC<InboxPreviewProps> = ({ deviceView }) => {
       <div className="flex flex-1 flex-col">
         {/* Email Header */}
         <div className="border-b p-4">
-          <div className="mb-3 flex items-center justify-between"></div>
           <div className="flex items-start gap-3">
             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
               <span className="text-sm font-semibold text-white">YC</span>
             </div>
             <div className="flex-1">
-              <h1 className="mb-1 text-lg font-semibold">{emailSubject}</h1>
+              <h1 className="mb-1 font-semibold">{emailSubject}</h1>
               <div className="text-muted-foreground flex items-center gap-2 text-sm">
                 <span className="text-foreground font-medium">Your Company</span>
                 <span>&lt;hello@yourcompany.com&gt;</span>

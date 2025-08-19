@@ -338,7 +338,23 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 6: Advanced Layout Systems
 
-#### 27. Container Block System
+#### 27. Image Resizing Functionality
+
+- [ ] Create image resizing controls in `src/app/designs/[id]/components/inspector-sidebar/property-controls/image-controls.tsx`
+- [ ] Add width and height input controls for images with number inputs (px values)
+- [ ] Implement aspect ratio preservation toggle - when enabled, changing width automatically adjusts height to maintain image proportions
+- [ ] Add preset size options: small (200px), medium (400px), large (600px), and custom size input
+- [ ] Create aspect ratio lock/unlock toggle button with visual indicator (chain link icon)
+- [ ] Implement "Fit to container" option that sets width to 100% and height to auto
+- [ ] Add validation to prevent images from being resized to unreasonable dimensions (min: 10px, max: 800px)
+- [ ] Update `image-block.tsx` to support width and height style properties
+- [ ] Ensure resized images maintain email client compatibility with inline styles
+- [ ] Add real-time preview of size changes in the email canvas
+- [ ] Handle edge cases: images with no intrinsic dimensions, broken image URLs
+
+**Notes**: Focus on intuitive controls that make it easy to resize images while maintaining their quality and aspect ratios. Include validation to prevent invalid sizes that could break email layouts.
+
+#### 28. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component using @react-email/components Container
 - [ ] Implement container that can hold and group other email blocks with proper nesting support (containers can contain other containers)
@@ -353,7 +369,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Focus on intuitive editing where blocks inside containers behave exactly like standalone blocks when selected. Users should be able to seamlessly edit, style, and move blocks regardless of their container status.
 
-#### 28. Grid Block System
+#### 29. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -369,7 +385,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 7: Mobile & Final Polish
 
-#### 29. Mobile Home Page
+#### 30. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -378,7 +394,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-#### 30. Animation Polish
+#### 31. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -386,7 +402,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-#### 31. Final Polish and Testing
+#### 32. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -397,7 +413,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Focus on accessibility, performance, and reliability. Test thoroughly across different environments.
 
-#### 32. Input Validation for Property Controls
+#### 33. Input Validation for Property Controls
 
 - [ ] **Add real-time input validation to property control components**:
   - [ ] Update `ColorPicker` component to validate hex color format (#RRGGBB)
@@ -419,7 +435,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 8: Future Features
 
-#### 33. Undo/Redo System
+#### 34. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -432,7 +448,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-#### 34. Subtle Framer Motion Animations
+#### 35. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)

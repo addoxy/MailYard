@@ -53,7 +53,7 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
       {hasMargin && (
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <SectionLabel text="Margin" />
+            <FieldLabel text="Margin" />
             <LinkToggleButton
               mode={marginLinked ? 'linked' : 'unlinked'}
               onToggle={() => setMarginLinked(!marginLinked)}
@@ -100,7 +100,7 @@ export const SpacingControls = ({ block, onUpdate }: SpacingControlsProps) => {
       {hasPadding && (
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
-            <SectionLabel text="Padding" />
+            <FieldLabel text="Padding" />
             <LinkToggleButton
               mode={paddingLinked ? 'linked' : 'unlinked'}
               onToggle={() => setPaddingLinked(!paddingLinked)}

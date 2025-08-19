@@ -66,7 +66,7 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <SectionLabel text="Color" />
+            <FieldLabel text="Color" />
             <ColorPicker
               value={borderColor}
               onChange={(value) => onUpdate('borderColor', value)}
@@ -79,7 +79,7 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
 
       {hasBorderRadius && (
         <div className="flex flex-col gap-2">
-          <SectionLabel text="Border Radius" />
+          <FieldLabel text="Border Radius" />
           <ClearableNumberInput
             value={borderRadiusValue}
             onChange={(value) => onUpdate('borderRadius', numberToPx(value))}

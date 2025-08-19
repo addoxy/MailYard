@@ -15,7 +15,6 @@ export const EmailEditor = () => {
   const canvasStyles = useAtomValue(canvasStylesAtom);
   const { selectBlock, isBlockSelected, clearSelection } = useBlockSelection();
 
-
   const handleBlockClick = (blockId: string, multiSelect?: boolean) => {
     selectBlock(blockId, multiSelect);
   };
