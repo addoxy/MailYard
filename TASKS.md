@@ -338,20 +338,21 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 6: Advanced Layout Systems
 
-#### 27. Image Resizing Functionality
+#### 27. Image Management System
 
-- [x] Create image resizing controls in `src/app/designs/[id]/components/inspector-sidebar/property-controls/image-controls.tsx`
-- [x] Add width and height input controls for images with number inputs (px values)
-- [x] Implement aspect ratio preservation toggle - when enabled, changing width automatically adjusts height to maintain image proportions
-- [x] Add preset size options: small (200px), medium (400px), large (600px), and custom size input
-- [x] Create aspect ratio lock/unlock toggle button with visual indicator (chain link icon)
-- [x] Implement "Fit to container" option that sets width to 100% and height to auto
-- [x] Update `image-block.tsx` to support width and height style properties
-- [x] Ensure resized images maintain email client compatibility with inline styles
-- [x] Add real-time preview of size changes in the email canvas
-- [x] Handle edge cases: images with no intrinsic dimensions, broken image URLs
+- [x] Create image controls in `src/app/designs/[id]/components/inspector-sidebar/property-controls/image-controls.tsx`
+- [x] Add Image URL input field with URL validation and visual error states
+- [x] Add Alt Text input field with accessibility warning when missing for images with src
+- [x] Implement percentage-based width control (1-100%) with ClearableNumberInput
+- [x] Add reset button to restore default width (100%)
+- [x] Update `image-block.tsx` to use Section wrapper from @react-email/components
+- [x] Implement proper alignment handling (left, center, right) for both images and placeholders
+- [x] Handle placeholder display for empty image URLs with alignment support
+- [x] Ensure images maintain email client compatibility with inline styles only
+- [x] Height is always set to 'auto' for responsive behavior
+- [x] Update export functionality to match Section wrapper and alignment behavior
 
-**Notes**: Focus on intuitive controls that make it easy to resize images while maintaining their quality and aspect ratios. Include validation to prevent invalid sizes that could break email layouts.
+**Notes**: Simplified image system focused on essential functionality - URL management, accessibility, percentage-based responsive width, and proper alignment. Complex features like aspect ratio locks and preset sizes were removed for cleaner UX.
 
 #### 28. Container Block System
 
