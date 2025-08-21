@@ -415,8 +415,8 @@ export default function Page() {
                       <div className="ml-12">
                         <p className="text-muted-foreground leading-relaxed">
                           Currently, you can export your templates as React code for local storage.
-                          We're actively working on cloud saving and template management features
-                          that will be available soon.
+                          We&apos;re actively working on cloud saving and template management
+                          features that will be available soon.
                         </p>
                       </div>
                     </AccordionContent>
