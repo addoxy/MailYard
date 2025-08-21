@@ -1,6 +1,8 @@
+'use client';
+
 import { Img, Section } from '@react-email/components';
 import { Image } from 'lucide-react';
-import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { ImageBlockProps } from './types';
 
 const defaults = blockDefaults.image;

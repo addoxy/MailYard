@@ -1,7 +1,7 @@
 'use client';
 
 import { Hr } from '@react-email/components';
-import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { DividerBlockProps } from './types';
 
 const defaults = blockDefaults.divider;

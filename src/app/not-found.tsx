@@ -17,11 +17,11 @@ export default function NotFound() {
             <h2 className="text-foreground/80 text-2xl font-semibold">Page Not Found</h2>
           </div>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            The page you're looking for doesn't exist.
+            The page you&apos;re looking for doesn&apos;t exist.
           </p>
         </div>
         <Button asChild className="gap-2">
-          <Link href="/designs/design-1">
+          <Link href="/">
             Get Back to Designing
             <ArrowRight />
           </Link>

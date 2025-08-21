@@ -1,17 +1,18 @@
 'use client';
 
-import { Heading } from '@react-email/components';
-import { EditableTextarea } from '../../../../../components/editable-textarea';
-import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
-import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
+import { EditableTextarea } from '@/components/editable-textarea';
+import { useInlineEditing } from '@/hooks/use-inline-editing';
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
+import { Button } from '@react-email/components';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
-import { HeadingBlockProps } from './types';
+import { ButtonBlockProps } from './types';
 
-const defaults = blockDefaults.heading;
+const defaults = blockDefaults.button;
 
-export function HeadingBlock({
+export function ButtonBlock({
   id,
   content = defaults.content,
+  href = defaults.href,
   textAlign = defaults.textAlign,
   fontSize = defaults.fontSize,
   fontWeight = defaults.fontWeight,
@@ -35,7 +36,7 @@ export function HeadingBlock({
   paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
-}: HeadingBlockProps) {
+}: ButtonBlockProps) {
   const { updateBlock } = useEmailBlocks();
 
   const {
@@ -53,7 +54,8 @@ export function HeadingBlock({
     multiline: true,
   });
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (onClick) {
       onClick(id);
     }
@@ -74,28 +76,26 @@ export function HeadingBlock({
       letterSpacing,
       textDecoration,
       textAlign,
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
       paddingTop,
       paddingRight,
       paddingBottom,
       paddingLeft,
     }),
     cursor: onClick ? 'pointer' : 'default',
+    display: 'inline-block',
   };
 
-  if (isEditing) {
-    return (
-      <div
-        style={{
-          marginTop,
-          marginRight,
-          marginBottom,
-          marginLeft,
-        }}
-      >
+  const containerStyle = {
+    textAlign: textAlign as 'left' | 'center' | 'right',
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+  };
+
+  return (
+    <div style={containerStyle}>
+      {isEditing ? (
         <EditableTextarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
@@ -103,27 +103,25 @@ export function HeadingBlock({
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{
-            fontSize,
-            fontWeight,
-            color,
-            fontFamily,
-            lineHeight,
-            letterSpacing,
-            textAlign,
-            paddingTop,
-            paddingRight,
-            paddingBottom,
-            paddingLeft,
-            backgroundColor: backgroundColor === 'transparent' ? 'transparent' : backgroundColor,
+            ...baseStyle,
+            outline: '2px solid #3b82f6',
+            outlineOffset: '2px',
+            border: 'none',
+            textAlign: 'center',
+            minWidth: 'auto',
+            width: 'auto',
           }}
         />
-      </div>
-    );
-  }
-
-  return (
-    <Heading style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
-      {content}
-    </Heading>
+      ) : (
+        <Button
+          href={href}
+          style={baseStyle}
+          onClick={handleClick}
+          onDoubleClick={handleDoubleClick}
+        >
+          {content}
+        </Button>
+      )}
+    </div>
   );
 }

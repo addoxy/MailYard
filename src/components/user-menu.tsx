@@ -5,24 +5,28 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Ellipsis, Home, LogOut } from 'lucide-react';
+import { Check, Ellipsis, Laptop, Moon, Sun, SunMoon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { AtomicTooltip } from './atomic-tooltip';
 
 export const UserMenu = () => {
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="flex w-full items-center gap-2">
-      <img
-        src="https://raw.githubusercontent.com/addoxy/axii.sh/refs/heads/main/public/logo.png"
-        className="size-6 rounded"
-        alt="Axii's Workspace Logo"
-      />
+      <div className="bg-foreground/10 flex size-6 items-center justify-center rounded">
+        <span className="text-[10px]">MY</span>
+      </div>
       <AtomicTooltip content="Axii's Workspace">
-        <span className="line-clamp-1 text-left text-sm">Axii&apos;s Workspace</span>
+        <span className="line-clamp-1 text-left text-sm">My Workspace</span>
       </AtomicTooltip>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -31,14 +35,35 @@ export const UserMenu = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onSelect={() => router.push('/home')}>
+          {/* <DropdownMenuItem onSelect={() => router.push('/home')}>
             <Home />
             Home
-          </DropdownMenuItem>
-          <DropdownMenuItem variant="destructive">
+          </DropdownMenuItem> */}
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>
+              <SunMoon className="text-muted-foreground mr-2 size-4 shrink-0" /> Theme
+            </DropdownMenuSubTrigger>
+            <DropdownMenuPortal>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem onSelect={() => setTheme('light')}>
+                  <Sun /> Light
+                  {theme === 'light' && <Check className="ml-auto" />}
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => setTheme('dark')}>
+                  <Moon /> Dark
+                  {theme === 'dark' && <Check className="ml-auto" />}
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => setTheme('system')}>
+                  <Laptop /> System
+                  {theme === 'system' && <Check className="ml-auto" />}
+                </DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuPortal>
+          </DropdownMenuSub>
+          {/* <DropdownMenuItem variant="destructive">
             <LogOut />
             Log Out
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

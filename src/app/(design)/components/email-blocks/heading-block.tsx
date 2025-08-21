@@ -1,15 +1,15 @@
 'use client';
 
-import { Text } from '@react-email/components';
-import { EditableTextarea } from '../../../../../components/editable-textarea';
-import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
-import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
+import { Heading } from '@react-email/components';
+import { EditableTextarea } from '@/components/editable-textarea';
+import { useInlineEditing } from '@/hooks/use-inline-editing';
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
-import { TextBlockProps } from './types';
+import { HeadingBlockProps } from './types';
 
-const defaults = blockDefaults.text;
+const defaults = blockDefaults.heading;
 
-export function TextBlock({
+export function HeadingBlock({
   id,
   content = defaults.content,
   textAlign = defaults.textAlign,
@@ -35,7 +35,7 @@ export function TextBlock({
   paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
-}: TextBlockProps) {
+}: HeadingBlockProps) {
   const { updateBlock } = useEmailBlocks();
 
   const {
@@ -84,8 +84,6 @@ export function TextBlock({
       paddingLeft,
     }),
     cursor: onClick ? 'pointer' : 'default',
-    whiteSpace: 'pre-wrap' as const,
-    wordWrap: 'break-word' as const,
   };
 
   if (isEditing) {
@@ -124,8 +122,8 @@ export function TextBlock({
   }
 
   return (
-    <Text style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
+    <Heading style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
       {content}
-    </Text>
+    </Heading>
   );
 }

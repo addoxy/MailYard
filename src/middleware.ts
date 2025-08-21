@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 export function middleware(request: NextRequest) {
   const url = request.nextUrl;
 
-  const allowedPath = '/designs/design-1';
+  const allowedPath = '/design';
 
   if (url.pathname !== allowedPath) {
     url.pathname = allowedPath;
@@ -16,5 +16,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/designs/:path*', '/home', '/'],
+  matcher: ['/home'],
 };

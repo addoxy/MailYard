@@ -1,18 +1,17 @@
 'use client';
 
-import { Link } from '@react-email/components';
-import { EditableTextarea } from '../../../../../components/editable-textarea';
-import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
-import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
+import { Text } from '@react-email/components';
+import { EditableTextarea } from '@/components/editable-textarea';
+import { useInlineEditing } from '@/hooks/use-inline-editing';
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
-import { LinkBlockProps } from './types';
+import { TextBlockProps } from './types';
 
-const defaults = blockDefaults.link;
+const defaults = blockDefaults.text;
 
-export function LinkBlock({
+export function TextBlock({
   id,
   content = defaults.content,
-  href = defaults.href,
   textAlign = defaults.textAlign,
   fontSize = defaults.fontSize,
   fontWeight = defaults.fontWeight,
@@ -36,7 +35,7 @@ export function LinkBlock({
   paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
-}: LinkBlockProps) {
+}: TextBlockProps) {
   const { updateBlock } = useEmailBlocks();
 
   const {
@@ -54,8 +53,7 @@ export function LinkBlock({
     multiline: true,
   });
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleClick = () => {
     if (onClick) {
       onClick(id);
     }
@@ -75,26 +73,31 @@ export function LinkBlock({
       lineHeight,
       letterSpacing,
       textDecoration,
+      textAlign,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
       paddingTop,
       paddingRight,
       paddingBottom,
       paddingLeft,
     }),
     cursor: onClick ? 'pointer' : 'default',
-    display: 'block',
+    whiteSpace: 'pre-wrap' as const,
+    wordWrap: 'break-word' as const,
   };
 
-  const containerStyle = {
-    textAlign: textAlign as 'left' | 'center' | 'right',
-    marginTop,
-    marginRight,
-    marginBottom,
-    marginLeft,
-  };
-
-  return (
-    <div style={containerStyle} onDoubleClick={handleDoubleClick}>
-      {isEditing ? (
+  if (isEditing) {
+    return (
+      <div
+        style={{
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
+        }}
+      >
         <EditableTextarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
           value={editContent}
@@ -102,20 +105,27 @@ export function LinkBlock({
           onKeyDown={handleKeyDown}
           onBlur={handleSave}
           style={{
-            ...baseStyle,
-            outline: 'none',
-            backgroundColor: 'transparent',
-            border: 'none',
-            width: '100%',
-            overflow: 'hidden',
-            minHeight: 'auto',
+            fontSize,
+            fontWeight,
+            color,
+            fontFamily,
+            lineHeight,
+            letterSpacing,
+            textAlign,
+            paddingTop,
+            paddingRight,
+            paddingBottom,
+            paddingLeft,
+            backgroundColor: backgroundColor === 'transparent' ? 'transparent' : backgroundColor,
           }}
         />
-      ) : (
-        <Link href={href} style={baseStyle} onClick={handleClick}>
-          {content}
-        </Link>
-      )}
-    </div>
+      </div>
+    );
+  }
+
+  return (
+    <Text style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
+      {content}
+    </Text>
   );
 }

@@ -5,7 +5,7 @@ import { ImageBlock } from './image-block';
 import { LinkBlock } from './link-block';
 import { TextBlock } from './text-block';
 import { BlockDefinition, EmailBlockType } from './types';
-import { createBlockDefaults, blockDefaults } from '../../../../../lib/style-utils';
+import { createBlockDefaults, blockDefaults } from '@/lib/style-utils';
 
 export const BLOCK_DEFINITIONS: BlockDefinition[] = [
   {

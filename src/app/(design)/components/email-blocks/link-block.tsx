@@ -1,15 +1,15 @@
 'use client';
 
-import { Button } from '@react-email/components';
-import { EditableTextarea } from '../../../../../components/editable-textarea';
-import { useInlineEditing } from '../../../../../hooks/use-inline-editing';
-import { blockDefaults, createBaseStyle } from '../../../../../lib/style-utils';
+import { Link } from '@react-email/components';
+import { EditableTextarea } from '@/components/editable-textarea';
+import { useInlineEditing } from '@/hooks/use-inline-editing';
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
-import { ButtonBlockProps } from './types';
+import { LinkBlockProps } from './types';
 
-const defaults = blockDefaults.button;
+const defaults = blockDefaults.link;
 
-export function ButtonBlock({
+export function LinkBlock({
   id,
   content = defaults.content,
   href = defaults.href,
@@ -36,7 +36,7 @@ export function ButtonBlock({
   paddingRight = defaults.paddingRight,
   isSelected = false,
   onClick,
-}: ButtonBlockProps) {
+}: LinkBlockProps) {
   const { updateBlock } = useEmailBlocks();
 
   const {
@@ -75,14 +75,13 @@ export function ButtonBlock({
       lineHeight,
       letterSpacing,
       textDecoration,
-      textAlign,
       paddingTop,
       paddingRight,
       paddingBottom,
       paddingLeft,
     }),
     cursor: onClick ? 'pointer' : 'default',
-    display: 'inline-block',
+    display: 'block',
   };
 
   const containerStyle = {
@@ -94,7 +93,7 @@ export function ButtonBlock({
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} onDoubleClick={handleDoubleClick}>
       {isEditing ? (
         <EditableTextarea
           ref={inputRef as React.RefObject<HTMLTextAreaElement>}
@@ -104,23 +103,18 @@ export function ButtonBlock({
           onBlur={handleSave}
           style={{
             ...baseStyle,
-            outline: '2px solid #3b82f6',
-            outlineOffset: '2px',
+            outline: 'none',
+            backgroundColor: 'transparent',
             border: 'none',
-            textAlign: 'center',
-            minWidth: 'auto',
-            width: 'auto',
+            width: '100%',
+            overflow: 'hidden',
+            minHeight: 'auto',
           }}
         />
       ) : (
-        <Button
-          href={href}
-          style={baseStyle}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
+        <Link href={href} style={baseStyle} onClick={handleClick}>
           {content}
-        </Button>
+        </Link>
       )}
     </div>
   );
