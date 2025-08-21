@@ -101,7 +101,7 @@ export default function Page() {
                   Powerful features to create professional emails
                 </p>
               </div>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <FeatureCard
                   title="Drag & Drop Editor"
                   description="Build emails visually by dragging and dropping blocks. Rearrange text, images, buttons, and more with intuitive controls that make email design effortless."
@@ -138,7 +138,7 @@ export default function Page() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                   {/* Step 1 */}
                   <HowItWorksCard
                     step={1}
@@ -233,7 +233,7 @@ export default function Page() {
                   <p className="text-muted-foreground text-xl">Exciting features in development</p>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                   <div className="from-background/40 to-background/20 relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 shadow-lg backdrop-blur-sm">
                     <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
                     <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
@@ -472,8 +472,8 @@ export default function Page() {
           {/* Footer */}
           <footer className="px-4 py-12 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
-              <div className="flex flex-col items-center justify-between md:flex-row">
-                <div className="mb-4 flex items-center space-x-3 md:mb-0">
+              <div className="flex items-center justify-between">
+                <div className="mb-4 flex items-center space-x-3">
                   <PlaceholderLogo className="text-background size-6" />
                   <span>MailYard</span>
                 </div>
