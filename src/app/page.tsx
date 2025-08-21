@@ -1,6 +1,7 @@
 'use client';
 
 import { FeatureCard } from '@/components/feature-card';
+import { HowItWorksCard } from '@/components/how-it-works-card';
 import { DragDropIcon, PhoneLaptop } from '@/components/icons';
 import { PlaceholderLogo } from '@/components/logo';
 import {
@@ -12,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
+  ArrowRight,
   ChevronRight,
   Code,
   Database,
@@ -56,8 +58,11 @@ export default function Page() {
               Create stunning, responsive email templates with our intuitive drag-and-drop editor.
               No coding required - just beautiful emails that work everywhere.
             </p>
-            <Button size="lg" asChild className="mb-12">
-              <Link href="/design">Get Started</Link>
+            <Button size="lg" asChild>
+              <Link href="/design" className="group mb-12">
+                Get Started
+                <ArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
+              </Link>
             </Button>
 
             {/* Hero Image Placeholder */}
@@ -107,45 +112,94 @@ export default function Page() {
         {/* How It Works Section */}
         <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-12 text-center">
+            <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold">How It Works</h2>
               <p className="text-muted-foreground text-xl">
                 Get from idea to email in three simple steps
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="text-center">
-                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                  <span className="text-primary text-2xl font-bold">1</span>
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+              {/* Step 1 */}
+              <HowItWorksCard
+                step={1}
+                title="Choose Your Blocks"
+                description="Start with text, images, buttons, and other email elements from our library."
+              >
+                <div className="space-y-2">
+                  <div className="bg-primary/10 border-primary/20 flex items-center gap-2 rounded-lg border px-3 py-2 shadow-sm">
+                    <div className="bg-primary size-2 rounded-full"></div>
+                    <span className="text-sm">Heading Block</span>
+                  </div>
+                  <div className="bg-muted/50 border-border flex items-center gap-2 rounded-lg border px-3 py-2 shadow-sm">
+                    <div className="bg-muted size-2 rounded-full"></div>
+                    <span className="text-muted-foreground text-sm">Text Block</span>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
+                    <div className="size-2 rounded-full bg-blue-500"></div>
+                    <span className="text-sm text-blue-600 dark:text-blue-400">Button Block</span>
+                  </div>
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">Choose Your Blocks</h3>
-                <p className="text-muted-foreground">
-                  Start with text, images, buttons, and other email elements from our library.
-                </p>
-              </div>
+              </HowItWorksCard>
 
-              <div className="text-center">
-                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                  <span className="text-primary text-2xl font-bold">2</span>
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">Drag & Customize</h3>
-                <p className="text-muted-foreground">
-                  Arrange your blocks and customize colors, fonts, spacing, and more with our visual
-                  editor.
-                </p>
-              </div>
+              {/* Step 2 */}
+              <HowItWorksCard
+                step={2}
+                title="Drag & Customize"
+                description="Arrange your blocks and customize colors, fonts, spacing, and more with our visual editor."
+              >
+                <div className="space-y-3">
+                  <div className="bg-primary/10 border-primary/20 flex items-center justify-between rounded-lg border px-3 py-2 shadow-sm">
+                    <span className="text-sm">Welcome Newsletter!</span>
+                    <div className="flex gap-1">
+                      <div className="size-3 rounded-full bg-blue-500"></div>
+                      <div className="size-3 rounded-full bg-green-500"></div>
+                      <div className="size-3 rounded-full bg-red-500"></div>
+                    </div>
+                  </div>
 
-              <div className="text-center">
-                <div className="bg-primary/10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-                  <span className="text-primary text-2xl font-bold">3</span>
+                  {/* Text Size Control */}
+                  <div className="bg-primary/10 border-primary/20 flex items-center justify-between rounded-lg border px-3 py-2 shadow-sm">
+                    <div className="text-sm">Text Size</div>
+                    <div className="flex items-center gap-2">
+                      <div className="bg-primary h-1 w-6 rounded-full"></div>
+                      <div className="bg-muted h-1 w-4 rounded-full"></div>
+                      <span className="text-muted-foreground text-xs">18px</span>
+                    </div>
+                  </div>
+
+                  {/* Text Font Control */}
+                  <div className="bg-primary/10 border-primary/20 flex items-center justify-between rounded-lg border px-3 py-2 shadow-sm">
+                    <div className="text-sm">Font Family</div>
+                    <div className="text-xs">Arial, sans-serif</div>
+                  </div>
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">Export & Send</h3>
-                <p className="text-muted-foreground">
-                  Export your email as HTML or React code and use it in your favorite email
-                  platform.
-                </p>
-              </div>
+              </HowItWorksCard>
+
+              {/* Step 3 */}
+              <HowItWorksCard
+                step={3}
+                title="Export & Send"
+                description="Export your email as React code and use it in your projects."
+              >
+                <div className="space-y-2">
+                  <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-2 pb-4 shadow-sm dark:border-green-800 dark:bg-green-950/50">
+                    <span className="mb-1 text-xs font-medium text-green-700 dark:text-green-300">
+                      React Export
+                    </span>
+                    <div className="font-mono text-xs text-green-600 dark:text-green-400">
+                      <span>&lt;Html&gt;</span>
+                      <br />
+                      <span className="ml-4">&lt;Body&gt;...</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
+                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                      Ready to use in your project!
+                    </span>
+                  </div>
+                </div>
+              </HowItWorksCard>
             </div>
           </div>
         </section>
