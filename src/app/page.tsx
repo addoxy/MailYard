@@ -205,7 +205,7 @@ export default function Page() {
         </section>
 
         {/* Future Features Section */}
-        <section className="bg-muted/30 px-4 py-16 sm:px-6 lg:px-8">
+        <section className="px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold">Coming Soon</h2>
@@ -213,75 +213,73 @@ export default function Page() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center space-x-2">
-                    <Layers className="text-primary h-6 w-6" />
-                    <CardTitle>Advanced Layout</CardTitle>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-background/40 to-background/20 backdrop-blur-sm shadow-lg p-6">
+                <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-primary/5 to-transparent" />
+                <div className="absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                
+                <div className="relative">
+                  <div className="mb-4 flex items-center space-x-3">
+                    <div className="bg-primary/20 border-primary/30 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-lg">
+                      <Layers className="text-primary h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold">Advanced Layout</h3>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center space-x-2">
-                    <div className="bg-primary h-2 w-2 rounded-full"></div>
-                    <span className="font-medium">Section Block</span>
-                    <span className="text-muted-foreground text-sm">
-                      — Group multiple blocks and apply custom styles to entire sections
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Grid className="text-primary h-4 w-4" />
-                    <span className="font-medium">Grid Block</span>
-                    <span className="text-muted-foreground text-sm">
-                      — Create complex multi-column layouts with ease
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
+                  <p className="text-muted-foreground text-sm">
+                    Create complex layouts with Section Blocks to group multiple elements and Grid Blocks for multi-column designs. Perfect for newsletters and marketing emails.
+                  </p>
+                </div>
+              </div>
 
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center space-x-2">
-                    <Undo2 className="text-primary h-6 w-6" />
-                    <CardTitle>Undo / Redo System</CardTitle>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-background/40 to-background/20 backdrop-blur-sm shadow-lg p-6">
+                <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-primary/5 to-transparent" />
+                <div className="absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                
+                <div className="relative">
+                  <div className="mb-4 flex items-center space-x-3">
+                    <div className="bg-primary/20 border-primary/30 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-lg">
+                      <Undo2 className="text-primary h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold">Undo / Redo System</h3>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>
-                    Never lose your work with comprehensive undo/redo functionality. Experiment
-                    freely knowing you can always go back.
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  <p className="text-muted-foreground text-sm">
+                    Never lose your work with comprehensive undo/redo functionality. Experiment freely knowing you can always go back to any previous state.
+                  </p>
+                </div>
+              </div>
 
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center space-x-2">
-                    <Database className="text-primary h-6 w-6" />
-                    <CardTitle>Database & Authentication</CardTitle>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-background/40 to-background/20 backdrop-blur-sm shadow-lg p-6">
+                <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-primary/5 to-transparent" />
+                <div className="absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                
+                <div className="relative">
+                  <div className="mb-4 flex items-center space-x-3">
+                    <div className="bg-primary/20 border-primary/30 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-lg">
+                      <Database className="text-primary h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold">Database & Authentication</h3>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>
-                    Save your work to the cloud with user accounts. Sync your templates across
-                    devices and collaborate with team members.
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  <p className="text-muted-foreground text-sm">
+                    Save your work to the cloud with user accounts. Sync your templates across devices and collaborate with team members on email projects.
+                  </p>
+                </div>
+              </div>
 
-              <Card>
-                <CardHeader>
-                  <div className="flex items-center space-x-2">
-                    <Home className="text-primary h-6 w-6" />
-                    <CardTitle>Design Gallery</CardTitle>
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-background/40 to-background/20 backdrop-blur-sm shadow-lg p-6">
+                <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-primary/5 to-transparent" />
+                <div className="absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                
+                <div className="relative">
+                  <div className="mb-4 flex items-center space-x-3">
+                    <div className="bg-primary/20 border-primary/30 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-lg">
+                      <Home className="text-primary h-6 w-6" />
+                    </div>
+                    <h3 className="text-xl font-semibold">Design Gallery</h3>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>
-                    A beautiful home page showcasing all your email designs with live previews,
-                    search, and organization features.
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  <p className="text-muted-foreground text-sm">
+                    A beautiful home page showcasing all your email designs with live previews, search functionality, and organization features for easy template management.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

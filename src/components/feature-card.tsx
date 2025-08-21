@@ -19,9 +19,9 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
   const Icon = icon;
 
   return (
-    <div className="from-background/60 to-background/30 relative overflow-hidden rounded-2xl border bg-gradient-to-br shadow-xl backdrop-blur-sm">
-      <div className="from-primary/10 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
-      <div className="via-primary/40 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
+    <div className="from-background/40 to-background/20 relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br shadow-lg backdrop-blur-sm">
+      <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
+      <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
       <div
         className={cn(
           'relative flex h-full w-full flex-col gap-3 pb-6',
