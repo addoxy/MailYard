@@ -9,11 +9,12 @@ type LinkMode = 'linked' | 'unlinked' | 'xy' | 'single';
 interface LinkToggleButtonProps {
   mode: LinkMode;
   onToggle: () => void;
+  active?: boolean;
   className?: string;
 }
 
-export const LinkToggleButton = ({ mode, onToggle, className }: LinkToggleButtonProps) => {
-  const isActive = mode === 'linked' || mode === 'xy';
+export const LinkToggleButton = ({ mode, onToggle, active, className }: LinkToggleButtonProps) => {
+  const isActive = active || mode === 'linked' || mode === 'xy';
 
   return (
     <Button

@@ -196,6 +196,7 @@ export const CanvasControls = ({ canvasStyles, onUpdate }: CanvasControlsProps) 
             <LinkToggleButton
               mode={paddingMode}
               onToggle={() => setPaddingMode(paddingMode === 'single' ? 'unlinked' : 'single')}
+              active={paddingMode === 'single'}
             />
           </div>
 

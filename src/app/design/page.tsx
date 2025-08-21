@@ -12,7 +12,7 @@ export default async function DesignPage({ params }: DesignPageProps) {
 
   return (
     <DesignPageContent>
-      <div className="flex gap-1.5">
+      <div className="flex gap-2">
         <ResourceSidebar />
         <EmailSection />
         <InspectorSidebar />

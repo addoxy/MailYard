@@ -40,7 +40,7 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
     setIsGenerating(true);
     try {
       const reactComponent = generateEmailComponent(emailBlocks, canvasStyles);
-      const formattedReactCode = await formatCode(reactComponent, 'typescript');
+      const formattedReactCode = await formatCode(reactComponent);
       setReactCode(formattedReactCode);
     } catch (error) {
       console.error('Error generating exports:', error);

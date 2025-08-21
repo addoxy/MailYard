@@ -21,7 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.variable, 'debug-screens min-h-screen w-full antialiased')}>
+      <body
+        className={cn(
+          inter.variable,
+          'min-h-screen w-full antialiased',
+          process.env.NODE_ENV === 'development' && 'debug-screens'
+        )}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

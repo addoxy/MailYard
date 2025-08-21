@@ -299,7 +299,7 @@ function formatStyles(styles: Record<string, unknown>): string {
 
 type Parser = 'babel' | 'typescript' | 'html';
 
-export async function formatCode(code: string, parser: Parser) {
+export async function formatCode(code: string) {
   try {
     const formattedCode = await prettierFormatCode(code, {
       parser: 'babel',

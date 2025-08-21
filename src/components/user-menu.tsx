@@ -25,7 +25,7 @@ export const UserMenu = () => {
       <div className="bg-foreground/10 flex size-6 items-center justify-center rounded">
         <span className="text-[10px]">MY</span>
       </div>
-      <AtomicTooltip content="Axii's Workspace">
+      <AtomicTooltip content="My Workspace">
         <span className="line-clamp-1 text-left text-sm">My Workspace</span>
       </AtomicTooltip>
       <DropdownMenu>
