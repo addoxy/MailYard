@@ -13,3 +13,21 @@ export function capitalizeFirstLetter(str: string): string {
   if (!str) return str;
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+interface ScrollToProps {
+  id: string;
+  offset?: number;
+}
+
+export function scrollToId({ id, offset = 100 }: ScrollToProps) {
+  const element = document.getElementById(id);
+  if (element) {
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition + offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+  }
+}

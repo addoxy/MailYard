@@ -5,13 +5,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Check, Ellipsis, Laptop, Moon, Sun, SunMoon } from 'lucide-react';
+import { Ellipsis, Home } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
 import { AtomicTooltip } from './atomic-tooltip';
@@ -35,11 +31,11 @@ export const UserMenu = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {/* <DropdownMenuItem onSelect={() => router.push('/home')}>
+          <DropdownMenuItem onSelect={() => router.push('/')}>
             <Home />
             Home
-          </DropdownMenuItem> */}
-          <DropdownMenuSub>
+          </DropdownMenuItem>
+          {/* <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <SunMoon className="text-muted-foreground mr-2 size-4 shrink-0" /> Theme
             </DropdownMenuSubTrigger>
@@ -59,7 +55,7 @@ export const UserMenu = () => {
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
-          </DropdownMenuSub>
+          </DropdownMenuSub> */}
           {/* <DropdownMenuItem variant="destructive">
             <LogOut />
             Log Out

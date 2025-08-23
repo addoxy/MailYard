@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import { Grab, Heading, LucideIcon, MousePointerClick, Text } from 'lucide-react';
 import {
@@ -6,7 +8,7 @@ import {
   CodeBlockBody,
   CodeBlockContent,
   CodeBlockItem,
-} from './ui/code-block';
+} from '../ui/code-block';
 
 interface FeatureCardProps {
   title: string;

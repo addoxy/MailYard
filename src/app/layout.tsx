@@ -24,7 +24,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
-          'min-h-screen w-full antialiased',
+          'dark min-h-screen w-full antialiased',
           process.env.NODE_ENV === 'development' && 'debug-screens'
         )}
       >
