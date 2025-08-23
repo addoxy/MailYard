@@ -21,7 +21,7 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
   const Icon = icon;
 
   return (
-    <div className="from-background/40 to-background/20 relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br shadow-lg backdrop-blur-sm">
+    <div className="from-background/40 to-background/20 relative h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br shadow-lg backdrop-blur-sm">
       <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
       <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
       <div
@@ -96,41 +96,40 @@ const Styling = () => {
   return (
     <div className="mx-auto w-full p-4">
       <div className="bg-background rounded-lg border p-4 shadow-sm">
-        <div className="flex max-h-44 gap-4">
+        <div className="flex flex-col gap-4 sm:max-h-44 sm:flex-row">
           <img
             src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=2226&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Email newsletter mockup"
-            className="max-h-44 rounded-lg object-cover shadow-lg"
+            className="max-h-44 rounded-lg object-cover shadow-lg sm:w-1/2"
           />
-          <div className="flex-1 space-y-3 border-l pl-4">
-            <span className="text-muted-foreground text-xs font-medium">Style Panel</span>
+          <div className="bg-muted/50 flex-1 space-y-3 overflow-auto rounded-md px-6 py-4 sm:w-1/2">
+            <span className="text-muted-foreground shrink-0 text-xs font-medium">Style Panel</span>
 
             {/* Image Size */}
-            <div className="mt-3 flex items-center gap-2">
-              <div className="bg-primary h-1 w-8 rounded-full"></div>
-              <div className="bg-muted h-1 w-2 rounded-full"></div>
-              <span className="text-muted-foreground text-xs">Size: 80%</span>
+            <div className="mt-3 flex shrink-0 items-center gap-1">
+              <div className="bg-primary h-1 w-5 shrink-0 rounded-full" />
+              <div className="bg-muted h-1 w-2 shrink-0 rounded-full" />
+              <span className="text-muted-foreground ml-1 shrink-0 text-xs">Size: 80%</span>
             </div>
 
             {/* Border Width */}
-            <div className="flex items-center gap-2">
-              <div className="bg-primary h-1 w-4 rounded-full"></div>
-              <div className="bg-muted h-1 w-6 rounded-full"></div>
-              <span className="text-muted-foreground text-xs">Border: 0px</span>
+            <div className="flex items-center gap-1">
+              <div className="bg-muted h-1 w-8 shrink-0 rounded-full" />
+              <span className="text-muted-foreground ml-1 shrink-0 text-xs">Border: 0px</span>
             </div>
 
             {/* Border Radius */}
-            <div className="flex items-center gap-2">
-              <div className="bg-primary h-1 w-6 rounded-full"></div>
-              <div className="bg-muted h-1 w-4 rounded-full"></div>
-              <span className="text-muted-foreground text-xs">Radius: 8px</span>
+            <div className="flex items-center gap-1">
+              <div className="bg-primary h-1 w-4 shrink-0 rounded-full" />
+              <div className="bg-muted h-1 w-3 shrink-0 rounded-full" />
+              <span className="text-muted-foreground ml-1 shrink-0 text-xs">Radius: 8px</span>
             </div>
 
             {/* Border Color */}
             <div className="flex items-center gap-2">
-              <div className="size-3 rounded border-2 border-white bg-blue-500 shadow-sm ring-1 ring-black/10"></div>
-              <div className="border-border size-3 rounded border bg-green-500"></div>
-              <div className="border-border size-3 rounded border bg-red-500"></div>
+              <div className="size-3 shrink-0 rounded border-2 border-white bg-blue-500 shadow-sm ring-1 ring-black/10" />
+              <div className="border-border size-3 shrink-0 rounded border bg-green-500"></div>
+              <div className="border-border size-3 shrink-0 rounded border bg-red-500" />
               <span className="text-muted-foreground text-xs">Color</span>
             </div>
           </div>

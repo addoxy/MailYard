@@ -44,7 +44,8 @@ export function Footer() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
         >
-          <Link
+          <a
+            target="_blank"
             href="https://github.com/addoxy/email-builder"
             className={cn(
               buttonVariants({
@@ -54,8 +55,9 @@ export function Footer() {
             )}
           >
             <GithubIcon className="size-5" />
-          </Link>
-          <Link
+          </a>
+          <a
+            target="_blank"
             href="https://x.com/axiidotsh"
             className={cn(
               buttonVariants({
@@ -65,7 +67,7 @@ export function Footer() {
             )}
           >
             <TwitterIcon />
-          </Link>
+          </a>
         </motion.div>
       </motion.div>
 

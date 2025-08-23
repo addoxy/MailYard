@@ -26,10 +26,11 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          Build Beautiful{' '}
-          <Highlighter action="box" color="var(--brand)">
-            Emails
-          </Highlighter>
+          Build{' '}
+          <Highlighter action="highlight" color="var(--brand)">
+            Beautiful
+          </Highlighter>{' '}
+          Emails
           <span className="text-primary block">Without the Hassle</span>
         </motion.h1>
 
