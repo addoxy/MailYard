@@ -58,7 +58,7 @@ export function useInlineEditing({
   };
 
   const handleSave = () => {
-    onSave(editContent);
+    onSave(editContent.trim());
     setIsEditing(false);
   };
 
@@ -69,10 +69,14 @@ export function useInlineEditing({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
-      if (!multiline) {
-        handleSave();
+      if (multiline) {
+        if (e.shiftKey) {
+          return;
+        } else {
+          e.preventDefault();
+          handleSave();
+        }
       } else {
-        // For multiline (textarea), prevent default to allow line breaks
         e.preventDefault();
         handleSave();
       }
@@ -85,7 +89,6 @@ export function useInlineEditing({
     setEditContent(e.target.value);
   };
 
-  // Auto-focus and setup when editing starts
   useEffect(() => {
     if (isEditing && inputRef.current) {
       inputRef.current.focus();

@@ -1,9 +1,9 @@
 'use client';
 
-import { Text } from '@react-email/components';
 import { EditableTextarea } from '@/components/editable-textarea';
 import { useInlineEditing } from '@/hooks/use-inline-editing';
 import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
+import { Text } from '@react-email/components';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { TextBlockProps } from './types';
 

@@ -1,8 +1,8 @@
 'use client';
 
+import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { Img, Section } from '@react-email/components';
 import { Image } from 'lucide-react';
-import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { ImageBlockProps } from './types';
 
 const defaults = blockDefaults.image;
@@ -96,25 +96,25 @@ export function ImageBlock({
     boxSizing: 'border-box' as const,
   };
 
+  if (src) {
+    return (
+      <Section style={containerStyle} onClick={handleClick}>
+        <Img src={src} alt={alt} style={imageStyle} />
+      </Section>
+    );
+  }
+
   return (
-    <>
-      {src ? (
-        <Section style={containerStyle} onClick={handleClick}>
-          <Img src={src} alt={alt} style={imageStyle} />
-        </Section>
-      ) : (
-        <div style={containerStyle}>
-          <div style={placeholderStyle}>
-            <Image aria-label="Image placeholder icon" />
-            <div>
-              <div style={{ fontWeight: '500', marginBottom: '4px' }}>No image URL provided</div>
-              <div style={{ fontSize: '12px', opacity: 0.7 }}>
-                Add an image URL to display the image
-              </div>
-            </div>
+    <div style={containerStyle}>
+      <div style={placeholderStyle}>
+        <Image aria-label="Image placeholder icon" />
+        <div>
+          <div style={{ fontWeight: '500', marginBottom: '4px' }}>No image URL provided</div>
+          <div style={{ fontSize: '12px', opacity: 0.7 }}>
+            Add an image URL to display the image
           </div>
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }

@@ -93,35 +93,32 @@ export function ButtonBlock({
     marginLeft,
   };
 
+  if (isEditing) {
+    return (
+      <EditableTextarea
+        ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+        value={editContent}
+        onChange={handleContentChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleSave}
+        style={{
+          ...baseStyle,
+          outline: '2px solid #3b82f6',
+          outlineOffset: '2px',
+          border: 'none',
+          textAlign: 'center',
+          minWidth: 'auto',
+          width: 'auto',
+        }}
+      />
+    );
+  }
+
   return (
     <div style={containerStyle}>
-      {isEditing ? (
-        <EditableTextarea
-          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-          value={editContent}
-          onChange={handleContentChange}
-          onKeyDown={handleKeyDown}
-          onBlur={handleSave}
-          style={{
-            ...baseStyle,
-            outline: '2px solid #3b82f6',
-            outlineOffset: '2px',
-            border: 'none',
-            textAlign: 'center',
-            minWidth: 'auto',
-            width: 'auto',
-          }}
-        />
-      ) : (
-        <Button
-          href={href}
-          style={baseStyle}
-          onClick={handleClick}
-          onDoubleClick={handleDoubleClick}
-        >
-          {content}
-        </Button>
-      )}
+      <Button href={href} style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
+        {content}
+      </Button>
     </div>
   );
 }
