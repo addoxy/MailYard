@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { GridPattern } from '../ui/grid-pattern';
-import { Highlighter } from '../ui/highlighter';
 
 export function HeroSection() {
   return (
@@ -26,12 +25,9 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          Build{' '}
-          <Highlighter action="highlight" color="var(--brand)">
-            Beautiful
-          </Highlighter>{' '}
-          Emails
-          <span className="text-primary block">Without the Hassle</span>
+          Build Beautiful Emails
+          <br />
+          Without The Hazzle
         </motion.h1>
 
         <motion.p
