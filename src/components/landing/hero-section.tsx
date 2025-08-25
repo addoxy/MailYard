@@ -1,23 +1,14 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { cn, scrollToId } from '@/lib/utils';
+import { scrollToId } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { GridPattern } from '../ui/grid-pattern';
 
 export function HeroSection() {
   return (
     <section className="relative mt-28 sm:mt-40">
-      <GridPattern
-        x={-1}
-        y={-1}
-        height={30}
-        className={cn(
-          'inset-x-0 inset-y-[-30%] -z-10 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-30'
-        )}
-      />
       <div className="mx-auto max-w-7xl text-center">
         <motion.h1
           className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
