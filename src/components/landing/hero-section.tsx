@@ -11,7 +11,7 @@ import { GridPattern } from '../ui/grid-pattern';
 export function HeroSection() {
   return (
     <section className="relative mt-28 sm:mt-40">
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center justify-center p-12 text-center sm:p-20">
+      <div className="relative mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-8 text-center sm:p-20">
         <GridPattern
           width={30}
           height={30}
@@ -49,7 +49,7 @@ export function HeroSection() {
           coding required - just beautiful emails that work everywhere.
         </motion.p>
         <motion.div
-          className="mx-auto grid w-fit grid-cols-2 gap-1"
+          className="grid grid-cols-2 gap-1"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
