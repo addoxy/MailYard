@@ -67,21 +67,21 @@ const FAQCard = ({ question, answer, value, icon }: FAQCardProps) => {
 export function FAQSection() {
   const FAQS = [
     {
-      question: 'Is MailYard really free to use?',
+      question: 'Is MailYard free to use?',
       answer:
-        'Yes! MailYard is completely free to use. You can create unlimited emails and export them without any restrictions. Build beautiful emails without worrying about usage limits or subscription fees.',
+        'Yes, MailYard is currently free to use! In the future, we plan to introduce both free and premium tiers once we implement database storage and user authentication. This transition will be necessary to support data persistence and account management features.',
       icon: HelpCircle,
     },
     {
       question: 'Do I need coding knowledge to use this?',
       answer:
-        'Not at all! Our drag-and-drop interface is designed for anyone to use, regardless of technical background. However, developers will appreciate the clean React code export options for seamless integration.',
+        "Currently, coding knowledge is required since you'll need to export and integrate the React code into your own projects. However, we're working on direct email sending capabilities that will eliminate this requirement entirely.",
       icon: Code,
     },
     {
       question: 'Will my emails work in all email clients?',
       answer:
-        'Yes, we use email-safe HTML and inline styles to ensure maximum compatibility across all major email clients including Gmail, Outlook, Apple Mail, and Yahoo Mail. Your emails will look great everywhere.',
+        'Absolutely! Our emails are built with React Email, which ensures universal compatibility across all major email clients including Gmail, Outlook, Apple Mail, and Yahoo Mail.',
       icon: Shield,
     },
     {
