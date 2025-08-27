@@ -1,6 +1,6 @@
 'use client';
 
-import { Database, Home, Layers, LucideIcon, Undo2 } from 'lucide-react';
+import { Database, Layers, LucideIcon, Send, Undo2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface ComingSoonCardProps {
@@ -51,10 +51,10 @@ export function ComingSoonSection() {
       icon: Database,
     },
     {
-      title: 'Design Gallery',
+      title: 'Direct Email Sending',
       description:
-        'A beautiful home page showcasing all your email designs with live previews, search functionality, and organization features for easy template management.',
-      icon: Home,
+        'Send emails directly from the platform using Resend with your own API key (BYOK). Create beautiful templates and deliver them straight to your audience.',
+      icon: Send,
     },
   ];
 
