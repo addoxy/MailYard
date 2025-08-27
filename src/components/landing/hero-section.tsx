@@ -5,10 +5,19 @@ import { scrollToId } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import { GridPattern } from '../ui/grid-pattern';
 
 export function HeroSection() {
   return (
     <section className="relative mt-28 sm:mt-40">
+      <GridPattern
+        width={30}
+        height={30}
+        x={-1}
+        y={-1}
+        strokeDasharray={'4 2'}
+        className="-z-10 -mt-28 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-30 sm:-mt-64"
+      />
       <div className="mx-auto max-w-7xl text-center">
         <motion.h1
           className="mb-6 text-4xl font-bold tracking-tight sm:text-6xl"
