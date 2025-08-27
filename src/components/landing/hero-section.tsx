@@ -76,7 +76,7 @@ export function HeroSection() {
         </motion.div>
       </div>
       <motion.div
-        className="bg-muted mx-auto mt-20 max-w-5xl overflow-hidden rounded-lg border"
+        className="bg-muted mx-auto mt-48 max-w-5xl overflow-hidden rounded-lg border"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}

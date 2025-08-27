@@ -13,7 +13,7 @@ const ComingSoonCard = ({ title, description, icon }: ComingSoonCardProps) => {
   const Icon = icon;
 
   return (
-    <div className="from-background/40 to-background/20 relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 shadow-lg backdrop-blur-sm">
+    <div className="from-background/40 to-background/20 relative mx-auto h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 shadow-lg backdrop-blur-sm max-md:max-w-[560px]">
       <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
       <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
 
