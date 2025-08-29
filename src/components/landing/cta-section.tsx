@@ -1,3 +1,5 @@
+'use client';
+
 import Silk from '@/components/react-bits/silk';
 import { buttonVariants } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';

@@ -10,6 +10,7 @@ import {
   CodeBlockContent,
   CodeBlockItem,
 } from '../ui/code-block';
+import { SectionDescription, SectionHeading } from './section-typography';
 
 interface FeatureCardProps {
   title: string;
@@ -27,7 +28,7 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
       <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
       <div
         className={cn(
-          'relative flex h-full w-full flex-col gap-3 pb-6',
+          'relative flex h-full w-full flex-col gap-1.5 pb-6',
           type === 'export' ? 'px-0' : 'px-6 pt-6'
         )}
       >
@@ -37,7 +38,7 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
         {type === 'styling' && <Styling />}
         <div className={cn('mt-auto flex items-center gap-2', type === 'export' && 'px-6')}>
           <Icon className="text-primary size-4" />
-          <span className="text-lg font-medium">{title}</span>
+          <span className="text-lg font-semibold">{title}</span>
         </div>
         <p className={cn('text-muted-foreground text-sm', type === 'export' && 'px-6')}>
           {description}
@@ -225,12 +226,9 @@ export function FeaturesSection() {
   return (
     <section>
       <div className="mb-12 text-center">
-        <h2 className="mb-4 text-3xl font-bold">Everything You Need</h2>
-        <p className="text-muted-foreground text-xl">
-          Powerful features to create professional emails
-        </p>
+        <SectionHeading text="Everything You Need" />
+        <SectionDescription text="Powerful features to create professional emails" />
       </div>
-
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {features.map((feature, index) => (
           <div key={feature.title}>

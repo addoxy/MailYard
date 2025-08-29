@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { SectionDescription, SectionHeading } from './section-typography';
 
 interface HowItWorksCardProps {
   step: number;
@@ -30,7 +31,7 @@ export const HowItWorksCard = ({
           <div className="mb-6">{children}</div>
 
           <div className="mt-auto">
-            <h3 className="mb-3 text-xl font-semibold">{title}</h3>
+            <h3 className="mb-1.5 text-lg font-semibold">{title}</h3>
             <p className="text-muted-foreground text-sm">{description}</p>
           </div>
         </div>
@@ -44,10 +45,8 @@ export function HowItWorksSection() {
     <section id="how-it-works">
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold">How It Works</h2>
-          <p className="text-muted-foreground text-xl">
-            Get from idea to email in three simple steps
-          </p>
+          <SectionHeading text="How It Works" />
+          <SectionDescription text="Get from idea to email in three simple steps" />
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

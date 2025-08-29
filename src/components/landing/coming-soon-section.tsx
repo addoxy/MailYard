@@ -1,4 +1,5 @@
 import { Database, Layers, LucideIcon, Send, Undo2 } from 'lucide-react';
+import { SectionDescription, SectionHeading } from './section-typography';
 
 interface ComingSoonCardProps {
   title: string;
@@ -13,16 +14,13 @@ const ComingSoonCard = ({ title, description, icon }: ComingSoonCardProps) => {
     <div className="from-background/40 to-background/20 relative mx-auto h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-6 shadow-lg backdrop-blur-sm max-md:max-w-[560px]">
       <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
       <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
-
-      <div className="relative">
-        <div className="mb-4 flex items-center space-x-3">
-          <div className="bg-primary/20 border-primary/30 flex h-12 w-12 items-center justify-center rounded-full border-2 shadow-lg">
-            <Icon className="text-primary h-6 w-6" />
-          </div>
-          <h3 className="text-xl font-semibold">{title}</h3>
+      <div className="mb-1 flex items-center space-x-3">
+        <div className="bg-primary/20 border-primary/30 flex size-10 items-center justify-center rounded-full border-2 shadow-lg">
+          <Icon className="text-primary size-5" />
         </div>
-        <p className="text-muted-foreground text-sm">{description}</p>
+        <h3 className="text-lg font-semibold">{title}</h3>
       </div>
+      <p className="text-muted-foreground pr-4 pl-[3.3rem] text-sm text-pretty">{description}</p>
     </div>
   );
 };
@@ -59,8 +57,8 @@ export function ComingSoonSection() {
     <section>
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold">Coming Soon</h2>
-          <p className="text-muted-foreground text-xl">Exciting features in development</p>
+          <SectionHeading text="Coming Soon" />
+          <SectionDescription text="Exciting features in development" />
         </div>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {COMING_SOON_FEATURES.map((feature, index) => (

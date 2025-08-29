@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
 import { Code, Download, HelpCircle, LucideIcon, Save, Shield } from 'lucide-react';
+import { SectionDescription, SectionHeading } from './section-typography';
 
 interface FAQCardProps {
   question: string;
@@ -99,10 +100,8 @@ export function FAQSection() {
     <section>
       <div className="mx-auto max-w-4xl">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold">Frequently Asked Questions</h2>
-          <p className="text-muted-foreground text-xl">
-            Everything you need to know about MailYard
-          </p>
+          <SectionHeading text="Frequently Asked Questions" />
+          <SectionDescription text="Everything you need to know about MailYard" />
         </div>
 
         <div>
