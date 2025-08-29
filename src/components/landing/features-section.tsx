@@ -60,9 +60,9 @@ const Dnd = () => {
         <span className="text-sm">Stay updated with our latest news...</span>
         <Grab className="text-primary ml-auto size-4" />
       </div>
-      <div className="flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
+      <div className="flex items-center gap-3 rounded-lg border border-blue-800 bg-blue-950/50 px-4 py-3 shadow-sm">
         <MousePointerClick className="size-4 text-blue-600" />
-        <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Subscribe Now</span>
+        <span className="text-sm font-medium text-blue-400">Subscribe Now</span>
       </div>
     </div>
   );

@@ -56,7 +56,7 @@ export function SearchFilterBar() {
           </Select>
         </div>
 
-        <div className="dark:bg-input/30 flex items-center gap-1 rounded-md border bg-transparent p-1">
+        <div className="bg-input/30 flex items-center gap-1 rounded-md border p-1">
           {!isLoading ? (
             <>
               <div className="bg-muted h-7 w-7 animate-pulse rounded-sm" />

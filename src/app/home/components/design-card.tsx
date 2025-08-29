@@ -17,7 +17,7 @@ export function DesignCard({ design, onDesignClick, onEditTitle, onDelete }: Des
       onClick={() => onDesignClick(design.id)}
     >
       <CardContent className="p-0">
-        <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950 dark:to-indigo-900">
+        <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-blue-950 to-indigo-900">
           {design.thumbnail ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}

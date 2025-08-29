@@ -66,9 +66,9 @@ export function HowItWorksSection() {
                   <div className="bg-muted size-2 rounded-full"></div>
                   <span className="text-muted-foreground text-sm">Text Block</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
+                <div className="flex items-center gap-2 rounded-lg border border-blue-800 bg-blue-950/50 px-3 py-2 shadow-sm">
                   <div className="size-2 rounded-full bg-blue-500"></div>
-                  <span className="text-sm text-blue-600 dark:text-blue-400">Button Block</span>
+                  <span className="text-sm text-blue-400">Button Block</span>
                 </div>
               </div>
             </HowItWorksCard>
@@ -118,18 +118,16 @@ export function HowItWorksSection() {
               description="Export your email as React code and use it in your projects."
             >
               <div className="space-y-2">
-                <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-2 pb-4 shadow-sm dark:border-green-800 dark:bg-green-950/50">
-                  <span className="mb-1 text-xs font-medium text-green-700 dark:text-green-300">
-                    React Export
-                  </span>
-                  <div className="font-mono text-xs text-green-600 dark:text-green-400">
+                <div className="rounded-lg border border-green-800 bg-green-950/50 px-4 py-2 pb-4 shadow-sm">
+                  <span className="mb-1 text-xs font-medium text-green-300">React Export</span>
+                  <div className="font-mono text-xs text-green-400">
                     <span>&lt;Html&gt;</span>
                     <br />
                     <span className="ml-4">&lt;Body&gt;...</span>
                   </div>
                 </div>
-                <div className="flex items-center justify-center rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
-                  <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                <div className="flex items-center justify-center rounded-lg border border-blue-800 bg-blue-950/50 px-3 py-2 shadow-sm">
+                  <span className="text-sm font-medium text-blue-400">
                     Ready to use in your project!
                   </span>
                 </div>
