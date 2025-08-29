@@ -177,7 +177,7 @@ export default function EmailTemplate() {
         defaultValue="tsx"
         className="border-border/50 ml-auto w-11/12 rounded-none rounded-bl-lg border-0 border-b border-l"
       >
-        <CodeBlockBody className="max-h-[250px] overflow-auto">
+        <CodeBlockBody className="max-h-[250px] overflow-hidden">
           {(item) => (
             <CodeBlockItem key={item.language} value={item.language}>
               <CodeBlockContent language={item.language as BundledLanguage}>

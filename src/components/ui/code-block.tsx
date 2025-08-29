@@ -183,15 +183,15 @@ const lineNumberClassNames = cn(
   '[&_.line]:before:select-none'
 );
 const darkModeClassNames = cn(
-  'dark:[&_.shiki]:!text-[var(--shiki-dark)]',
-  'dark:[&_.shiki]:!bg-[var(--shiki-dark-bg)]',
-  'dark:[&_.shiki]:![font-style:var(--shiki-dark-font-style)]',
-  'dark:[&_.shiki]:![font-weight:var(--shiki-dark-font-weight)]',
-  'dark:[&_.shiki]:![text-decoration:var(--shiki-dark-text-decoration)]',
-  'dark:[&_.shiki_span]:!text-[var(--shiki-dark)]',
-  'dark:[&_.shiki_span]:![font-style:var(--shiki-dark-font-style)]',
-  'dark:[&_.shiki_span]:![font-weight:var(--shiki-dark-font-weight)]',
-  'dark:[&_.shiki_span]:![text-decoration:var(--shiki-dark-text-decoration)]'
+  '[&_.shiki]:!text-[var(--shiki-dark)]',
+  '[&_.shiki]:!bg-[var(--shiki-dark-bg)]',
+  '[&_.shiki]:![font-style:var(--shiki-dark-font-style)]',
+  '[&_.shiki]:![font-weight:var(--shiki-dark-font-weight)]',
+  '[&_.shiki]:![text-decoration:var(--shiki-dark-text-decoration)]',
+  '[&_.shiki_span]:!text-[var(--shiki-dark)]',
+  '[&_.shiki_span]:![font-style:var(--shiki-dark-font-style)]',
+  '[&_.shiki_span]:![font-weight:var(--shiki-dark-font-weight)]',
+  '[&_.shiki_span]:![text-decoration:var(--shiki-dark-text-decoration)]'
 );
 const lineHighlightClassNames = cn(
   '[&_.line.highlighted]:bg-blue-50',
@@ -201,7 +201,7 @@ const lineHighlightClassNames = cn(
   '[&_.line.highlighted]:after:top-0',
   '[&_.line.highlighted]:after:bottom-0',
   '[&_.line.highlighted]:after:w-0.5',
-  'dark:[&_.line.highlighted]:!bg-blue-500/10'
+  '[&_.line.highlighted]:!bg-blue-500/10'
 );
 const lineDiffClassNames = cn(
   '[&_.line.diff]:after:absolute',
@@ -213,8 +213,8 @@ const lineDiffClassNames = cn(
   '[&_.line.diff.add]:after:bg-emerald-500',
   '[&_.line.diff.remove]:bg-rose-50',
   '[&_.line.diff.remove]:after:bg-rose-500',
-  'dark:[&_.line.diff.add]:!bg-emerald-500/10',
-  'dark:[&_.line.diff.remove]:!bg-rose-500/10'
+  '[&_.line.diff.add]:!bg-emerald-500/10',
+  '[&_.line.diff.remove]:!bg-rose-500/10'
 );
 const lineFocusedClassNames = cn(
   '[&_code:has(.focused)_.line]:blur-[2px]',
@@ -222,7 +222,7 @@ const lineFocusedClassNames = cn(
 );
 const wordHighlightClassNames = cn(
   '[&_.highlighted-word]:bg-blue-50',
-  'dark:[&_.highlighted-word]:!bg-blue-500/10'
+  '[&_.highlighted-word]:!bg-blue-500/10'
 );
 const codeBlockClassName = cn(
   'mt-0 bg-background text-sm',
