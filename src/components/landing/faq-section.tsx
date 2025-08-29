@@ -1,5 +1,3 @@
-'use client';
-
 import {
   Accordion,
   AccordionContent,
@@ -8,7 +6,6 @@ import {
 } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
 import { Code, Download, HelpCircle, LucideIcon, Save, Shield } from 'lucide-react';
-import { motion } from 'motion/react';
 
 interface FAQCardProps {
   question: string;
@@ -99,56 +96,30 @@ export function FAQSection() {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6 }}
-    >
+    <section>
       <div className="mx-auto max-w-4xl">
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
+        <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">Frequently Asked Questions</h2>
           <p className="text-muted-foreground text-xl">
             Everything you need to know about MailYard
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-        >
+        <div>
           <Accordion type="single" collapsible className="w-full space-y-4">
             {FAQS.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  ease: 'easeOut',
-                  delay: 0.3 + index * 0.1,
-                }}
-              >
+              <div key={index}>
                 <FAQCard
                   question={faq.question}
                   answer={faq.answer}
                   value={`item-${index}`}
                   icon={faq.icon}
                 />
-              </motion.div>
+              </div>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

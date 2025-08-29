@@ -3,7 +3,6 @@
 import { DragDropIcon, PhoneLaptop } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Code, Grab, Heading, LucideIcon, MousePointerClick, Palette, Text } from 'lucide-react';
-import { motion } from 'motion/react';
 import {
   BundledLanguage,
   CodeBlock,
@@ -224,47 +223,26 @@ export function FeaturesSection() {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        className="mb-12 text-center"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
+    <section>
+      <div className="mb-12 text-center">
         <h2 className="mb-4 text-3xl font-bold">Everything You Need</h2>
         <p className="text-muted-foreground text-xl">
           Powerful features to create professional emails
         </p>
-      </motion.div>
+      </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {features.map((feature, index) => (
-          <motion.div
-            key={feature.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.6,
-              ease: 'easeOut',
-              delay: index * 0.1,
-            }}
-          >
+          <div key={feature.title}>
             <FeatureCard
               title={feature.title}
               description={feature.description}
               icon={feature.icon}
               type={feature.type}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

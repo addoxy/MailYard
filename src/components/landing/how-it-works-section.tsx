@@ -1,7 +1,4 @@
-'use client';
-
 import { cn } from '@/lib/utils';
-import { motion } from 'motion/react';
 
 interface HowItWorksCardProps {
   step: number;
@@ -44,35 +41,18 @@ export const HowItWorksCard = ({
 
 export function HowItWorksSection() {
   return (
-    <motion.section
-      id="how-it-works"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6 }}
-    >
+    <section id="how-it-works">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
+        <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold">How It Works</h2>
           <p className="text-muted-foreground text-xl">
             Get from idea to email in three simple steps
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Step 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-          >
+          <div>
             <HowItWorksCard
               step={1}
               title="Choose Your Blocks"
@@ -93,15 +73,10 @@ export function HowItWorksSection() {
                 </div>
               </div>
             </HowItWorksCard>
-          </motion.div>
+          </div>
 
           {/* Step 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-          >
+          <div>
             <HowItWorksCard
               step={2}
               title="Drag & Customize"
@@ -134,15 +109,10 @@ export function HowItWorksSection() {
                 </div>
               </div>
             </HowItWorksCard>
-          </motion.div>
+          </div>
 
           {/* Step 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
-          >
+          <div>
             <HowItWorksCard
               step={3}
               title="Export & Send"
@@ -166,9 +136,9 @@ export function HowItWorksSection() {
                 </div>
               </div>
             </HowItWorksCard>
-          </motion.div>
+          </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -1,16 +1,15 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { scrollToId } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
-import { motion } from 'motion/react';
 import Link from 'next/link';
 import { BorderBeam } from '../ui/border-beam';
 import { GridPattern } from '../ui/grid-pattern';
 
 export function HeroSection() {
   return (
-    <section className="relative mt-28 sm:mt-40">
+    <section className="relative mt-20 sm:mt-32">
       <div className="relative mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-8 text-center sm:p-20">
         <GridPattern
           width={30}
@@ -29,37 +28,26 @@ export function HeroSection() {
           colorFrom="var(--accent)"
           colorTo="var(--foreground)"
         />
-        <motion.h1
-          className="mb-6 text-3xl font-bold tracking-tight sm:text-6xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
+        <h1 className="mb-6 text-3xl font-bold tracking-tight sm:text-6xl">
           Build Beautiful Emails
           <br />
           Without The Hassle
-        </motion.h1>
-        <motion.p
-          className="text-muted-foreground mx-auto mb-8 max-w-3xl sm:text-xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
-        >
+        </h1>
+        <p className="text-muted-foreground mx-auto mb-8 max-w-3xl sm:text-xl">
           Create stunning, responsive email templates with our intuitive drag-and-drop editor. No
           coding required - just beautiful emails that work everywhere.
-        </motion.p>
-        <motion.div
-          className="grid grid-cols-2 gap-1"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-        >
-          <Button size="lg" asChild className="group w-fit">
-            <Link href="/design">
-              Get Started
-              <ArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
-            </Link>
-          </Button>
+        </p>
+        <div className="grid grid-cols-2 gap-1">
+          <Link
+            href="/design"
+            className={buttonVariants({
+              className: 'group w-fit',
+              size: 'lg',
+            })}
+          >
+            Get Started
+            <ArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
+          </Link>
           <Button
             variant="outline"
             size="lg"
@@ -73,18 +61,13 @@ export function HeroSection() {
           >
             How It Works
           </Button>
-        </motion.div>
+        </div>
       </div>
-      <motion.div
-        className="bg-muted mx-auto mt-48 max-w-5xl overflow-hidden rounded-lg border"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
-      >
+      <div className="bg-muted mx-auto mt-32 max-w-5xl overflow-hidden rounded-lg border">
         <div className="bg-muted flex aspect-video items-center justify-center">
           A video comes here
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
