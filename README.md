@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MailYard
 
-## Getting Started
+![MailYard Hero](/public/hero.png)
 
-First, run the development server:
+A powerful, no-code solution for creating beautiful and accessible emails using modern web technologies. Build stunning, responsive emails in minutes with an intuitive drag-and-drop interface—no coding required.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ What is MailYard?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+MailYard is a comprehensive visual email design tool that empowers marketers, designers, and developers to create professional email campaigns without writing a single line of code. With its intuitive interface and powerful features, you can design emails that look perfect across all email clients and devices.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🎨 **Visual Drag & Drop Editor**
 
-## Learn More
+- Intuitive three-panel interface with block library, canvas, and property inspector
+- Real-time visual editing with immediate feedback
+- Professional email blocks: headings, text, buttons, links, dividers, and images
 
-To learn more about Next.js, take a look at the following resources:
+🚀 **No-Code Design**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Build emails visually without any HTML/CSS knowledge
+- Smart defaults and professional styling options
+- Responsive design that works across all email clients
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📱 **Multi-Device Preview**
 
-## Deploy on Vercel
+- Live preview across Gmail, Outlook, Apple Mail, and Yahoo Mail
+- Mobile-responsive design with desktop and mobile views
+- Test your emails before sending
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+⚡ **Export & Integration**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Export as clean React components using @react-email/components
+- Generate production-ready HTML for any email service
+- Seamless integration with your existing email workflows
+
+🎯 **Professional Features**
+
+- Multi-select editing for bulk changes
+- Keyboard shortcuts for power users
+- Undo/redo functionality
+- Copy/paste and duplicate blocks
+- Advanced styling controls with spacing, borders, and typography
+
+## 📖 How It Works
+
+1. **Choose Blocks**: Start with pre-built email blocks from the left sidebar
+2. **Drag & Design**: Drop blocks onto the canvas and arrange them visually
+3. **Customize**: Use the right inspector panel to style colors, fonts, spacing, and more
+4. **Preview**: Test your email across different clients and devices
+5. **Export**: Generate clean React components or production-ready HTML
+
+## 🎯 Who Is This For?
+
+- **Marketers**: Create professional campaigns without developer dependency
+- **Designers**: Focus on visual design without worrying about email client quirks
+- **Developers**: Generate clean, maintainable email code and components
+- **Small Teams**: Streamline email creation workflow with collaborative features
+
+## 📧 Email Client Compatibility
+
+Emails built with MailYard work seamlessly across:
+
+- Gmail (Desktop & Mobile)
+- Outlook (2016, 2019, Office 365)
+- Apple Mail (macOS & iOS)
+- Yahoo Mail
+- Thunderbird
+- And many more

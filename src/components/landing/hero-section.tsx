@@ -3,6 +3,7 @@
 import { Button, buttonVariants } from '@/components/ui/button';
 import { scrollToId } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { BorderBeam } from '../ui/border-beam';
 import { GridPattern } from '../ui/grid-pattern';
@@ -63,10 +64,14 @@ export function HeroSection() {
           </Button>
         </div>
       </div>
-      <div className="bg-muted mx-auto mt-32 max-w-5xl overflow-hidden rounded-lg border">
-        <div className="bg-muted flex aspect-video items-center justify-center">
-          A video comes here
-        </div>
+      <div className="bg-muted border-border/50 mx-auto mt-32 overflow-hidden rounded-lg border p-2">
+        <Image
+          src="/hero.png"
+          height={1920}
+          width={1080}
+          alt="Interface"
+          className="border-border/50 w-full rounded-md border"
+        />
       </div>
     </section>
   );
