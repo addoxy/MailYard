@@ -66,7 +66,7 @@ export function HeroSection() {
       </div>
       <div className="bg-muted border-border/50 mx-auto mt-32 overflow-hidden rounded-lg border p-2">
         <Image
-          src="/hero-2.png"
+          src="/hero.png"
           height={1920}
           width={1080}
           alt="Interface"

@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 import { EmailBlockType } from './components/email-blocks/types';
 
 type InspectorView = 'style' | 'ai';
@@ -22,10 +23,10 @@ interface CanvasStyles {
 
 export const inspectorViewAtom = atom<InspectorView>('style');
 export const deviceViewAtom = atom<DeviceView>('desktop');
-export const emailBlocksAtom = atom<EmailBlockType[]>([]);
+export const emailBlocksAtom = atomWithStorage<EmailBlockType[]>('email-blocks', []);
 export const selectedBlockIdAtom = atom<string | null>(null);
 export const selectedBlockIdsAtom = atom<string[]>([]);
-export const canvasStylesAtom = atom<CanvasStyles>({
+export const canvasStylesAtom = atomWithStorage<CanvasStyles>('canvas-styles', {
   maxWidth: '600px',
   backgroundColor: '#ffffff',
   paddingTop: '32px',
