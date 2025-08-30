@@ -64,14 +64,14 @@ export function HeroSection() {
           </Button>
         </div>
       </div>
-      <div className="bg-accent border-border/50 mx-auto mt-32 overflow-hidden rounded-2xl border p-1.5 sm:p-2">
+      <div className="bg-accent shadow-foreground/5 mt-32 rounded-2xl border bg-gradient-to-br p-1.5 shadow-xl sm:p-2">
         <Image
           src="/hero.png"
           height={1920}
           width={1080}
           alt="MailYard Interface"
-          loading="eager"
-          className="border-border/50 w-full rounded-xl border"
+          priority
+          className="border-border/50 mx-auto w-full rounded-xl border"
         />
       </div>
     </section>
