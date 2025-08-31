@@ -1,6 +1,6 @@
 # MailYard
 
-![MailYard Hero](/public/hero.png)
+![MailYard Hero](/public/readme-hero.png)
 
 A powerful, no-code solution for creating beautiful and accessible emails using modern web technologies. Build stunning, responsive emails in minutes with an intuitive drag-and-drop interface—no coding required.
 
