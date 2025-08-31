@@ -2,39 +2,36 @@
 
 ![MailYard Hero](/public/readme-hero.png)
 
-A powerful, no-code solution for creating beautiful and accessible emails using modern web technologies. Build stunning, responsive emails in minutes with an intuitive drag-and-drop interface—no coding required.
+A visual email creator for building beautiful and accessible emails using modern web technologies. Create stunning, responsive emails with an intuitive drag-and-drop interface and export clean React code.
 
-## ✨ What is MailYard?
+## What is MailYard?
 
-MailYard is a comprehensive visual email design tool that empowers marketers, designers, and developers to create professional email campaigns without writing a single line of code. With its intuitive interface and powerful features, you can design emails that look perfect across all email clients and devices.
+MailYard is a visual email design tool for creating emails. With its intuitive interface and powerful features, you can design emails that look perfect across all email clients and devices.
 
 ### Key Features
 
-🎨 **Visual Drag & Drop Editor**
+**Visual Drag & Drop Editor**
 
-- Intuitive three-panel interface with block library, canvas, and property inspector
+- Intuitive three-panel interface with email components library, design area, and styling controls
 - Real-time visual editing with immediate feedback
-- Professional email blocks: headings, text, buttons, links, dividers, and images
+- Email blocks: headings, text, buttons, links, dividers, and images
 
-🚀 **No-Code Design**
+**Visual Design**
 
-- Build emails visually without any HTML/CSS knowledge
-- Smart defaults and professional styling options
+- Build emails visually with an intuitive interface
+- Smart defaults and styling options
 - Responsive design that works across all email clients
 
-📱 **Multi-Device Preview**
+**Multi-Device Preview**
 
-- Live preview across Gmail, Outlook, Apple Mail, and Yahoo Mail
 - Mobile-responsive design with desktop and mobile views
-- Test your emails before sending
+- Live preview showing how your email will look in an inbox
 
-⚡ **Export & Integration**
+**Export Options**
 
-- Export as clean React components using @react-email/components
-- Generate production-ready HTML for any email service
-- Seamless integration with your existing email workflows
+- Export as clean React components using `@react-email/components`
 
-🎯 **Professional Features**
+**Powerful Tools**
 
 - Multi-select editing for bulk changes
 - Keyboard shortcuts for power users
@@ -42,28 +39,37 @@ MailYard is a comprehensive visual email design tool that empowers marketers, de
 - Copy/paste and duplicate blocks
 - Advanced styling controls with spacing, borders, and typography
 
-## 📖 How It Works
+## How It Works
 
-1. **Choose Blocks**: Start with pre-built email blocks from the left sidebar
-2. **Drag & Design**: Drop blocks onto the canvas and arrange them visually
-3. **Customize**: Use the right inspector panel to style colors, fonts, spacing, and more
-4. **Preview**: Test your email across different clients and devices
-5. **Export**: Generate clean React components or production-ready HTML
+1. **Choose Blocks**: Start with pre-built email blocks from the components library
+2. **Drag & Design**: Drop blocks onto the design area and arrange them visually
+3. **Customize**: Use the styling controls to adjust colors, fonts, spacing, and more
+4. **Preview**: Test your email in desktop and mobile views
+5. **Export**: Generate clean React components
 
-## 🎯 Who Is This For?
+## Email Client Compatibility
 
-- **Marketers**: Create professional campaigns without developer dependency
-- **Designers**: Focus on visual design without worrying about email client quirks
-- **Developers**: Generate clean, maintainable email code and components
-- **Small Teams**: Streamline email creation workflow with collaborative features
+Emails built with MailYard are compatible with widely used email providers because it uses React Email, ensuring your designs work across:
 
-## 📧 Email Client Compatibility
-
-Emails built with MailYard work seamlessly across:
-
-- Gmail (Desktop & Mobile)
-- Outlook (2016, 2019, Office 365)
-- Apple Mail (macOS & iOS)
+- Gmail
+- Outlook
+- Apple Mail
 - Yahoo Mail
-- Thunderbird
 - And many more
+
+## Coming Soon
+
+- **Advanced Layout Systems**
+  - Section Blocks for grouping multiple elements
+  - Grid Blocks for multi-column newsletter layouts
+
+- **Undo/Redo System**
+  - Complete history tracking for all operations
+  - Never lose your work while experimenting
+
+- **Database & Authentication**
+  - Cloud saving with user accounts
+
+- **Direct Email Sending**
+  - Integration with Resend using your own API key
+  - Send beautiful emails directly from the platform
