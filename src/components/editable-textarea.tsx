@@ -31,6 +31,7 @@ export const EditableTextarea = forwardRef<HTMLTextAreaElement, EditableTextarea
       width: '100%',
       background: 'transparent',
       minHeight: 'auto',
+      display: 'block',
       ...style,
     };
 

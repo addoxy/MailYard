@@ -61,6 +61,18 @@ export function ButtonBlock({
     }
   };
 
+  const getButtonAlignment = () => {
+    switch (textAlign) {
+      case 'center':
+        return { marginLeft: 'auto', marginRight: 'auto' };
+      case 'right':
+        return { marginLeft: 'auto', marginRight: '0' };
+      case 'left':
+      default:
+        return { marginLeft: '0', marginRight: 'auto' };
+    }
+  };
+
   const baseStyle = {
     ...createBaseStyle({
       fontSize,
@@ -82,7 +94,6 @@ export function ButtonBlock({
       paddingLeft,
     }),
     cursor: onClick ? 'pointer' : 'default',
-    display: 'inline-block',
   };
 
   const containerStyle = {
@@ -108,6 +119,8 @@ export function ButtonBlock({
             textAlign: 'center',
             minWidth: 'auto',
             width: 'auto',
+            display: 'block',
+            ...getButtonAlignment(),
           }}
         />
       </div>

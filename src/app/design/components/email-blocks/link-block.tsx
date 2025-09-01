@@ -75,6 +75,7 @@ export function LinkBlock({
       lineHeight,
       letterSpacing,
       textDecoration,
+      textAlign,
       paddingTop,
       paddingRight,
       paddingBottom,
