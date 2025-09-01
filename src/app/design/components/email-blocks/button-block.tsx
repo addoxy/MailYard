@@ -95,22 +95,22 @@ export function ButtonBlock({
 
   if (isEditing) {
     return (
-      <EditableTextarea
-        ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-        value={editContent}
-        onChange={handleContentChange}
-        onKeyDown={handleKeyDown}
-        onBlur={handleSave}
-        style={{
-          ...baseStyle,
-          outline: '2px solid #3b82f6',
-          outlineOffset: '2px',
-          border: 'none',
-          textAlign: 'center',
-          minWidth: 'auto',
-          width: 'auto',
-        }}
-      />
+      <div style={containerStyle}>
+        <EditableTextarea
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+          value={editContent}
+          onChange={handleContentChange}
+          onKeyDown={handleKeyDown}
+          onBlur={handleSave}
+          style={{
+            ...baseStyle,
+            border: 'none',
+            textAlign: 'center',
+            minWidth: 'auto',
+            width: 'auto',
+          }}
+        />
+      </div>
     );
   }
 

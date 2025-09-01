@@ -94,22 +94,24 @@ export function LinkBlock({
 
   if (isEditing) {
     return (
-      <EditableTextarea
-        ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-        value={editContent}
-        onChange={handleContentChange}
-        onKeyDown={handleKeyDown}
-        onBlur={handleSave}
-        style={{
-          ...baseStyle,
-          outline: 'none',
-          backgroundColor: 'transparent',
-          border: 'none',
-          width: '100%',
-          overflow: 'hidden',
-          minHeight: 'auto',
-        }}
-      />
+      <div style={containerStyle}>
+        <EditableTextarea
+          ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+          value={editContent}
+          onChange={handleContentChange}
+          onKeyDown={handleKeyDown}
+          onBlur={handleSave}
+          style={{
+            ...baseStyle,
+            outline: 'none',
+            backgroundColor: 'transparent',
+            border: 'none',
+            width: '100%',
+            overflow: 'hidden',
+            minHeight: 'auto',
+          }}
+        />
+      </div>
     );
   }
 

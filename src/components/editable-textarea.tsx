@@ -19,7 +19,7 @@ export const EditableTextarea = forwardRef<HTMLTextAreaElement, EditableTextarea
       onBlur,
       onKeyDown,
       style,
-      className = 'field-sizing-content resize-none !-mb-[7px]',
+      className = 'field-sizing-content resize-none',
       ...props
     },
     ref
