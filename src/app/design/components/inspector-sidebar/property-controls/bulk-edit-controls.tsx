@@ -258,6 +258,33 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
           );
         }
 
+        // Handle width property
+        if (property === 'width') {
+          return (
+            <div key={property} className="flex flex-col gap-2">
+              <FieldLabel text="Width (%)" />
+              {propertyResult.hasMultipleValues ? (
+                <Input value="Mixed" className="text-muted-foreground h-8" readOnly />
+              ) : (
+                <ClearableNumberInput
+                  value={
+                    displayValue === 'auto' || displayValue === '100%' 
+                      ? 100
+                      : parseInt(displayValue as string) || 100
+                  }
+                  onChange={(value) => handleChange(`${value}%`)}
+                  placeholder="100"
+                  min={1}
+                  max={100}
+                />
+              )}
+              {propertyResult.hasMultipleValues && (
+                <div className="text-muted-foreground text-xs">Mixed values</div>
+              )}
+            </div>
+          );
+        }
+
         // Handle other border properties
         if (property.includes('border')) {
           return (
@@ -301,6 +328,8 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
 
   const linkProps = editableProps.filter((prop) => ['href'].includes(prop));
 
+  const layoutProps = editableProps.filter((prop) => ['width'].includes(prop));
+
   if (editableProps.length === 0) {
     return (
       <div className="text-muted-foreground py-4 text-center text-sm">
@@ -313,6 +342,7 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
   const sections = [
     { key: 'text', props: textProps, label: 'Text' },
     { key: 'link', props: linkProps, label: 'Link' },
+    { key: 'layout', props: layoutProps, label: 'Layout' },
     { key: 'background', props: backgroundProps, label: 'Background' },
     { key: 'spacing', props: spacingProps, label: 'Spacing' },
     { key: 'border', props: borderProps, label: 'Border' },

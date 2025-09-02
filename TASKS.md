@@ -356,21 +356,21 @@ This section contains all client-side development tasks for the email builder in
 
 #### 28. Width Controls for All Blocks
 
-- [ ] Create `src/app/designs/[id]/components/inspector-sidebar/property-controls/width-controls.tsx` - Width control component for all blocks except image (which already has it)
-- [ ] Add percentage-based width controls (1-100%) to all blocks: heading, text, button, link, divider, container
-- [ ] Use ClearableNumberInput component for width input with proper validation
-- [ ] **Special handling for button blocks**:
-  - [ ] Add width mode toggle: "Fit" (auto-width to fit content) and "Custom" (user-defined percentage width)
-  - [ ] Default to "Fit" mode for new buttons
-  - [ ] Add tabs to switch between "Fit" vs "Custom" modes, positioned to the right of the "Width" heading
-  - [ ] When "Fit" is selected, show a disabled input with placeholder "Fit"
-  - [ ] When "Custom" is selected, show the clearable number input for percentage width
-- [ ] **Maintain proper alignment behavior**:
-  - [ ] Ensure text alignment (left, center, right) still works correctly with custom widths
-  - [ ] For buttons: alignment affects button position within container, not button text alignment
-- [ ] Integrate width controls into block-editor.tsx for all applicable block types
-- [ ] Update block components to handle width property and apply inline styles correctly
-- [ ] Ensure width controls work with bulk editing for mixed selections
+- [x] Create `src/app/designs/[id]/components/inspector-sidebar/property-controls/width-controls.tsx` - Width control component for all blocks except image (which already has it)
+- [x] Add percentage-based width controls (1-100%) to all blocks: heading, text, button, link, divider, container
+- [x] Use ClearableNumberInput component for width input with proper validation
+- [x] **Special handling for button blocks**:
+  - [x] Add width mode toggle: "Fit" (auto-width to fit content) and "Custom" (user-defined percentage width)
+  - [x] Default to "Fit" mode for new buttons
+  - [x] Add tabs to switch between "Fit" vs "Custom" modes, positioned to the right of the "Width" heading
+  - [x] When "Fit" is selected, show a disabled input with placeholder "Fit"
+  - [x] When "Custom" is selected, show the clearable number input for percentage width
+- [x] **Maintain proper alignment behavior**:
+  - [x] Ensure text alignment (left, center, right) still works correctly with custom widths
+  - [x] For buttons: alignment affects button position within container, not button text alignment
+- [x] Integrate width controls into block-editor.tsx for all applicable block types
+- [x] Update block components to handle width property and apply inline styles correctly
+- [x] Ensure width controls work with bulk editing for mixed selections
 
 **Notes**: This adds flexible width control to all blocks while maintaining proper alignment behavior. Button blocks get special treatment with fit-to-content vs custom width options. All widths are percentage-based for responsive email compatibility.
 

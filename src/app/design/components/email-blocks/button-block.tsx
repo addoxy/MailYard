@@ -26,6 +26,7 @@ export function ButtonBlock({
   lineHeight = defaults.lineHeight,
   letterSpacing = defaults.letterSpacing,
   textDecoration = defaults.textDecoration,
+  width = defaults.width,
   marginTop = defaults.marginTop,
   marginBottom = defaults.marginBottom,
   marginLeft = defaults.marginLeft,
@@ -87,7 +88,8 @@ export function ButtonBlock({
       lineHeight,
       letterSpacing,
       textDecoration,
-      textAlign,
+      textAlign: 'center', // Button text is always centered
+      width,
       paddingTop,
       paddingRight,
       paddingBottom,
@@ -98,6 +100,7 @@ export function ButtonBlock({
 
   const containerStyle = {
     textAlign: textAlign as 'left' | 'center' | 'right',
+    width: '100%',
     marginTop,
     marginRight,
     marginBottom,
@@ -118,7 +121,6 @@ export function ButtonBlock({
             border: 'none',
             textAlign: 'center',
             minWidth: 'auto',
-            width: 'auto',
             display: 'block',
             ...getButtonAlignment(),
           }}

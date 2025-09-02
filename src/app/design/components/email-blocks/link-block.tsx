@@ -26,6 +26,7 @@ export function LinkBlock({
   lineHeight = defaults.lineHeight,
   letterSpacing = defaults.letterSpacing,
   textDecoration = defaults.textDecoration,
+  width = defaults.width,
   marginTop = defaults.marginTop,
   marginBottom = defaults.marginBottom,
   marginLeft = defaults.marginLeft,
@@ -76,6 +77,7 @@ export function LinkBlock({
       letterSpacing,
       textDecoration,
       textAlign,
+      width,
       paddingTop,
       paddingRight,
       paddingBottom,
@@ -87,6 +89,7 @@ export function LinkBlock({
 
   const containerStyle = {
     textAlign: textAlign as 'left' | 'center' | 'right',
+    width: '100%',
     marginTop,
     marginRight,
     marginBottom,

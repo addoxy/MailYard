@@ -21,6 +21,7 @@ import { LinkControls } from './property-controls/link-controls';
 import { SpacingControls } from './property-controls/spacing-controls';
 import { TextControls } from './property-controls/text-controls';
 import { TypographyControls } from './property-controls/typography-controls';
+import { WidthControls } from './property-controls/width-controls';
 
 export const BlockEditor = () => {
   const [selectedBlockId] = useAtom(selectedBlockIdAtom);
@@ -92,6 +93,8 @@ export const BlockEditor = () => {
             <Separator className="my-6" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
+            <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
+            <Separator className="my-6" />
             <TypographyControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
             <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
@@ -112,6 +115,8 @@ export const BlockEditor = () => {
             <Separator className="my-6" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
+            <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
+            <Separator className="my-6" />
             <TypographyControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
             <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
@@ -129,6 +134,8 @@ export const BlockEditor = () => {
       case 'divider':
         return (
           <>
+            <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
+            <Separator className="my-6" />
             <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />

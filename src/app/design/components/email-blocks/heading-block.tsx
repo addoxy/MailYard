@@ -25,6 +25,7 @@ export function HeadingBlock({
   lineHeight = defaults.lineHeight,
   letterSpacing = defaults.letterSpacing,
   textDecoration = defaults.textDecoration,
+  width = defaults.width,
   marginTop = defaults.marginTop,
   marginBottom = defaults.marginBottom,
   marginLeft = defaults.marginLeft,
@@ -74,6 +75,7 @@ export function HeadingBlock({
       letterSpacing,
       textDecoration,
       textAlign,
+      width,
       marginTop,
       marginRight,
       marginBottom,
@@ -90,6 +92,7 @@ export function HeadingBlock({
     return (
       <div
         style={{
+          width,
           marginTop,
           marginRight,
           marginBottom,

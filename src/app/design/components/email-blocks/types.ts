@@ -21,6 +21,7 @@ export interface HeadingBlockProps extends BaseBlockProps {
   lineHeight: string;
   letterSpacing: string;
   textDecoration?: 'none' | 'underline' | 'line-through';
+  width: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
@@ -47,6 +48,7 @@ export interface TextBlockProps extends BaseBlockProps {
   lineHeight: string;
   letterSpacing: string;
   textDecoration?: 'none' | 'underline' | 'line-through';
+  width: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
@@ -74,6 +76,7 @@ export interface ButtonBlockProps extends BaseBlockProps {
   lineHeight: string;
   letterSpacing: string;
   textDecoration?: 'none' | 'underline' | 'line-through';
+  width: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
@@ -101,6 +104,7 @@ export interface LinkBlockProps extends BaseBlockProps {
   lineHeight: string;
   letterSpacing: string;
   textDecoration: 'none' | 'underline' | 'line-through';
+  width: string;
   marginTop: string;
   marginBottom: string;
   marginLeft: string;
