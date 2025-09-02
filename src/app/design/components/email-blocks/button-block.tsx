@@ -88,7 +88,7 @@ export function ButtonBlock({
       lineHeight,
       letterSpacing,
       textDecoration,
-      textAlign: 'center', // Button text is always centered
+      textAlign: 'center',
       width,
       paddingTop,
       paddingRight,

@@ -149,6 +149,8 @@ export const BlockEditor = () => {
             <Separator className="my-6" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
+            <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
+            <Separator className="my-6" />
             <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-6" />
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />

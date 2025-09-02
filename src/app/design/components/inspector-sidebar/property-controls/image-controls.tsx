@@ -1,10 +1,6 @@
 'use client';
 
-import { ClearableNumberInput } from '@/components/clearable-number-input';
 import { FieldLabel, SectionLabel } from '@/components/settings-labels';
-import { Button } from '@/components/ui/button';
-import { blockDefaults } from '@/lib/style-utils';
-import { RotateCcw } from 'lucide-react';
 import { ImageBlockProps } from '../../email-blocks/types';
 
 interface ImageControlsProps {
@@ -13,27 +9,6 @@ interface ImageControlsProps {
 }
 
 export const ImageControls = ({ block, onUpdate }: ImageControlsProps) => {
-  const getWidthValue = () => {
-    if (block.width === 'auto') return 100;
-    // Extract percentage value (e.g., "75%" -> 75)
-    if (typeof block.width === 'string' && block.width.includes('%')) {
-      return parseInt(block.width.replace('%', ''));
-    }
-    return 100; // Default to 100%
-  };
-
-  const handleWidthChange = (width: number) => {
-    // Validate percentage bounds (1-100%)
-    const validatedWidth = Math.max(1, Math.min(100, width));
-    onUpdate('width', `${validatedWidth}%`);
-  };
-
-  const handleResetDimensions = () => {
-    const defaults = blockDefaults.image;
-    onUpdate('width', defaults.width);
-    // Height is always auto, no need to reset it
-  };
-
   // Validate URL format
   const isValidUrl = (url: string) => {
     if (!url) return false;
@@ -82,28 +57,6 @@ export const ImageControls = ({ block, onUpdate }: ImageControlsProps) => {
         )}
       </div>
 
-      {/* Width */}
-      <div className="mb-1 flex items-center justify-between">
-        <FieldLabel text="Width (%)" />
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleResetDimensions}
-          className="text-muted-foreground hover:text-foreground h-6 px-2 text-xs"
-          title="Reset to original size"
-        >
-          <RotateCcw className="size-3" />
-          Reset
-        </Button>
-      </div>
-      <ClearableNumberInput
-        value={getWidthValue()}
-        onChange={handleWidthChange}
-        placeholder="100"
-        min={1}
-        max={100}
-        className="mt-1 w-full"
-      />
     </div>
   );
 };
