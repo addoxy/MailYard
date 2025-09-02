@@ -12,7 +12,7 @@ export const PreviewModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">
+        <Button variant="outline">
           <Monitor className="h-4 w-4" />
           Preview
         </Button>

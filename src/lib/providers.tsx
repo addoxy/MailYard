@@ -1,5 +1,6 @@
 'use client';
 
+import { Toaster } from '@/components/ui/sonner';
 import { Provider } from 'jotai';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import * as React from 'react';
@@ -19,6 +20,7 @@ export const Providers = ({ children }: ProvidersProps) => {
       >
         {children}
       </NextThemesProvider>
+      <Toaster />
     </Provider>
   );
 };

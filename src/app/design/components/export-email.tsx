@@ -10,14 +10,11 @@ export const ExportEmail = () => {
 
   return (
     <>
-      <Button onClick={() => setIsExportModalOpen(true)}>
+      <Button variant="outline" onClick={() => setIsExportModalOpen(true)}>
         <Code />
         Export
       </Button>
-      <ExportModal
-        open={isExportModalOpen}
-        onOpenChange={setIsExportModalOpen}
-      />
+      <ExportModal open={isExportModalOpen} onOpenChange={setIsExportModalOpen} />
     </>
   );
 };

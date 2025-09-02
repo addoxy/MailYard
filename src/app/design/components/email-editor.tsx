@@ -39,7 +39,7 @@ export const EmailEditor = () => {
       >
         <div
           className={cn(
-            'h-full w-full overflow-hidden',
+            'h-full w-full overflow-auto',
             deviceView === 'mobile' ? 'rounded-lg border' : ''
           )}
           onClick={handleCanvasClick}
