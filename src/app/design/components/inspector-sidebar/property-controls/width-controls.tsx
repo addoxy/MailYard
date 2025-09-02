@@ -1,7 +1,7 @@
 'use client';
 
 import { ClearableNumberInput } from '@/components/clearable-number-input';
-import { FieldLabel } from '@/components/settings-labels';
+import { FieldLabel, SectionLabel } from '@/components/settings-labels';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RotateCcw } from 'lucide-react';
@@ -62,9 +62,9 @@ export const WidthControls = ({ block, onUpdate }: WidthControlsProps) => {
   };
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between">
-        <FieldLabel text="Width" />
+    <div className="flex flex-col">
+      <div className="mb-4 flex items-center justify-between">
+        <SectionLabel text="Size" />
         <Button
           variant="ghost"
           size="sm"
@@ -76,17 +76,23 @@ export const WidthControls = ({ block, onUpdate }: WidthControlsProps) => {
           Reset
         </Button>
       </div>
-
-      {block.type === 'button' && (
-        <div className="space-y-2">
-          <Tabs value={buttonWidthMode} onValueChange={handleButtonWidthModeChange}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="fit" className="text-xs">Fit</TabsTrigger>
-              <TabsTrigger value="custom" className="text-xs">Custom</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      )}
+      <div className="flex items-center justify-between">
+        <FieldLabel text="Width" />
+        {block.type === 'button' && (
+          <div className="space-y-2">
+            <Tabs value={buttonWidthMode} onValueChange={handleButtonWidthModeChange}>
+              <TabsList className="grid h-fit w-full grid-cols-2 p-1">
+                <TabsTrigger value="fit" className="h-5 rounded-sm px-1 py-0.5 text-xs">
+                  Fit
+                </TabsTrigger>
+                <TabsTrigger value="custom" className="h-5 rounded-sm px-1 py-0.5 text-xs">
+                  Custom
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+        )}
+      </div>
 
       <div className="mt-2">
         {block.type === 'button' && buttonWidthMode === 'fit' ? (
