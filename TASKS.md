@@ -354,7 +354,27 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Simplified image system focused on essential functionality - URL management, accessibility, percentage-based responsive width, and proper alignment. Complex features like aspect ratio locks and preset sizes were removed for cleaner UX.
 
-#### 28. Container Block System
+#### 28. Width Controls for All Blocks
+
+- [ ] Create `src/app/designs/[id]/components/inspector-sidebar/property-controls/width-controls.tsx` - Width control component for all blocks except image (which already has it)
+- [ ] Add percentage-based width controls (1-100%) to all blocks: heading, text, button, link, divider, container
+- [ ] Use ClearableNumberInput component for width input with proper validation
+- [ ] **Special handling for button blocks**:
+  - [ ] Add width mode toggle: "Fit" (auto-width to fit content) and "Custom" (user-defined percentage width)
+  - [ ] Default to "Fit" mode for new buttons
+  - [ ] Add tabs to switch between "Fit" vs "Custom" modes, positioned to the right of the "Width" heading
+  - [ ] When "Fit" is selected, show a disabled input with placeholder "Fit"
+  - [ ] When "Custom" is selected, show the clearable number input for percentage width
+- [ ] **Maintain proper alignment behavior**:
+  - [ ] Ensure text alignment (left, center, right) still works correctly with custom widths
+  - [ ] For buttons: alignment affects button position within container, not button text alignment
+- [ ] Integrate width controls into block-editor.tsx for all applicable block types
+- [ ] Update block components to handle width property and apply inline styles correctly
+- [ ] Ensure width controls work with bulk editing for mixed selections
+
+**Notes**: This adds flexible width control to all blocks while maintaining proper alignment behavior. Button blocks get special treatment with fit-to-content vs custom width options. All widths are percentage-based for responsive email compatibility.
+
+#### 29. Container Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/container-block.tsx` - Advanced container component using @react-email/components Container
 - [ ] Implement container that can hold and group other email blocks with proper nesting support (containers can contain other containers)
@@ -369,7 +389,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Focus on intuitive editing where blocks inside containers behave exactly like standalone blocks when selected. Users should be able to seamlessly edit, style, and move blocks regardless of their container status.
 
-#### 29. Grid Block System
+#### 30. Grid Block System
 
 - [ ] Create `src/app/designs/[id]/components/email-blocks/grid-block.tsx` - Advanced grid layout component
 - [ ] Implement grid system using Row and Column from @react-email/components
@@ -385,7 +405,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 7: Mobile & Final Polish
 
-#### 30. Mobile Home Page
+#### 31. Mobile Home Page
 
 - [ ] Create responsive home page that works on mobile
 - [ ] Convert sidebar navigation to mobile-friendly format
@@ -394,7 +414,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Mobile users should see designs but be directed to desktop for editing.
 
-#### 31. Animation Polish
+#### 32. Animation Polish
 
 - [ ] Implement subtle hover effects on interactive elements
 - [ ] Add smooth state transitions (theme, view modes, selections)
@@ -402,7 +422,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Keep animations subtle and performance-focused. Enhance UX without being distracting.
 
-#### 32. Final Polish and Testing
+#### 33. Final Polish and Testing
 
 - [ ] Implement complete keyboard navigation support
 - [ ] Ensure WCAG accessibility compliance
@@ -413,7 +433,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: Focus on accessibility, performance, and reliability. Test thoroughly across different environments.
 
-#### 33. Input Validation for Property Controls
+#### 34. Input Validation for Property Controls
 
 - [ ] **Add real-time input validation to property control components**:
   - [ ] Update `ColorPicker` component to validate hex color format (#RRGGBB)
@@ -435,7 +455,7 @@ This section contains all client-side development tasks for the email builder in
 
 ### Phase 8: Future Features
 
-#### 34. Undo/Redo System
+#### 35. Undo/Redo System
 
 - [ ] Implement robust undo/redo history stack system
 - [ ] Add undo/redo buttons to Actions component with proper disabled states
@@ -448,7 +468,7 @@ This section contains all client-side development tasks for the email builder in
 
 **Notes**: This is a complex feature that requires careful state management. Focus on getting core functionality working first before implementing this advanced feature.
 
-#### 35. Subtle Framer Motion Animations
+#### 36. Subtle Framer Motion Animations
 
 - [ ] Add framer-motion back to dependencies: `pnpm add framer-motion`
 - [ ] Implement very subtle hover effects on interactive elements (buttons, block cards, etc.)
