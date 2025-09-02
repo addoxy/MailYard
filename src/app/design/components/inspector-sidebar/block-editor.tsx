@@ -61,7 +61,7 @@ export const BlockEditor = () => {
           </span>
         </div>
 
-        <div className="mt-6 space-y-6">
+        <div className="mt-4 space-y-4">
           <BulkEditControls selectedBlockIds={selectedBlockIds} />
         </div>
       </div>
@@ -90,17 +90,17 @@ export const BlockEditor = () => {
         return (
           <>
             <TextControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <TypographyControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
@@ -110,21 +110,21 @@ export const BlockEditor = () => {
         return (
           <>
             <TextControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <LinkControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <TypographyControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             {(selectedBlock.type === 'button' || selectedBlock.type === 'link') && (
               <>
                 <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
-                <Separator className="my-6" />
+                <Separator className="my-4" />
               </>
             )}
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
@@ -135,9 +135,9 @@ export const BlockEditor = () => {
         return (
           <>
             <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
@@ -146,13 +146,13 @@ export const BlockEditor = () => {
         return (
           <>
             <ImageControls block={selectedBlock as ImageBlockProps} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
-            <Separator className="my-6" />
+            <Separator className="my-4" />
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>
         );
@@ -169,12 +169,12 @@ export const BlockEditor = () => {
   const blockDisplayName = getBlockDisplayName(selectedBlock.type);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <div className="flex h-16 items-center gap-3 border-b px-6">
         <BlockIcon className="text-muted-foreground size-3.5" />
         <div className="text-foreground text-sm">{blockDisplayName}</div>
       </div>
-      <div className="space-y-6 px-6 pb-6">{renderBlockTypeControls()}</div>
+      <div className="space-y-4 px-6 pb-6">{renderBlockTypeControls()}</div>
     </div>
   );
 };

@@ -62,8 +62,8 @@ export const WidthControls = ({ block, onUpdate }: WidthControlsProps) => {
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="mb-4 flex items-center justify-between">
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center justify-between">
         <SectionLabel text="Size" />
         <Button
           variant="ghost"
@@ -76,10 +76,11 @@ export const WidthControls = ({ block, onUpdate }: WidthControlsProps) => {
           Reset
         </Button>
       </div>
-      <div className="flex items-center justify-between">
-        <FieldLabel text="Width" />
-        {block.type === 'button' && (
-          <div className="space-y-2">
+
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <FieldLabel text="Width (%)" />
+          {block.type === 'button' && (
             <Tabs value={buttonWidthMode} onValueChange={handleButtonWidthModeChange}>
               <TabsList className="grid h-fit w-full grid-cols-2 p-1">
                 <TabsTrigger value="fit" className="h-5 rounded-sm px-1 py-0.5 text-xs">
@@ -90,32 +91,29 @@ export const WidthControls = ({ block, onUpdate }: WidthControlsProps) => {
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
 
-      <div className="mt-2">
-        {block.type === 'button' && buttonWidthMode === 'fit' ? (
-          <input
-            type="text"
-            value="Fit"
-            disabled
-            className="border-input bg-muted text-muted-foreground h-8 w-full rounded-md border px-3 py-2 text-sm"
-            placeholder="Fit"
-          />
-        ) : (
-          <ClearableNumberInput
-            value={getWidthValue()}
-            onChange={handleWidthChange}
-            placeholder="100"
-            min={1}
-            max={100}
-            className="w-full"
-          />
-        )}
-        {!(block.type === 'button' && buttonWidthMode === 'fit') && (
-          <div className="text-muted-foreground mt-1 text-xs">Percentage (1-100%)</div>
-        )}
+        <div>
+          {block.type === 'button' && buttonWidthMode === 'fit' ? (
+            <input
+              type="text"
+              value="Fit"
+              disabled
+              className="border-input bg-muted text-muted-foreground h-8 w-full rounded-md border px-3 py-2 text-sm"
+              placeholder="Fit"
+            />
+          ) : (
+            <ClearableNumberInput
+              value={getWidthValue()}
+              onChange={handleWidthChange}
+              placeholder="100"
+              min={1}
+              max={100}
+              className="w-full"
+            />
+          )}
+        </div>
       </div>
     </div>
   );

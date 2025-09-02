@@ -35,7 +35,7 @@ export const BorderControls = ({ block, onUpdate }: BorderControlsProps) => {
   const borderRadiusValue = pxToNumber(borderRadius);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <SectionLabel text="Border" />
       {hasBorder && (
         <div className="flex flex-col gap-4">

@@ -349,7 +349,7 @@ export const BulkEditControls = ({ selectedBlockIds }: BulkEditControlsProps) =>
   ].filter((section) => section.props.length > 0);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       {sections.map((section, index) => {
         const isLast = index === sections.length - 1;
         return (

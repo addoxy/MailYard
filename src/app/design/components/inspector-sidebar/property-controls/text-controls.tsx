@@ -18,7 +18,7 @@ export const TextControls = ({ block, onUpdate }: TextControlsProps) => {
   const content = getBlockProperty(block, 'content') || '';
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <SectionLabel text="Content" />
 
       <Textarea
