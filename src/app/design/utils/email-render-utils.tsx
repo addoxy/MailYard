@@ -242,15 +242,11 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
     case 'divider':
       const dividerStyles = {
         width: block.width,
-        height: block.height,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : 'none',
+        borderColor: block.borderColor || 'transparent',
+        borderTopWidth: block.borderWidth,
+        borderStyle: block.borderStyle,
         marginTop: block.marginTop,
-        marginRight: block.marginRight,
         marginBottom: block.marginBottom,
-        marginLeft: block.marginLeft,
       };
 
       return <Hr key={block.id} style={dividerStyles} />;
