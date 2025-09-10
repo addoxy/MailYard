@@ -37,9 +37,13 @@ export function generateEmailComponent(blocks: EmailBlockType[], canvasStyles: C
     fontFamily: canvasStyles.fontFamily,
   };
 
-  return () => (
-    <Container style={containerStyles}>{blocks.map((block) => renderBlock(block))}</Container>
-  );
+  function GeneratedEmail() {
+    return (
+      <Container style={containerStyles}>{blocks.map((block) => renderBlock(block))}</Container>
+    );
+  }
+
+  return GeneratedEmail;
 }
 
 function renderBlock(block: EmailBlockType): React.ReactElement {
