@@ -51,12 +51,15 @@ function generateImports(blocks: EmailBlockType[]): string {
         break;
       case 'button':
         usedComponents.add('Button');
+        usedComponents.add('Section');
         break;
       case 'link':
         usedComponents.add('Link');
+        usedComponents.add('Section');
         break;
       case 'divider':
         usedComponents.add('Hr');
+        usedComponents.add('Section');
         break;
       case 'image':
         usedComponents.add('Img');
@@ -115,6 +118,12 @@ function generateBlockCode(block: EmailBlockType): string {
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
         textDecoration: block.textDecoration !== 'none' ? block.textDecoration : undefined,
         textAlign: block.textAlign,
+        width: block.width === '100%' ? '100%' : block.width,
+        maxWidth: '100%',
+        wordWrap: 'break-word',
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word',
+        boxSizing: 'border-box',
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -144,6 +153,12 @@ function generateBlockCode(block: EmailBlockType): string {
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
         textDecoration: block.textDecoration !== 'none' ? block.textDecoration : undefined,
         textAlign: block.textAlign,
+        width: block.width === '100%' ? '100%' : block.width,
+        maxWidth: '100%',
+        wordWrap: 'break-word',
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word',
+        boxSizing: 'border-box',
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -157,6 +172,15 @@ function generateBlockCode(block: EmailBlockType): string {
       return `<Text style={${formatStyles(textStyles)}}>${block.content}</Text>`;
 
     case 'button':
+      const buttonContainerStyles = {
+        textAlign: block.textAlign,
+        width: '100%',
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+      };
+
       const buttonStyles = {
         fontSize: block.fontSize,
         fontWeight: block.fontWeight,
@@ -165,26 +189,38 @@ function generateBlockCode(block: EmailBlockType): string {
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
-        textAlign: block.textAlign,
         textDecoration: block.textDecoration !== 'none' ? block.textDecoration : undefined,
         border:
           block.borderWidth !== '0px'
             ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
             : 'none',
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
-        marginTop: block.marginTop,
-        marginRight: block.marginRight,
-        marginBottom: block.marginBottom,
-        marginLeft: block.marginLeft,
+        width: block.width,
+        maxWidth: '100%',
         paddingTop: block.paddingTop,
         paddingRight: block.paddingRight,
         paddingBottom: block.paddingBottom,
         paddingLeft: block.paddingLeft,
+        display: 'inline-block',
+        textAlign: 'center',
+        boxSizing: 'border-box',
+        msoLineHeightRule: 'exactly',
       };
 
-      return `<Button href="${block.href}" style={${formatStyles(buttonStyles)}}>${block.content}</Button>`;
+      return `<Section style={${formatStyles(buttonContainerStyles)}}>
+  <Button href="${block.href}" style={${formatStyles(buttonStyles)}}>${block.content}</Button>
+</Section>`;
 
     case 'link':
+      const linkContainerStyles = {
+        textAlign: block.textAlign,
+        width: '100%',
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+      };
+
       const linkStyles = {
         display: 'block',
         fontSize: block.fontSize,
@@ -200,35 +236,38 @@ function generateBlockCode(block: EmailBlockType): string {
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
-        textAlign: block.textAlign,
         textDecoration: block.textDecoration,
-        marginTop: block.marginTop,
-        marginRight: block.marginRight,
-        marginBottom: block.marginBottom,
-        marginLeft: block.marginLeft,
         paddingTop: block.paddingTop,
         paddingRight: block.paddingRight,
         paddingBottom: block.paddingBottom,
         paddingLeft: block.paddingLeft,
       };
 
-      return `<Link href="${block.href}" style={${formatStyles(linkStyles)}}>${block.content}</Link>`;
+      return `<Section style={${formatStyles(linkContainerStyles)}}>
+  <Link href="${block.href}" style={${formatStyles(linkStyles)}}>${block.content}</Link>
+</Section>`;
 
     case 'divider':
-      const dividerStyles = {
-        width: block.width,
-        height: block.height,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : 'none',
+      const dividerContainerStyles = {
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
         marginLeft: block.marginLeft,
       };
 
-      return `<Hr style={${formatStyles(dividerStyles)}} />`;
+      const dividerStyles = {
+        width: block.width,
+        maxWidth: '100%',
+        border: 'none',
+        borderTop: `${block.height} ${block.borderStyle} ${block.borderColor}`,
+        backgroundColor: 'transparent',
+        boxSizing: 'border-box',
+        margin: '0',
+      };
+
+      return `<Section style={${formatStyles(dividerContainerStyles)}}>
+  <Hr style={${formatStyles(dividerStyles)}} />
+</Section>`;
 
     case 'image':
       const sectionStyles = {
@@ -296,8 +335,6 @@ function formatStyles(styles: Record<string, unknown>): string {
 
   return `{ ${styleEntries.join(', ')} }`;
 }
-
-type Parser = 'babel' | 'typescript' | 'html';
 
 export async function formatCode(code: string) {
   try {

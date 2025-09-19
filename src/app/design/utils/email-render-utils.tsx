@@ -79,6 +79,12 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
             ? (block.textDecoration as 'underline' | 'line-through')
             : undefined,
         textAlign: block.textAlign as 'left' | 'center' | 'right' | 'justify',
+        width: block.width === '100%' ? '100%' : block.width,
+        maxWidth: '100%',
+        wordWrap: 'break-word' as const,
+        wordBreak: 'break-word' as const,
+        overflowWrap: 'break-word' as const,
+        boxSizing: 'border-box' as const,
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -126,6 +132,12 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
             ? (block.textDecoration as 'underline' | 'line-through')
             : undefined,
         textAlign: block.textAlign as 'left' | 'center' | 'right' | 'justify',
+        width: block.width === '100%' ? '100%' : block.width,
+        maxWidth: '100%',
+        wordWrap: 'break-word' as const,
+        wordBreak: 'break-word' as const,
+        overflowWrap: 'break-word' as const,
+        boxSizing: 'border-box' as const,
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -180,6 +192,8 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
             ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
             : 'none',
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
+        width: block.width,
+        maxWidth: '100%',
         paddingTop: block.paddingTop,
         paddingRight: block.paddingRight,
         paddingBottom: block.paddingBottom,
@@ -199,6 +213,15 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
       );
 
     case 'link':
+      const linkContainerStyles = {
+        textAlign: block.textAlign as 'left' | 'center' | 'right' | 'justify',
+        width: '100%',
+        marginTop: block.marginTop,
+        marginRight: block.marginRight,
+        marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
+      };
+
       const linkStyles = {
         display: 'block' as const,
         fontSize: block.fontSize,
@@ -225,12 +248,7 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
-        textAlign: block.textAlign as 'left' | 'center' | 'right' | 'justify',
         textDecoration: block.textDecoration as 'none' | 'underline' | 'line-through',
-        marginTop: block.marginTop,
-        marginRight: block.marginRight,
-        marginBottom: block.marginBottom,
-        marginLeft: block.marginLeft,
         paddingTop: block.paddingTop,
         paddingRight: block.paddingRight,
         paddingBottom: block.paddingBottom,
@@ -238,22 +256,36 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
       };
 
       return (
-        <Link key={block.id} href={block.href} style={linkStyles}>
-          {block.content}
-        </Link>
+        <Section key={block.id} style={linkContainerStyles}>
+          <Link href={block.href} style={linkStyles}>
+            {block.content}
+          </Link>
+        </Section>
       );
 
     case 'divider':
-      const dividerStyles = {
-        width: block.width,
-        borderColor: block.borderColor || 'transparent',
-        borderTopWidth: block.borderWidth,
-        borderStyle: block.borderStyle,
+      const dividerContainerStyles = {
         marginTop: block.marginTop,
+        marginRight: block.marginRight,
         marginBottom: block.marginBottom,
+        marginLeft: block.marginLeft,
       };
 
-      return <Hr key={block.id} style={dividerStyles} />;
+      const dividerStyles = {
+        width: block.width,
+        maxWidth: '100%',
+        border: 'none',
+        borderTop: `${block.height} ${block.borderStyle} ${block.borderColor}`,
+        backgroundColor: 'transparent',
+        boxSizing: 'border-box' as const,
+        margin: '0',
+      };
+
+      return (
+        <Section key={block.id} style={dividerContainerStyles}>
+          <Hr style={dividerStyles} />
+        </Section>
+      );
 
     case 'image':
       const sectionStyles = {
