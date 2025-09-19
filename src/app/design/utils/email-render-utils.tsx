@@ -66,10 +66,9 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
         color: block.color,
         backgroundColor:
           block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -119,10 +118,9 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
         color: block.color,
         backgroundColor:
           block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -187,10 +185,9 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
           block.textDecoration !== 'none'
             ? (block.textDecoration as 'underline' | 'line-through')
             : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : 'none',
+        borderWidth: block.borderWidth,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : 'none',
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         width: block.width,
         maxWidth: '100%',
@@ -240,10 +237,9 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
         color: block.color,
         backgroundColor:
           block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -274,11 +270,18 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
       const dividerStyles = {
         width: block.width,
         maxWidth: '100%',
-        border: 'none',
-        borderTop: `${block.height} ${block.borderStyle} ${block.borderColor}`,
+        borderWidth: '0',
+        borderTopWidth: block.height,
+        borderStyle: 'none',
+        borderTopStyle: block.borderStyle,
+        borderColor: 'transparent',
+        borderTopColor: block.borderColor,
         backgroundColor: 'transparent',
         boxSizing: 'border-box' as const,
-        margin: '0',
+        marginTop: '0',
+        marginRight: '0',
+        marginBottom: '0',
+        marginLeft: '0',
       };
 
       return (
@@ -316,10 +319,9 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
       const imageStyles = {
         width: block.width,
         height: block.height !== 'auto' ? block.height : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         display: 'block' as const,
         maxWidth: '100%',

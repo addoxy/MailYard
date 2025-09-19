@@ -108,10 +108,9 @@ function generateBlockCode(block: EmailBlockType): string {
         color: block.color,
         backgroundColor:
           block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -143,10 +142,9 @@ function generateBlockCode(block: EmailBlockType): string {
         color: block.color,
         backgroundColor:
           block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -190,10 +188,9 @@ function generateBlockCode(block: EmailBlockType): string {
         lineHeight: block.lineHeight,
         letterSpacing: block.letterSpacing !== '0px' ? block.letterSpacing : undefined,
         textDecoration: block.textDecoration !== 'none' ? block.textDecoration : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : 'none',
+        borderWidth: block.borderWidth,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : 'none',
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         width: block.width,
         maxWidth: '100%',
@@ -228,10 +225,9 @@ function generateBlockCode(block: EmailBlockType): string {
         color: block.color,
         backgroundColor:
           block.backgroundColor !== 'transparent' ? block.backgroundColor : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         fontFamily: block.fontFamily === 'inherit' ? undefined : block.fontFamily,
         lineHeight: block.lineHeight,
@@ -258,11 +254,18 @@ function generateBlockCode(block: EmailBlockType): string {
       const dividerStyles = {
         width: block.width,
         maxWidth: '100%',
-        border: 'none',
-        borderTop: `${block.height} ${block.borderStyle} ${block.borderColor}`,
+        borderWidth: '0',
+        borderTopWidth: block.height,
+        borderStyle: 'none',
+        borderTopStyle: block.borderStyle,
+        borderColor: 'transparent',
+        borderTopColor: block.borderColor,
         backgroundColor: 'transparent',
         boxSizing: 'border-box',
-        margin: '0',
+        marginTop: '0',
+        marginRight: '0',
+        marginBottom: '0',
+        marginLeft: '0',
       };
 
       return `<Section style={${formatStyles(dividerContainerStyles)}}>
@@ -298,10 +301,9 @@ function generateBlockCode(block: EmailBlockType): string {
       const imageStyles = {
         width: block.width,
         height: block.height !== 'auto' ? block.height : undefined,
-        border:
-          block.borderWidth !== '0px'
-            ? `${block.borderWidth} ${block.borderStyle} ${block.borderColor}`
-            : undefined,
+        borderWidth: block.borderWidth !== '0px' ? block.borderWidth : undefined,
+        borderStyle: block.borderWidth !== '0px' ? block.borderStyle : undefined,
+        borderColor: block.borderWidth !== '0px' ? block.borderColor : undefined,
         borderRadius: block.borderRadius !== '0px' ? block.borderRadius : undefined,
         display: 'block',
         maxWidth: '100%',
