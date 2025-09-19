@@ -1,4 +1,4 @@
-import { Database, Layers, LucideIcon, Send, Undo2 } from 'lucide-react';
+import { Database, Layers, LucideIcon, Sparkles, Undo2 } from 'lucide-react';
 import { SectionDescription, SectionHeading } from './section-typography';
 
 interface ComingSoonCardProps {
@@ -46,10 +46,10 @@ export function ComingSoonSection() {
       icon: Database,
     },
     {
-      title: 'Direct Email Sending',
+      title: 'AI-Powered Email Creation',
       description:
-        'Send emails directly from the platform using Resend with your own API key (BYOK). Create beautiful templates and deliver them straight to your audience.',
-      icon: Send,
+        'Generate professional email templates instantly with AI. Describe your vision and watch as AI creates stunning layouts, copy, and designs tailored to your needs.',
+      icon: Sparkles,
     },
   ];
 

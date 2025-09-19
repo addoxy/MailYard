@@ -73,7 +73,7 @@ export function FAQSection() {
     {
       question: 'Do I need coding knowledge to use this?',
       answer:
-        "Currently, coding knowledge is required since you'll need to export and integrate the React code into your own projects. However, we're working on direct email sending capabilities that will eliminate this requirement entirely.",
+        'No coding knowledge is required! You can now send emails directly from MailYard using our integrated email sending feature. Simply provide your Resend API key, and you can send professional emails without any code. For advanced users, you can still export React code for custom integrations.',
       icon: Code,
     },
     {
