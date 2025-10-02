@@ -85,7 +85,7 @@ export function FAQSection() {
     {
       question: 'Can I save my email templates?',
       answer:
-        "Currently, you can export your templates as React code for local storage. We're actively working on cloud saving and template management features that will be available soon.",
+        "Your changes aren't stored in the cloud yet, but they're saved locally in your browser. You can also export your designs as React code for local use. We're actively building cloud saving and design management features, coming soon.",
       icon: Save,
     },
     {

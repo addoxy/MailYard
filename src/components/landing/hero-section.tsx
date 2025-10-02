@@ -17,7 +17,7 @@ export function HeroSection() {
           height={30}
           x={-1}
           y={-1}
-          className="-z-10 m-auto h-64 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-15"
+          className="-z-10 m-auto h-64 [mask-image:radial-gradient(300px_circle_at_center,white,transparent)] opacity-50"
         />
         <div className="absolute inset-0 bottom-full -mx-4 border-t" />
         <div className="absolute inset-0 top-full -mx-4 border-t" />
@@ -35,8 +35,8 @@ export function HeroSection() {
           Without The Hassle
         </h1>
         <p className="text-muted-foreground mx-auto mb-8 max-w-3xl sm:text-xl">
-          Create stunning, responsive email templates with our intuitive drag-and-drop editor. No
-          coding required - just beautiful emails that work everywhere.
+          Create eye-catching, responsive emails in minutes with our intuitive drag-and-drop editor.
+          No coding required, just beautiful emails that look great on every device.
         </p>
         <div className="grid grid-cols-2 gap-1">
           <Link
