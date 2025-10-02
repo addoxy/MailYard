@@ -115,7 +115,7 @@ export function HowItWorksSection() {
             <HowItWorksCard
               step={3}
               title="Export & Send"
-              description="Export your email as React code and use it in your projects."
+              description="Export your email as React code to use in your projects, or send it directly through our platform."
             >
               <div className="space-y-2">
                 <div className="rounded-lg border border-green-800 bg-green-950/50 px-4 py-2 pb-4 shadow-sm">
