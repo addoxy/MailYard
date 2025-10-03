@@ -59,17 +59,18 @@ Emails built with MailYard are compatible with widely used email providers becau
 
 ## Coming Soon
 
-- **Advanced Layout Systems**
-  - Section Blocks for grouping multiple elements
-  - Grid Blocks for multi-column newsletter layouts
+- **Advanced Layout**
+  - Create complex layouts with Section Blocks to group multiple elements and Grid Blocks for multi-column designs
+  - Perfect for newsletters and marketing emails
 
-- **Undo/Redo System**
-  - Complete history tracking for all operations
-  - Never lose your work while experimenting
+- **Undo / Redo System**
+  - Never lose your work with comprehensive undo/redo functionality
+  - Experiment freely knowing you can always go back to any previous state
 
 - **Database & Authentication**
-  - Cloud saving with user accounts
+  - Save your work to the cloud with user accounts
+  - Sync your templates across devices and collaborate with team members on email projects
 
-- **Direct Email Sending**
-  - Integration with Resend using your own API key
-  - Send beautiful emails directly from the platform
+- **AI-Powered Email Creation**
+  - Generate professional email templates instantly with AI
+  - Describe your vision and watch as AI creates stunning layouts, copy, and designs tailored to your needs
