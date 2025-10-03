@@ -30,6 +30,8 @@ interface SendEmailProps {
   canvasStyles: CanvasStyles;
 }
 
+const genericFailureMessage = 'Failed to send email to some recipients';
+
 export async function sendEmail(props: SendEmailProps) {
   const transformedProps = {
     apiKey: props.apiKey,
@@ -65,19 +67,13 @@ export async function sendEmail(props: SendEmailProps) {
       )
     );
 
-    const failures = results.filter((result) => result.status === 'rejected');
-    if (failures.length > 0) {
-      const failedEmails = failures.map((_, index) => props.toEmails[index]).join(', ');
-      throw new Error(`Failed to send email to some recipients`);
-    }
-
-    const errors = results
-      .filter((result) => result.status === 'fulfilled' && result.value.error)
-      .map((result) => (result as PromiseFulfilledResult<any>).value.error);
-
+    const errors = results.filter(
+      (result) =>
+        result.status === 'rejected' || (result.status === 'fulfilled' && result.value.error)
+    );
     if (errors.length > 0) {
       console.error('Resend API errors:', errors);
-      throw new Error(`Failed to send some emails: ${errors.map((e) => e.message).join(', ')}`);
+      throw new Error(genericFailureMessage);
     }
   } catch (error) {
     if (error instanceof Error) {
