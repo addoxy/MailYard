@@ -1,7 +1,7 @@
 'use client';
 
+import { blockDefaults } from '@/lib/style-utils';
 import { Hr } from '@react-email/components';
-import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { DividerBlockProps } from './types';
 
 const defaults = blockDefaults.divider;
@@ -10,15 +10,14 @@ export function DividerBlock({
   id,
   width = defaults.width,
   height = defaults.height,
-  borderWidth = defaults.borderWidth,
-  borderColor = defaults.borderColor,
-  borderStyle = defaults.borderStyle,
+  color = defaults.color,
+  textAlign = defaults.textAlign,
   marginTop = defaults.marginTop,
   marginBottom = defaults.marginBottom,
   marginLeft = defaults.marginLeft,
   marginRight = defaults.marginRight,
   isSelected = false,
-  onClick
+  onClick,
 }: DividerBlockProps) {
   const handleClick = () => {
     if (onClick) {
@@ -26,25 +25,39 @@ export function DividerBlock({
     }
   };
 
-  const baseStyle = {
-    ...createBaseStyle({
-      width,
-      height,
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
-    }),
+  const getDividerAlignment = () => {
+    switch (textAlign) {
+      case 'center':
+        return { marginLeft: 'auto', marginRight: 'auto' };
+      case 'right':
+        return { marginLeft: 'auto', marginRight: '0' };
+      case 'left':
+      default:
+        return { marginLeft: '0', marginRight: 'auto' };
+    }
+  };
+
+  const containerStyle = {
+    width: '100%',
+    marginTop,
+    marginBottom,
+  };
+
+  const hrStyle = {
+    width,
+    height: '0px',
     border: 'none',
-    borderTop: `${height} ${borderStyle} ${borderColor}`,
+    borderTop: `${height} solid ${color}`,
     cursor: onClick ? 'pointer' : 'default',
     backgroundColor: 'transparent',
+    margin: '0',
+    display: 'block',
+    ...getDividerAlignment(),
   };
 
   return (
-    <Hr
-      style={baseStyle}
-      onClick={handleClick}
-    />
+    <div style={containerStyle}>
+      <Hr style={hrStyle} onClick={handleClick} />
+    </div>
   );
 }

@@ -309,9 +309,8 @@ export const blockDefaults = {
   divider: {
     width: '100%',
     height: '1px',
-    borderColor: '#e5e7eb',
-    borderStyle: 'solid' as const,
-    borderWidth: '0px',
+    color: '#e5e7eb',
+    textAlign: 'center' as const,
     marginTop: '16px',
     marginBottom: '16px',
     marginLeft: '0px',

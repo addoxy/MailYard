@@ -119,9 +119,8 @@ export interface DividerBlockProps extends BaseBlockProps {
   type: 'divider';
   width: string;
   height: string;
-  borderWidth: string;
-  borderColor: string;
-  borderStyle: 'solid' | 'dashed' | 'dotted' | 'none';
+  color: string;
+  textAlign: 'left' | 'center' | 'right';
   marginTop: string;
   marginBottom: string;
   marginLeft: string;

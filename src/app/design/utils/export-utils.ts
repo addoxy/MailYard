@@ -201,7 +201,6 @@ function generateBlockCode(block: EmailBlockType): string {
         display: 'inline-block',
         textAlign: 'center',
         boxSizing: 'border-box',
-        msoLineHeightRule: 'exactly',
       };
 
       return `<Section style={${formatStyles(buttonContainerStyles)}}>
@@ -245,6 +244,8 @@ function generateBlockCode(block: EmailBlockType): string {
 
     case 'divider':
       const dividerContainerStyles = {
+        textAlign: block.textAlign,
+        width: '100%',
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -254,18 +255,12 @@ function generateBlockCode(block: EmailBlockType): string {
       const dividerStyles = {
         width: block.width,
         maxWidth: '100%',
-        borderWidth: '0',
-        borderTopWidth: block.height,
-        borderStyle: 'none',
-        borderTopStyle: block.borderStyle,
-        borderColor: 'transparent',
-        borderTopColor: block.borderColor,
+        height: '0px',
+        border: 'none',
+        borderTop: `${block.height} solid ${block.color}`,
         backgroundColor: 'transparent',
         boxSizing: 'border-box',
-        marginTop: '0',
-        marginRight: '0',
-        marginBottom: '0',
-        marginLeft: '0',
+        margin: '0',
       };
 
       return `<Section style={${formatStyles(dividerContainerStyles)}}>

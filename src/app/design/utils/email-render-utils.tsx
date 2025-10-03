@@ -198,7 +198,6 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
         display: 'inline-block' as const,
         textAlign: 'center' as const,
         boxSizing: 'border-box' as const,
-        msoLineHeightRule: 'exactly' as const,
       };
 
       return (
@@ -261,6 +260,8 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
 
     case 'divider':
       const dividerContainerStyles = {
+        textAlign: block.textAlign as 'left' | 'center' | 'right',
+        width: '100%',
         marginTop: block.marginTop,
         marginRight: block.marginRight,
         marginBottom: block.marginBottom,
@@ -270,18 +271,12 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
       const dividerStyles = {
         width: block.width,
         maxWidth: '100%',
-        borderWidth: '0',
-        borderTopWidth: block.height,
-        borderStyle: 'none',
-        borderTopStyle: block.borderStyle,
-        borderColor: 'transparent',
-        borderTopColor: block.borderColor,
+        height: '0px',
+        border: 'none',
+        borderTop: `${block.height} solid ${block.color}`,
         backgroundColor: 'transparent',
         boxSizing: 'border-box' as const,
-        marginTop: '0',
-        marginRight: '0',
-        marginBottom: '0',
-        marginLeft: '0',
+        margin: '0',
       };
 
       return (

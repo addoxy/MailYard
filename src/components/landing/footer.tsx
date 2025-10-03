@@ -1,4 +1,3 @@
-import { PlaceholderLogo } from '@/components/logo';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { GithubIcon, TwitterIcon } from '../icons';
@@ -12,7 +11,6 @@ export function Footer() {
       <div className="flex items-center justify-between">
         <div>
           <Link href="/" className="flex items-center space-x-3">
-            <PlaceholderLogo className="text-background size-6" />
             <span>MailYard</span>
           </Link>
         </div>

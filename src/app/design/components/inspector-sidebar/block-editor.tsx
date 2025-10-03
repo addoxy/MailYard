@@ -134,9 +134,11 @@ export const BlockEditor = () => {
       case 'divider':
         return (
           <>
+            <AlignmentControls block={selectedBlock} onUpdate={updateBlockProperty} />
+            <Separator className="my-4" />
             <WidthControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-4" />
-            <BorderControls block={selectedBlock} onUpdate={updateBlockProperty} />
+            <ColorControls block={selectedBlock} onUpdate={updateBlockProperty} />
             <Separator className="my-4" />
             <SpacingControls block={selectedBlock} onUpdate={updateBlockProperty} />
           </>

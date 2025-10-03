@@ -20,9 +20,10 @@ export const AlignmentControls = ({ block, onUpdate }: AlignmentControlsProps) =
   const isText = block.type === 'text';
   const isButton = block.type === 'button';
   const isImage = block.type === 'image';
+  const isDivider = block.type === 'divider';
 
-  // Use "Alignment" for button and image blocks, "Text Alignment" for text blocks
-  const labelText = isButton || isImage ? 'Alignment' : 'Text Alignment';
+  // Use "Alignment" for button, image, and divider blocks, "Text Alignment" for text blocks
+  const labelText = isButton || isImage || isDivider ? 'Alignment' : 'Text Alignment';
 
   return (
     <div className="flex flex-col gap-4">
