@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAtomValue } from 'jotai';
+import { useTheme } from 'next-themes';
 import { useCallback, useEffect, useState } from 'react';
 import { canvasStylesAtom, emailBlocksAtom } from '../../atoms';
 import { formatCode, generateEmailComponent } from '../../utils/export-utils';
@@ -30,6 +31,9 @@ interface ExportModalProps {
 }
 
 export function ExportModal({ open, onOpenChange }: ExportModalProps) {
+  const { theme } = useTheme();
+  const currentTheme = theme === 'dark' ? 'github-dark-default' : 'min-light';
+
   const emailBlocks = useAtomValue(emailBlocksAtom);
   const canvasStyles = useAtomValue(canvasStylesAtom);
 
@@ -91,7 +95,13 @@ export function ExportModal({ open, onOpenChange }: ExportModalProps) {
             <CodeBlockBody className="max-h-[80vh] overflow-auto">
               {(item) => (
                 <CodeBlockItem key={item.language} value={item.language}>
-                  <CodeBlockContent language={item.language as BundledLanguage}>
+                  <CodeBlockContent
+                    themes={{
+                      light: currentTheme,
+                      dark: currentTheme,
+                    }}
+                    language={item.language as BundledLanguage}
+                  >
                     {item.code}
                   </CodeBlockContent>
                 </CodeBlockItem>

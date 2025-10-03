@@ -21,17 +21,17 @@ const FAQCard = ({ question, answer, value, icon }: FAQCardProps) => {
   const getIconClasses = () => {
     switch (Icon) {
       case HelpCircle:
-        return 'text-blue-500 bg-blue-950/50';
+        return 'dark:text-blue-500 dark:bg-blue-950/50 text-blue-400 bg-blue-100';
       case Code:
-        return 'text-green-500 bg-green-950/50';
+        return 'dark:text-green-500 dark:bg-green-950/50 text-green-400 bg-green-100';
       case Shield:
-        return 'text-red-500 bg-red-950/50';
+        return 'dark:text-red-500 dark:bg-red-950/50 text-red-400 bg-red-100';
       case Save:
-        return 'text-yellow-500 bg-yellow-950/50';
+        return 'dark:text-yellow-500 dark:bg-yellow-950/50 text-yellow-400 bg-yellow-100';
       case Download:
-        return 'text-purple-500 bg-purple-950/50';
+        return 'dark:text-purple-500 dark:bg-purple-950/50 text-purple-400 bg-purple-100';
       default:
-        return 'text-gray-500 bg-gray-950/50';
+        return 'dark:text-gray-500 dark:bg-gray-950/50 text-gray-400 bg-gray-100';
     }
   };
 

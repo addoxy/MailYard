@@ -3,6 +3,7 @@
 import { DragDropIcon, PhoneLaptop } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { Code, Grab, Heading, LucideIcon, MousePointerClick, Palette, Text } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import {
   BundledLanguage,
   CodeBlock,
@@ -23,7 +24,7 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
   const Icon = icon;
 
   return (
-    <div className="from-background/40 to-background/20 relative mx-auto h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br shadow-lg backdrop-blur-sm max-md:max-w-[560px]">
+    <div className="from-background/40 to-background/20 border-border relative mx-auto h-full overflow-hidden rounded-2xl border bg-gradient-to-br shadow-lg backdrop-blur-sm max-md:max-w-[560px]">
       <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
       <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
       <div
@@ -60,9 +61,9 @@ const Dnd = () => {
         <span className="text-sm">Stay updated with our latest news...</span>
         <Grab className="text-primary ml-auto size-4" />
       </div>
-      <div className="flex items-center gap-3 rounded-lg border border-blue-800 bg-blue-950/50 px-4 py-3 shadow-sm">
-        <MousePointerClick className="size-4 text-blue-600" />
-        <span className="text-sm font-medium text-blue-400">Subscribe Now</span>
+      <div className="flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-100 px-4 py-3 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
+        <MousePointerClick className="size-4 text-blue-400 dark:text-blue-600" />
+        <span className="text-sm font-medium text-blue-400 dark:text-blue-400">Subscribe Now</span>
       </div>
     </div>
   );
@@ -134,6 +135,9 @@ const Styling = () => {
 };
 
 const Export = () => {
+  const { theme } = useTheme();
+  const currentTheme = theme === 'dark' ? 'github-dark-default' : 'min-light';
+
   const code = `import { Html, Body, Container, Text, Button } from '@react-email/components';
 
 export default function EmailTemplate() {
@@ -180,7 +184,13 @@ export default function EmailTemplate() {
         <CodeBlockBody className="max-h-[250px] overflow-hidden">
           {(item) => (
             <CodeBlockItem key={item.language} value={item.language}>
-              <CodeBlockContent language={item.language as BundledLanguage}>
+              <CodeBlockContent
+                themes={{
+                  light: currentTheme,
+                  dark: currentTheme,
+                }}
+                language={item.language as BundledLanguage}
+              >
                 {item.code}
               </CodeBlockContent>
             </CodeBlockItem>

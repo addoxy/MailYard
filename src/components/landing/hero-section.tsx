@@ -72,7 +72,7 @@ export function HeroSection() {
             width={1080}
             alt="MailYard Interface"
             priority
-            className="border-border/50 mx-auto w-full rounded-xl border"
+            className="border-border/50 mx-auto w-full rounded-xl"
           />
         </div>
       </div>
