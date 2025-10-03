@@ -52,7 +52,7 @@ export const BlockListItem = ({ block, isSelected = false, onSelect }: BlockList
       ref={setNodeRef}
       style={style}
       className={cn(
-        'hover:bg-muted/50 flex cursor-pointer items-center gap-1 rounded-md border p-3 transition-colors last-of-type:mb-6',
+        'hover:bg-muted/50 flex cursor-pointer items-center gap-1 rounded-md border p-3 backdrop-blur-sm transition-colors last-of-type:mb-6',
         isSelected && 'bg-muted hover:bg-muted',
         isDragging && 'opacity-0'
       )}

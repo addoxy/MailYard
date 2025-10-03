@@ -51,12 +51,7 @@ export const EmailEditor = () => {
               </p>
             </div>
           ) : (
-            <DragDropHandler
-              blocks={emailBlocks}
-              renderBlock={(block) =>
-                renderBlock(block, handleBlockClick, isBlockSelected(block.id))
-              }
-            >
+            <DragDropHandler blocks={emailBlocks}>
               <div
                 style={{
                   marginTop: canvasStyles.marginTop,

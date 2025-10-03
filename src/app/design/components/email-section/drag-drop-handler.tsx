@@ -13,16 +13,15 @@ import {
 import { SortableContext } from '@dnd-kit/sortable';
 import { ReactNode, useState } from 'react';
 import { useDragDrop } from '../../hooks/use-drag-drop';
+import { renderBlock } from '../email-blocks/block-registry';
 import { EmailBlockType } from '../email-blocks/types';
 
 interface DragDropHandlerProps {
   children: ReactNode;
   blocks: EmailBlockType[];
-  renderBlock: (block: EmailBlockType) => ReactNode;
 }
 
-export function DragDropHandler({ children, blocks, renderBlock }: DragDropHandlerProps) {
-  const [isDragging, setIsDragging] = useState(false);
+export function DragDropHandler({ children, blocks }: DragDropHandlerProps) {
   const [draggedBlock, setDraggedBlock] = useState<EmailBlockType | null>(null);
 
   const {
@@ -41,14 +40,12 @@ export function DragDropHandler({ children, blocks, renderBlock }: DragDropHandl
   );
 
   const handleDragStart = (event: DragStartEvent) => {
-    setIsDragging(true);
     const draggedBlockData = blocks.find((block) => block.id === event.active.id);
     setDraggedBlock(draggedBlockData || null);
     originalHandleDragStart(event);
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    setIsDragging(false);
     setDraggedBlock(null);
     originalHandleDragEnd(event);
   };
@@ -72,8 +69,10 @@ export function DragDropHandler({ children, blocks, renderBlock }: DragDropHandl
         }}
       >
         {draggedBlock ? (
-          <div className="border-2 border-blue-400 bg-white p-0.5 opacity-80 shadow-lg">
-            {renderBlock(draggedBlock)}
+          <div className="bg-background/10 h-fit border-2 border-blue-400 opacity-80 shadow-lg backdrop-blur-sm">
+            <div style={{ display: 'flow-root' }} className="-mb-4">
+              {renderBlock(draggedBlock)}
+            </div>
           </div>
         ) : null}
       </DragOverlay>
