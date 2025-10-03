@@ -50,6 +50,8 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
 };
 
 const Dnd = () => {
+  const { theme } = useTheme();
+
   return (
     <div className="mx-auto w-full space-y-3 p-4">
       <div className="bg-primary/10 border-primary/20 flex items-center gap-3 rounded-lg border px-4 py-3 shadow-sm">
@@ -61,9 +63,16 @@ const Dnd = () => {
         <span className="text-sm">Stay updated with our latest news...</span>
         <Grab className="text-primary ml-auto size-4" />
       </div>
-      <div className="flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-100 px-4 py-3 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
-        <MousePointerClick className="size-4 text-blue-400 dark:text-blue-600" />
-        <span className="text-sm font-medium text-blue-400 dark:text-blue-400">Subscribe Now</span>
+      <div
+        className={cn(
+          'flex items-center gap-3 rounded-lg border px-4 py-3 shadow-sm',
+          theme === 'dark' ? 'border-blue-900 bg-blue-950' : 'border-blue-300 bg-blue-50'
+        )}
+      >
+        <MousePointerClick className={cn('size-4', theme === 'dark' ? 'text-blue-400' : 'text-blue-600')} />
+        <span className={cn('text-sm font-medium', theme === 'dark' ? 'text-blue-400' : 'text-blue-700')}>
+          Subscribe Now
+        </span>
       </div>
     </div>
   );

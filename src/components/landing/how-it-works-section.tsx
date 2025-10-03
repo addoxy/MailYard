@@ -1,4 +1,7 @@
+'use client';
+
 import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
 import { SectionDescription, SectionHeading } from './section-typography';
 
 interface HowItWorksCardProps {
@@ -41,6 +44,8 @@ export const HowItWorksCard = ({
 };
 
 export function HowItWorksSection() {
+  const { theme } = useTheme();
+
   return (
     <section id="how-it-works">
       <div className="mx-auto max-w-7xl">
@@ -63,12 +68,31 @@ export function HowItWorksSection() {
                   <span className="text-sm">Heading Block</span>
                 </div>
                 <div className="bg-muted/50 border-border flex items-center gap-2 rounded-lg border px-3 py-2 shadow-sm">
-                  <div className="dark:bg-muted bg-muted-foreground size-2 rounded-full"></div>
+                  <div
+                    className={cn(
+                      'size-2 rounded-full',
+                      theme === 'dark' ? 'bg-muted' : 'bg-muted-foreground'
+                    )}
+                  ></div>
                   <span className="text-muted-foreground text-sm">Text Block</span>
                 </div>
-                <div className="flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-100 px-3 py-2 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
-                  <div className="size-2 rounded-full bg-blue-300 dark:bg-blue-500"></div>
-                  <span className="text-sm dark:text-blue-400">Button Block</span>
+                <div
+                  className={cn(
+                    'flex items-center gap-2 rounded-lg border px-3 py-2 shadow-sm',
+                    theme === 'dark'
+                      ? 'border-blue-800 bg-blue-950/50'
+                      : 'border-blue-300 bg-blue-50'
+                  )}
+                >
+                  <div
+                    className={cn(
+                      'size-2 rounded-full',
+                      theme === 'dark' ? 'bg-blue-500' : 'bg-blue-600'
+                    )}
+                  ></div>
+                  <span className={cn('text-sm', theme === 'dark' ? 'text-blue-400' : 'text-blue-700')}>
+                    Button Block
+                  </span>
                 </div>
               </div>
             </HowItWorksCard>
@@ -118,18 +142,47 @@ export function HowItWorksSection() {
               description="Export your email as React code to use in your projects, or send it directly through our platform."
             >
               <div className="space-y-2">
-                <div className="rounded-lg border border-green-200 bg-green-100 px-4 py-2 pb-4 shadow-sm dark:border-green-800 dark:bg-green-950/50">
-                  <span className="mb-1 text-xs font-medium text-green-700 dark:text-green-300">
+                <div
+                  className={cn(
+                    'rounded-lg border px-4 py-2 pb-4 shadow-sm',
+                    theme === 'dark'
+                      ? 'border-green-800 bg-green-950/50'
+                      : 'border-green-300 bg-green-50'
+                  )}
+                >
+                  <span
+                    className={cn(
+                      'mb-1 text-xs font-medium',
+                      theme === 'dark' ? 'text-green-300' : 'text-green-700'
+                    )}
+                  >
                     React Export
                   </span>
-                  <div className="font-mono text-xs text-green-700 dark:text-green-400">
+                  <div
+                    className={cn(
+                      'font-mono text-xs',
+                      theme === 'dark' ? 'text-green-400' : 'text-green-600'
+                    )}
+                  >
                     <span>&lt;Html&gt;</span>
                     <br />
                     <span className="ml-4">&lt;Body&gt;...</span>
                   </div>
                 </div>
-                <div className="flex items-center justify-center rounded-lg border border-blue-200 bg-blue-100 px-3 py-2 shadow-sm dark:border-blue-800 dark:bg-blue-950/50">
-                  <span className="text-sm font-medium text-blue-500 dark:text-blue-400">
+                <div
+                  className={cn(
+                    'flex items-center justify-center rounded-lg border px-3 py-2 shadow-sm',
+                    theme === 'dark'
+                      ? 'border-blue-800 bg-blue-950/50'
+                      : 'border-blue-300 bg-blue-50'
+                  )}
+                >
+                  <span
+                    className={cn(
+                      'text-sm font-medium',
+                      theme === 'dark' ? 'text-blue-400' : 'text-blue-700'
+                    )}
+                  >
                     Ready to use in your project!
                   </span>
                 </div>
