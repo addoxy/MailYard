@@ -2,6 +2,8 @@
 
 import { ColorPicker } from '@/components/color-picker';
 import { FieldLabel, SectionLabel } from '@/components/settings-labels';
+import { Button } from '@/components/ui/button';
+import { RotateCcw } from 'lucide-react';
 import { EmailBlockType } from '../../email-blocks/types';
 import { getBlockProperty, hasProperty } from '../utils/block-property-utils';
 
@@ -18,6 +20,10 @@ export const ColorControls = ({ block, onUpdate }: ColorControlsProps) => {
 
   const color = getBlockProperty(block, 'color') || '#000000';
   const backgroundColor = getBlockProperty(block, 'backgroundColor') || '#ffffff';
+
+  const handleResetBackgroundColor = () => {
+    onUpdate('backgroundColor', 'transparent');
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -37,7 +43,19 @@ export const ColorControls = ({ block, onUpdate }: ColorControlsProps) => {
 
         {hasBackgroundColor && (
           <div className="flex flex-col gap-2">
-            <FieldLabel text="Background Color" />
+            <div className="flex items-center justify-between">
+              <FieldLabel text="Background Color" />
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleResetBackgroundColor}
+                className="text-muted-foreground hover:text-foreground h-6 px-2 text-xs"
+                title="Reset background color to transparent"
+              >
+                <RotateCcw className="size-3" />
+                Reset
+              </Button>
+            </div>
             <ColorPicker
               value={backgroundColor}
               onChange={(value) => onUpdate('backgroundColor', value)}

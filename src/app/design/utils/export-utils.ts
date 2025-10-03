@@ -244,23 +244,32 @@ function generateBlockCode(block: EmailBlockType): string {
 
     case 'divider':
       const dividerContainerStyles = {
-        textAlign: block.textAlign,
         width: '100%',
         marginTop: block.marginTop,
-        marginRight: block.marginRight,
         marginBottom: block.marginBottom,
-        marginLeft: block.marginLeft,
+      };
+
+      const getDividerAlignment = () => {
+        switch (block.textAlign) {
+          case 'center':
+            return { marginLeft: 'auto', marginRight: 'auto' };
+          case 'right':
+            return { marginLeft: 'auto', marginRight: '0' };
+          case 'left':
+          default:
+            return { marginLeft: '0', marginRight: 'auto' };
+        }
       };
 
       const dividerStyles = {
         width: block.width,
-        maxWidth: '100%',
         height: '0px',
         border: 'none',
         borderTop: `${block.height} solid ${block.color}`,
         backgroundColor: 'transparent',
-        boxSizing: 'border-box',
         margin: '0',
+        display: 'block',
+        ...getDividerAlignment(),
       };
 
       return `<Section style={${formatStyles(dividerContainerStyles)}}>

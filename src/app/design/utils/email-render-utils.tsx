@@ -260,23 +260,32 @@ function renderBlock(block: EmailBlockType): React.ReactElement {
 
     case 'divider':
       const dividerContainerStyles = {
-        textAlign: block.textAlign as 'left' | 'center' | 'right',
         width: '100%',
         marginTop: block.marginTop,
-        marginRight: block.marginRight,
         marginBottom: block.marginBottom,
-        marginLeft: block.marginLeft,
+      };
+
+      const getDividerAlignment = () => {
+        switch (block.textAlign) {
+          case 'center':
+            return { marginLeft: 'auto' as const, marginRight: 'auto' as const };
+          case 'right':
+            return { marginLeft: 'auto' as const, marginRight: '0' };
+          case 'left':
+          default:
+            return { marginLeft: '0', marginRight: 'auto' as const };
+        }
       };
 
       const dividerStyles = {
         width: block.width,
-        maxWidth: '100%',
         height: '0px',
         border: 'none',
         borderTop: `${block.height} solid ${block.color}`,
         backgroundColor: 'transparent',
-        boxSizing: 'border-box' as const,
         margin: '0',
+        display: 'block' as const,
+        ...getDividerAlignment(),
       };
 
       return (

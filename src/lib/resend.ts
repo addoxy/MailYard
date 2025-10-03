@@ -47,23 +47,37 @@ export async function sendEmail(props: SendEmailProps) {
     throw new Error(`Validation failed: ${errorMessages}`);
   }
 
-  const { apiKey, sender: fromEmail, recipients: toEmails, subject } = validationResult.data;
+  const { apiKey, sender: fromEmail, subject } = validationResult.data;
 
   try {
     const resend = new Resend(apiKey);
 
     const EmailComponent = generateEmailComponent(props.emailBlocks, props.canvasStyles);
 
-    const { error } = await resend.emails.send({
-      from: fromEmail,
-      to: toEmails,
-      subject,
-      react: EmailComponent(),
-    });
+    const results = await Promise.allSettled(
+      props.toEmails.map((email) =>
+        resend.emails.send({
+          from: fromEmail,
+          to: email,
+          subject,
+          react: EmailComponent(),
+        })
+      )
+    );
 
-    if (error) {
-      console.error('Resend API error:', error);
-      throw new Error(`Failed to send email: ${error.message || 'Unknown error'}`);
+    const failures = results.filter((result) => result.status === 'rejected');
+    if (failures.length > 0) {
+      const failedEmails = failures.map((_, index) => props.toEmails[index]).join(', ');
+      throw new Error(`Failed to send email to some recipients`);
+    }
+
+    const errors = results
+      .filter((result) => result.status === 'fulfilled' && result.value.error)
+      .map((result) => (result as PromiseFulfilledResult<any>).value.error);
+
+    if (errors.length > 0) {
+      console.error('Resend API errors:', errors);
+      throw new Error(`Failed to send some emails: ${errors.map((e) => e.message).join(', ')}`);
     }
   } catch (error) {
     if (error instanceof Error) {
