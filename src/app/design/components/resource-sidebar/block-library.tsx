@@ -1,6 +1,5 @@
 'use client';
 
-import { AtomicTooltip } from '@/components/atomic-tooltip';
 import { SearchBar } from '@/components/search-bar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn, generateBlockId } from '@/lib/utils';
@@ -47,31 +46,28 @@ const BlockLibraryItem = ({
     : undefined;
 
   return (
-    <AtomicTooltip content={description} side="right" asChild>
-      <div
-        ref={setNodeRef}
-        style={style}
-        className={cn(
-          'hover:bg-secondary/50 flex cursor-pointer items-center gap-2 rounded-md border border-dashed px-3 py-2 transition-all duration-300 last-of-type:mb-6',
-          isDragging && 'opacity-50'
-        )}
-        onClick={onClick}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            onClick();
-          }
-        }}
-        {...attributes}
-        {...listeners}
-      >
-        <Icon className="text-muted-foreground size-3" />
-        <span className="text-sm font-medium">{name}</span>
-      </div>
-    </AtomicTooltip>
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={cn(
+        'hover:bg-secondary/50 flex cursor-pointer items-center gap-2 rounded-md border border-dashed px-3 py-2 transition-all duration-300 last-of-type:mb-6',
+        isDragging && 'opacity-50'
+      )}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      {...attributes}
+      {...listeners}
+    >
+      <Icon className="text-muted-foreground size-3" />
+      <span className="text-sm font-medium">{name}</span>
+    </div>
   );
 };
-
 
 export const BlockLibrary = () => {
   const { addBlock } = useEmailBlocks();
