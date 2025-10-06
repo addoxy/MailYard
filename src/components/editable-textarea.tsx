@@ -1,49 +1,33 @@
 'use client';
 
 import React, { forwardRef } from 'react';
+import TextareaAutosize, { TextareaAutosizeProps } from 'react-textarea-autosize';
 
-export interface EditableTextareaProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+export interface EditableTextareaProps extends Omit<TextareaAutosizeProps, 'style'> {
   style?: React.CSSProperties;
-  className?: string;
 }
 
 export const EditableTextarea = forwardRef<HTMLTextAreaElement, EditableTextareaProps>(
-  (
-    {
-      value,
-      onChange,
-      onBlur,
-      onKeyDown,
-      style,
-      className = 'field-sizing-content resize-none',
-      ...props
-    },
-    ref
-  ) => {
-    const baseStyle: React.CSSProperties = {
+  ({ value, onChange, onBlur, onKeyDown, style, ...props }, ref) => {
+    const baseStyle = {
       border: 'none',
       outline: 'none',
       resize: 'none',
       width: '100%',
       background: 'transparent',
-      minHeight: 'auto',
       display: 'block',
       ...style,
-    };
+    } satisfies React.CSSProperties;
 
     return (
-      <textarea
+      <TextareaAutosize
         ref={ref}
         value={value}
         onChange={onChange}
         onBlur={onBlur}
         onKeyDown={onKeyDown}
-        style={baseStyle}
-        className={className}
+        style={baseStyle as React.ComponentProps<typeof TextareaAutosize>['style']}
+        className="resize-none"
         {...props}
       />
     );

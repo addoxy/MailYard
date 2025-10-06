@@ -81,7 +81,7 @@ export function useInlineEditing({
         handleSave();
       }
     } else if (e.key === 'Escape') {
-      handleCancel();
+      inputRef.current?.blur();
     }
   };
 
