@@ -76,6 +76,7 @@ export function HeroSection() {
               width={1080}
               alt="MailYard Interface"
               priority
+              loading="eager"
               className="border-border/50 mx-auto w-full rounded-xl"
             />
           )}
@@ -86,6 +87,7 @@ export function HeroSection() {
               width={1080}
               alt="MailYard Interface"
               priority
+              loading="eager"
               className="border-border/50 mx-auto w-full rounded-xl"
             />
           )}

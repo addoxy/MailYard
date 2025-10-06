@@ -11,7 +11,7 @@ export function CTASection() {
 
   const gradientClasses =
     theme === 'dark'
-      ? 'from-zinc-900/80 via-zinc-800/80 to-zinc-900/80'
+      ? 'from-background/80 via-zinc-900/80 to-background/80'
       : 'from-zinc-100 via-zinc-50 to-zinc-100';
 
   return (
