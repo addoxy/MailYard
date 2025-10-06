@@ -1,9 +1,14 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { ReactNode } from 'react';
+
+type DndKitListeners = SyntheticListenerMap & {
+  onPointerDown?: (event: React.PointerEvent) => void;
+};
 
 interface SortableEmailBlockProps {
   id: string;
@@ -12,8 +17,11 @@ interface SortableEmailBlockProps {
 }
 
 export function SortableEmailBlock({ id, children }: SortableEmailBlockProps) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging, isOver } =
-    useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id,
+  });
+
+  const typedListeners = listeners as DndKitListeners | undefined;
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -29,7 +37,7 @@ export function SortableEmailBlock({ id, children }: SortableEmailBlockProps) {
       return;
     }
 
-    listeners?.onPointerDown?.(e as any);
+    typedListeners?.onPointerDown?.(e);
   };
 
   return (
