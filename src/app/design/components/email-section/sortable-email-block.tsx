@@ -21,6 +21,18 @@ export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBl
     transition: transition || 'transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94)',
   };
 
+  const handlePointerDown = (e: React.PointerEvent) => {
+    const target = e.target as HTMLElement;
+    const isEditable = target.closest('textarea, input, [contenteditable="true"]');
+
+    if (isEditable) {
+      e.stopPropagation();
+      return;
+    }
+
+    listeners?.onPointerDown?.(e as any);
+  };
+
   return (
     <div
       ref={setNodeRef}
@@ -29,7 +41,7 @@ export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBl
         zIndex: isDragging ? 1000 : 'auto',
       }}
       {...attributes}
-      {...listeners}
+      onPointerDown={handlePointerDown}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(

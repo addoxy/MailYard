@@ -34,7 +34,7 @@ export function DragDropHandler({ children, blocks }: DragDropHandlerProps) {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 5, // 5px of movement required to start drag
+        distance: 8, // 8px of movement required to start drag
       },
     })
   );

@@ -4,6 +4,7 @@ import { EditableTextarea } from '@/components/editable-textarea';
 import { useInlineEditing } from '@/hooks/use-inline-editing';
 import { blockDefaults, createBaseStyle } from '@/lib/style-utils';
 import { Button } from '@react-email/components';
+import { useRef } from 'react';
 import { useEmailBlocks } from '../../hooks/use-email-blocks';
 import { ButtonBlockProps } from './types';
 
@@ -39,6 +40,8 @@ export function ButtonBlock({
   onClick,
 }: ButtonBlockProps) {
   const { updateBlock } = useEmailBlocks();
+  const pointerStartPos = useRef<{ x: number; y: number } | null>(null);
+  const hasMoved = useRef(false);
 
   const {
     isEditing,
@@ -55,11 +58,29 @@ export function ButtonBlock({
     multiline: true,
   });
 
+  const handlePointerDown = (e: React.PointerEvent) => {
+    pointerStartPos.current = { x: e.clientX, y: e.clientY };
+    hasMoved.current = false;
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (pointerStartPos.current) {
+      const dx = Math.abs(e.clientX - pointerStartPos.current.x);
+      const dy = Math.abs(e.clientY - pointerStartPos.current.y);
+      if (dx > 5 || dy > 5) {
+        hasMoved.current = true;
+      }
+    }
+  };
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    if (onClick) {
+    // Only trigger onClick if pointer hasn't moved (not a drag)
+    if (!hasMoved.current && onClick) {
       onClick(id);
     }
+    pointerStartPos.current = null;
+    hasMoved.current = false;
   };
 
   const getButtonAlignment = () => {
@@ -130,7 +151,11 @@ export function ButtonBlock({
   }
 
   return (
-    <div style={containerStyle}>
+    <div
+      style={containerStyle}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+    >
       <Button href={href} style={baseStyle} onClick={handleClick} onDoubleClick={handleDoubleClick}>
         {content}
       </Button>
