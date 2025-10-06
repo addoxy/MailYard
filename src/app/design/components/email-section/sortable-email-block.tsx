@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 
 interface SortableEmailBlockProps {
   id: string;
@@ -11,8 +11,7 @@ interface SortableEmailBlockProps {
   isSelected?: boolean;
 }
 
-export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBlockProps) {
-  const [isHovered, setIsHovered] = useState(false);
+export function SortableEmailBlock({ id, children }: SortableEmailBlockProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging, isOver } =
     useSortable({ id });
 
@@ -42,8 +41,6 @@ export function SortableEmailBlock({ id, children, isSelected }: SortableEmailBl
       }}
       {...attributes}
       onPointerDown={handlePointerDown}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={cn(
         'group relative cursor-grab transition-all duration-150 active:cursor-grabbing',
         isDragging && 'opacity-50'
