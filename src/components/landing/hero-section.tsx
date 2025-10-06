@@ -69,28 +69,13 @@ export function HeroSection() {
       </div>
       <div className="relative mt-12 overflow-hidden mask-b-from-55% sm:mt-20 md:mt-32">
         <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-xl border shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
-          {theme === 'dark' && (
-            <Image
-              src="/hero-dark.png"
-              height={1920}
-              width={1080}
-              alt="MailYard Interface"
-              priority
-              loading="eager"
-              className="border-border/50 mx-auto w-full rounded-xl"
-            />
-          )}
-          {theme === 'light' && (
-            <Image
-              src="/hero-light.jpeg"
-              height={1920}
-              width={1080}
-              alt="MailYard Interface"
-              priority
-              loading="eager"
-              className="border-border/50 mx-auto w-full rounded-xl"
-            />
-          )}
+          <Image
+            src={theme === 'dark' ? '/hero-dark.png' : '/hero-light.png'}
+            height={1920}
+            width={1080}
+            alt="MailYard Interface"
+            className="border-border/50 mx-auto w-full rounded-xl"
+          />
         </div>
       </div>
     </section>
