@@ -20,8 +20,8 @@ export function BlockSelector({ children, onClick, blockId, isSelected }: BlockS
   return (
     <div
       className={cn(
-        'relative cursor-pointer transition-all duration-200 hover:outline-2 hover:outline-blue-400/50',
-        isSelected && 'outline-2 !outline-blue-500'
+        'relative cursor-pointer transition-all duration-200 hover:z-10 hover:outline-2 hover:outline-blue-300',
+        isSelected && 'z-10 outline-2 !outline-blue-500'
       )}
       onClick={handleClick}
       data-block-id={blockId}
