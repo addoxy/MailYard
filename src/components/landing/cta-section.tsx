@@ -8,7 +8,7 @@ import Link from 'next/link';
 export function CTASection() {
   return (
     <section className="mx-auto max-w-5xl">
-      <div className="from-background/40 to-background/20 border-border relative overflow-hidden rounded-2xl border bg-gradient-to-br shadow-lg backdrop-blur-sm">
+      <div className="from-background/40 to-background/20 border-border relative overflow-hidden rounded-2xl border bg-gradient-to-br shadow-sm backdrop-blur-sm">
         <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
         <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
 

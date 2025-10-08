@@ -24,7 +24,7 @@ export const FeatureCard = ({ title, description, icon, type }: FeatureCardProps
   const Icon = icon;
 
   return (
-    <div className="from-background/40 to-background/20 border-border relative mx-auto h-full overflow-hidden rounded-2xl border bg-gradient-to-br shadow-lg backdrop-blur-sm max-md:max-w-[560px]">
+    <div className="from-background/40 to-background/20 border-border relative mx-auto h-full overflow-hidden rounded-2xl border bg-gradient-to-br shadow-sm backdrop-blur-sm max-md:max-w-[560px]">
       <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
       <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
       <div

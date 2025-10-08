@@ -40,7 +40,7 @@ const FAQCard = ({ question, answer, value, icon }: FAQCardProps) => {
   return (
     <AccordionItem
       value={value}
-      className="bg-background border-border rounded-xl border shadow-sm"
+      className="bg-background border-border rounded-xl border"
     >
       <AccordionTrigger className="px-6 py-4 hover:no-underline">
         <div className="flex items-center gap-4 text-left">

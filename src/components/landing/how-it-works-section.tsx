@@ -18,12 +18,12 @@ export const HowItWorksCard = ({
 }: HowItWorksCardProps) => {
   return (
     <div className={cn('relative mx-auto h-full max-w-[560px]', className)}>
-      <div className="from-background/40 to-background/20 border-border relative h-full overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-lg backdrop-blur-sm">
+      <div className="from-background/40 to-background/20 border-border relative h-full overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-sm backdrop-blur-sm">
         <div className="from-primary/5 absolute inset-0 h-full w-full bg-gradient-to-br to-transparent" />
         <div className="via-primary/20 absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent to-transparent" />
 
         <div className="relative flex h-full flex-col">
-          <div className="bg-primary/20 border-primary/30 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border-2 shadow-lg">
+          <div className="bg-primary/20 border-primary/30 mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border-2">
             <span className="text-primary text-2xl font-bold">{step}</span>
           </div>
 
