@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/accordion';
 import { cn } from '@/lib/utils';
 import { Code, Download, HelpCircle, LucideIcon, Save, Shield } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import { SectionDescription, SectionHeading } from './section-typography';
 
 interface FAQCardProps {
@@ -20,24 +19,21 @@ interface FAQCardProps {
 
 const FAQCard = ({ question, answer, value, icon }: FAQCardProps) => {
   const Icon = icon;
-  const { theme } = useTheme();
 
   const getIconClasses = () => {
-    const isDark = theme === 'dark';
-
     switch (Icon) {
       case HelpCircle:
-        return isDark ? 'text-blue-500 bg-blue-950/50' : 'text-blue-600 bg-blue-100';
+        return 'dark:text-blue-500 dark:bg-blue-950/50 text-blue-600 bg-blue-100';
       case Code:
-        return isDark ? 'text-green-500 bg-green-950/50' : 'text-green-600 bg-green-100';
+        return 'dark:text-green-500 dark:bg-green-950/50 text-green-600 bg-green-100';
       case Shield:
-        return isDark ? 'text-red-500 bg-red-950/50' : 'text-red-600 bg-red-100';
+        return 'dark:text-red-500 dark:bg-red-950/50 text-red-600 bg-red-100';
       case Save:
-        return isDark ? 'text-yellow-500 bg-yellow-950/50' : 'text-amber-600 bg-amber-100';
+        return 'dark:text-yellow-500 dark:bg-yellow-950/50';
       case Download:
-        return isDark ? 'text-purple-500 bg-purple-950/50' : 'text-purple-600 bg-purple-100';
+        return 'dark:text-purple-500 dark:bg-purple-950/50';
       default:
-        return isDark ? 'text-gray-500 bg-gray-950/50' : 'text-gray-600 bg-gray-100';
+        return 'dark:text-gray-500 dark:bg-gray-950/50';
     }
   };
 

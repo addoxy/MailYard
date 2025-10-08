@@ -3,15 +3,12 @@
 import { Button, buttonVariants } from '@/components/ui/button';
 import { scrollToId } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BorderBeam } from '../ui/border-beam';
 import { GridPattern } from '../ui/grid-pattern';
 
 export function HeroSection() {
-  const { theme } = useTheme();
-
   return (
     <section className="relative mt-20 sm:mt-32">
       <div className="relative mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-8 text-center sm:p-20">
@@ -70,11 +67,18 @@ export function HeroSection() {
       <div className="relative mt-12 overflow-hidden mask-b-from-55% sm:mt-20 md:mt-32">
         <div className="ring-background bg-background relative mx-auto max-w-6xl overflow-hidden rounded-xl border shadow-lg ring-1 inset-shadow-2xs shadow-zinc-950/15 dark:inset-shadow-white/20">
           <Image
-            src={theme === 'dark' ? '/hero-dark.png' : '/hero-light.png'}
+            src={'/hero-dark.png'}
             height={1920}
             width={1080}
             alt="MailYard Interface"
-            className="border-border/50 mx-auto w-full rounded-xl"
+            className="border-border/50 mx-auto hidden w-full rounded-xl dark:block"
+          />
+          <Image
+            src={'/hero-light.png'}
+            height={1920}
+            width={1080}
+            alt="MailYard Interface"
+            className="border-border/50 mx-auto block w-full rounded-xl dark:hidden"
           />
         </div>
       </div>
