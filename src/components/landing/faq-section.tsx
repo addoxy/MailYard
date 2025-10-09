@@ -38,10 +38,7 @@ const FAQCard = ({ question, answer, value, icon }: FAQCardProps) => {
   };
 
   return (
-    <AccordionItem
-      value={value}
-      className="bg-background border-border rounded-xl border"
-    >
+    <AccordionItem value={value} className="bg-background border-border rounded-xl border">
       <AccordionTrigger className="px-6 py-4 hover:no-underline">
         <div className="flex items-center gap-4 text-left">
           <div
@@ -67,15 +64,9 @@ const FAQCard = ({ question, answer, value, icon }: FAQCardProps) => {
 export function FAQSection() {
   const FAQS = [
     {
-      question: 'Is MailYard free to use?',
-      answer:
-        'Yes, MailYard is currently free to use! In the future, we plan to introduce both free and premium tiers once we implement database storage and user authentication. This transition will be necessary to support data persistence and account management features.',
-      icon: HelpCircle,
-    },
-    {
       question: 'Do I need coding knowledge to use this?',
       answer:
-        'No coding knowledge is required! You can now send emails directly from MailYard using our integrated email sending feature. Simply provide your Resend API key, and you can send professional emails without any code. For advanced users, you can still export React code for custom integrations.',
+        'No coding knowledge is required! You can send emails directly from MailYard using our integrated email sending feature powered by Resend. Simply provide your Resend API key, and you can send professional emails without any code. For developers, you can still export React code for custom integrations.',
       icon: Code,
     },
     {
