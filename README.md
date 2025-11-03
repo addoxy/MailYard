@@ -1,12 +1,12 @@
-# MailYard
+# MailMoss
 
-![MailYard Hero](/public/readme-hero.png)
+![MailMoss Hero](/public/readme-hero.png)
 
 A visual email creator for building beautiful and accessible emails using modern web technologies. Create stunning, responsive emails with an intuitive drag-and-drop interface and export clean React code.
 
-## What is MailYard?
+## What is MailMoss?
 
-MailYard is a visual email design tool for creating emails. With its intuitive interface and powerful features, you can design emails that look perfect across all email clients and devices.
+MailMoss is a visual email design tool for creating emails. With its intuitive interface and powerful features, you can design emails that look perfect across all email clients and devices.
 
 ### Key Features
 
@@ -49,7 +49,7 @@ MailYard is a visual email design tool for creating emails. With its intuitive i
 
 ## Email Client Compatibility
 
-Emails built with MailYard are compatible with widely used email providers because it uses React Email, ensuring your designs work across:
+Emails built with MailMoss are compatible with widely used email providers because it uses React Email, ensuring your designs work across:
 
 - Gmail
 - Outlook

@@ -66,7 +66,7 @@ export function FAQSection() {
     {
       question: 'Do I need coding knowledge to use this?',
       answer:
-        'No coding knowledge is required! You can send emails directly from MailYard using our integrated email sending feature powered by Resend. Simply provide your Resend API key, and you can send professional emails without any code. For developers, you can still export React code for custom integrations.',
+        'No coding knowledge is required! You can send emails directly from MailMoss using our integrated email sending feature powered by Resend. Simply provide your Resend API key, and you can send professional emails without any code. For developers, you can still export React code for custom integrations.',
       icon: Code,
     },
     {
@@ -94,7 +94,7 @@ export function FAQSection() {
       <div className="mx-auto max-w-4xl">
         <div className="mb-16 text-center">
           <SectionHeading text="Frequently Asked Questions" />
-          <SectionDescription text="Everything you need to know about MailYard" />
+          <SectionDescription text="Everything you need to know about MailMoss" />
         </div>
 
         <div>

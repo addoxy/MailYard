@@ -70,14 +70,14 @@ export function HeroSection() {
             src={'/hero-dark.png'}
             height={1920}
             width={1080}
-            alt="MailYard Interface"
+            alt="MailMoss Interface"
             className="border-border/50 mx-auto hidden w-full rounded-xl dark:block"
           />
           <Image
             src={'/hero-light.png'}
             height={1920}
             width={1080}
-            alt="MailYard Interface"
+            alt="MailMoss Interface"
             className="border-border/50 mx-auto block w-full rounded-xl dark:hidden"
           />
         </div>
