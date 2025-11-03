@@ -18,7 +18,7 @@ export function Footer() {
         <div className="flex items-center gap-2">
           <a
             target="_blank"
-            href="https://github.com/addoxy/email-builder"
+            href="https://github.com/axiidotsh/mailmoss"
             className={cn(
               buttonVariants({
                 size: 'icon',

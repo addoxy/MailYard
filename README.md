@@ -1,6 +1,7 @@
 # MailMoss
 
-![MailMoss Hero](/public/readme-hero.png)
+![MailMoss Hero Light](/public/hero-light.png#gh-light-mode-only)
+![MailMoss Hero Dark](/public/hero-dark.png#gh-dark-mode-only)
 
 A visual email creator for building beautiful and accessible emails using modern web technologies. Create stunning, responsive emails with an intuitive drag-and-drop interface and export clean React code.
 
